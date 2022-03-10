@@ -69,7 +69,7 @@ const breadcrumb= computed(()=>{
   <div class="hb-admin-head-com">
     <div class="head-left-area head-item-center">
       <n-breadcrumb>
-        <n-breadcrumb-item v-for="e in breadcrumb">
+        <n-breadcrumb-item v-for="e in breadcrumb" :key="e.menuId">
 
           <n-icon>
             <i :class="e.icon" v-if="e.icon"></i>

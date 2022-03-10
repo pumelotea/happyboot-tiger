@@ -159,7 +159,7 @@ watch(currentRouteMenu,value=>{
                  :type="e.pageId === currentRouteMenu.pageId?'success':''"
                  @click="(event)=>{onNavClick(e.pageId,event)}"
                  :id="e.pageId"
-                 class="animate__animated"
+                 class="nav-tag"
           >
             {{ e.title }}
             <template #avatar>
@@ -224,6 +224,15 @@ watch(currentRouteMenu,value=>{
 
 .n-tag + .n-tag {
   margin-left: 5px;
+}
+
+.nav-tag{
+
+}
+
+.nav-tag:hover{
+  opacity: 0.5;
+  transition: opacity 0.5s ease;
 }
 
 .nav-item-icon{
