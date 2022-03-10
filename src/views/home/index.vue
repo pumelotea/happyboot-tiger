@@ -5,7 +5,7 @@ import HbAdminNav from "../../components/HbAdminNav.vue"
 import HbAdminLogo from "../../components/HbAdminLogo.vue"
 import HbAdminCopyright from "../../components/HbAdminCopyright.vue"
 import HbAdminUserCard from "../../components/HbAdminUserCard.vue"
-
+import {NEmpty,NIcon} from "naive-ui"
 import {
   NMessageProvider,
   NConfigProvider,
@@ -17,9 +17,18 @@ import {
 } from "naive-ui"
 
 import {theme,isMenuCollapsed} from "../../global/config";
+import {h} from "vue";
+import {CubeOutline,AlbumsOutline} from "@vicons/ionicons5";
+import framework from "../../global/framework";
 
 function onLayoutCollapsed(collapsed){
   isMenuCollapsed.value = collapsed
+}
+
+const currentMenuRoute = framework.getCurrentMenuRoute()
+
+function renderIcon(){
+  return ()=>h(NIcon, null, {default: () => h(CubeOutline)})
 }
 
 
@@ -57,6 +66,13 @@ function onLayoutCollapsed(collapsed){
             <router-view v-slot="{ Component }">
               <component :is="Component"></component>
             </router-view>
+            <div class="empty-route-body" v-if="!currentMenuRoute">
+              <n-empty size="huge" description="还没打开页面呐 ~">
+                <template #icon>
+                  <n-icon :component="AlbumsOutline"></n-icon>
+                </template>
+              </n-empty>
+            </div>
           </n-layout-content>
           <n-layout-footer class="main-foot">
             <hb-admin-copyright/>
@@ -90,5 +106,13 @@ function onLayoutCollapsed(collapsed){
 
 .main-foot {
   height: 40px;
+}
+
+.empty-route-body{
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 </style>

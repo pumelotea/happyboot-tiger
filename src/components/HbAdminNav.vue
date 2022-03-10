@@ -1,5 +1,5 @@
 <script setup>
-import {NIcon, NButton, NAvatar, NTag, NDropdown} from "naive-ui"
+import {NIcon, NButton, NEmpty, NTag, NDropdown} from "naive-ui"
 import {
   ArrowBack,
   ArrowForward,
@@ -129,7 +129,9 @@ function scrollHorizontal(direction){
 
 watch(currentRouteMenu,value=>{
   nextTick(()=>{
-    scroll(value.pageId)
+    if (value){
+      scroll(value.pageId)
+    }
   })
 })
 
@@ -148,6 +150,7 @@ watch(currentRouteMenu,value=>{
       </template>
     </n-button>
     <div class="inline-box" ref="navDom">
+      <n-empty :show-icon="false" description="从左侧菜单打开页面" v-if="navList.length <= 0"></n-empty>
       <n-tag closable
              round
              v-for="e in navList" @close="()=>{onNavClose(e)}"
