@@ -151,21 +151,24 @@ watch(currentRouteMenu,value=>{
     </n-button>
     <div class="inline-box" ref="navDom">
       <n-empty :show-icon="false" description="从左侧菜单打开页面" v-if="navList.length <= 0"></n-empty>
-      <n-tag closable
-             round
-             v-for="e in navList" @close="()=>{onNavClose(e)}"
-             :type="e.pageId === currentRouteMenu.pageId?'success':''"
-             @click="(event)=>{onNavClick(e.pageId,event)}"
-             :id="e.pageId"
-      >
-        {{ e.title }}
-        <template #avatar>
-          <div class="nav-item-icon">
-            <i class="n-base-icon" :class="e.menuItem.icon" v-if="e.menuItem.icon"></i>
-            <n-icon :component="CubeOutline" v-else></n-icon>
-          </div>
-        </template>
-      </n-tag>
+          <n-tag closable
+                 v-for="e in navList"
+                 :key="e.pageId"
+                 round
+                 @close="()=>{onNavClose(e)}"
+                 :type="e.pageId === currentRouteMenu.pageId?'success':''"
+                 @click="(event)=>{onNavClick(e.pageId,event)}"
+                 :id="e.pageId"
+                 class="animate__animated"
+          >
+            {{ e.title }}
+            <template #avatar>
+              <div class="nav-item-icon">
+                <i class="n-base-icon" :class="e.menuItem.icon" v-if="e.menuItem.icon"></i>
+                <n-icon :component="CubeOutline" v-else></n-icon>
+              </div>
+            </template>
+          </n-tag>
     </div>
 
     <div class="nav-action-box">
@@ -207,11 +210,11 @@ watch(currentRouteMenu,value=>{
 }
 
 .inline-box {
-  display: inline-flex;
   flex: 1;
   overflow: auto;
   position: relative;
   margin: 0 10px;
+  white-space: nowrap;
 }
 
 .inline-box::-webkit-scrollbar {
@@ -228,5 +231,4 @@ watch(currentRouteMenu,value=>{
   align-items: center;
   padding-left: 5px;
 }
-
 </style>

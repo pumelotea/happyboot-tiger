@@ -1,9 +1,10 @@
 <script setup>
-import { NIcon,NBadge,NAvatar,NSwitch,NCarousel,NDivider,NDropdown,useMessage, NText } from "naive-ui"
+import { NIcon,NBadge,NAvatar,NSwitch,NCarousel,NDivider,NDropdown,useMessage, NText, NBreadcrumb,NBreadcrumbItem } from "naive-ui"
 import { Moon,SunnyOutline,Notifications } from "@vicons/ionicons5"
-import {ref,h} from "vue"
+import {ref, h, onMounted, computed} from "vue"
 import {isDarkTheme} from "../global/config";
-
+import framework from "../global/framework";
+import { CubeOutline } from "@vicons/ionicons5"
 
 function renderCustomHeader() {
   return h("div", {
@@ -53,11 +54,30 @@ function handleSelect(key) {
 }
 
 
+
+const currentMenuRoute = framework.getCurrentMenuRoute()
+
+const breadcrumb= computed(()=>{
+  return currentMenuRoute.value?.menuItem.breadcrumb
+})
+
+
+
 </script>
 
 <template>
   <div class="hb-admin-head-com">
     <div class="head-left-area head-item-center">
+      <n-breadcrumb>
+        <n-breadcrumb-item v-for="e in breadcrumb">
+
+          <n-icon>
+            <i :class="e.icon" v-if="e.icon"></i>
+            <cube-outline v-else/>
+          </n-icon>
+          {{e.name}}
+        </n-breadcrumb-item>
+      </n-breadcrumb>
     </div>
     <div class="head-center-area head-item-center">
       <div class="carousel-box">
