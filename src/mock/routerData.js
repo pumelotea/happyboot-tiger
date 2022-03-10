@@ -5,6 +5,7 @@ const routerData = [
     view: '/desc/index.vue',
     isRouter: true,
     isKeepalive: true,
+    icon:'ri-pie-chart-line',
     type: 'menu',
     children: []
   },
@@ -14,6 +15,7 @@ const routerData = [
     view: '',
     isRouter: false,
     isKeepalive: true,
+    icon:'ri-medal-line',
     type: 'menu',
     children: [
       {
@@ -22,6 +24,7 @@ const routerData = [
         view: '/data-raw/index.vue',
         isRouter: true,
         isKeepalive: true,
+        icon:'ri-cloud-fill',
         type: 'menu',
         children: []
       },
@@ -31,6 +34,7 @@ const routerData = [
         view: '/data-menu/index.vue',
         isRouter: true,
         isKeepalive: true,
+        icon:'ri-bar-chart-2-fill',
         type: 'menu',
         children: []
       },

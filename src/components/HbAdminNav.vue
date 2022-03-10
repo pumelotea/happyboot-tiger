@@ -1,5 +1,5 @@
 <script setup>
-import {NIcon, NButton, NAvatar, NTag, NDropdown, NLayout} from "naive-ui"
+import {NIcon, NButton, NAvatar, NTag, NDropdown} from "naive-ui"
 import {
   ArrowBack,
   ArrowForward,
@@ -7,7 +7,8 @@ import {
   ArrowBackSharp,
   ArrowForwardSharp,
   CloseSharp,
-  CloseCircleSharp
+  CloseCircleSharp,
+  CubeOutline
 } from "@vicons/ionicons5"
 import framework from '.././global/framework'
 import {h, nextTick, ref, watch} from "vue";
@@ -80,7 +81,6 @@ function onNavClick(pageId,event) {
   })
 }
 
-
 function scroll(pageId){
   const scrollLeft = navDom.value.scrollLeft
   const target = document.getElementById(pageId)
@@ -106,9 +106,7 @@ function scroll(pageId){
   }
 }
 
-
 const navDom = ref(null)
-
 
 function scrollHorizontal(direction){
   const left = navDom.value.scrollLeft
@@ -159,9 +157,10 @@ watch(currentRouteMenu,value=>{
       >
         {{ e.title }}
         <template #avatar>
-          <n-avatar
-              src="https://cdnimg103.lizhi.fm/user/2017/02/04/2583325032200238082_160x160.jpg"
-          />
+          <div class="nav-item-icon">
+            <i class="n-base-icon" :class="e.menuItem.icon" v-if="e.menuItem.icon"></i>
+            <n-icon :component="CubeOutline" v-else></n-icon>
+          </div>
         </template>
       </n-tag>
     </div>
@@ -219,6 +218,12 @@ watch(currentRouteMenu,value=>{
 
 .n-tag + .n-tag {
   margin-left: 5px;
+}
+
+.nav-item-icon{
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
 }
 
 </style>

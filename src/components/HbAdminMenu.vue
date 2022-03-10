@@ -15,7 +15,10 @@ const currentMenuRoute = framework.getCurrentMenuRoute()
 
 
 function renderIcon(icon) {
-  return () => h(NIcon, null, {default: () => h(icon)})
+  if (!icon){
+    return () => h(NIcon, null, {default: () => h(CubeOutline)})
+  }
+  return () =>h('i',{class: icon})
 }
 
 function menuDataAdapter(rawMenuTree) {
@@ -28,7 +31,7 @@ function menuDataAdapter(rawMenuTree) {
       const subMenu = {
         name:tree[i].name,
         menuId:tree[i].menuId,
-        icon:renderIcon(tree[i].icon || CubeOutline),
+        icon:renderIcon(tree[i].icon),
         original:toRaw(tree[i])
       }
       if (tree[i].children.length > 0){
