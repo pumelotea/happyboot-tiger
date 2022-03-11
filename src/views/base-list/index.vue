@@ -2,12 +2,20 @@
 import HbAdminPageLayout from '../../components/HbAdminPageLayout.vue'
 import {
   NLayout, NLayoutHeader, NLayoutContent, NDataTable,
-  NGrid, NGridItem, NDatePicker, NInput, NSelect, NButton, NSpace, NIcon,
+  NGrid, NGridItem, NDatePicker, NInput, NSelect, NButton, NSpace, NIcon, useMessage,
 } from "naive-ui";
-import {reactive, ref} from "vue";
+import {h, reactive, ref} from "vue";
 import {
   AddSharp, TrashSharp, RefreshSharp, SearchSharp
 } from "@vicons/ionicons5"
+
+import {Document20Regular, DocumentEdit20Regular} from "@vicons/fluent"
+
+const message = useMessage()
+
+function play(row) {
+  message.info(`Play ${row.name}`);
+}
 
 const columns = [
   {
@@ -17,16 +25,49 @@ const columns = [
     }
   },
   {
-    title: 'Name',
+    title: '姓名',
     key: 'name'
   },
   {
-    title: 'Age',
+    title: '年龄',
     key: 'age'
   },
   {
-    title: 'Address',
+    title: '身高',
+    key: 'high'
+  },
+  {
+    title: '体重',
+    key: 'weight'
+  },
+  {
+    title: '地址',
     key: 'address'
+  },
+  {
+    title: "操作",
+    key: "actions",
+    width: "270",
+    render(row) {
+      return h(NSpace, null, [
+        h(NButton, {
+          tertiary: true,
+          size: "small",
+          onClick: () => play(row),
+        }, {default: () => "详情", icon: () => h(Document20Regular)}),
+        h(NButton, {
+          tertiary: true,
+          size: "small",
+          onClick: () => play(row)
+        }, {default: () => "编辑", icon: () => h(DocumentEdit20Regular)}),
+        h(NButton, {
+          tertiary: true,
+          size: "small",
+          type: 'error',
+          onClick: () => play(row)
+        }, {default: () => "删除", icon: () => h(TrashSharp)})
+      ])
+    }
   }
 ]
 
@@ -34,6 +75,8 @@ const data = Array.apply(null, {length: 200}).map((_, index) => ({
   key: index,
   name: `Edward King ${index}`,
   age: 32,
+  high: 170,
+  weight: '55kg',
   address: `London, Park Lane no. ${index}`
 }))
 
