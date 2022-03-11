@@ -5,7 +5,6 @@ import HbAdminNav from "../../components/HbAdminNav.vue"
 import HbAdminLogo from "../../components/HbAdminLogo.vue"
 import HbAdminCopyright from "../../components/HbAdminCopyright.vue"
 import HbAdminUserCard from "../../components/HbAdminUserCard.vue"
-import {NEmpty,NIcon} from "naive-ui"
 import {
   NMessageProvider,
   NConfigProvider,
@@ -13,7 +12,10 @@ import {
   NLayoutSider,
   NLayoutHeader,
   NLayoutFooter,
-  NLayoutContent
+  NLayoutContent,
+  NEmpty,NIcon,
+  zhCN,
+  dateZhCN
 } from "naive-ui"
 
 import {theme,isMenuCollapsed} from "../../global/config";
@@ -35,7 +37,7 @@ function renderIcon(){
 </script>
 
 <template>
-  <n-config-provider :theme="theme">
+  <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
     <n-message-provider>
       <n-layout has-sider class="main-layout">
         <n-layout-sider

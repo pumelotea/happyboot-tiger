@@ -58,7 +58,17 @@ const routerData = [
         children: []
       }
     ]
-  }
+  },
+  {
+    name: '基础列表',
+    path: '/base-list',
+    view: '/base-list/index.vue',
+    isRouter: true,
+    isKeepalive: true,
+    type: 'menu',
+    icon:'ri-table-line',
+    children: []
+  },
 ]
 
 export default routerData
