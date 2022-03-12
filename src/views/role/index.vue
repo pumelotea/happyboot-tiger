@@ -1,6 +1,5 @@
 <script setup>
 import HbAdminPageLayout from '../../components/HbAdminPageLayout.vue'
-import DialogCreate from './dialog/Create.vue'
 import {
   NLayout, NLayoutHeader, NLayoutContent, NDataTable,
   NGrid, NGridItem, NDatePicker, NInput, NSelect, NButton, NSpace, NIcon, useMessage,
@@ -31,32 +30,16 @@ const columns = [
     }
   },
   {
-    title: '姓名',
-    key: 'name'
+    title: '角色',
+    key: 'role'
   },
   {
-    title: '年龄',
-    key: 'age',
-    sortOrder: true,
-    sorter(rowA, rowB) {
-      return rowA.age - rowB.age
-    }
+    title: '描述',
+    key: 'desc',
   },
   {
-    title: '身高',
-    key: 'high',
-    sortOrder: true,
-    sorter(rowA, rowB) {
-      return rowA.high - rowB.high
-    }
-  },
-  {
-    title: '体重',
-    key: 'weight'
-  },
-  {
-    title: '地址',
-    key: 'address'
+    title: '备注',
+    key: 'remark',
   },
   {
     title: "操作",
@@ -68,12 +51,10 @@ const columns = [
           h(NButton, {
             tertiary: true,
             size: "small",
-            onClick: () => openDialog(row),
           }, {default: () => "详情", icon: () => h(DocumentOutline)}),
           h(NButton, {
             tertiary: true,
             size: "small",
-            onClick: () => openDialog(row)
           }, {default: () => "编辑", icon: () => h(CreateOutline)}),
           h(NPopconfirm, {
             onPositiveClick: () => handlePositiveClick(row),
@@ -96,11 +77,9 @@ const checkedRowKeys = ref([])
 
 const data = Array.apply(null, {length: 200}).map((_, index) => ({
   key: index,
-  name: `Edward King ${index}`,
-  age: index,
-  high: 150 + index,
-  weight: '55kg',
-  address: `London, Park Lane no. ${index}`
+  role: `角色 - ${index}`,
+  desc: '我是描述',
+  remark: '备注' + index,
 }))
 
 const pagination = reactive({
@@ -171,12 +150,6 @@ const options = ref([
   }
 ])
 
-let refDialogCreate = ref(null)
-
-function openDialog(row){
-  refDialogCreate.value.open(row)
-}
-
 </script>
 
 <template>
@@ -185,22 +158,16 @@ function openDialog(row){
       <n-layout-header>
         <n-grid x-gap="12" :cols="4" style="padding: 5px;box-sizing: border-box">
           <n-grid-item>
-            <n-date-picker clearable></n-date-picker>
-          </n-grid-item>
-          <n-grid-item>
             <n-input>
               <template #prefix>
-                姓名
+                描述
               </template>
             </n-input>
           </n-grid-item>
           <n-grid-item>
-            <n-select :options="options" clearable/>
-          </n-grid-item>
-          <n-grid-item>
             <n-input>
               <template #prefix>
-                手机号
+                角色
               </template>
             </n-input>
           </n-grid-item>
@@ -208,7 +175,7 @@ function openDialog(row){
         <n-grid x-gap="12" :cols="2" style="padding: 5px;box-sizing: border-box">
           <n-grid-item>
             <n-space>
-              <n-button type="info" @click="openDialog">
+              <n-button type="info">
                 <template #icon>
                   <n-icon :component="AddSharp"></n-icon>
                 </template>
@@ -261,7 +228,6 @@ function openDialog(row){
 
       </n-layout-content>
     </n-layout>
-    <dialog-create ref="refDialogCreate"/>
   </hb-admin-page-layout>
 </template>
 

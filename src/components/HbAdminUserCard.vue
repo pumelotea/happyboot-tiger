@@ -1,7 +1,7 @@
 <script setup>
-import {NAvatar,NLayout,NLayoutHeader,NIcon,NButton} from "naive-ui";
+import {NAvatar,NLayout,NLayoutHeader,NIcon,NButton,NBadge,NSpace} from "naive-ui";
 import {
-  SettingsOutline
+  EarthOutline
 } from "@vicons/ionicons5"
 import {isMenuCollapsed} from "../global/config";
 </script>
@@ -12,10 +12,13 @@ import {isMenuCollapsed} from "../global/config";
       <div class="hb-admin-user-card-com">
         <n-avatar size="large" round src="https://07akioni.oss-cn-beijing.aliyuncs.com/demo1.JPG"/>
         <span class="nickname" v-if="!isMenuCollapsed">千阳</span>
-        <span style="flex: 1" v-if="!isMenuCollapsed"></span>
-        <n-button text>
-          <n-icon size="24" :component="SettingsOutline" v-if="!isMenuCollapsed"></n-icon>
-        </n-button>
+        <span style="flex: 1;" v-if="!isMenuCollapsed"></span>
+        <n-space align="center" justify="end">
+          <n-badge type="success" :value="20" processing></n-badge>
+          <n-button round text style="align-items: center;display: flex">
+            <n-icon size="24" :component="EarthOutline" v-if="!isMenuCollapsed"></n-icon>
+          </n-button>
+        </n-space>
       </div>
     </n-layout-header>
   </n-layout>

@@ -10,15 +10,6 @@ const routerData = [
     children: []
   },
   {
-    name: '权限',
-    path: '/permission',
-    view: '/permission/index.vue',
-    isRouter: true,
-    isKeepalive: true,
-    type: 'menu',
-    children: []
-  },
-  {
     name: '错误页面',
     path: '/error',
     view: '/security/index.vue',
@@ -68,6 +59,47 @@ const routerData = [
     type: 'menu',
     icon:'ri-table-line',
     children: []
+  },
+  {
+    name: '系统设置',
+    path: '/setting',
+    view: '',
+    isRouter: false,
+    isKeepalive: false,
+    icon:'ri-tools-line',
+    type: 'menu',
+    children: [
+      {
+        name: '菜单设置',
+        path: '/menu',
+        view: '/permission/index.vue',
+        isRouter: true,
+        isKeepalive: false,
+        icon:'ri-menu-line',
+        type: 'menu',
+        children: []
+      },
+      {
+        name: '用户管理',
+        path: '/user',
+        view: '/user/index.vue',
+        isRouter: true,
+        isKeepalive: false,
+        icon:'ri-user-line',
+        type: 'menu',
+        children: []
+      },
+      {
+        name: '角色管理',
+        path: '/role',
+        view: '/role/index.vue',
+        isRouter: true,
+        isKeepalive: false,
+        icon:'ri-file-user-line',
+        type: 'menu',
+        children: []
+      },
+    ]
   },
 ]
 

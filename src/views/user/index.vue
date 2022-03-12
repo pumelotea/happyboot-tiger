@@ -1,6 +1,5 @@
 <script setup>
 import HbAdminPageLayout from '../../components/HbAdminPageLayout.vue'
-import DialogCreate from './dialog/Create.vue'
 import {
   NLayout, NLayoutHeader, NLayoutContent, NDataTable,
   NGrid, NGridItem, NDatePicker, NInput, NSelect, NButton, NSpace, NIcon, useMessage,
@@ -51,6 +50,10 @@ const columns = [
     }
   },
   {
+    title: '手机',
+    key: 'phone'
+  },
+  {
     title: '体重',
     key: 'weight'
   },
@@ -68,12 +71,10 @@ const columns = [
           h(NButton, {
             tertiary: true,
             size: "small",
-            onClick: () => openDialog(row),
           }, {default: () => "详情", icon: () => h(DocumentOutline)}),
           h(NButton, {
             tertiary: true,
             size: "small",
-            onClick: () => openDialog(row)
           }, {default: () => "编辑", icon: () => h(CreateOutline)}),
           h(NPopconfirm, {
             onPositiveClick: () => handlePositiveClick(row),
@@ -98,6 +99,7 @@ const data = Array.apply(null, {length: 200}).map((_, index) => ({
   key: index,
   name: `Edward King ${index}`,
   age: index,
+  phone: '18888888888',
   high: 150 + index,
   weight: '55kg',
   address: `London, Park Lane no. ${index}`
@@ -113,70 +115,6 @@ const pagination = reactive({
   }
 })
 
-const options = ref([
-  {
-    label: "Everybody's Got Something to Hide Except Me and My Monkey",
-    value: 'song0',
-    disabled: true
-  },
-  {
-    label: 'Drive My Car',
-    value: 'song1'
-  },
-  {
-    label: 'Norwegian Wood',
-    value: 'song2'
-  },
-  {
-    label: "You Won't See",
-    value: 'song3',
-    disabled: true
-  },
-  {
-    label: 'Nowhere Man',
-    value: 'song4'
-  },
-  {
-    label: 'Think For Yourself',
-    value: 'song5'
-  },
-  {
-    label: 'The Word',
-    value: 'song6'
-  },
-  {
-    label: 'Michelle',
-    value: 'song7',
-    disabled: true
-  },
-  {
-    label: 'What goes on',
-    value: 'song8'
-  },
-  {
-    label: 'Girl',
-    value: 'song9'
-  },
-  {
-    label: "I'm looking through you",
-    value: 'song10'
-  },
-  {
-    label: 'In My Life',
-    value: 'song11'
-  },
-  {
-    label: 'Wait',
-    value: 'song12'
-  }
-])
-
-let refDialogCreate = ref(null)
-
-function openDialog(row){
-  refDialogCreate.value.open(row)
-}
-
 </script>
 
 <template>
@@ -184,9 +122,7 @@ function openDialog(row){
     <n-layout style="height: 100%;" content-style="display:flex;flex-direction: column">
       <n-layout-header>
         <n-grid x-gap="12" :cols="4" style="padding: 5px;box-sizing: border-box">
-          <n-grid-item>
-            <n-date-picker clearable></n-date-picker>
-          </n-grid-item>
+
           <n-grid-item>
             <n-input>
               <template #prefix>
@@ -195,20 +131,20 @@ function openDialog(row){
             </n-input>
           </n-grid-item>
           <n-grid-item>
-            <n-select :options="options" clearable/>
-          </n-grid-item>
-          <n-grid-item>
             <n-input>
               <template #prefix>
                 手机号
               </template>
             </n-input>
           </n-grid-item>
+          <n-grid-item>
+            <n-date-picker clearable placeholder="创建日期"></n-date-picker>
+          </n-grid-item>
         </n-grid>
         <n-grid x-gap="12" :cols="2" style="padding: 5px;box-sizing: border-box">
           <n-grid-item>
             <n-space>
-              <n-button type="info" @click="openDialog">
+              <n-button type="info">
                 <template #icon>
                   <n-icon :component="AddSharp"></n-icon>
                 </template>
@@ -261,7 +197,6 @@ function openDialog(row){
 
       </n-layout-content>
     </n-layout>
-    <dialog-create ref="refDialogCreate"/>
   </hb-admin-page-layout>
 </template>
 
