@@ -1,10 +1,12 @@
 <script setup>
 import HbAdminPageLayout from '../../components/HbAdminPageLayout.vue'
+import DialogCreate from './dialog/Create.vue'
 import {
   NLayout, NLayoutHeader, NLayoutContent, NDataTable,
   NGrid, NGridItem, NDatePicker, NInput, NSelect, NButton, NSpace, NIcon, useMessage,
+  NPopconfirm, NFormItem
 } from "naive-ui";
-import {h, reactive, ref} from "vue";
+import {h, onMounted, reactive, ref} from "vue";
 import {
   AddSharp, TrashSharp, RefreshSharp, SearchSharp
 } from "@vicons/ionicons5"
@@ -13,8 +15,13 @@ import {Document20Regular, DocumentEdit20Regular} from "@vicons/fluent"
 
 const message = useMessage()
 
-function play(row) {
-  message.info(`Play ${row.name}`);
+
+function handlePositiveClick(row) {
+  message.info("你点击了确定");
+}
+
+function handleNegativeClick(row) {
+  message.info("你点击了取消");
 }
 
 const columns = [
@@ -30,11 +37,19 @@ const columns = [
   },
   {
     title: '年龄',
-    key: 'age'
+    key: 'age',
+    sortOrder: true,
+    sorter(rowA, rowB) {
+      return rowA.age - rowB.age
+    }
   },
   {
     title: '身高',
-    key: 'high'
+    key: 'high',
+    sortOrder: true,
+    sorter(rowA, rowB) {
+      return rowA.high - rowB.high
+    }
   },
   {
     title: '体重',
@@ -49,24 +64,31 @@ const columns = [
     key: "actions",
     width: "270",
     render(row) {
-      return h(NSpace, null, [
-        h(NButton, {
-          tertiary: true,
-          size: "small",
-          onClick: () => play(row),
-        }, {default: () => "详情", icon: () => h(Document20Regular)}),
-        h(NButton, {
-          tertiary: true,
-          size: "small",
-          onClick: () => play(row)
-        }, {default: () => "编辑", icon: () => h(DocumentEdit20Regular)}),
-        h(NButton, {
-          tertiary: true,
-          size: "small",
-          type: 'error',
-          onClick: () => play(row)
-        }, {default: () => "删除", icon: () => h(TrashSharp)})
-      ])
+      return h(NSpace, null, {
+        default: () => [
+          h(NButton, {
+            tertiary: true,
+            size: "small",
+            onClick: () => openDialog(row),
+          }, {default: () => "详情", icon: () => h(Document20Regular)}),
+          h(NButton, {
+            tertiary: true,
+            size: "small",
+            onClick: () => openDialog(row)
+          }, {default: () => "编辑", icon: () => h(DocumentEdit20Regular)}),
+          h(NPopconfirm, {
+            onPositiveClick: () => handlePositiveClick(row),
+            onNegativeClick: () => handleNegativeClick(row),
+          }, {
+            default: () => "你确定以及肯定要删除这条数据吗？",
+            trigger: () => h(NButton, {
+              tertiary: true,
+              size: "small",
+              type: 'error',
+            }, {default: () => "删除", icon: () => h(TrashSharp)})
+          })
+        ]
+      })
     }
   }
 ]
@@ -74,8 +96,8 @@ const columns = [
 const data = Array.apply(null, {length: 200}).map((_, index) => ({
   key: index,
   name: `Edward King ${index}`,
-  age: 32,
-  high: 170,
+  age: index,
+  high: 150 + index,
   weight: '55kg',
   address: `London, Park Lane no. ${index}`
 }))
@@ -148,6 +170,12 @@ const options = ref([
   }
 ])
 
+let refDialogCreate = ref(null)
+
+function openDialog(row){
+  refDialogCreate.value.open(row)
+}
+
 </script>
 
 <template>
@@ -156,7 +184,9 @@ const options = ref([
       <n-layout-header>
         <n-grid x-gap="12" :cols="4" style="padding: 5px;box-sizing: border-box">
           <n-grid-item>
-            <n-date-picker clearable></n-date-picker>
+            <n-form-item label="生日">
+              <n-date-picker clearable></n-date-picker>
+            </n-form-item>
           </n-grid-item>
           <n-grid-item>
             <n-input>
@@ -179,7 +209,7 @@ const options = ref([
         <n-grid x-gap="12" :cols="2" style="padding: 5px;box-sizing: border-box">
           <n-grid-item>
             <n-space>
-              <n-button type="info">
+              <n-button type="info" @click="openDialog">
                 <template #icon>
                   <n-icon :component="AddSharp"></n-icon>
                 </template>
@@ -214,7 +244,7 @@ const options = ref([
       </n-layout-header>
       <n-layout-content>
         <n-data-table
-            ref="table"
+
             flex-height
             :columns="columns"
             striped
@@ -225,6 +255,7 @@ const options = ref([
 
       </n-layout-content>
     </n-layout>
+    <dialog-create ref="refDialogCreate"/>
   </hb-admin-page-layout>
 </template>
 
