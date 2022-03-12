@@ -4,14 +4,13 @@ import DialogCreate from './dialog/Create.vue'
 import {
   NLayout, NLayoutHeader, NLayoutContent, NDataTable,
   NGrid, NGridItem, NDatePicker, NInput, NSelect, NButton, NSpace, NIcon, useMessage,
-  NPopconfirm, NFormItem
+  NPopconfirm, NAlert,NP,
 } from "naive-ui";
 import {h, onMounted, reactive, ref} from "vue";
 import {
-  AddSharp, TrashSharp, RefreshSharp, SearchSharp
+  AddSharp, TrashSharp, RefreshSharp, SearchSharp,DocumentOutline,PencilSharp
 } from "@vicons/ionicons5"
 
-import {Document20Regular, DocumentEdit20Regular} from "@vicons/fluent"
 
 const message = useMessage()
 
@@ -70,12 +69,12 @@ const columns = [
             tertiary: true,
             size: "small",
             onClick: () => openDialog(row),
-          }, {default: () => "详情", icon: () => h(Document20Regular)}),
+          }, {default: () => "详情", icon: () => h(DocumentOutline)}),
           h(NButton, {
             tertiary: true,
             size: "small",
             onClick: () => openDialog(row)
-          }, {default: () => "编辑", icon: () => h(DocumentEdit20Regular)}),
+          }, {default: () => "编辑", icon: () => h(PencilSharp)}),
           h(NPopconfirm, {
             onPositiveClick: () => handlePositiveClick(row),
             onNegativeClick: () => handleNegativeClick(row),
@@ -92,6 +91,8 @@ const columns = [
     }
   }
 ]
+
+const checkedRowKeys = ref([])
 
 const data = Array.apply(null, {length: 200}).map((_, index) => ({
   key: index,
@@ -184,9 +185,7 @@ function openDialog(row){
       <n-layout-header>
         <n-grid x-gap="12" :cols="4" style="padding: 5px;box-sizing: border-box">
           <n-grid-item>
-            <n-form-item label="生日">
-              <n-date-picker clearable></n-date-picker>
-            </n-form-item>
+            <n-date-picker clearable></n-date-picker>
           </n-grid-item>
           <n-grid-item>
             <n-input>
@@ -241,10 +240,17 @@ function openDialog(row){
             </n-space>
           </n-grid-item>
         </n-grid>
+        <n-grid x-gap="12" :cols="1" style="padding: 5px;box-sizing: border-box" v-if="checkedRowKeys.length>0">
+          <n-grid-item>
+            <n-alert type="info">
+              你选中了 {{ checkedRowKeys.length }} 行
+            </n-alert>
+          </n-grid-item>
+        </n-grid>
       </n-layout-header>
       <n-layout-content>
         <n-data-table
-
+            v-model:checked-row-keys="checkedRowKeys"
             flex-height
             :columns="columns"
             striped
