@@ -26,9 +26,9 @@ onMounted(()=>{
 </script>
 
 <template>
-  <hb-admin-page-layout>
-    <n-spin style="height: 100%" :show="loading">
-      <n-layout style="height: 100%;" content-style="display:flex;flex-direction: column">
+  <hb-admin-page-layout class="base-list">
+    <n-spin style="height: 100%;" :show="loading">
+      <n-layout style="height: 100%;" content-style="display:flex;flex-direction: column;">
         <n-layout-header>
           <n-grid x-gap="12" :cols="4" style="padding: 5px;box-sizing: border-box">
             <n-grid-item>
@@ -159,3 +159,9 @@ onMounted(()=>{
   object-fit: cover;
 }
 </style>
+<style>
+.base-list .n-spin-content{
+  height: 100% !important;
+}
+</style>
+
