@@ -4,7 +4,7 @@ import DialogCreate from './dialog/Create.vue'
 import {
   NLayout, NLayoutHeader, NLayoutContent, NDataTable,
   NGrid, NGridItem, NDatePicker, NInput, NSelect, NButton, NSpace, NIcon, useMessage,
-  NPopconfirm, NAlert,NP,
+  NPopconfirm, NAlert,NSpin,
 } from "naive-ui";
 import {h, onMounted, reactive, ref} from "vue";
 import {
@@ -190,92 +190,94 @@ function openDialog(row){
 </script>
 
 <template>
-  <hb-admin-page-layout>
-    <n-layout style="height: 100%;" content-style="display:flex;flex-direction: column">
-      <n-layout-header>
-        <n-grid x-gap="12" :cols="4" style="padding: 5px;box-sizing: border-box">
-          <n-grid-item>
-            <n-date-picker clearable></n-date-picker>
-          </n-grid-item>
-          <n-grid-item>
-            <n-input>
-              <template #prefix>
-                姓名
-              </template>
-            </n-input>
-          </n-grid-item>
-          <n-grid-item>
-            <n-select :options="options" clearable/>
-          </n-grid-item>
-          <n-grid-item>
-            <n-input>
-              <template #prefix>
-                手机号
-              </template>
-            </n-input>
-          </n-grid-item>
-        </n-grid>
-        <n-grid x-gap="12" :cols="2" style="padding: 5px;box-sizing: border-box">
-          <n-grid-item>
-            <n-space>
-              <n-button type="info" @click="openDialog">
-                <template #icon>
-                  <n-icon :component="AddSharp"></n-icon>
+  <hb-admin-page-layout class="base-list">
+    <n-spin :show="loading" style="height: 100%">
+      <n-layout style="height: 100%;" content-style="display:flex;flex-direction: column">
+        <n-layout-header>
+          <n-grid x-gap="12" :cols="4" style="padding: 5px;box-sizing: border-box">
+            <n-grid-item>
+              <n-date-picker clearable></n-date-picker>
+            </n-grid-item>
+            <n-grid-item>
+              <n-input>
+                <template #prefix>
+                  姓名
                 </template>
-                新增
-              </n-button>
-              <n-button type="error">
-                <template #icon>
-                  <n-icon :component="TrashSharp"></n-icon>
+              </n-input>
+            </n-grid-item>
+            <n-grid-item>
+              <n-select :options="options" clearable/>
+            </n-grid-item>
+            <n-grid-item>
+              <n-input>
+                <template #prefix>
+                  手机号
                 </template>
-                删除
-              </n-button>
-            </n-space>
-          </n-grid-item>
-          <n-grid-item>
-            <n-space justify="end">
-              <n-button type="info">
-                <template #icon>
-                  <n-icon :component="RefreshSharp"></n-icon>
-                </template>
-                刷新数据
-              </n-button>
-              <n-button type="info">
-                <template #icon>
-                  <n-icon :component="SearchSharp"></n-icon>
-                </template>
-                查询
-              </n-button>
-              <n-button>重置</n-button>
-            </n-space>
-          </n-grid-item>
-        </n-grid>
-        <n-grid x-gap="12" :cols="1" style="padding: 5px;box-sizing: border-box" v-if="checkedRowKeys.length>0">
-          <n-grid-item>
-            <n-alert type="info">
-              你选中了 {{ checkedRowKeys.length }} 行
-            </n-alert>
-          </n-grid-item>
-        </n-grid>
-      </n-layout-header>
-      <n-layout-content>
-        <n-data-table
-            :loading="loading"
-            v-model:checked-row-keys="checkedRowKeys"
-            flex-height
-            :columns="columns"
-            striped
-            :data="data"
-            style="height: 100%;padding: 5px;box-sizing: border-box"
-            :pagination="pagination"
-        />
+              </n-input>
+            </n-grid-item>
+          </n-grid>
+          <n-grid x-gap="12" :cols="2" style="padding: 5px;box-sizing: border-box">
+            <n-grid-item>
+              <n-space>
+                <n-button type="info" @click="openDialog">
+                  <template #icon>
+                    <n-icon :component="AddSharp"></n-icon>
+                  </template>
+                  新增
+                </n-button>
+                <n-button type="error">
+                  <template #icon>
+                    <n-icon :component="TrashSharp"></n-icon>
+                  </template>
+                  删除
+                </n-button>
+              </n-space>
+            </n-grid-item>
+            <n-grid-item>
+              <n-space justify="end">
+                <n-button type="info">
+                  <template #icon>
+                    <n-icon :component="RefreshSharp"></n-icon>
+                  </template>
+                  刷新数据
+                </n-button>
+                <n-button type="info">
+                  <template #icon>
+                    <n-icon :component="SearchSharp"></n-icon>
+                  </template>
+                  查询
+                </n-button>
+                <n-button>重置</n-button>
+              </n-space>
+            </n-grid-item>
+          </n-grid>
+          <n-grid x-gap="12" :cols="1" style="padding: 5px;box-sizing: border-box" v-if="checkedRowKeys.length>0">
+            <n-grid-item>
+              <n-alert type="info">
+                你选中了 {{ checkedRowKeys.length }} 行
+              </n-alert>
+            </n-grid-item>
+          </n-grid>
+        </n-layout-header>
+        <n-layout-content>
+          <n-data-table
+              v-model:checked-row-keys="checkedRowKeys"
+              flex-height
+              :columns="columns"
+              striped
+              :data="data"
+              style="height: 100%;padding: 5px;box-sizing: border-box"
+              :pagination="pagination"
+          />
 
-      </n-layout-content>
-    </n-layout>
+        </n-layout-content>
+      </n-layout>
+    </n-spin>
     <dialog-create ref="refDialogCreate"/>
   </hb-admin-page-layout>
 </template>
-
-<style scoped>
-
+<style>
+.base-list .n-spin-content{
+  height: 100% !important;
+}
 </style>
