@@ -61,7 +61,7 @@ const routerData = [
     ]
   },
   {
-    name: '列表列表',
+    name: '基础列表',
     path: '/base-list',
     view: '/base-list/index.vue',
     isRouter: true,
