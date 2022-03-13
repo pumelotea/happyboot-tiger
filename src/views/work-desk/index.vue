@@ -63,7 +63,7 @@ import HbAdminPageLayout from "../../components/HbAdminPageLayout.vue";
                 </n-space>
                 <n-space justify="center" align="center" vertical>
                   <n-icon size="24" color="rgb(255 214 7)">
-                    <i class="ri-vip-diamond-fill"></i>
+                    <i class="ri-vip-diamond-line"></i>
                   </n-icon>
                   <div>12234</div>
                 </n-space>
