@@ -20,6 +20,16 @@ const routerData = [
     children: []
   },
   {
+    name: '工作台',
+    path: '/work-desk',
+    view: '/work-desk/index.vue',
+    isRouter: true,
+    isKeepalive: true,
+    icon:'ri-shape-line',
+    type: 'menu',
+    children: []
+  },
+  {
     name: '错误页面',
     path: '/error',
     view: '/security/index.vue',
