@@ -5,7 +5,17 @@ const routerData = [
     view: '/desc/index.vue',
     isRouter: true,
     isKeepalive: true,
-    icon:'ri-pie-chart-line',
+    icon:'ri-markdown-line',
+    type: 'menu',
+    children: []
+  },
+  {
+    name: '主控台',
+    path: '/dashboard',
+    view: '/dashboard/index.vue',
+    isRouter: true,
+    isKeepalive: true,
+    icon:'ri-dashboard-line',
     type: 'menu',
     children: []
   },
@@ -51,9 +61,19 @@ const routerData = [
     ]
   },
   {
-    name: '基础列表',
+    name: '列表列表',
     path: '/base-list',
     view: '/base-list/index.vue',
+    isRouter: true,
+    isKeepalive: true,
+    type: 'menu',
+    icon:'ri-bank-card-2-line',
+    children: []
+  },
+  {
+    name: '基础卡片',
+    path: '/card-list',
+    view: '/card-list/index.vue',
     isRouter: true,
     isKeepalive: true,
     type: 'menu',

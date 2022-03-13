@@ -13,10 +13,10 @@ import {isMenuCollapsed} from "../global/config";
         <n-avatar size="large" round src="https://07akioni.oss-cn-beijing.aliyuncs.com/demo1.JPG"/>
         <span class="nickname" v-if="!isMenuCollapsed">千阳</span>
         <span style="flex: 1;" v-if="!isMenuCollapsed"></span>
-        <n-space align="center" justify="end">
-          <n-badge type="success" :value="20" processing></n-badge>
+        <n-space align="center" justify="end" v-if="!isMenuCollapsed">
+          <n-badge type="success" :value="20" processing ></n-badge>
           <n-button round text style="align-items: center;display: flex">
-            <n-icon size="24" :component="EarthOutline" v-if="!isMenuCollapsed"></n-icon>
+            <n-icon size="24" :component="EarthOutline"></n-icon>
           </n-button>
         </n-space>
       </div>

@@ -64,7 +64,7 @@ function renderIcon(){
           <n-layout-header class="main-nav" bordered>
             <hb-admin-nav/>
           </n-layout-header>
-          <n-layout-content class="main-content">
+          <n-layout-content class="main-content" embedded>
             <router-view v-slot="{ Component }">
               <component :is="Component"></component>
             </router-view>

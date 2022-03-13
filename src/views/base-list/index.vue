@@ -94,14 +94,24 @@ const columns = [
 
 const checkedRowKeys = ref([])
 
-const data = Array.apply(null, {length: 200}).map((_, index) => ({
-  key: index,
-  name: `Edward King ${index}`,
-  age: index,
-  high: 150 + index,
-  weight: '55kg',
-  address: `London, Park Lane no. ${index}`
-}))
+const loading = ref(false)
+
+const data = ref([])
+
+onMounted(()=>{
+  loading.value = true
+  setTimeout(()=>{
+    data.value = Array.apply(null, {length: 200}).map((_, index) => ({
+      key: index,
+      name: `Edward King ${index}`,
+      age: index,
+      high: 150 + index,
+      weight: '55kg',
+      address: `London, Park Lane no. ${index}`
+    }))
+    loading.value = false
+  },1000)
+})
 
 const pagination = reactive({
   pageSize: 20,
@@ -250,6 +260,7 @@ function openDialog(row){
       </n-layout-header>
       <n-layout-content>
         <n-data-table
+            :loading="loading"
             v-model:checked-row-keys="checkedRowKeys"
             flex-height
             :columns="columns"
