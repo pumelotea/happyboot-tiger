@@ -8,7 +8,7 @@ import HbAdminPageLayout from "../../components/HbAdminPageLayout.vue";
 </script>
 <template>
   <hb-admin-page-layout>
-    <n-space justify="center" style="height: 100%">
+    <n-space justify="center" style="height: 100%;padding:5px;">
       <n-layout has-sider embedded style="height: 100%;">
         <n-layout-content embedded>
           <n-space justify="center" style="margin: 0">

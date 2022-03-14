@@ -36,7 +36,7 @@ const options = [
 
 <template>
   <hb-admin-page-layout>
-    <n-space vertical>
+    <n-space vertical style="padding:5px;">
       <n-grid cols="4" y-gap="10" x-gap="10">
         <n-grid-item>
           <n-card
