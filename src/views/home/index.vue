@@ -33,7 +33,6 @@ function renderIcon(){
   return ()=>h(NIcon, null, {default: () => h(CubeOutline)})
 }
 
-
 </script>
 
 <template>

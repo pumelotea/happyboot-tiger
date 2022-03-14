@@ -6,6 +6,9 @@ import {
   NAvatarGroup, NTooltip, NAvatar
 } from "naive-ui";
 import HbAdminPageLayout from "../../components/HbAdminPageLayout.vue";
+import HbAdminChartLine from "../../components/charts/HbAdminChartLine.vue";
+import HbAdminChartPie from "../../components/charts/HbAdminChartPie.vue";
+import HbAdminChartBar from "../../components/charts/HbAdminChartBar.vue";
 
 const options = [
   {
@@ -384,6 +387,25 @@ const options = [
                 </n-tooltip>
               </template>
             </n-avatar-group>
+          </n-card>
+        </n-grid-item>
+      </n-grid>
+      <n-grid cols="4" y-gap="10" x-gap="10">
+        <n-grid-item span="1">
+          <n-card size="small">
+            <hb-admin-chart-pie/>
+          </n-card>
+        </n-grid-item>
+        <n-grid-item span="3">
+          <n-card size="small">
+            <hb-admin-chart-bar/>
+          </n-card>
+        </n-grid-item>
+      </n-grid>
+      <n-grid cols="2" y-gap="10" x-gap="10">
+        <n-grid-item span="2">
+          <n-card size="small">
+            <hb-admin-chart-line/>
           </n-card>
         </n-grid-item>
       </n-grid>
