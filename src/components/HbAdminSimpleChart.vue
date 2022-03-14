@@ -1,7 +1,7 @@
 <script setup>
 import * as echarts from 'echarts';
 import {computed, nextTick, onMounted, ref, watch} from "vue";
-import {isDark} from "../global/config";
+import {isDark,isMenuCollapsed} from "../global/config";
 import {useWindowSize, useDebounceFn} from '@vueuse/core'
 
 
@@ -77,7 +77,7 @@ function onChartClick(params) {
 
 const resizeChartDebounce = useDebounceFn(resizeChart, 500)
 const {width, height} = useWindowSize()
-watch([width, height], () => {
+watch([width, height,isMenuCollapsed], () => {
   resizeChartDebounce()
 })
 onMounted(initChart)
