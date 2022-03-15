@@ -8,7 +8,7 @@ import {
 } from "naive-ui";
 import {h, onMounted, reactive, ref} from "vue";
 import {
-  AddSharp, TrashSharp, RefreshSharp, SearchSharp,DocumentOutline,PencilSharp,CreateOutline
+  AddSharp, TrashSharp, RefreshSharp, SearchSharp,DocumentOutline,CreateOutline
 } from "@vicons/ionicons5"
 
 

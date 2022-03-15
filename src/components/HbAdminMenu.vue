@@ -4,7 +4,7 @@ import {NIcon, NMenu} from "naive-ui"
 import {
   CubeOutline
 } from "@vicons/ionicons5"
-import framework from '.././global/framework'
+import framework from '../global/framework'
 import {useRouter} from "vue-router";
 
 const router = useRouter()
