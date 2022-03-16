@@ -8,6 +8,9 @@ import {
 import {
   LockOpenOutline,Person,MailOutline
 } from "@vicons/ionicons5"
+import {useRouter} from "vue-router";
+
+const router = useRouter()
 </script>
 <template>
   <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
@@ -45,7 +48,7 @@ import {
               注册即表示您同意我们的<n-button type="info" tag="a" text>服务条款与隐私政策</n-button>
             </n-space>
             <n-space justify="center">
-              已经拥有账户？?<n-button type="info" tag="a" text>登录</n-button>
+              已经拥有账户？?<n-button type="info" tag="a" text @click="()=>{router.push('/login')}">登录</n-button>
             </n-space>
           </template>
         </n-card>

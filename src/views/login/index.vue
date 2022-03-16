@@ -8,6 +8,8 @@ import {
 import {
   LockOpenOutline,Person
 } from "@vicons/ionicons5"
+import {useRouter} from "vue-router";
+const router = useRouter()
 </script>
 <template>
   <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
@@ -35,10 +37,10 @@ import {
               登录
             </n-button>
             <n-space justify="center" style="margin-top: 30px">
-              <n-button type="info" tag="a" text>忘记密码？</n-button>
+              <n-button type="info" tag="a" text @click="()=>{router.push('/recover')}">忘记密码？</n-button>
             </n-space>
             <n-space justify="center">
-              尚未用有账户?<n-button type="info" tag="a" text>注册</n-button>
+              尚未用有账户?<n-button type="info" tag="a" text @click="()=>{router.push('/signup')}">注册</n-button>
             </n-space>
           </template>
         </n-card>
