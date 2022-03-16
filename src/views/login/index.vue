@@ -13,10 +13,10 @@ const router = useRouter()
 </script>
 <template>
   <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
-    <n-layout class="hb-admin-login" content-style="width:100%">
-      <n-space vertical justify="center" align="center" style="height: 100%;width: 100%">
+    <n-layout class="hb-admin-login" content-style="width:100%;backdrop-filter: blur(5px);opacity:0.8;">
+      <n-space vertical justify="center" align="center" style="height: 100%;width: 100%;">
         <n-card hoverable class="hb-card">
-          <n-space justify="center" style="margin-bottom: 20px">
+          <n-space justify="center" style="margin-bottom: 20px;">
             <n-avatar :size="100" src="/src/assets/logo.png" style="background: transparent"></n-avatar>
           </n-space>
           <n-form class="hb-form">
@@ -60,6 +60,8 @@ const router = useRouter()
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url("/src/assets/bg.png");
+  background-size: 100% 100%;
 }
 
 .hb-card{

@@ -14,7 +14,7 @@ const router = useRouter()
 </script>
 <template>
   <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
-    <n-layout class="hb-admin-login" content-style="width:100%">
+    <n-layout class="hb-admin-signup" content-style="width:100%;backdrop-filter: blur(5px);opacity:0.8;">
       <n-space vertical justify="center" align="center" style="height: 100%;width: 100%">
         <n-card title="使用邮箱地址注册" hoverable class="hb-card">
           <n-form class="hb-form">
@@ -59,12 +59,14 @@ const router = useRouter()
 
 
 <style scoped>
-.hb-admin-login{
+.hb-admin-signup{
   height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url("/src/assets/bg.png");
+  background-size: 100% 100%;
 }
 
 .hb-card{
