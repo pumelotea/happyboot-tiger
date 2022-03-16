@@ -35,7 +35,23 @@ const beforeInterceptor = createDefaultRouterInterceptor({
   }
 })
 
-const routes = []
+const routes = [
+  {
+    name: 'login',
+    path: '/login',
+    component: () => import('/src/views/login/index.vue')
+  },
+  {
+    name: 'signup',
+    path: '/signup',
+    component: () => import('/src/views/signup/index.vue')
+  },
+  {
+    name: 'recover',
+    path: '/recover',
+    component: () => import('/src/views/recover/index.vue')
+  }
+]
 
 export const beforeEachHandler = (to, from, next) => {
   // 使用拦截器

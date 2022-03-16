@@ -5,22 +5,25 @@ import {ref, h, onMounted, computed} from "vue"
 import {isDarkTheme} from "../global/config";
 import framework from "../global/framework";
 import { CubeOutline } from "@vicons/ionicons5"
+import {useRouter} from "vue-router";
+
+const router = useRouter()
 
 function renderCustomHeader() {
   return h("div", {
     style: "display: flex; align-items: center; padding: 8px 12px;"
-  }, [
-    h(NAvatar, {
-      round: true,
-      style: "margin-right: 12px;",
-      src: "https://07akioni.oss-cn-beijing.aliyuncs.com/demo1.JPG"
-    }),
-    h("div", null, [
-      h("div", null, [h(NText, { depth: 2 }, { default: () => "打工仔" })]),
-      h("div", { style: "font-size: 12px;" }, [
-        h(NText, { depth: 3 }, { default: () => "毫无疑问，你是办公室里最亮的星" })
+    }, [
+      h(NAvatar, {
+        round: true,
+        style: "margin-right: 12px;",
+        src: "https://07akioni.oss-cn-beijing.aliyuncs.com/demo1.JPG"
+      }),
+      h("div", null, [
+        h("div", null, [h(NText, { depth: 2 }, { default: () => "打工仔" })]),
+        h("div", { style: "font-size: 12px;" }, [
+          h(NText, { depth: 3 }, { default: () => "毫无疑问，你是办公室里最亮的星" })
+        ])
       ])
-    ])
   ]);
 }
 
@@ -47,10 +50,25 @@ const options = [
   {
     label: "加入群 17 个",
     key: "stmt3"
+  },
+  {
+    type: "render",
+    key: "bottom",
+    render: ()=>{
+      return h(NDivider,{style:'margin:0'})
+    }
+  },
+  {
+    label: "退出登录",
+    key: "logout"
   }
 ]
 function handleSelect(key) {
   message.info(String(key))
+  switch (key){
+    case 'logout':
+      router.push('/login')
+  }
 }
 
 
@@ -70,7 +88,6 @@ const breadcrumb= computed(()=>{
     <div class="head-left-area head-item-center">
       <n-breadcrumb>
         <n-breadcrumb-item v-for="e in breadcrumb" :key="e.menuId">
-
           <n-icon>
             <i :class="e.icon" v-if="e.icon"></i>
             <cube-outline v-else/>
@@ -114,7 +131,6 @@ const breadcrumb= computed(()=>{
       <n-icon size="25" color="#CFCFCF" :component="Notifications" />
       <n-badge value="99+"></n-badge>
       <n-divider vertical/>
-
       <n-dropdown trigger="hover" :options="options" @select="handleSelect">
         <n-avatar round bordered src="https://07akioni.oss-cn-beijing.aliyuncs.com/demo1.JPG"></n-avatar>
       </n-dropdown>
