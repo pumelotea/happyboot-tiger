@@ -3,7 +3,7 @@ import {theme} from "../../global/config";
 import {
   NConfigProvider,
   NCard,NSpace,NInput,NForm,NFormItem, zhCN,
-  dateZhCN,NLayout,NButton,NIcon
+  dateZhCN,NLayout,NButton,NIcon,NAvatar
 } from 'naive-ui'
 import {
   LockOpenOutline,Person
@@ -15,7 +15,10 @@ const router = useRouter()
   <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
     <n-layout class="hb-admin-login" content-style="width:100%">
       <n-space vertical justify="center" align="center" style="height: 100%;width: 100%">
-        <n-card title="登录" hoverable class="hb-card">
+        <n-card hoverable class="hb-card">
+          <n-space justify="center" style="margin-bottom: 20px">
+            <n-avatar :size="100" src="/src/assets/logo.png" style="background: transparent"></n-avatar>
+          </n-space>
           <n-form class="hb-form">
             <n-form-item label="账号">
               <n-input size="large">
@@ -33,7 +36,7 @@ const router = useRouter()
             </n-form-item>
           </n-form>
           <template #action>
-            <n-button size="large" type="success" block>
+            <n-button size="large" type="success" block @click="()=>{router.push('/')}">
               登录
             </n-button>
             <n-space justify="center" style="margin-top: 30px">
