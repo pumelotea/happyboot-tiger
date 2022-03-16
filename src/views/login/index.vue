@@ -17,7 +17,7 @@ const router = useRouter()
       <n-space vertical justify="center" align="center" style="height: 100%;width: 100%;">
         <n-card hoverable class="hb-card animate__animated animate__fadeIn animate__slow">
           <n-space justify="center" style="margin-bottom: 20px;">
-            <n-avatar :size="100" src="/src/assets/logo.png" style="background: transparent"></n-avatar>
+            <img class="hb-logo" src="/src/assets/logo.png"/>
           </n-space>
           <n-form class="hb-form">
             <n-form-item label="账号">
@@ -70,5 +70,10 @@ const router = useRouter()
 
 .hb-form{
   width: 340px;
+}
+
+.hb-logo{
+  width: 100px;
+  height: 100px;
 }
 </style>
