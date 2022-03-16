@@ -10,7 +10,7 @@ const router = createRouter({
   routes // short for `routes: routes`
 })
 
-// 升级路由
+// 升级路
 const happyKitRouter = upgradeRouter(happyFramework,router)
 
 router.beforeEach(beforeEachHandler)
