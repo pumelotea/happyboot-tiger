@@ -13,7 +13,7 @@ import {
   <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
     <n-layout class="hb-admin-recover" content-style="width:100%;backdrop-filter: blur(5px);opacity:0.8;">
       <n-space vertical justify="center" align="center" style="height: 100%;width: 100%">
-        <n-card title="通过邮箱地址重置密码" hoverable class="hb-card">
+        <n-card title="通过邮箱地址重置密码" hoverable class="hb-card animate__animated animate__fadeIn animate__slow">
           <n-form>
             <n-form-item label="电子邮箱">
               <n-input size="large">
