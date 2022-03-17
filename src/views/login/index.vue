@@ -27,6 +27,8 @@ function login(e) {
   loginFormRef.value?.validate((errors) => {
     if (!errors) {
       security.signIn(loginForm.password,{
+        refreshToken:'jwt refresh', // 写入刷新token
+        refreshTokenExpiredAt: new Date().getTime() + 3600*24*7, // 刷新token过期时间
         username: loginForm.username,
         nickname:'千阳',
         avatar:'https://oss.injs.jsxww.cn/net-disk-smh/09505891f7a34e82b64a5922ecf5a7e0.gif?x-oss-process=image/resize,w_100/quality,q_95',

@@ -43,6 +43,11 @@ const routes = [
     component: () => import('/src/views/login/index.vue')
   },
   {
+    name: 'quick-login',
+    path: '/quick-login',
+    component: () => import('/src/views/quick-login/index.vue')
+  },
+  {
     name: 'signup',
     path: '/signup',
     component: () => import('/src/views/signup/index.vue')
@@ -56,6 +61,7 @@ const routes = [
 
 const whiteList = [
   '/login',
+  '/quick-login',
   '/recover',
   '/signup'
 ]
