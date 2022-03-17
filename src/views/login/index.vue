@@ -6,7 +6,7 @@ import {
   dateZhCN, NLayout, NButton, NIcon, useMessage
 } from 'naive-ui'
 import {
-  LockOpenOutline, Person
+  LockOpenOutline, Person,LogoGithub,LogoWechat,LogoApple,QrCodeOutline
 } from "@vicons/ionicons5"
 import {useRouter} from "vue-router";
 import security from "../../global/security";
@@ -57,18 +57,29 @@ const rules = {
       message: "请输入密码"
     }
   ]
-};
+}
+
+const qrCodeLogin = ref(false)
+
+function toggleUseQrCode(){
+  qrCodeLogin.value = !qrCodeLogin.value
+}
+
+
 
 </script>
 <template>
   <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
     <n-layout class="hb-admin-login" content-style="width:100%;backdrop-filter: blur(5px);opacity:0.8;">
       <n-space vertical justify="center" align="center" style="height: 100%;width: 100%;">
-        <n-card hoverable class="hb-card animate__animated animate__fadeIn animate__slow">
+        <n-card hoverable class="hb-card animate__animated animate__fadeIn animate__slow" content-style="height: 180px">
           <n-space justify="center" style="margin-bottom: 20px;">
             <img class="hb-logo" src="/src/assets/logo.png"/>
           </n-space>
-          <n-form class="hb-form" ref="loginFormRef" :model="loginForm" :rules="rules">
+          <n-space justify="center" v-if="qrCodeLogin" class="hb-form animate__animated animate__fadeIn">
+            <img class="qr-code" src="/src/assets/qr-demo.png">
+          </n-space>
+          <n-form v-else class="hb-form animate__animated animate__fadeIn" ref="loginFormRef" :model="loginForm" :rules="rules">
             <n-form-item label="账号" path="username">
               <n-input size="large" v-model:value="loginForm.username">
                 <template #prefix>
@@ -85,6 +96,16 @@ const rules = {
             </n-form-item>
           </n-form>
           <template #action>
+            <div class="qr-login-button">
+              <n-button text @click="toggleUseQrCode">
+                <n-icon :size="30" :component="QrCodeOutline"></n-icon>
+              </n-button>
+            </div>
+            <n-space justify="center" align="center" style="margin-bottom: 20px;">
+              <n-button text><n-icon :size="30" :component="LogoGithub"></n-icon></n-button>
+              <n-button text><n-icon :size="30" :component="LogoWechat"></n-icon></n-button>
+              <n-button text><n-icon :size="30" :component="LogoApple"></n-icon></n-button>
+            </n-space>
             <n-button size="large" type="success" block @click="login">
               登录
             </n-button>
@@ -125,5 +146,16 @@ const rules = {
 .hb-logo {
   width: 100px;
   height: 100px;
+}
+
+.qr-login-button{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.qr-code{
+  width: 180px;
+  height: 180px;
 }
 </style>
