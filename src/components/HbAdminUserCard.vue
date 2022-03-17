@@ -4,14 +4,16 @@ import {
   EarthOutline
 } from "@vicons/ionicons5"
 import {isMenuCollapsed} from "../global/config";
+
+import security from "../global/security";
 </script>
 
 <template>
   <n-layout>
     <n-layout-header  style="border-top: solid 1px var(--n-border-color)">
       <div class="hb-admin-user-card-com">
-        <n-avatar size="large" round src="https://07akioni.oss-cn-beijing.aliyuncs.com/demo1.JPG"/>
-        <span class="nickname" v-if="!isMenuCollapsed">千阳</span>
+        <n-avatar size="large" round :src="security.user.value?.avatar"/>
+        <span class="nickname" v-if="!isMenuCollapsed">{{security.user.value?.nickname}}</span>
         <span style="flex: 1;" v-if="!isMenuCollapsed"></span>
         <n-space align="center" justify="end" v-if="!isMenuCollapsed">
           <n-badge type="success" :value="20" processing ></n-badge>

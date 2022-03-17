@@ -2,14 +2,61 @@
 import {theme} from "../../global/config";
 import {
   NConfigProvider,
-  NCard,NSpace,NInput,NForm,NFormItem, zhCN,
-  dateZhCN,NLayout,NButton,NIcon,NAvatar
+  NCard, NSpace, NInput, NForm, NFormItem, zhCN,
+  dateZhCN, NLayout, NButton, NIcon, useMessage
 } from 'naive-ui'
 import {
-  LockOpenOutline,Person
+  LockOpenOutline, Person
 } from "@vicons/ionicons5"
 import {useRouter} from "vue-router";
+import security from "../../global/security";
+import {reactive, ref} from "vue";
+
 const router = useRouter()
+const message = useMessage()
+
+const loginForm = reactive({
+  username: '',
+  password: ''
+})
+
+const loginFormRef = ref(null)
+
+function login(e) {
+  e.preventDefault()
+  loginFormRef.value?.validate((errors) => {
+    if (!errors) {
+      security.signIn(loginForm.password,{
+        username: loginForm.username,
+        nickname:'千阳',
+        avatar:'https://oss.injs.jsxww.cn/net-disk-smh/09505891f7a34e82b64a5922ecf5a7e0.gif?x-oss-process=image/resize,w_100/quality,q_95',
+      })
+      router.push('/')
+    } else {
+      console.log(errors);
+      errors.forEach(e=>{
+        message.error(e[0].message)
+      })
+    }
+  })
+
+}
+
+const rules = {
+  username: [
+    {
+      required: true,
+      message: "请输入用户"
+    }
+  ],
+  password: [
+    {
+      required: true,
+      message: "请输入密码"
+    }
+  ]
+};
+
 </script>
 <template>
   <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
@@ -19,31 +66,32 @@ const router = useRouter()
           <n-space justify="center" style="margin-bottom: 20px;">
             <img class="hb-logo" src="/src/assets/logo.png"/>
           </n-space>
-          <n-form class="hb-form">
-            <n-form-item label="账号">
-              <n-input size="large">
+          <n-form class="hb-form" ref="loginFormRef" :model="loginForm" :rules="rules">
+            <n-form-item label="账号" path="username">
+              <n-input size="large" v-model:value="loginForm.username">
                 <template #prefix>
-                  <n-icon :component="Person" />
+                  <n-icon :component="Person"/>
                 </template>
               </n-input>
             </n-form-item>
-            <n-form-item label="密码">
-              <n-input type="password" size="large">
+            <n-form-item label="密码" path="password">
+              <n-input type="password" size="large" v-model:value="loginForm.password">
                 <template #prefix>
-                  <n-icon :component="LockOpenOutline" />
+                  <n-icon :component="LockOpenOutline"/>
                 </template>
               </n-input>
             </n-form-item>
           </n-form>
           <template #action>
-            <n-button size="large" type="success" block @click="()=>{router.push('/')}">
+            <n-button size="large" type="success" block @click="login">
               登录
             </n-button>
             <n-space justify="center" style="margin-top: 30px">
               <n-button type="info" tag="a" text @click="()=>{router.push('/recover')}">忘记密码？</n-button>
             </n-space>
             <n-space justify="center">
-              尚未用有账户?<n-button type="info" tag="a" text @click="()=>{router.push('/signup')}">注册</n-button>
+              尚未用有账户?
+              <n-button type="info" tag="a" text @click="()=>{router.push('/signup')}">注册</n-button>
             </n-space>
           </template>
         </n-card>
@@ -54,7 +102,7 @@ const router = useRouter()
 
 
 <style scoped>
-.hb-admin-login{
+.hb-admin-login {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -64,15 +112,15 @@ const router = useRouter()
   background-size: 100% 100%;
 }
 
-.hb-card{
+.hb-card {
   box-shadow: var(--n-box-shadow);
 }
 
-.hb-form{
+.hb-form {
   width: 340px;
 }
 
-.hb-logo{
+.hb-logo {
   width: 100px;
   height: 100px;
 }

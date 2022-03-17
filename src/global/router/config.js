@@ -3,6 +3,7 @@ const modules = import.meta.glob("/src/views/**/**.vue")
 
 import happyFramework from '../framework'
 import routerData from '../../mock/routerData'
+import security from "../security";
 
 // 创建默认的拦截器
 const beforeInterceptor = createDefaultRouterInterceptor({
@@ -53,7 +54,22 @@ const routes = [
   }
 ]
 
+const whiteList = [
+  '/login',
+  '/recover',
+  '/signup'
+]
+
+
 export const beforeEachHandler = (to, from, next) => {
+  if (!security.getToken()){
+    if (!whiteList.includes(to.path)){
+      next('/login')
+      return
+    }
+    next()
+    return
+  }
   // 使用拦截器
   beforeInterceptor.filter(to,from,next)
   // next()
