@@ -5,6 +5,8 @@ import HbAdminNav from "../../components/HbAdminNav.vue"
 import HbAdminLogo from "../../components/HbAdminLogo.vue"
 import HbAdminCopyright from "../../components/HbAdminCopyright.vue"
 import HbAdminUserCard from "../../components/HbAdminUserCard.vue"
+import HbAdminOnlineUserList from "../../components/HbAdminOnlineUserList.vue"
+
 import {
   NMessageProvider,
   NConfigProvider,
@@ -13,24 +15,30 @@ import {
   NLayoutHeader,
   NLayoutFooter,
   NLayoutContent,
-  NEmpty,NIcon,
+  NEmpty, NIcon,
   zhCN,
   dateZhCN
 } from "naive-ui"
 
-import {theme,isMenuCollapsed} from "../../global/config";
-import {h} from "vue";
-import {CubeOutline,AlbumsOutline} from "@vicons/ionicons5";
+import {theme, isMenuCollapsed} from "../../global/config";
+import {h, ref} from "vue";
+import {CubeOutline, AlbumsOutline} from "@vicons/ionicons5";
 import framework from "../../global/framework";
 
-function onLayoutCollapsed(collapsed){
+function onLayoutCollapsed(collapsed) {
   isMenuCollapsed.value = collapsed
 }
 
 const currentMenuRoute = framework.getCurrentMenuRoute()
 
-function renderIcon(){
-  return ()=>h(NIcon, null, {default: () => h(CubeOutline)})
+function renderIcon() {
+  return () => h(NIcon, null, {default: () => h(CubeOutline)})
+}
+
+const showOnlineUserList = ref(false)
+
+function openUserList() {
+  showOnlineUserList.value = !showOnlineUserList.value
 }
 
 </script>
@@ -48,12 +56,20 @@ function renderIcon(){
             content-style="display: flex;flex-direction: column;"
             @update:collapsed="onLayoutCollapsed"
         >
-          <div><hb-admin-logo/></div>
+          <div>
+            <hb-admin-logo/>
+          </div>
           <div style="flex: 1;overflow: auto">
             <hb-admin-menu/>
           </div>
           <div>
-            <hb-admin-user-card/>
+            <hb-admin-user-card @click="openUserList"/>
+            <transition
+                enter-active-class="animate__animated animate__slideInLeft animate__faster"
+                leave-active-class="animate__animated animate__slideOutLeft animate__faster"
+            >
+              <hb-admin-online-user-list v-if="showOnlineUserList"/>
+            </transition>
           </div>
         </n-layout-sider>
         <n-layout content-style="display: flex;flex-direction: column;">
@@ -109,7 +125,7 @@ function renderIcon(){
   height: 40px;
 }
 
-.empty-route-body{
+.empty-route-body {
   display: flex;
   height: 100%;
   justify-content: center;

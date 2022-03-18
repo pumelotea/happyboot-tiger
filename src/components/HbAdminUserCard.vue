@@ -6,22 +6,36 @@ import {
 import {isMenuCollapsed} from "../global/config";
 
 import security from "../global/security";
+import {computed, ref} from "vue";
+
+const enterActiveClass = computed(()=>{
+  return !isMenuCollapsed.value ? 'animate__animated animate__slideInRight animate__faster' : 'animate__animated animate__slideInLeft animate__faster'
+})
+
 </script>
 
 <template>
   <n-layout>
     <n-layout-header  style="border-top: solid 1px var(--n-border-color)">
-      <div class="hb-admin-user-card-com">
-        <n-avatar size="large" round :src="security.user.value?.avatar"/>
-        <span class="nickname" v-if="!isMenuCollapsed">{{security.user.value?.nickname}}</span>
-        <span style="flex: 1;" v-if="!isMenuCollapsed"></span>
-        <n-space align="center" justify="end" v-if="!isMenuCollapsed">
-          <n-badge type="success" :value="20" processing ></n-badge>
-          <n-button round text style="align-items: center;display: flex">
-            <n-icon size="24" :component="EarthOutline"></n-icon>
-          </n-button>
-        </n-space>
-      </div>
+      <transition
+          :enter-active-class="enterActiveClass"
+          leave-from-class="leave"
+      >
+        <div class="hb-admin-user-card-com" v-if="isMenuCollapsed">
+          <n-avatar size="large" round :src="security.user.value?.avatar"/>
+        </div>
+        <div class="hb-admin-user-card-com" v-else>
+          <n-avatar size="large" round :src="security.user.value?.avatar"/>
+          <span class="nickname ">{{security.user.value?.nickname}}</span>
+          <span style="flex: 1;"></span>
+          <n-space align="center" justify="end">
+            <n-badge type="success" :value="20" processing ></n-badge>
+            <n-button round text style="align-items: center;display: flex">
+              <n-icon size="24" :component="EarthOutline"></n-icon>
+            </n-button>
+          </n-space>
+        </div>
+      </transition>
     </n-layout-header>
   </n-layout>
 </template>
@@ -33,6 +47,7 @@ import security from "../global/security";
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 60px;
 }
 
 .nickname{
@@ -40,5 +55,10 @@ import security from "../global/security";
   margin-left: 10px;
   color: var(--n-text-color);
   transition: color .3s var(--n-bezier);
+}
+
+.leave{
+  opacity: 0;
+  position: absolute;
 }
 </style>
