@@ -175,7 +175,7 @@ const rules = {
 </script>
 <template>
   <hb-admin-page-layout>
-      <n-layout has-sider embedded  style="height: 100%">
+      <n-layout has-sider embedded  style="height: 100%;z-index: 0">
         <n-layout-sider style="background: transparent;">
           <n-card title="菜单树" >
             <n-space vertical>
