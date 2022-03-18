@@ -40,8 +40,8 @@ const data = `{
 }`
 
 const htmlCode = `
-<n-button type="info" v-point="'add'">被控制的按钮</n-button>
-<n-button type="warning" v-point="'cancel'">未被控制的按钮</n-button>
+<n-button type="info" v-point="'add'">被控制的按钮1</n-button>
+<n-button type="warning" v-point="'cancel'">被控制的按钮2</n-button>
 <n-button type="warning" v-point="'no-key'">控制点未被对应的按钮</n-button>`
 
 </script>
@@ -52,8 +52,8 @@ const htmlCode = `
         <n-space vertical>
           <h2>权限点的演示</h2>
           <n-space align="center">
-            <n-button type="info" v-point="'add'">被控制的按钮</n-button>
-            <n-button type="warning" v-point="'cancel'">未被控制的按钮</n-button>
+            <n-button type="info" v-point="'add'">被控制的按钮1</n-button>
+            <n-button type="warning" v-point="'cancel'">被控制的按钮2</n-button>
             <div>
               <div class="no-key-btn">控制点未被对应的按钮</div>
               <n-button type="warning" v-point="'no-key'">这里的按钮被隐藏了</n-button>
