@@ -131,6 +131,48 @@ const routerData = [
       },
     ]
   },
+  {
+    name: '示例',
+    path: '/demo',
+    view: '',
+    isRouter: false,
+    isKeepalive: false,
+    icon:'ri-collage-fill',
+    type: 'menu',
+    children: [
+      {
+        name: '权限点',
+        path: '/point',
+        view: '/point-demo/index.vue',
+        isRouter: true,
+        isKeepalive: false,
+        icon:'ri-command-line',
+        type: 'menu',
+        children: [
+          {
+            name: '新增',
+            permissionKey: 'add',
+            path: '',
+            view: '',
+            isRouter: false,
+            isKeepalive: false,
+            type: 'point',
+            children: []
+          },
+          {
+            name: '编辑弹出框取消',
+            permissionKey: 'cancel',
+            path: '',
+            view: '',
+            isRouter: false,
+            isKeepalive: false,
+            type: 'point',
+            children: []
+          }
+        ]
+      }
+    ]
+  },
 ]
 
 export default routerData
