@@ -15,8 +15,8 @@
       <p>	happyboot的研发想法终于萌生了，这次我放弃了钟爱的iview，因为他好像出了Pro版本，这不意味着收费开始了嘛，好！你收费是不？那劳资不用不就好了。连你的基础版我也不想用了。这时候只能转投element阵营了，还有国外的UI库真的很不适合国内使用啊，我是很喜欢的，但是用户和领导未必能接受，这就很烦！</p>
       <p>	好了！好了！废话别多了！说干就干！</p>
       <p>	这次开发中台框架我们一定要把框架核心逻辑抽离到一个文件里，这样不就符合了高内聚的原则了嘛！那具体咋落实呢？想来想去（当时只有vue2），想到了把逻辑和方法都封装在vuex里面，哈哈哈哈哈哈！我不管了，我就这么干了。别不信，等下，我马上上个图！图来了，看下面吧。</p>
-      <p><img src='images/1.png'></p>
-      <p><img src='images/2.png'></p>
+      <p><img src='/src/assets/images/1.png'></p>
+      <p><img src='/src/assets/images/2.png'></p>
 
       <p>	图看完了，我们继续。</p>
       <p>	后来呢，写是写完了，就在一个项目里面试用了一波，总感觉还差点啥。虽然给同事们也培训过。</p>
@@ -27,8 +27,8 @@
       <p>	不久后我开始用typescript和vue3开始开发纯粹的js库，这个库很简单就是把菜单、导航按钮、路由注入事情做掉，并且让使用者不再重复去做这些事情，而且使用者想使用什么UI库就用什么，不拘泥于UI库。断断续续写了3天，就这样了，提交到了npm库。那这个库叫happykit。既然叫做框架，那我可得为他立个门面啊，在腾讯云注册了一个<a href="http://happykit.org">happykit.org</a>域名，为啥叫这个名字呢？我就像让使用者快乐点，节约一些重复开发的时间，并且为之而感到快乐。</p>
       <p>	很是抱歉啊，我的力量还是很微薄，我感染不了世界，那我先自嗨了，哈哈。</p>
       <p>	有了happykit，那肯定要来实现第一个基于happykit的中台框架，在我的带领下，和同事一起完成了happyboot，这次是基于elementPlus和vue3，还有很繁琐的typescript。甚至我们还为他实现了配套的接口开发框架，大概率是自己用用了，让别人去用，去推广还是很困难的，毕竟我们也不是什么大牛。还是看图有意思，上图：</p>
-      <p><img src='images/happyboot-preview-1.png'></p>
-      <p><img src='images/happyboot-preview-3.png'></p>
+      <p><img src='/src/assets/images/happyboot-preview-1.png'></p>
+      <p><img src='/src/assets/images/happyboot-preview-3.png'></p>
       <p>	哦！对了，那一年是牛年，所以我们找了一个像牛一样的图作为logo。我们是按照生肖来命名的，就像苹果会按照地理位置命名，安卓会按照食物命名。</p>
       <p>	…………</p>
       <p>	时隔一年</p>
@@ -38,9 +38,9 @@
       <p>	这次的宗旨就是：轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻轻！</p>
       <p>	还是看看图片吧，我编不出话来了！有兴趣的旁友，去<a href="http://happykit.org">happykit.org</a>瞧瞧吧。</p>
       <p>	</p>
-      <p><img src='images/iShot2022-03-16-19.12.13.png'></p>
-      <p><img src='images/iShot2022-03-16-19.12.36.png'></p>
-      <p><img src='images/iShot2022-03-16-19.17.57.png'></p>
+      <p><img src='/src/assets/images/iShot2022-03-16-19.12.13.png'></p>
+      <p><img src='/src/assets/images/iShot2022-03-16-19.12.36.png'></p>
+      <p><img src='/src/assets/images/iShot2022-03-16-19.17.57.png'></p>
     </div>
   </div>
 </template>
