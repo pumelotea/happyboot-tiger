@@ -170,9 +170,30 @@ const routerData = [
             children: []
           }
         ]
+      },
+      {
+        name: '自定义导航标题',
+        path: '/custom-tab-title-demo',
+        view: '/custom-tab-title-demo/index.vue',
+        isRouter: true,
+        isKeepalive: false,
+        icon:'ri-command-line',
+        type: 'menu',
+        children: []
       }
     ]
   },
+  {
+    name: '隐藏页面',
+    path: '/hide',
+    view: '/hide/index.vue',
+    isRouter: true,
+    isKeepalive: false,
+    hide:true,
+    icon:'ri-send-plane-2-line',
+    type: 'menu',
+    children: []
+  }
 ]
 
 export default routerData
