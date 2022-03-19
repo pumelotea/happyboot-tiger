@@ -65,12 +65,24 @@ function toggleUseQrCode(){
   qrCodeLogin.value = !qrCodeLogin.value
 }
 
+const loadedVideoBg = ref(false)
+
+function onVideoBgLoad(){
+  console.log('load video bg success')
+  loadedVideoBg.value = true
+}
+
+function onVideoBgError(){
+  console.log('load video bg failed')
+}
 
 
 </script>
 <template>
   <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
-    <n-layout class="hb-admin-login" content-style="width:100%;backdrop-filter: blur(5px);opacity:0.8;">
+    <img class="image-bg" v-if="!loadedVideoBg" src="/src/assets/bg-2.png"/>
+    <video @loadeddata="onVideoBgLoad" @error="onVideoBgError" class="bg-video" loop  muted autoplay src="https://prod-streaming-video-msn-com.akamaized.net/2787cb8a-1de3-455d-82db-1b2ebfc6a2ba/53af17b5-5d5d-4a5d-bdb5-7fe03aaaeb79.mp4"></video>
+    <n-layout class="hb-admin-login" content-style="width:100%;opacity:0.8;">
       <n-space vertical justify="center" align="center" style="height: 100%;width: 100%;">
         <n-card hoverable class="hb-card animate__animated animate__fadeIn animate__slow" content-style="height: 180px">
           <n-space justify="center" style="margin-bottom: 20px;">
@@ -126,13 +138,24 @@ function toggleUseQrCode(){
 
 <style scoped>
 .hb-admin-login {
+  position: absolute;
+  left: 0;
+  top: 0;
   height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url("/src/assets/bg.png");
-  background-size: 100% 100%;
+  background: transparent;
+}
+
+.image-bg{
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
 }
 
 .hb-card {
@@ -157,5 +180,14 @@ function toggleUseQrCode(){
 .qr-code{
   width: 180px;
   height: 180px;
+}
+
+.bg-video{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
 }
 </style>
