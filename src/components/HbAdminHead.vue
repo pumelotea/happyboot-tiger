@@ -69,6 +69,7 @@ function handleSelect(key) {
   switch (key){
     case 'logout':
       security.signOut()
+      framework.closeNav('all')
       router.push('/login')
   }
 }
