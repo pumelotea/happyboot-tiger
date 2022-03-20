@@ -89,7 +89,6 @@ function refresh(){
   token.value = security.getToken()
   user.value = JSON.stringify(security.getUser().value, null, 2)
   getNavTitleCache()
-  message.info('刷新完成')
 }
 
 onMounted(refresh)
