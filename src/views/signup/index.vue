@@ -1,9 +1,6 @@
 <script setup>
-import {theme} from "../../global/config";
 import {
-  NConfigProvider,
-  NCard,NSpace,NInput,NForm,NFormItem, zhCN,
-  dateZhCN,NLayout,NButton,NIcon
+  NCard,NSpace,NInput,NForm,NFormItem,NLayout,NButton,NIcon
 } from 'naive-ui'
 import {
   LockOpenOutline,Person,MailOutline
@@ -13,7 +10,7 @@ import {useRouter} from "vue-router";
 const router = useRouter()
 </script>
 <template>
-  <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
+  <div>
     <n-layout class="hb-admin-signup" content-style="width:100%;backdrop-filter: blur(5px);opacity:0.8;">
       <n-space vertical justify="center" align="center" style="height: 100%;width: 100%">
         <n-card title="使用邮箱地址注册" hoverable class="hb-card animate__animated animate__fadeIn animate__slow">
@@ -54,7 +51,7 @@ const router = useRouter()
         </n-card>
       </n-space>
     </n-layout>
-  </n-config-provider>
+  </div>
 </template>
 
 

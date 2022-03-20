@@ -1,9 +1,7 @@
 <script setup>
-import {theme} from "../../global/config";
 import {
-  NConfigProvider,
-  NCard, NSpace, NInput, NForm, NFormItem, zhCN,
-  dateZhCN, NLayout, NButton, NIcon, useMessage
+  NCard, NSpace, NInput, NForm, NFormItem,
+  NLayout, NButton, NIcon, useMessage
 } from 'naive-ui'
 import {
   LockOpenOutline, Person,LogoGithub,LogoWechat,LogoApple,QrCodeOutline
@@ -79,7 +77,7 @@ function onVideoBgError(){
 
 </script>
 <template>
-  <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
+  <div>
     <img class="image-bg" v-if="!loadedVideoBg" src="/src/assets/bg-2.png"/>
     <video @loadeddata="onVideoBgLoad" @error="onVideoBgError" class="bg-video" loop  muted autoplay src="https://prod-streaming-video-msn-com.akamaized.net/2787cb8a-1de3-455d-82db-1b2ebfc6a2ba/53af17b5-5d5d-4a5d-bdb5-7fe03aaaeb79.mp4"></video>
     <n-layout class="hb-admin-login" content-style="width:100%;opacity:0.8;">
@@ -132,7 +130,7 @@ function onVideoBgError(){
         </n-card>
       </n-space>
     </n-layout>
-  </n-config-provider>
+  </div>
 </template>
 
 
