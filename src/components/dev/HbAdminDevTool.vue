@@ -1,5 +1,5 @@
 <script setup>
-import {NCard, NSpace, NButton, NTag, NCode, NTable, useMessage} from "naive-ui";
+import {NCard, NSpace, NButton, NTag, NCode, NTable, useMessage,NAlert} from "naive-ui";
 import framework from "../../global/framework";
 import security from "../../global/security";
 import hljs from 'highlight.js/lib/core'
@@ -111,16 +111,16 @@ watch(showPanel,()=>{
         <n-space vertical>
           <n-button @click="refresh">刷新全部数据</n-button>
           <n-space vertical>
-            <n-tag>ClientId</n-tag>
+            <n-alert type="info">ClientId</n-alert>
             <n-code :code="clientId" :hljs="hljs"></n-code>
-            <n-tag>Token</n-tag>
+            <n-alert type="info">Token</n-alert>
             <n-code :code="token" :hljs="hljs"></n-code>
-            <n-tag>User Data</n-tag>
+            <n-alert type="info">User Data</n-alert>
             <div style="width: 100%;overflow: auto">
               <n-code :code="user" :hljs="hljs" language="JavaScript"></n-code>
             </div>
           </n-space>
-          <n-tag>导航标题缓存&菜单</n-tag>
+          <n-alert type="info">导航标题缓存&菜单</n-alert>
           <n-space align="center">
             <n-button type="info" @click="consoleMenu">输出菜单数据</n-button>
             <n-button type="info" @click="consoleNav">输出导航数据</n-button>
