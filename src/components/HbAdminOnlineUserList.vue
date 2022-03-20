@@ -41,6 +41,10 @@ const enterActiveClass = computed(()=>{
   overflow: auto;
 }
 
+.hb-admin-online-user-list-com::-webkit-scrollbar{
+  display: none;
+}
+
 .user-item{
   display: flex;
   align-items: center;
