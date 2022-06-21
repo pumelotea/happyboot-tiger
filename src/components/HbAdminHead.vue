@@ -139,7 +139,7 @@ const breadcrumb = computed(() => {
       </div>
     </div>
     <div class="head-right-area head-item-center">
-      <n-switch v-model="isDarkTheme">
+      <n-switch v-model:value="isDarkTheme">
         <template #checked-icon>
           <n-icon :component="Moon" />
         </template>

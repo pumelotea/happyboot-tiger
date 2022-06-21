@@ -16,6 +16,7 @@ module.exports = {
     "vue"
   ],
   "rules": {
+    "vue/no-v-model-argument":"off",
     "vue/no-mutating-props":"off",
     "linebreak-style": "off",
     "vue/script-setup-uses-vars": "error",
