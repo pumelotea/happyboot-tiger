@@ -154,7 +154,6 @@ watch(currentRouteMenu,value=>{
           <n-tag closable
                  v-for="e in navList"
                  :key="e.pageId"
-                 round
                  @close="()=>{onNavClose(e)}"
                  :type="e.pageId === currentRouteMenu.pageId?'success':''"
                  @click="(event)=>{onNavClick(e.pageId,event)}"
@@ -215,6 +214,8 @@ watch(currentRouteMenu,value=>{
   position: relative;
   margin: 0 10px;
   white-space: nowrap;
+  padding:  10px 5px;
+  box-sizing: border-box;
 }
 
 .inline-box::-webkit-scrollbar {
@@ -227,12 +228,10 @@ watch(currentRouteMenu,value=>{
 }
 
 .nav-tag{
-
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
 .nav-tag:hover{
-  opacity: 0.5;
-  transition: opacity 0.5s ease;
 }
 
 .nav-item-icon{
