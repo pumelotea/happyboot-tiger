@@ -2,16 +2,14 @@
 import {
   NMessageProvider, NConfigProvider, zhCN, dateZhCN
 } from 'naive-ui'
-
-import HbAdminDevTool from "./components/dev/HbAdminDevTool.vue";
 import {theme} from "./global/config";
+import HappyBoot from "./HappyBoot.vue";
 
 </script>
 <template>
   <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
     <n-message-provider>
-      <router-view/>
-      <hb-admin-dev-tool/>
+      <happy-boot/>
     </n-message-provider>
   </n-config-provider>
 </template>

@@ -1,26 +1,39 @@
 import {createDefaultRouterInterceptor} from 'happykit'
+
 const modules = import.meta.glob("/src/views/**/**.vue")
 
 import happyFramework from '../framework'
 import routerData from '../../mock/routerData'
-import security from "../security";
+import security from '../security';
+
 
 // 创建默认的拦截器
 const beforeInterceptor = createDefaultRouterInterceptor({
   interceptorType: 'before',
   framework: happyFramework,
-  async dataLoader() {
-    // 实际开发环境应该从服务端拉取数据
-    // 同时应该根据实际的数据结构进行编写对应的适配器
-    // 同时应该自行处理好请求失败等情况
-    return {
-      rawData: await new Promise(resolve => {
-        resolve(routerData)
+  async dataLoader(to, from, next) {
+    const result = {rawData: null, message: ''}
+    try {
+      // 实际开发环境应该从服务端拉取数据
+      const data = await new Promise((resolve,reject) => {
+        resolve({
+          code:0,
+          data:routerData,
+          message:'success'
+        })
       })
+      result.rawData = data.data
+      result.message = data.message
+    }catch (e) {
+      result.rawData = null
+      result.message = e.message
     }
+    return result
   },
-  dataLoadFailureHandler() {
-    console.log('数据加载失败')
+  dataLoadFailureHandler(result, to, from, next) {
+    console.log('菜单数据加载失败', result)
+    window.$message.error(result.message)
+    next('/error')
   },
   routerInjectOption: {
     randomName: true,
@@ -56,6 +69,11 @@ const routes = [
     name: 'recover',
     path: '/recover',
     component: () => import('/src/views/recover/index.vue')
+  },
+  {
+    name: 'error',
+    path: '/:pathMatch(.*)*',
+    component: () => import('/src/views/error/index.vue')
   }
 ]
 
@@ -63,22 +81,26 @@ const whiteList = [
   '/login',
   '/quick-login',
   '/recover',
-  '/signup'
+  '/signup',
+  '/error',
 ]
 
 
 export const beforeEachHandler = (to, from, next) => {
-  if (!security.getToken()){
-    if (!whiteList.includes(to.path)){
+  if (!security.getToken()) {
+    if (!whiteList.includes(to.path)) {
       next('/login')
       return
     }
     next()
     return
   }
-  // 使用拦截器
-  beforeInterceptor.filter(to,from,next)
-  // next()
+
+  if (!whiteList.includes(to.path)) {
+    beforeInterceptor.filter(to, from, next)
+  } else {
+    next()
+  }
 }
 
 // eslint-disable-next-line no-unused-vars
