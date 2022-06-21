@@ -1,6 +1,6 @@
 <template>
   <div class="hb-admin-page-layout">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

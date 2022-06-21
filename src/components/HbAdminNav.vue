@@ -1,5 +1,5 @@
 <script setup>
-import {NIcon, NButton, NEmpty, NTag, NDropdown} from "naive-ui"
+import { NIcon, NButton, NEmpty, NTag, NDropdown } from 'naive-ui'
 import {
   ArrowBack,
   ArrowForward,
@@ -9,48 +9,47 @@ import {
   CloseSharp,
   CloseCircleSharp,
   CubeOutline
-} from "@vicons/ionicons5"
+} from '@vicons/ionicons5'
 import framework from '@/global/framework'
-import {h, nextTick, ref, watch} from "vue";
-import {useRouter} from "vue-router";
+import { h, nextTick, ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
 
 const navList = framework.getNavList()
 const currentRouteMenu = framework.getCurrentMenuRoute()
 const router = useRouter()
 
-
 const renderIcon = (icon, color) => {
   return () => {
     return h(NIcon, null, {
-      default: () => h(icon, {color})
-    });
-  };
-};
+      default: () => h(icon, { color })
+    })
+  }
+}
 
 const options = [
   {
-    label: "关闭左侧",
-    key: "left",
-    icon: renderIcon(ArrowBackSharp)
+    label: '关闭左侧',
+    key  : 'left',
+    icon : renderIcon(ArrowBackSharp)
   },
   {
-    label: "关闭右侧",
-    key: "right",
-    icon: renderIcon(ArrowForwardSharp)
+    label: '关闭右侧',
+    key  : 'right',
+    icon : renderIcon(ArrowForwardSharp)
   },
   {
-    label: "关闭其他",
-    key: "other",
-    icon: renderIcon(CloseSharp)
+    label: '关闭其他',
+    key  : 'other',
+    icon : renderIcon(CloseSharp)
   },
   {
-    label: "关闭全部",
-    key: "all",
-    icon: renderIcon(CloseCircleSharp, '#C03F53')
+    label: '关闭全部',
+    key  : 'all',
+    icon : renderIcon(CloseCircleSharp, '#C03F53')
   }
 ]
 
-function onDropdownSelect(key) {
+function onDropdownSelect (key) {
   framework.closeNav(key, currentRouteMenu.value?.pageId, (removedNavs, needNavs) => {
     if (needNavs.length > 0) {
       router.push(needNavs[0].to)
@@ -61,7 +60,7 @@ function onDropdownSelect(key) {
   })
 }
 
-function onNavClose(e) {
+function onNavClose (e) {
   framework.closeNav('self', e.pageId, (removedNavs, needNavs) => {
     if (needNavs.length > 0) {
       router.push(needNavs[0].to)
@@ -72,7 +71,7 @@ function onNavClose(e) {
   })
 }
 
-function onNavClick(pageId,event) {
+function onNavClick (pageId, event) {
   framework.clickNavItem(pageId, (a, needNavs) => {
     if (needNavs.length > 0) {
       router.push(needNavs[0].to)
@@ -81,26 +80,26 @@ function onNavClick(pageId,event) {
   })
 }
 
-function scroll(pageId){
+function scroll (pageId) {
   const scrollLeft = navDom.value.scrollLeft
   const target = document.getElementById(pageId)
-  if (!target){
+  if (!target) {
     return
   }
 
   const rightOffset = target.offsetLeft + target.clientWidth - scrollLeft - navDom.value.clientWidth
   const leftOffset = target.offsetLeft - scrollLeft
   // console.log(rightOffset,leftOffset)
-  if (rightOffset > 0){
+  if (rightOffset > 0) {
     navDom.value.scrollTo({
-      top: 0,
-      left: scrollLeft+rightOffset + 100,
+      top     : 0,
+      left    : scrollLeft + rightOffset + 100,
       behavior: 'smooth'
     })
-  }else if (leftOffset < 0){
+  } else if (leftOffset < 0) {
     navDom.value.scrollTo({
-      top: 0,
-      left: scrollLeft+leftOffset - 100,
+      top     : 0,
+      left    : scrollLeft + leftOffset - 100,
       behavior: 'smooth'
     })
   }
@@ -108,84 +107,102 @@ function scroll(pageId){
 
 const navDom = ref(null)
 
-function scrollHorizontal(direction){
+function scrollHorizontal (direction) {
   const left = navDom.value.scrollLeft
-  if (direction === 'left'){
+  if (direction === 'left') {
     navDom.value.scrollTo({
-      top: 0,
-      left: left - 200,
+      top     : 0,
+      left    : left - 200,
       behavior: 'smooth'
     })
   }
 
-  if (direction === 'right'){
+  if (direction === 'right') {
     navDom.value.scrollTo({
-      top: 0,
-      left: left + 200,
+      top     : 0,
+      left    : left + 200,
       behavior: 'smooth'
     })
   }
 }
 
-watch(currentRouteMenu,value=>{
-  nextTick(()=>{
-    if (value){
+watch(currentRouteMenu, value => {
+  nextTick(() => {
+    if (value) {
       scroll(value.pageId)
     }
   })
 })
 
-
-
-
 </script>
 
 <template>
   <div class="hb-admin-nav-com">
-    <n-button strong secondary circle
-              @click="scrollHorizontal('left')"
+    <n-button
+      strong
+      secondary
+      circle
+      @click="scrollHorizontal('left')"
     >
       <template #icon>
-        <n-icon :component="ArrowBack"></n-icon>
+        <n-icon :component="ArrowBack" />
       </template>
     </n-button>
-    <div class="inline-box" ref="navDom">
-      <n-empty :show-icon="false" description="从左侧菜单打开页面" v-if="navList.length <= 0"></n-empty>
-          <n-tag closable
-                 v-for="e in navList"
-                 :key="e.pageId"
-                 @close="()=>{onNavClose(e)}"
-                 :type="e.pageId === currentRouteMenu.pageId?'success':''"
-                 @click="(event)=>{onNavClick(e.pageId,event)}"
-                 :id="e.pageId"
-                 class="nav-tag"
-          >
-            {{ e.title }}
-            <template #avatar>
-              <div class="nav-item-icon">
-                <i class="n-base-icon" :class="e.menuItem.icon" v-if="e.menuItem.icon"></i>
-                <n-icon :component="CubeOutline" v-else></n-icon>
-              </div>
-            </template>
-          </n-tag>
+    <div
+      ref="navDom"
+      class="inline-box"
+    >
+      <n-empty
+        v-if="navList.length <= 0"
+        :show-icon="false"
+        description="从左侧菜单打开页面"
+      />
+      <n-tag
+        v-for="e in navList"
+        :id="e.pageId"
+        :key="e.pageId"
+        closable
+        :type="e.pageId === currentRouteMenu.pageId?'success':''"
+        class="nav-tag"
+        @close="()=>{onNavClose(e)}"
+        @click="(event)=>{onNavClick(e.pageId,event)}"
+      >
+        {{ e.title }}
+        <template #avatar>
+          <div class="nav-item-icon">
+            <i
+              v-if="e.menuItem.icon"
+              class="n-base-icon"
+              :class="e.menuItem.icon"
+            />
+            <n-icon
+              v-else
+              :component="CubeOutline"
+            />
+          </div>
+        </template>
+      </n-tag>
     </div>
 
     <div class="nav-action-box">
-      <n-button strong secondary circle
-                @click="scrollHorizontal('right')"
+      <n-button
+        strong
+        secondary
+        circle
+        @click="scrollHorizontal('right')"
       >
         <template #icon>
-          <n-icon :component="ArrowForward"></n-icon>
+          <n-icon :component="ArrowForward" />
         </template>
       </n-button>
 
       <n-dropdown
-          :options="options"
-          @select="onDropdownSelect"
+        :options="options"
+        @select="onDropdownSelect"
       >
         <n-button text>
           <template #icon>
-            <n-icon :component="EllipsisVertical"></n-icon>
+            <n-icon :component="EllipsisVertical" />
           </template>
         </n-button>
       </n-dropdown>
@@ -221,7 +238,6 @@ watch(currentRouteMenu,value=>{
 .inline-box::-webkit-scrollbar {
   display: none;
 }
-
 
 .n-tag + .n-tag {
   margin-left: 5px;

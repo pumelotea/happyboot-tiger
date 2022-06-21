@@ -1,29 +1,27 @@
 <script setup>
-import * as echarts from 'echarts';
-import {computed, nextTick, onMounted, ref, watch} from "vue";
-import {isDark,isMenuCollapsed} from "@/global/config";
-import {useWindowSize, useDebounceFn} from '@vueuse/core'
-
+import * as echarts from 'echarts'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { isDark, isMenuCollapsed } from '@/global/config'
+import { useWindowSize, useDebounceFn } from '@vueuse/core'
 
 const props = defineProps({
   height: {
-    type: String,
-    default: '400px',
+    type   : String,
+    default: '400px'
   },
   width: {
-    type: String,
+    type   : String,
     default: '100%'
   },
   options: {
-    type: Object,
+    type   : Object,
     default: null
   },
   darkBackgroundColor: {
-    type: String,
+    type   : String,
     default: 'rgb(24, 24, 28)'
   }
 })
-
 
 const dark = computed(() => {
   return isDark.value ? 'dark' : 'light'
@@ -33,11 +31,10 @@ watch(dark, () => {
   initChart()
 })
 
-
 const chartDom = ref(null)
 let chart = null
 
-function initChart() {
+function initChart () {
   if (!props.options) {
     console.warn('HbAdminSimpleChart.vue options is null')
     return
@@ -54,35 +51,37 @@ function initChart() {
   }
 
   nextTick(() => {
-    chart = echarts.init(chartDom.value, dark.value);
+    chart = echarts.init(chartDom.value, dark.value)
     chart.setOption(props.options)
     chart.on('click', onChartClick)
   })
 }
 
-function resizeChart() {
+function resizeChart () {
   if (!chart) {
     return
   }
   nextTick(chart.resize)
 }
 
-const emit = defineEmits(['ChartClick'])
+const emit = defineEmits([ 'ChartClick' ])
 
-function onChartClick(params) {
+function onChartClick (params) {
   console.log(params)
-  emit('ChartClick', params,chart)
+  emit('ChartClick', params, chart)
 }
 
-
 const resizeChartDebounce = useDebounceFn(resizeChart, 500)
-const {width, height} = useWindowSize()
-watch([width, height,isMenuCollapsed], () => {
+const { width, height } = useWindowSize()
+watch([ width, height, isMenuCollapsed ], () => {
   resizeChartDebounce()
 })
 onMounted(initChart)
 
 </script>
 <template>
-  <div :style="{height:props.height,width:props.width}" ref="chartDom"></div>
+  <div
+    ref="chartDom"
+    :style="{height:props.height,width:props.width}"
+  />
 </template>

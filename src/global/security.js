@@ -1,4 +1,4 @@
-import {createHappySecurity} from "happykit";
+import { createHappySecurity } from 'happykit'
 
 const happySecurity = createHappySecurity()
 

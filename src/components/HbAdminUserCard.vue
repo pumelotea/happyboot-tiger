@@ -1,14 +1,14 @@
 <script setup>
-import {NAvatar,NLayout,NLayoutHeader,NIcon,NButton,NBadge,NSpace} from "naive-ui";
+import { NAvatar, NLayout, NLayoutHeader, NIcon, NButton, NBadge, NSpace } from 'naive-ui'
 import {
   EarthOutline
-} from "@vicons/ionicons5"
-import {isMenuCollapsed} from "@/global/config";
+} from '@vicons/ionicons5'
+import { isMenuCollapsed } from '@/global/config'
 
-import security from "../global/security";
-import {computed, ref} from "vue";
+import security from '../global/security'
+import { computed } from 'vue'
 
-const enterActiveClass = computed(()=>{
+const enterActiveClass = computed(() => {
   return !isMenuCollapsed.value ? 'animate__animated animate__slideInRight animate__faster' : 'animate__animated animate__slideInLeft animate__faster'
 })
 
@@ -16,22 +16,50 @@ const enterActiveClass = computed(()=>{
 
 <template>
   <n-layout>
-    <n-layout-header  style="border-top: solid 1px var(--n-border-color)">
+    <n-layout-header style="border-top: solid 1px var(--n-border-color)">
       <transition
-          :enter-active-class="enterActiveClass"
-          leave-from-class="leave"
+        :enter-active-class="enterActiveClass"
+        leave-from-class="leave"
       >
-        <div class="hb-admin-user-card-com" v-if="isMenuCollapsed">
-          <n-avatar size="large" round :src="security.user.value?.avatar"/>
+        <div
+          v-if="isMenuCollapsed"
+          class="hb-admin-user-card-com"
+        >
+          <n-avatar
+            size="large"
+            round
+            :src="security.user.value?.avatar"
+          />
         </div>
-        <div class="hb-admin-user-card-com" v-else>
-          <n-avatar size="large" round :src="security.user.value?.avatar"/>
-          <span class="nickname ">{{security.user.value?.nickname}}</span>
-          <span style="flex: 1;"></span>
-          <n-space align="center" justify="end">
-            <n-badge type="success" :value="20" processing ></n-badge>
-            <n-button round text style="align-items: center;display: flex">
-              <n-icon size="24" :component="EarthOutline"></n-icon>
+        <div
+          v-else
+          class="hb-admin-user-card-com"
+        >
+          <n-avatar
+            size="large"
+            round
+            :src="security.user.value?.avatar"
+          />
+          <span class="nickname ">{{ security.user.value?.nickname }}</span>
+          <span style="flex: 1;" />
+          <n-space
+            align="center"
+            justify="end"
+          >
+            <n-badge
+              type="success"
+              :value="20"
+              processing
+            />
+            <n-button
+              round
+              text
+              style="align-items: center;display: flex"
+            >
+              <n-icon
+                size="24"
+                :component="EarthOutline"
+              />
             </n-button>
           </n-space>
         </div>

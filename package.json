@@ -6,7 +6,8 @@
     "dev": "vite --mode dev",
     "build-test": "vite build --mode test",
     "build-prod": "vite build --mode prod",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint src/**/*.{js,vue} --fix"
   },
   "dependencies": {
     "@vicons/ionicons5": "^0.12.0",
@@ -23,8 +24,15 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^9.1.1",
     "naive-ui": "^2.30.5",
     "vfonts": "^0.0.3",
-    "vite": "^2.8.0"
+    "vite": "^2.8.0",
+    "vite-plugin-eslint": "^1.6.1"
   }
 }

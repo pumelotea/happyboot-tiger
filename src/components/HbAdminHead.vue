@@ -1,88 +1,99 @@
 <script setup>
-import { NIcon,NBadge,NAvatar,NSwitch,NCarousel,NDivider,NDropdown,useMessage, NText, NBreadcrumb,NBreadcrumbItem } from "naive-ui"
-import { Moon,SunnyOutline,Notifications } from "@vicons/ionicons5"
-import {ref, h, onMounted, computed} from "vue"
-import {isDarkTheme} from "@/global/config";
-import framework from "@/global/framework";
-import { CubeOutline } from "@vicons/ionicons5"
-import {useRouter} from "vue-router";
-import security from "@/global/security";
+import {
+  NIcon,
+  NBadge,
+  NAvatar,
+  NSwitch,
+  NCarousel,
+  NDivider,
+  NDropdown,
+  useMessage,
+  NText,
+  NBreadcrumb,
+  NBreadcrumbItem
+} from 'naive-ui'
+import { Moon, SunnyOutline, Notifications, CubeOutline } from '@vicons/ionicons5'
+import { h, computed } from 'vue'
+import { isDarkTheme } from '@/global/config'
+import framework from '@/global/framework'
+import { useRouter } from 'vue-router'
+import security from '@/global/security'
 
 const router = useRouter()
 
-function renderCustomHeader() {
-  return h("div", {
-    style: "display: flex; align-items: center; padding: 8px 12px;"
-    }, [
-      h(NAvatar, {
-        round: true,
-        style: "margin-right: 12px;",
-        src: security.user.value?.avatar
-      }),
-      h("div", null, [
-        h("div", null, [h(NText, { depth: 2 }, { default: () => security.user.value?.nickname })]),
-        h("div", { style: "font-size: 12px;" }, [
-          h(NText, { depth: 3 }, { default: () => "毫无疑问，你是办公室里最亮的星" })
-        ])
+function renderCustomHeader () {
+  return h('div', {
+    style: 'display: flex; align-items: center; padding: 8px 12px;'
+  }, [
+    h(NAvatar, {
+      round: true,
+      style: 'margin-right: 12px;',
+      src  : security.user.value?.avatar
+    }),
+    h('div', null, [
+      h('div', null, [ h(NText, { depth: 2 }, { default: () => security.user.value?.nickname }) ]),
+      h('div', { style: 'font-size: 12px;' }, [
+        h(NText, { depth: 3 }, { default: () => '毫无疑问，你是办公室里最亮的星' })
       ])
-  ]);
+    ])
+  ])
 }
 
 const message = useMessage()
 
 const options = [
   {
-    key: "header",
-    type: "render",
+    key   : 'header',
+    type  : 'render',
     render: renderCustomHeader
   },
   {
-    key: "header-divider",
-    type: "divider"
+    key : 'header-divider',
+    type: 'divider'
   },
   {
-    label: "处理群消息 342 条",
-    key: "stmt1"
+    label: '处理群消息 342 条',
+    key  : 'stmt1'
   },
   {
-    label: "被 @ 58 次",
-    key: "stmt2"
+    label: '被 @ 58 次',
+    key  : 'stmt2'
   },
   {
-    label: "加入群 17 个",
-    key: "stmt3"
+    label: '加入群 17 个',
+    key  : 'stmt3'
   },
   {
-    type: "render",
-    key: "bottom",
-    render: ()=>{
-      return h(NDivider,{style:'margin:0'})
+    type  : 'render',
+    key   : 'bottom',
+    render: () => {
+      return h(NDivider, { style: 'margin:0' })
     }
   },
   {
-    label: "退出登录",
-    key: "logout"
+    label: '退出登录',
+    key  : 'logout'
   }
 ]
-function handleSelect(key) {
+
+function handleSelect (key) {
   message.info(String(key))
-  switch (key){
-    case 'logout':
-      security.signOut()
-      framework.closeNav('all')
-      router.push('/login')
+  switch (key) {
+  case 'logout':
+    security.signOut()
+    framework.closeNav('all')
+    router.push('/login')
+    break
+  default:
+    console.log('default')
   }
 }
 
-
-
 const currentMenuRoute = framework.getCurrentMenuRoute()
 
-const breadcrumb= computed(()=>{
+const breadcrumb = computed(() => {
   return currentMenuRoute.value?.menuItem.breadcrumb
 })
-
-
 
 </script>
 
@@ -90,12 +101,18 @@ const breadcrumb= computed(()=>{
   <div class="hb-admin-head-com">
     <div class="head-left-area head-item-center">
       <n-breadcrumb>
-        <n-breadcrumb-item v-for="e in breadcrumb" :key="e.menuId">
+        <n-breadcrumb-item
+          v-for="e in breadcrumb"
+          :key="e.menuId"
+        >
           <n-icon>
-            <i :class="e.icon" v-if="e.icon"></i>
-            <cube-outline v-else/>
+            <i
+              v-if="e.icon"
+              :class="e.icon"
+            />
+            <cube-outline v-else />
           </n-icon>
-          {{e.name}}
+          {{ e.name }}
         </n-breadcrumb-item>
       </n-breadcrumb>
     </div>
@@ -103,71 +120,83 @@ const breadcrumb= computed(()=>{
       <div class="carousel-box">
         <n-carousel show-arrow>
           <img
-              class="carousel-img"
-              src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
+            class="carousel-img"
+            src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
           >
           <img
-              class="carousel-img"
-              src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
+            class="carousel-img"
+            src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
           >
           <img
-              class="carousel-img"
-              src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
+            class="carousel-img"
+            src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
           >
           <img
-              class="carousel-img"
-              src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
+            class="carousel-img"
+            src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
           >
         </n-carousel>
       </div>
     </div>
     <div class="head-right-area head-item-center">
-      <n-switch v-model:value="isDarkTheme">
-        <template v-slot:checked-icon>
+      <n-switch v-model="isDarkTheme">
+        <template #checked-icon>
           <n-icon :component="Moon" />
         </template>
-        <template v-slot:unchecked-icon>
+        <template #unchecked-icon>
           <n-icon :component="SunnyOutline" />
         </template>
       </n-switch>
-      <n-divider vertical/>
-      <n-icon size="25" color="#CFCFCF" :component="Notifications" />
-      <n-badge value="99+"></n-badge>
-      <n-divider vertical/>
-      <n-dropdown trigger="hover" :options="options" @select="handleSelect">
-        <n-avatar round bordered :src="security.user.value?.avatar"></n-avatar>
+      <n-divider vertical />
+      <n-icon
+        size="25"
+        color="#CFCFCF"
+        :component="Notifications"
+      />
+      <n-badge value="99+" />
+      <n-divider vertical />
+      <n-dropdown
+        trigger="hover"
+        :options="options"
+        @select="handleSelect"
+      >
+        <n-avatar
+          round
+          bordered
+          :src="security.user.value?.avatar"
+        />
       </n-dropdown>
     </div>
   </div>
 </template>
 
 <style scoped>
-.hb-admin-head-com{
+.hb-admin-head-com {
   height: 100%;
   display: flex;
 }
 
-.head-item-center{
+.head-item-center {
   display: flex;
   align-items: center;
   height: 100%;
 }
 
-.head-left-area{
+.head-left-area {
   padding: 0 20px;
 }
 
-.head-center-area{
+.head-center-area {
   justify-content: right;
   flex: 1;
   align-items: center;
 }
 
-.head-right-area{
+.head-right-area {
   padding: 0 20px;
 }
 
-.carousel-box{
+.carousel-box {
   width: 300px;
 }
 

@@ -1,12 +1,11 @@
-import {ref, watch} from "vue"
-import {darkTheme,useOsTheme} from "naive-ui"
+import { ref, watch } from 'vue'
+import { darkTheme, useOsTheme } from 'naive-ui'
 
 const isMenuCollapsed = ref(false)
 const osTheme = useOsTheme()
 const theme = ref(null)
 const isDark = ref(false)
 const isDarkTheme = ref(false)
-
 
 watch(isDarkTheme, val => {
   if (val) {
@@ -18,7 +17,7 @@ watch(isDarkTheme, val => {
   }
 })
 
-watch(osTheme,val=>{
+watch(osTheme, val => {
   isDarkTheme.value = val === 'dark'
 })
 
@@ -30,6 +29,3 @@ export {
   isMenuCollapsed,
   isDark
 }
-
-
-

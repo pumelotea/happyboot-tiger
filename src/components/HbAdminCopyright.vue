@@ -1,5 +1,10 @@
 <template>
-  <div class="hb-admin-copyright-com">HappyBoot Tiger Powered By&nbsp;<a class="power-by" href="https://happykit.org">HappyKit</a></div>
+  <div class="hb-admin-copyright-com">
+    HappyBoot Tiger Powered By&nbsp;<a
+      class="power-by"
+      href="https://happykit.org"
+    >HappyKit</a>
+  </div>
 </template>
 
 <style scoped>
