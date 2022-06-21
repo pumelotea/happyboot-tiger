@@ -4,11 +4,13 @@ import {
   NLayout, NButton, NIcon, useMessage
 } from 'naive-ui'
 import {
-  LockOpenOutline, Person,LogoGithub,LogoWechat,LogoApple,QrCodeOutline
+  LockOpenOutline, Person, LogoGithub, LogoWechat, LogoApple, QrCodeOutline, ArrowBackCircle,CheckmarkCircle
 } from "@vicons/ionicons5"
 import {useRouter} from "vue-router";
 import security from "@/global/security";
-import {reactive, ref} from "vue";
+import {onMounted, reactive, ref} from "vue";
+import QRCode from 'qrcode'
+
 
 const router = useRouter()
 const message = useMessage()
@@ -24,17 +26,17 @@ function login(e) {
   e.preventDefault()
   loginFormRef.value?.validate((errors) => {
     if (!errors) {
-      security.signIn(loginForm.password,{
-        refreshToken:'jwt refresh', // 写入刷新token
-        refreshTokenExpiredAt: new Date().getTime() + 3600*24*7, // 刷新token过期时间
+      security.signIn(loginForm.password, {
+        refreshToken: 'jwt refresh', // 写入刷新token
+        refreshTokenExpiredAt: new Date().getTime() + 3600 * 24 * 7, // 刷新token过期时间
         username: loginForm.username,
-        nickname:'千阳',
-        avatar:'https://oss.injs.jsxww.cn/net-disk-smh/09505891f7a34e82b64a5922ecf5a7e0.gif?x-oss-process=image/resize,w_100/quality,q_95',
+        nickname: '千阳',
+        avatar: 'https://oss.injs.jsxww.cn/net-disk-smh/09505891f7a34e82b64a5922ecf5a7e0.gif?x-oss-process=image/resize,w_100/quality,q_95',
       })
       router.push('/')
     } else {
       console.log(errors);
-      errors.forEach(e=>{
+      errors.forEach(e => {
         message.error(e[0].message)
       })
     }
@@ -59,19 +61,39 @@ const rules = {
 
 const qrCodeLogin = ref(false)
 
-function toggleUseQrCode(){
+function toggleUseQrCode() {
   qrCodeLogin.value = !qrCodeLogin.value
+  createQrCode()
 }
 
 const loadedVideoBg = ref(false)
 
-function onVideoBgLoad(){
+function onVideoBgLoad() {
   console.log('load video bg success')
   loadedVideoBg.value = true
 }
 
-function onVideoBgError(){
+function onVideoBgError() {
   console.log('load video bg failed')
+}
+
+const qrcode = ref('')
+const isQrcodeScan = ref(true)
+async function createQrCode(){
+  const generateQR = async text => {
+    try {
+      qrcode.value = await QRCode.toDataURL(text, {
+        width: 360,
+        margin: 1,
+        color: {
+          dark: "#7BB650FF",
+        }
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+  await generateQR(new Date().toLocaleTimeString() + '9c67d262-f53e-4358-9f99-beef9538e579')
 }
 
 
@@ -79,17 +101,26 @@ function onVideoBgError(){
 <template>
   <div>
     <img class="image-bg" v-if="!loadedVideoBg" src="/src/assets/bg-2.png"/>
-    <video @loadeddata="onVideoBgLoad" @error="onVideoBgError" class="bg-video" loop  muted autoplay src="/9c67d262-f53e-4358-9f99-beef9538e579.mp4"></video>
-    <n-layout class="hb-admin-login" content-style="width:100%;opacity:0.8;">
+    <video @loadeddata="onVideoBgLoad" @error="onVideoBgError" class="bg-video" loop muted autoplay
+           src="/9c67d262-f53e-4358-9f99-beef9538e579.mp4"></video>
+    <n-layout class="hb-admin-login" content-style="width:100%;">
       <n-space vertical justify="center" align="center" style="height: 100%;width: 100%;">
         <n-card hoverable class="hb-card animate__animated animate__fadeIn animate__slow" content-style="height: 180px">
           <n-space justify="center" style="margin-bottom: 20px;">
             <img class="hb-logo" src="/src/assets/logo.png"/>
           </n-space>
-          <n-space justify="center" v-if="qrCodeLogin" class="hb-form animate__animated animate__fadeIn">
-            <img class="qr-code" src="/src/assets/qr-demo.png">
+          <n-space vertical justify="center" align="center" v-if="qrCodeLogin"
+                   class="hb-form animate__animated animate__fadeIn">
+            <div style="position: relative">
+              <img class="qr-code" :class="{'qr-code-scan':isQrcodeScan}" :src="qrcode">
+              <div class="scan-mark" v-if="isQrcodeScan">
+                <n-icon size="40" color="rgb(76 175 80)" :component="CheckmarkCircle"></n-icon>
+              </div>
+            </div>
+            <div>请使用App扫码确认登录</div>
           </n-space>
-          <n-form v-else class="hb-form animate__animated animate__fadeIn" ref="loginFormRef" :model="loginForm" :rules="rules">
+          <n-form v-else class="hb-form animate__animated animate__fadeIn" ref="loginFormRef" :model="loginForm"
+                  :rules="rules">
             <n-form-item label="账号" path="username">
               <n-input size="large" v-model:value="loginForm.username">
                 <template #prefix>
@@ -108,15 +139,22 @@ function onVideoBgError(){
           <template #action>
             <div class="qr-login-button">
               <n-button text @click="toggleUseQrCode">
-                <n-icon :size="30" :component="QrCodeOutline"></n-icon>
+                <n-icon :size="30" :component="ArrowBackCircle" v-if="qrCodeLogin"></n-icon>
+                <n-icon :size="30" :component="QrCodeOutline" v-else></n-icon>
               </n-button>
             </div>
             <n-space justify="center" align="center" style="margin-bottom: 20px;">
-              <n-button text><n-icon :size="30" :component="LogoGithub"></n-icon></n-button>
-              <n-button text><n-icon :size="30" :component="LogoWechat"></n-icon></n-button>
-              <n-button text><n-icon :size="30" :component="LogoApple"></n-icon></n-button>
+              <n-button text>
+                <n-icon :size="30" :component="LogoGithub"></n-icon>
+              </n-button>
+              <n-button text>
+                <n-icon :size="30" :component="LogoWechat"></n-icon>
+              </n-button>
+              <n-button text>
+                <n-icon :size="30" :component="LogoApple"></n-icon>
+              </n-button>
             </n-space>
-            <n-button size="large" type="success" block @click="login">
+            <n-button size="large" type="success" block @click="login" v-if="!qrCodeLogin">
               登录
             </n-button>
             <n-space justify="center" style="margin-top: 30px">
@@ -147,7 +185,7 @@ function onVideoBgError(){
   background: transparent;
 }
 
-.image-bg{
+.image-bg {
   object-fit: cover;
   position: absolute;
   top: 0;
@@ -169,18 +207,31 @@ function onVideoBgError(){
   height: 100px;
 }
 
-.qr-login-button{
+.qr-login-button {
   position: absolute;
   top: 10px;
   right: 10px;
 }
 
-.qr-code{
+.qr-code {
   width: 180px;
   height: 180px;
+  border: 2px solid #a0ee68;
+  border-radius: 5px;
 }
 
-.bg-video{
+.scan-mark{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%,-50%,0);
+}
+
+.qr-code-scan{
+  opacity: 0.5;
+}
+
+.bg-video {
   position: absolute;
   top: 0;
   left: 0;
