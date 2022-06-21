@@ -39,6 +39,7 @@ const enterActiveClass = computed(()=>{
   right: 0;
   bottom: 60px;
   overflow: auto;
+  z-index: 1;
 }
 
 .hb-admin-online-user-list-com::-webkit-scrollbar{

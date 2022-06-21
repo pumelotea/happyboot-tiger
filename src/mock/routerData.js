@@ -1,15 +1,5 @@
 const routerData = [
   {
-    name: '介绍',
-    path: '/desc',
-    view: '/desc/index.vue',
-    isRouter: true,
-    isKeepalive: true,
-    icon:'ri-markdown-line',
-    type: 'menu',
-    children: []
-  },
-  {
     name: '主控台',
     path: '/dashboard',
     view: '/dashboard/index.vue',
