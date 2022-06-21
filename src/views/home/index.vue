@@ -1,11 +1,11 @@
 <script setup>
-import HbAdminMenu from "../../components/HbAdminMenu.vue"
-import HbAdminHead from "../../components/HbAdminHead.vue"
-import HbAdminNav from "../../components/HbAdminNav.vue"
-import HbAdminLogo from "../../components/HbAdminLogo.vue"
-import HbAdminCopyright from "../../components/HbAdminCopyright.vue"
-import HbAdminUserCard from "../../components/HbAdminUserCard.vue"
-import HbAdminOnlineUserList from "../../components/HbAdminOnlineUserList.vue"
+import HbAdminMenu from "@/components/HbAdminMenu.vue"
+import HbAdminHead from "@/components/HbAdminHead.vue"
+import HbAdminNav from "@/components/HbAdminNav.vue"
+import HbAdminLogo from "@/components/HbAdminLogo.vue"
+import HbAdminCopyright from "@/components/HbAdminCopyright.vue"
+import HbAdminUserCard from "@/components/HbAdminUserCard.vue"
+import HbAdminOnlineUserList from "@/components/HbAdminOnlineUserList.vue"
 
 import {
   NMessageProvider,

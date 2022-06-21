@@ -1,6 +1,6 @@
 <script setup>
 
-import HbAdminPageLayout from "../../components/HbAdminPageLayout.vue";
+import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue";
 </script>
 <template>
   <hb-admin-page-layout>

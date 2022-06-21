@@ -1,9 +1,9 @@
 <script setup>
 import {NCard, NSpace, NButton, NTag, NCode, NTable, useMessage,NAlert} from "naive-ui";
-import framework from "../../global/framework";
-import security from "../../global/security";
-import hljs from 'highlight.js/lib/core'
-import javascript from 'highlight.js/lib/languages/javascript'
+import framework from "@/global/framework";
+import security from "@/global/security";
+import hljs from 'highlight.js/lib/core';
+import javascript from 'highlight.js/lib/languages/javascript';
 import {onMounted, ref, watch} from "vue";
 
 hljs.registerLanguage('javascript', javascript)

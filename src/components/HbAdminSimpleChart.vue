@@ -1,7 +1,7 @@
 <script setup>
 import * as echarts from 'echarts';
 import {computed, nextTick, onMounted, ref, watch} from "vue";
-import {isDark,isMenuCollapsed} from "../global/config";
+import {isDark,isMenuCollapsed} from "@/global/config";
 import {useWindowSize, useDebounceFn} from '@vueuse/core'
 
 

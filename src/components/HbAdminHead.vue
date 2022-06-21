@@ -2,11 +2,11 @@
 import { NIcon,NBadge,NAvatar,NSwitch,NCarousel,NDivider,NDropdown,useMessage, NText, NBreadcrumb,NBreadcrumbItem } from "naive-ui"
 import { Moon,SunnyOutline,Notifications } from "@vicons/ionicons5"
 import {ref, h, onMounted, computed} from "vue"
-import {isDarkTheme} from "../global/config";
-import framework from "../global/framework";
+import {isDarkTheme} from "@/global/config";
+import framework from "@/global/framework";
 import { CubeOutline } from "@vicons/ionicons5"
 import {useRouter} from "vue-router";
-import security from "../global/security";
+import security from "@/global/security";
 
 const router = useRouter()
 

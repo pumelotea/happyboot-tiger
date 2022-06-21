@@ -1,5 +1,5 @@
 <script setup>
-import HbAdminPageLayout from '../../components/HbAdminPageLayout.vue'
+import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
 import DialogCreate from './dialog/Create.vue'
 import {
   NLayout, NLayoutHeader, NLayoutContent, NDataTable,

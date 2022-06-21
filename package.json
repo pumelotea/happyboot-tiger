@@ -3,8 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite --mode dev",
+    "build-test": "vite build --mode test",
+    "build-prod": "vite build --mode prod",
     "preview": "vite preview"
   },
   "dependencies": {

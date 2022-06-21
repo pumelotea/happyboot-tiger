@@ -1,6 +1,6 @@
 <script setup>
 import {NLayout, NLayoutContent, NAlert, NCode, NButton, NSpace, NCard, NInput} from 'naive-ui';
-import HbAdminPageLayout from "../../components/HbAdminPageLayout.vue";
+import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue";
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import {useRouter} from "vue-router";

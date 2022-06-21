@@ -10,7 +10,7 @@ import {
   CloseCircleSharp,
   CubeOutline
 } from "@vicons/ionicons5"
-import framework from '.././global/framework'
+import framework from '@/global/framework'
 import {h, nextTick, ref, watch} from "vue";
 import {useRouter} from "vue-router";
 

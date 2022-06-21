@@ -3,7 +3,7 @@ import {createDefaultRouterInterceptor} from 'happykit'
 const modules = import.meta.glob("/src/views/**/**.vue")
 
 import happyFramework from '../framework'
-import routerData from '../../mock/routerData'
+import routerData from '@/mock/routerData'
 import security from '../security';
 
 

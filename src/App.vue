@@ -2,8 +2,8 @@
 import {
   NMessageProvider, NConfigProvider, zhCN, dateZhCN
 } from 'naive-ui'
-import {theme} from "./global/config";
-import HappyBoot from "./HappyBoot.vue";
+import {theme} from "@/global/config";
+import HappyBoot from "@/HappyBoot.vue";
 
 </script>
 <template>

@@ -7,7 +7,7 @@ import {
   LockOpenOutline, Person,LogoGithub,LogoWechat,LogoApple,QrCodeOutline
 } from "@vicons/ionicons5"
 import {useRouter} from "vue-router";
-import security from "../../global/security";
+import security from "@/global/security";
 import {reactive, ref} from "vue";
 
 const router = useRouter()

@@ -5,10 +5,10 @@ import {
   NTimeline, NTimelineItem,
   NAvatarGroup, NTooltip, NAvatar
 } from "naive-ui";
-import HbAdminPageLayout from "../../components/HbAdminPageLayout.vue";
-import HbAdminChartLine from "../../components/charts/HbAdminChartLine.vue";
-import HbAdminChartPie from "../../components/charts/HbAdminChartPie.vue";
-import HbAdminChartBar from "../../components/charts/HbAdminChartBar.vue";
+import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue";
+import HbAdminChartLine from "@/components/charts/HbAdminChartLine.vue";
+import HbAdminChartPie from "@/components/charts/HbAdminChartPie.vue";
+import HbAdminChartBar from "@/components/charts/HbAdminChartBar.vue";
 
 const options = [
   {

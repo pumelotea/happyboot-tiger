@@ -1,5 +1,5 @@
 <script setup>
-import HbAdminPageLayout from '../../components/HbAdminPageLayout.vue'
+import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
 import {
   NLayout, NLayoutHeader, NLayoutContent, NDataTable,
   NGrid, NGridItem, NDatePicker, NInput, NSelect, NButton, NSpace, NIcon, useMessage,

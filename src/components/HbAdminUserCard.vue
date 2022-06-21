@@ -3,7 +3,7 @@ import {NAvatar,NLayout,NLayoutHeader,NIcon,NButton,NBadge,NSpace} from "naive-u
 import {
   EarthOutline
 } from "@vicons/ionicons5"
-import {isMenuCollapsed} from "../global/config";
+import {isMenuCollapsed} from "@/global/config";
 
 import security from "../global/security";
 import {computed, ref} from "vue";

@@ -5,7 +5,7 @@ import {
 } from 'naive-ui'
 
 import {useRouter} from "vue-router";
-import security from "../../global/security";
+import security from "@/global/security";
 
 const router = useRouter()
 const message = useMessage()

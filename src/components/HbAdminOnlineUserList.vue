@@ -1,6 +1,6 @@
 <script setup>
 import {NAvatar,NSpace,NBadge,NLayout,NLayoutHeader} from "naive-ui";
-import {isMenuCollapsed} from "../global/config";
+import {isMenuCollapsed} from "@/global/config";
 import {computed} from "vue";
 const enterActiveClass = computed(()=>{
   return !isMenuCollapsed.value ? 'animate__animated animate__slideInRight animate__faster' : 'animate__animated animate__slideInLeft animate__faster'

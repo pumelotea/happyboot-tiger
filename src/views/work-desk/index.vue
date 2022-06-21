@@ -4,7 +4,7 @@ import {
   NAvatar, NSpace, NGradientText, NIcon, NEllipsis,
   NGrid, NGridItem, NAlert
 } from "naive-ui";
-import HbAdminPageLayout from "../../components/HbAdminPageLayout.vue";
+import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue";
 </script>
 <template>
   <hb-admin-page-layout>
