@@ -11,7 +11,6 @@ const preview1 = ref(null)
 const preview2 = ref(null)
 const preview3 = ref(null)
 
-const avatar = ref('')
 let cropper = null
 const isInit = ref(false)
 
@@ -49,8 +48,7 @@ function getCroppedData() {
   if (!can) {
     return null
   }
-  avatar.value = can.toDataURL()
-  return avatar.value
+  return can.toDataURL()
 }
 
 function zoom(d) {

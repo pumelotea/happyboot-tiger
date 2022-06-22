@@ -52,10 +52,10 @@ function getCropperDataModal(){
           </n-alert>
           <n-card title="弹出式">
             <n-space align="flex-end">
-              <n-avatar :src="avatarDataModal" :size="100" @click="showModal=true"></n-avatar>
-              <n-avatar :src="avatarDataModal" :size="64" @click="showModal=true"></n-avatar>
-              <n-avatar :src="avatarDataModal" :size="32" @click="showModal=true"></n-avatar>
-              <n-avatar :src="avatarDataModal" :size="24" @click="showModal=true"></n-avatar>
+              <n-avatar :src="avatarDataModal" round :size="100" @click="showModal=true"></n-avatar>
+              <n-avatar :src="avatarDataModal" round :size="64" @click="showModal=true"></n-avatar>
+              <n-avatar :src="avatarDataModal" round :size="32" @click="showModal=true"></n-avatar>
+              <n-avatar :src="avatarDataModal" round :size="24" @click="showModal=true"></n-avatar>
             </n-space>
             <n-modal v-model:show="showModal">
               <n-card
