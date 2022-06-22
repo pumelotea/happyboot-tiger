@@ -129,7 +129,11 @@ const routerData = [
     isKeepalive: false,
     icon       : 'ri-collage-fill',
     type       : 'menu',
-    children   : [
+    budge      : {
+      value: '6',
+      type : 'info'
+    },
+    children: [
       {
         name       : '权限点',
         path       : '/point',
@@ -170,6 +174,62 @@ const routerData = [
         icon       : 'ri-command-line',
         type       : 'menu',
         children   : []
+      },
+      {
+        name       : '富文本编辑器',
+        path       : '/editor-demo',
+        view       : '/editor-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-command-line',
+        type       : 'menu',
+        children   : [],
+        budge      : {
+          value: '新',
+          type : 'info'
+        }
+      },
+      {
+        name       : '图片预览组件',
+        path       : '/image-preview-demo',
+        view       : '/image-preview-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-command-line',
+        type       : 'menu',
+        children   : [],
+        budge      : {
+          value: '新',
+          type : 'info'
+        }
+      },
+      {
+        name       : '图片上传组件',
+        path       : '/uploader-demo',
+        view       : '/uploader-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-command-line',
+        type       : 'menu',
+        children   : [],
+        budge      : {
+          value: '新',
+          type : 'info'
+        }
+      },
+      {
+        name       : '头像裁剪组件',
+        path       : '/avatar-demo',
+        view       : '/avatar-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-command-line',
+        type       : 'menu',
+        children   : [],
+        budge      : {
+          value: '新',
+          type : 'info'
+        }
       }
     ]
   },
