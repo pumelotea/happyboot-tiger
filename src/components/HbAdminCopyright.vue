@@ -1,3 +1,8 @@
+<script setup>
+import {useThemeVars} from 'naive-ui'
+
+const vars = useThemeVars()
+</script>
 <template>
   <div class="hb-admin-copyright-com">
     HappyBoot Tiger Powered By&nbsp;<a
@@ -14,9 +19,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: v-bind(vars.textColor1);
 }
 
 .power-by{
-  color: #42b983;
+  color: v-bind(vars.primaryColor);
 }
 </style>

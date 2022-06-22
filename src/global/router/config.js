@@ -5,6 +5,7 @@ const modules = import.meta.glob("/src/views/**/**.vue")
 import happyFramework from '../framework'
 import routerData from '@/mock/routerData'
 import security from '../security';
+import {ref} from "vue";
 
 
 // 创建默认的拦截器
@@ -16,11 +17,13 @@ const beforeInterceptor = createDefaultRouterInterceptor({
     try {
       // 实际开发环境应该从服务端拉取数据
       const data = await new Promise((resolve,reject) => {
-        resolve({
-          code:0,
-          data:routerData,
-          message:'success'
-        })
+        setTimeout(()=>{
+          resolve({
+            code:0,
+            data:routerData,
+            message:'success'
+          })
+        },1000)
       })
       result.rawData = data.data
       result.message = data.message
@@ -85,18 +88,23 @@ const whiteList = [
   '/error',
 ]
 
+export const needRouterLoading = ref(false)
+
 
 export const beforeEachHandler = (to, from, next) => {
   if (!security.getToken()) {
     if (!whiteList.includes(to.path)) {
+      needRouterLoading.value = false
       next('/login')
       return
     }
+    needRouterLoading.value = false
     next()
     return
   }
 
   if (!whiteList.includes(to.path)) {
+    needRouterLoading.value = !happyFramework.routerInitiated
     beforeInterceptor.filter(to, from, next)
   } else {
     next()
