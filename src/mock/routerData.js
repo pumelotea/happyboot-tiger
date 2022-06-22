@@ -167,7 +167,7 @@ const routerData = [
       },
       {
         name       : '自定义导航标题',
-        path       : '/custom-tab-title-demo',
+        path       : '/custom-tab-title',
         view       : '/custom-tab-title-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
@@ -177,7 +177,7 @@ const routerData = [
       },
       {
         name       : '富文本编辑器',
-        path       : '/editor-demo',
+        path       : '/editor',
         view       : '/editor-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
@@ -191,7 +191,7 @@ const routerData = [
       },
       {
         name       : '图片预览组件',
-        path       : '/image-preview-demo',
+        path       : '/image-preview',
         view       : '/image-preview-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
@@ -205,7 +205,7 @@ const routerData = [
       },
       {
         name       : '图片上传组件',
-        path       : '/uploader-demo',
+        path       : '/uploader',
         view       : '/uploader-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
@@ -219,7 +219,7 @@ const routerData = [
       },
       {
         name       : '头像裁剪组件',
-        path       : '/avatar-demo',
+        path       : '/avatar',
         view       : '/avatar-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
