@@ -2,9 +2,9 @@
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 import {ref} from 'vue'
-import {NButtonGroup,NButton,NIcon} from 'naive-ui'
+import {NButtonGroup,NButton,NIcon,useMessage} from 'naive-ui'
 import {MoveSharp,Add,Remove,Crop,ArrowRedoOutline,ArrowUndoOutline,CloudUploadOutline} from '@vicons/ionicons5'
-
+const accept="image/jpg,image/jpeg,image/png"
 const headImg = ref(null)
 const imageFile = ref(null)
 const preview1 = ref(null)
@@ -15,8 +15,12 @@ let cropper = null
 const isInit = ref(false)
 
 function selectImg (event) {
-  initCropper()
   const img = event.target.files[0]
+  if (!accept.toLocaleLowerCase().includes(img.type.toLocaleLowerCase())){
+    message.error('文件类型不支持')
+    return
+  }
+  initCropper()
   cropper.replace(URL.createObjectURL(img))
   imageFile.value.value = ''
 }
@@ -51,11 +55,16 @@ function onDragLeave(e){
   dropHover.value = false
 }
 
+const message = useMessage()
 function onDrop(e){
   e.preventDefault()
   dropHover.value = false
-  initCropper()
   const img = e.dataTransfer.files[0]
+  if (!accept.toLocaleLowerCase().includes(img.type.toLocaleLowerCase())){
+    message.error('文件类型不支持')
+    return
+  }
+  initCropper()
   cropper.replace(URL.createObjectURL(img))
 }
 
@@ -149,7 +158,7 @@ defineExpose({
           ref="imageFile"
           type="file"
           style="display:none"
-          accept="image/jpg, image/jpeg,image/png"
+          :accept="accept"
           @change="selectImg"
       />
       <div class="hb-admin-avatar-upload" v-if="!isInit" @click="chooseFile">
