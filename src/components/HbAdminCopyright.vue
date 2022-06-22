@@ -1,5 +1,5 @@
 <script setup>
-import {useThemeVars} from 'naive-ui'
+import { useThemeVars } from 'naive-ui'
 
 const vars = useThemeVars()
 </script>

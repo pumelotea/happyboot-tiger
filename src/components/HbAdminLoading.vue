@@ -1,43 +1,47 @@
 <script setup>
-import {useThemeVars, NGradientText} from 'naive-ui'
-import HbAdminCopyright from "@/components/HbAdminCopyright";
-import framework from "@/global/framework";
-import {needRouterLoading} from "@/global/router/config";
+import { useThemeVars, NGradientText } from 'naive-ui'
+import HbAdminCopyright from '@/components/HbAdminCopyright'
+import { needRouterLoading } from '@/global/router/config'
 
-const menuTree = framework.getMenuTree()
 const vars = useThemeVars()
 
 </script>
 <template>
-  <div class="hb-admin-loading-mask"></div>
+  <div class="hb-admin-loading-mask" />
   <transition leave-active-class="animate__animated animate__bounceOut">
-    <div class="hb-admin-loading-com" v-if="needRouterLoading">
+    <div
+      v-if="needRouterLoading"
+      class="hb-admin-loading-com"
+    >
       <div>
         <div class="sk-cube-grid">
-          <div class="sk-cube sk-cube1"></div>
-          <div class="sk-cube sk-cube2"></div>
-          <div class="sk-cube sk-cube3"></div>
-          <div class="sk-cube sk-cube4"></div>
-          <div class="sk-cube sk-cube5"></div>
-          <div class="sk-cube sk-cube6"></div>
-          <div class="sk-cube sk-cube7"></div>
-          <div class="sk-cube sk-cube8"></div>
-          <div class="sk-cube sk-cube9"></div>
+          <div class="sk-cube sk-cube1" />
+          <div class="sk-cube sk-cube2" />
+          <div class="sk-cube sk-cube3" />
+          <div class="sk-cube sk-cube4" />
+          <div class="sk-cube sk-cube5" />
+          <div class="sk-cube sk-cube6" />
+          <div class="sk-cube sk-cube7" />
+          <div class="sk-cube sk-cube8" />
+          <div class="sk-cube sk-cube9" />
         </div>
         <div class="hb-admin-logo animate__animated animate__fadeInUpBig animate__faster">
           <img
-              class="logo-image"
-              src="/src/assets/logo.png"
+            class="logo-image"
+            src="/src/assets/logo.png"
           >
           <div class="logo-text">
-            <n-gradient-text type="success" size="36">
+            <n-gradient-text
+              type="success"
+              size="36"
+            >
               HappyBoot Tiger
             </n-gradient-text>
           </div>
         </div>
       </div>
       <div class="hb-admin-copyright-box">
-        <hb-admin-copyright/>
+        <hb-admin-copyright />
       </div>
     </div>
   </transition>

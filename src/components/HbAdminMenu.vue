@@ -22,7 +22,7 @@ function renderIcon (icon) {
 
 function renderLabel (text, badge) {
   if (!badge) {
-    return () => h('div',{class:'hb-admin-menu-item'},{default:()=>text})
+    return () => h('div', { class: 'hb-admin-menu-item' }, { default: () => text })
   }
   return () => h('div', { class: 'hb-admin-menu-item' }, {
     default: () => [
