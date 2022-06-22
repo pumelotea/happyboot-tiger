@@ -40,6 +40,26 @@ function chooseFile () {
   }, 400)
 }
 
+const dropHover = ref(false)
+function onDragHover(e){
+  e.preventDefault()
+  dropHover.value = true
+}
+
+function onDragLeave(e){
+  e.preventDefault()
+  dropHover.value = false
+}
+
+function onDrop(e){
+  e.preventDefault()
+  dropHover.value = false
+  initCropper()
+  const img = e.dataTransfer.files[0]
+  cropper.replace(URL.createObjectURL(img))
+}
+
+
 function getCroppedData() {
   if (!isInit.value){
     return null
@@ -79,7 +99,12 @@ defineExpose({
 
 </script>
 <template>
-  <div class="hb-admin-avatar-com">
+  <div class="hb-admin-avatar-com" @drop="onDrop" @dragover="onDragHover" @dragleave="onDragLeave">
+    <div class="hb-admin-avatar-upload-drop-hover" v-if="dropHover">
+      <n-button type="primary" text>
+        <n-icon :component="CloudUploadOutline" size="80"></n-icon>
+      </n-button>
+    </div>
     <div class="hb-admin-avatar-tools">
       <n-button-group vertical>
         <n-button  @click="zoom('+')" :disabled="!isInit">
@@ -150,6 +175,7 @@ defineExpose({
   display: flex;
   padding: 5px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .hb-admin-avatar-tools{
@@ -176,7 +202,21 @@ defineExpose({
   left: 0;
   top: 0;
   z-index: 2;
-  background: rgba(128, 128, 128, 0.1);
+  background-color: rgba(128, 128, 128, 0.1);
+}
+
+.hb-admin-avatar-upload-drop-hover{
+  background-color: rgba(128, 128, 128, 0.8);
+  position: absolute;
+  left: 0;
+  top:0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
 .hb-admin-avatar-preview{
