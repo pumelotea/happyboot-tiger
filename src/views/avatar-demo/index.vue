@@ -1,14 +1,19 @@
 <script setup>
-import {NLayout,NLayoutContent,NAlert,NAvatar,NButton,NSpace,NCard,NModal} from 'naive-ui';
+import {NLayout,NLayoutContent,NAlert,NAvatar,NButton,NSpace,NCard,NModal,useMessage} from 'naive-ui';
 import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue";
 import HbAdminAvatarCropper from "@/components/HbAdminAvatarCropper.vue";
 import {ref} from 'vue'
+
+const message = useMessage()
 
 //卡片部分
 const avatarCropper = ref(null)
 const avatarData = ref('')
 function getCropperData(){
   avatarData.value = avatarCropper.value.getCroppedData()
+  if (!avatarData.value){
+    message.info('请先上传图片')
+  }
 }
 
 
@@ -20,6 +25,9 @@ const avatarDataModal = ref('')
 function getCropperDataModal(){
   avatarDataModal.value = avatarCropperModal.value.getCroppedData()
   showModal.value = false
+  if (!avatarDataModal.value){
+    message.info('请先上传图片')
+  }
 }
 
 </script>

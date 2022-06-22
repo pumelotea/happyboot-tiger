@@ -230,6 +230,20 @@ const routerData = [
           value: '新',
           type : 'info'
         }
+      },
+      {
+        name       : '锁屏组件',
+        path       : '/lock',
+        view       : '/avatar-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-command-line',
+        type       : 'menu',
+        children   : [],
+        budge      : {
+          value: '新',
+          type : 'info'
+        }
       }
     ]
   },
