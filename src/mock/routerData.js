@@ -130,7 +130,7 @@ const routerData = [
     icon       : 'ri-collage-fill',
     type       : 'menu',
     budge      : {
-      value: '6',
+      value: '11',
       type : 'info'
     },
     children: [
@@ -225,6 +225,16 @@ const routerData = [
         isKeepalive: false,
         icon       : 'ri-command-line',
         type       : 'menu',
+        children   : []
+      },
+      {
+        name       : '锁屏组件',
+        path       : '/lock',
+        view       : '/avatar-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-command-line',
+        type       : 'menu',
         children   : [],
         budge      : {
           value: '新',
@@ -232,8 +242,50 @@ const routerData = [
         }
       },
       {
-        name       : '锁屏组件',
-        path       : '/lock',
+        name       : '图标选择器',
+        path       : '/icon-select',
+        view       : '/avatar-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-command-line',
+        type       : 'menu',
+        children   : [],
+        budge      : {
+          value: '新',
+          type : 'info'
+        }
+      },
+      {
+        name       : '打印',
+        path       : '/print',
+        view       : '/avatar-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-command-line',
+        type       : 'menu',
+        children   : [],
+        budge      : {
+          value: '新',
+          type : 'info'
+        }
+      },
+      {
+        name       : '剪贴板',
+        path       : '/copy',
+        view       : '/copy-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-command-line',
+        type       : 'menu',
+        children   : [],
+        budge      : {
+          value: '新',
+          type : 'info'
+        }
+      },
+      {
+        name       : '二维码生成',
+        path       : '/qrcode',
         view       : '/avatar-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
