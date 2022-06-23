@@ -2,11 +2,11 @@
 import {
   NLayout, NLayoutContent, NAlert, NInput,
   NRadioGroup, NRadio, NSlider,
-  NButton, NColorPicker, NForm, NFormItem, NSpace, NCard, useMessage, NCollapse, NCollapseItem
+  NColorPicker, NForm, NFormItem, NSpace, NCard, NCollapse, NCollapseItem
 } from 'naive-ui';
 import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue";
-import {onMounted, reactive, ref, toRaw} from "vue";
-import QRCode from "qrcode";
+import { reactive, ref} from "vue";
+import HbAdminQrCode from "@/components/HbAdminQrCode";
 
 // 二维码配置参数
 const model = reactive({
@@ -34,101 +34,12 @@ const model = reactive({
 })
 
 const text = ref('HappyBoot Tiger')
-const message = useMessage()
-const qrcodeData = ref('')
 
-async function createQrCode(text, config, success) {
-  config.width = config.width * window.devicePixelRatio
-  const rawBase64 = await QRCode.toDataURL(text, config)
 
-  const rawQrCode = new Image();
-  rawQrCode.onload = beautify
-  rawQrCode.src = rawBase64
-
-  function beautify() {
-    const canvasWidth = config.width
-    const canvasHeight = canvasWidth + config.bottomFontSize + config.bottomTextTopMargin;
-    const borderSize = config.margin
-    const canvas = document.createElement('canvas');
-    if (!canvas.getContext) return;
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = config.color.light;
-    // 绘制背景
-    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
-    // 填充二维码
-    const qrcodeSize = canvasWidth - borderSize * 2;
-    ctx.drawImage(
-        rawQrCode,
-        borderSize,
-        borderSize,
-        qrcodeSize,
-        qrcodeSize,
-    );
-
-    // 绘制文本
-    ctx.fillStyle = config.bottomTextColor; // 调色(纯黑)
-    ctx.font = config.bottomFontSize + 'px Arial'; // 文本大小, 字体
-    ctx.textAlign = 'center';
-    ctx.fillText(
-        config.bottomText,
-        canvasWidth / 2,
-        qrcodeSize + config.bottomFontSize + config.bottomTextTopMargin - config.bottomTextBottomMargin,
-        qrcodeSize
-    );
-
-    // 绘制logo圆形底图
-    const logoCenterX = borderSize + qrcodeSize / 2;
-    const logoCenterY = logoCenterX;
-    ctx.arc(
-        logoCenterX,
-        logoCenterY,
-        config.logoSize / 2 + config.logoBorderSize,
-        0,
-        Math.PI * 2,
-        false
-    );
-    ctx.fillStyle = config.logoBgColor;
-    ctx.fill(); // 填充背景
-
-    const logoX = (qrcodeSize - config.logoSize) / 2 + borderSize;
-    const logoY = logoX;
-    const logo = new Image();
-    logo.setAttribute('crossOrigin', 'anonymous'); // logo跨域许可
-    logo.onload = function () {
-      ctx.beginPath();
-      ctx.arc(
-          logoCenterX,
-          logoCenterY,
-          config.logoSize / 2,
-          0,
-          Math.PI * 2,
-          false
-      );
-      ctx.fill();
-      ctx.clip(); // 裁剪logo成圆形
-      ctx.drawImage(logo, logoX, logoY, config.logoSize, config.logoSize); // 填充logo
-
-      // 生成最后的图像
-      success(canvas.toDataURL(config.type))
-    };
-    logo.src = config.logoUrl; // 设置logo源地址
-  }
-}
-
-function doCreateQrCode() {
-  createQrCode(text.value, Object.assign({}, toRaw(model)), data => {
-    qrcodeData.value = data
-  })
-}
-
-onMounted(doCreateQrCode)
 </script>
 <template>
   <hb-admin-page-layout>
-    <n-layout style="height: 100%;padding: 20px" content-style="display:flex;flex-direction: column">
+    <n-layout style="padding: 20px">
       <n-layout-content>
         <n-space vertical>
           <h2>二维码生成</h2>
@@ -215,17 +126,12 @@ onMounted(doCreateQrCode)
                     </n-form>
                   </n-collapse-item>
                 </n-collapse>
-                <template #footer>
-                  <n-space justify="flex-end">
-                    <n-button type="primary" @click="doCreateQrCode">生成二维码</n-button>
-                  </n-space>
-                </template>
               </n-card>
             </div>
             <div style="flex: 1">
               <n-card title="生成结果">
                 <div style="display: flex;justify-content: center">
-                  <img style="zoom:0.5" :src="qrcodeData"/>
+                  <hb-admin-qr-code :text="text" :options="model"/>
                 </div>
               </n-card>
             </div>
