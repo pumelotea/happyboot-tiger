@@ -1,32 +1,34 @@
 <script setup>
-import {NLayout,NLayoutContent,NAlert,NInput,
-  NRadioGroup,NRadio,NSlider,
-  NButton,NColorPicker,NForm,NFormItem,NSpace,NCard,useMessage,NCollapse,NCollapseItem} from 'naive-ui';
+import {
+  NLayout, NLayoutContent, NAlert, NInput,
+  NRadioGroup, NRadio, NSlider,
+  NButton, NColorPicker, NForm, NFormItem, NSpace, NCard, useMessage, NCollapse, NCollapseItem
+} from 'naive-ui';
 import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue";
 import {onMounted, reactive, ref, toRaw} from "vue";
 import QRCode from "qrcode";
 
 // 二维码配置参数
 const model = reactive({
-  errorCorrectionLevel:"M",
-  margin:1,
-  quality:1,
+  errorCorrectionLevel: "M",
+  margin: 1,
+  quality: 1,
   width: 360,
   color: {
-    dark:"#8DD268FF",
-    light:"#FFFFFFFF"
+    dark: "#8DD268FF",
+    light: "#FFFFFFFF"
   },
   type: 'image/png',
 
   //自定义参数
-  logoSize:80,
-  logoBorderSize:2,
-  logoUrl:'/src/assets/logo.png',
-  logoBgColor:'#FFFFFFFF',
+  logoSize: 80,
+  logoBorderSize: 2,
+  logoUrl: '/src/assets/logo.png',
+  logoBgColor: '#FFFFFFFF',
 
-  bottomText:'HappyBoot Tiger',
-  bottomFontSize:30,
-  bottomTextColor:'#8DD268FF',
+  bottomText: 'HappyBoot Tiger',
+  bottomFontSize: 30,
+  bottomTextColor: '#8DD268FF',
   bottomTextTopMargin: 10,
   bottomTextBottomMargin: 10
 })
@@ -35,18 +37,18 @@ const text = ref('HappyBoot Tiger')
 const message = useMessage()
 const qrcodeData = ref('')
 
-async function createQrCode(text,config,success){
+async function createQrCode(text, config, success) {
   config.width = config.width * window.devicePixelRatio
   const rawBase64 = await QRCode.toDataURL(text, config)
 
   const rawQrCode = new Image();
   rawQrCode.onload = beautify
-  rawQrCode.src= rawBase64
+  rawQrCode.src = rawBase64
 
-  function beautify(){
+  function beautify() {
     const canvasWidth = config.width
     const canvasHeight = canvasWidth + config.bottomFontSize + config.bottomTextTopMargin;
-    const borderSize =  config.margin
+    const borderSize = config.margin
     const canvas = document.createElement('canvas');
     if (!canvas.getContext) return;
     canvas.width = canvasWidth;
@@ -63,7 +65,7 @@ async function createQrCode(text,config,success){
         borderSize,
         borderSize,
         qrcodeSize,
-        qrcodeSize ,
+        qrcodeSize,
     );
 
     // 绘制文本
@@ -73,7 +75,7 @@ async function createQrCode(text,config,success){
     ctx.fillText(
         config.bottomText,
         canvasWidth / 2,
-        qrcodeSize  + config.bottomFontSize + config.bottomTextTopMargin - config.bottomTextBottomMargin,
+        qrcodeSize + config.bottomFontSize + config.bottomTextTopMargin - config.bottomTextBottomMargin,
         qrcodeSize
     );
 
@@ -116,29 +118,27 @@ async function createQrCode(text,config,success){
   }
 }
 
-function doCreateQrCode(){
-  createQrCode(text.value,Object.assign({},toRaw(model)),data =>{
+function doCreateQrCode() {
+  createQrCode(text.value, Object.assign({}, toRaw(model)), data => {
     qrcodeData.value = data
   })
 }
+
 onMounted(doCreateQrCode)
 </script>
 <template>
   <hb-admin-page-layout>
-    <n-layout style="padding:20px">
+    <n-layout style="height: 100%;padding: 20px" content-style="display:flex;flex-direction: column">
       <n-layout-content>
         <n-space vertical>
           <h2>二维码生成</h2>
           <n-alert type="info">
-           <n-space justify="space-between">
-             基于qrcode库实现
-             <n-button type="primary" @click="doCreateQrCode">生成二维码</n-button>
-           </n-space>
+            基于qrcode库实现
           </n-alert>
           <div style="display: flex;overflow: auto">
             <div style="margin-bottom: 10px;margin-right: 10px;width: 400px;height: 100%">
-              <n-card title="二维码配置" content-style="height:100%" style="height: 100%">
-                <n-collapse :default-expanded-names="['1','2', '3']" style="height: 100%">
+              <n-card title="二维码配置">
+                <n-collapse :default-expanded-names="['1','2','3']">
                   <n-collapse-item title="基本设置" name="1">
                     <n-form>
                       <n-form-item label="文本内容">
@@ -168,28 +168,28 @@ onMounted(doCreateQrCode)
                           </n-space>
                         </n-radio-group>
                       </n-form-item>
-                      <n-form-item label="宽度" >
+                      <n-form-item label="宽度">
                         <n-slider :min="0" :max="500" :step="1" v-model:value="model.width"/>
                       </n-form-item>
                       <n-form-item label="质量">
                         <n-slider :min="0.1" :max="1" :step="0.01" v-model:value="model.quality"/>
                       </n-form-item>
-                      <n-form-item label="边距" >
+                      <n-form-item label="边距">
                         <n-slider :min="0" :max="100" :step="1" v-model:value="model.margin"/>
                       </n-form-item>
                     </n-form>
                   </n-collapse-item>
                   <n-collapse-item title="Logo设置" name="2">
                     <n-form>
-                      <n-form-item label="logo" >
+                      <n-form-item label="logo">
                       </n-form-item>
-                      <n-form-item label="logo边距" >
+                      <n-form-item label="logo边距">
                         <n-slider :min="0" :max="100" :step="1" v-model:value="model.logoBorderSize"/>
                       </n-form-item>
                       <n-form-item label="logo背景色">
                         <n-color-picker v-model:value="model.logoBgColor"/>
                       </n-form-item>
-                      <n-form-item label="logo宽度" >
+                      <n-form-item label="logo宽度">
                         <n-slider :min="0" :max="200" :step="1" v-model:value="model.logoSize"/>
                       </n-form-item>
                     </n-form>
@@ -199,16 +199,16 @@ onMounted(doCreateQrCode)
                       <n-form-item label="底部文案">
                         <n-input v-model:value="model.bottomText"></n-input>
                       </n-form-item>
-                      <n-form-item label="底部文案字体大小" >
+                      <n-form-item label="底部文案字体大小">
                         <n-slider :min="0" :max="50" :step="1" v-model:value="model.bottomFontSize"/>
                       </n-form-item>
                       <n-form-item label="底部文案字体颜色">
                         <n-color-picker v-model:value="model.bottomTextColor"/>
                       </n-form-item>
-                      <n-form-item label="底部文案距离二维码距离" >
+                      <n-form-item label="底部文案距离二维码距离">
                         <n-slider :min="0" :max="100" :step="1" v-model:value="model.bottomTextTopMargin"/>
                       </n-form-item>
-                      <n-form-item label="底部文案距离二维码距离" >
+                      <n-form-item label="底部文案距离二维码距离">
                         <n-slider :min="0" :max="100" :step="1" v-model:value="model.bottomTextBottomMargin"/>
                       </n-form-item>
                     </n-form>
@@ -222,8 +222,10 @@ onMounted(doCreateQrCode)
               </n-card>
             </div>
             <div style="flex: 1">
-              <n-card title="生成结果" style="width: 100%;height: 100%" content-style="width:100%">
-                <img style="zoom:0.5" :src="qrcodeData"/>
+              <n-card title="生成结果">
+                <div style="display: flex;justify-content: center">
+                  <img style="zoom:0.5" :src="qrcodeData"/>
+                </div>
               </n-card>
             </div>
           </div>
