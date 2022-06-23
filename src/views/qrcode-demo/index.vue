@@ -182,6 +182,7 @@ onMounted(doCreateQrCode)
                   <n-collapse-item title="Logo设置" name="2">
                     <n-form>
                       <n-form-item label="logo">
+                        <n-input v-model:value="model.logoUrl"></n-input>
                       </n-form-item>
                       <n-form-item label="logo边距">
                         <n-slider :min="0" :max="100" :step="1" v-model:value="model.logoBorderSize"/>
