@@ -277,16 +277,12 @@ const routerData = [
         isKeepalive: false,
         icon       : 'ri-command-line',
         type       : 'menu',
-        children   : [],
-        budge      : {
-          value: '新',
-          type : 'info'
-        }
+        children   : []
       },
       {
         name       : '二维码生成',
         path       : '/qrcode',
-        view       : '/avatar-demo/index.vue',
+        view       : '/qrcode-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-command-line',
