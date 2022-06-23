@@ -29,10 +29,12 @@ const isShow = ref(false)
         <n-space vertical>
           <h2>图片预览组件</h2>
           <n-alert type="info">
-            传入一个图片数组即可，支持预览图列表
+            传入一个图片数组即可，支持预览图列表，点击图片预览
           </n-alert>
           <n-card>
-            <n-button @click="isShow = true">点击图片预览</n-button>
+            <n-space>
+              <img  class="image" v-for="e in list" :src="e" @click="isShow = true"/>
+            </n-space>
           </n-card>
         </n-space>
       </n-layout-content>
@@ -42,7 +44,7 @@ const isShow = ref(false)
 </template>
 
 <style scoped>
-.no-key-btn{
-
+.image{
+  width: 100px;
 }
 </style>
