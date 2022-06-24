@@ -225,17 +225,13 @@ const routerData = [
       },
       {
         name       : '锁屏组件',
-        path       : '/lock',
-        view       : '/avatar-demo/index.vue',
+        path       : '/screen-locker',
+        view       : '/screen-locker-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-command-line',
         type       : 'menu',
-        children   : [],
-        budge      : {
-          value: '新',
-          type : 'info'
-        }
+        children   : []
       },
       {
         name       : '图标选择器',
