@@ -57,7 +57,7 @@ function printPic() {
             </hb-admin-print>
             <template #footer>
               <n-space justify="flex-end">
-                <n-button type="primary" @click="printText">打印文字</n-button>
+                <n-button type="info" @click="printText">打印文字</n-button>
               </n-space>
             </template>
           </n-card>
@@ -135,7 +135,7 @@ function printPic() {
             </hb-admin-print>
             <template #footer>
               <n-space justify="flex-end">
-                <n-button type="primary" @click="printTable">打印表格</n-button>
+                <n-button type="info" @click="printTable">打印表格</n-button>
               </n-space>
             </template>
           </n-card>
@@ -149,7 +149,7 @@ function printPic() {
             </hb-admin-print>
             <template #footer>
               <n-space justify="flex-end">
-                <n-button type="primary" @click="printPic">打印图片</n-button>
+                <n-button type="info" @click="printPic">打印图片</n-button>
               </n-space>
             </template>
           </n-card>
