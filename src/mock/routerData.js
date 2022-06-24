@@ -240,7 +240,7 @@ const routerData = [
       {
         name       : '图标选择器',
         path       : '/icon-select',
-        view       : '/avatar-demo/index.vue',
+        view       : '/icon-select-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-command-line',
