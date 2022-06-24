@@ -272,6 +272,16 @@ const routerData = [
         icon       : 'ri-qr-code-line',
         type       : 'menu',
         children   : []
+      },
+      {
+        name       : '视差卡片',
+        path       : '/parallax',
+        view       : '/parallax-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-artboard-2-line',
+        type       : 'menu',
+        children   : []
       }
     ]
   },
