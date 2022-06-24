@@ -20,6 +20,11 @@ const list = ref([
 ])
 
 const isShow = ref(false)
+const current = ref(0)
+function handleImgClick(index){
+  isShow.value = true
+  current.value = index
+}
 
 </script>
 <template>
@@ -33,14 +38,14 @@ const isShow = ref(false)
           </n-alert>
           <n-card>
             <n-space>
-              <img  class="image" v-for="e in list" :src="e" @click="isShow = true"/>
+              <img  class="image" v-for="(e,index) in list" :src="e" @click="handleImgClick(index)"/>
             </n-space>
           </n-card>
         </n-space>
       </n-layout-content>
     </n-layout>
   </hb-admin-page-layout>
-  <hb-admin-image-preview v-model:value="isShow" :list="list" isThumb/>
+  <hb-admin-image-preview v-model:value="isShow" :list="list" isThumb :initial-index="current"/>
 </template>
 
 <style scoped>
