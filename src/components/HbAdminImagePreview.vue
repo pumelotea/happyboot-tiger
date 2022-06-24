@@ -54,7 +54,7 @@ watch(() => props.initialIndex, () => {
 
 watch(pIndex, () => {
   if (props.isThumb) {
-    nextTick(() =>{
+    nextTick(() => {
       const prevThumbBox = HbPrevThumbBox.value
       if (prevThumbBox) {
         prevThumbBox.scrollLeft = (pIndex.value - 1) * 100

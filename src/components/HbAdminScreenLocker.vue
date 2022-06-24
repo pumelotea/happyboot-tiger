@@ -1,19 +1,18 @@
 <script setup>
-import {NIcon,NAvatar} from 'naive-ui'
-import {ArrowForward,LockOpen} from '@vicons/ionicons5'
-import {computed, ref} from "vue";
-import security from "@/global/security";
-
+import { NIcon, NAvatar } from 'naive-ui'
+import { ArrowForward, LockOpen } from '@vicons/ionicons5'
+import { computed, ref } from 'vue'
+import security from '@/global/security'
 
 const props = defineProps({
   open: {
-    type: Boolean,
+    type    : Boolean,
     required: false,
-    default: false
+    default : false
   }
 })
 
-const emit = defineEmits(['update:open',"unlock"])
+const emit = defineEmits([ 'update:open', 'unlock' ])
 const slider = ref(null)
 const sliderButton = ref(null)
 let startX = 0
@@ -22,7 +21,7 @@ let maxDistance = 0
 let minDistance = 0
 const isTrigger = ref(false)
 
-function onMousedown(e) {
+function onMousedown (e) {
   distance = 0
   maxDistance = 0
   minDistance = 0
@@ -35,10 +34,10 @@ function onMousedown(e) {
   document.addEventListener('mouseup', onMouseup)
 }
 
-function onMousemove(e) {
+function onMousemove (e) {
   distance = e.screenX - startX
 
-  if (isTrigger.value){
+  if (isTrigger.value) {
     distance = maxDistance
   }
 
@@ -47,56 +46,80 @@ function onMousemove(e) {
   }
   if (distance >= maxDistance) {
     distance = maxDistance
-    if (!isTrigger.value){
+    if (!isTrigger.value) {
       isTrigger.value = true
-      setTimeout(()=>{
-        emit('update:open',false)
+      setTimeout(() => {
+        emit('update:open', false)
         emit('unlock')
         isTrigger.value = false
-      },300)
+      }, 300)
     }
   }
-  if (props.open){
+  if (props.open) {
     sliderButton.value.style.transform = `translateX(${distance}px)`
   }
 }
 
-function onMouseup(e) {
+function onMouseup (e) {
   document.removeEventListener('mousemove', onMousemove)
   document.removeEventListener('mouseup', onMouseup)
 
-  if (!isTrigger.value){
-    //恢复原始状态
+  if (!isTrigger.value) {
+    // 恢复原始状态
     distance = 0
     maxDistance = 0
     minDistance = 0
     isTrigger.value = false
 
-    if (props.open){
-      sliderButton.value.style.transition = `all 0.4s`
+    if (props.open) {
+      sliderButton.value.style.transition = 'all 0.4s'
       sliderButton.value.style.transform = `translateX(${distance}px)`
     }
   }
 }
 
-const icon = computed(()=>{
-  return isTrigger.value ? LockOpen:ArrowForward
+const icon = computed(() => {
+  return isTrigger.value ? LockOpen : ArrowForward
 })
 
 const user = security.getUser()
 
 </script>
 <template>
-  <transition enter-active-class="hb-screen-locker-lock" leave-active-class="hb-screen-locker-unlock">
-    <div class="hb-screen-locker" v-if="props.open">
+  <transition
+    enter-active-class="hb-screen-locker-lock"
+    leave-active-class="hb-screen-locker-unlock"
+  >
+    <div
+      v-if="props.open"
+      class="hb-screen-locker"
+    >
       <div class="hb-screen-avatar">
-        <n-avatar round :size="128" :src="user?.avatar"></n-avatar>
-        <div class="hb-screen-nickname">{{user.nickname}}</div>
+        <n-avatar
+          round
+          :size="128"
+          :src="user?.avatar"
+        />
+        <div class="hb-screen-nickname">
+          {{ user.nickname }}
+        </div>
       </div>
-      <div class="hb-screen-slider" ref="slider">
-        <div class="hb-screen-locker-placeholder">滑动解锁</div>
-        <div class="hb-screen-slider-button" ref="sliderButton" @mousedown="onMousedown">
-          <n-icon :size="25" :component="icon"></n-icon>
+      <div
+        ref="slider"
+        class="hb-screen-slider"
+      >
+        <div class="hb-screen-locker-placeholder">
+          滑动解锁
+        </div>
+        <div
+          ref="sliderButton"
+          class="hb-screen-slider-button"
+          @mousedown="onMousedown"
+        >
+          <n-icon
+            :size="25"
+            :component="icon"
+          />
         </div>
       </div>
     </div>

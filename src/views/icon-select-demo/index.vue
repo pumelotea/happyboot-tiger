@@ -22,16 +22,14 @@ function handleSelectIcon() {
     <n-layout style="padding:20px">
       <n-layout-content>
         <n-space vertical>
-          <h2>Remixicon选择组件</h2>
+          <h2>图标选择组件</h2>
           <n-alert type="info">
-            <n-timeline>
-              <n-timeline-item>
-                <n-button type="info" @click="showModal = true">在弹出面板中使用</n-button>
-              </n-timeline-item>
-              <n-timeline-item content="也可以直接显示（如下）" />
-            </n-timeline>
+            基于RemixIcon图标库
           </n-alert>
-          <n-card>
+          <n-card title="弹出式">
+            <n-button type="info" @click="showModal = true">在弹出面板中使用</n-button>
+          </n-card>
+          <n-card title="卡片式">
             <hb-admin-icon-select :click-copy="true"/>
           </n-card>
         </n-space>

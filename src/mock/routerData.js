@@ -234,18 +234,14 @@ const routerData = [
         children   : []
       },
       {
-        name       : '图标选择器',
+        name       : '图标选择组件',
         path       : '/icon-select',
         view       : '/icon-select-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-command-line',
         type       : 'menu',
-        children   : [],
-        budge      : {
-          value: '新',
-          type : 'info'
-        }
+        children   : []
       },
       {
         name       : '打印组件',

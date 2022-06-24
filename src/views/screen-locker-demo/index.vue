@@ -21,7 +21,7 @@ function unlock(){
           </n-alert>
           <n-card>
             <n-space>
-              <n-button @click="show=true">打开锁屏</n-button>
+              <n-button type="info" @click="show=true">打开锁屏</n-button>
             </n-space>
           </n-card>
         </n-space>

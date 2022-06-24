@@ -1,63 +1,63 @@
 <script setup>
-import {NCollapse, NCollapseItem, NSpace, NInput, NButton,NIcon, useMessage, useThemeVars} from 'naive-ui';
+import { NCollapse, NCollapseItem, NSpace, NInput, NButton, NIcon, useMessage, useThemeVars } from 'naive-ui'
 import json from '@/assets/remixicon.json'
-import {nextTick, onMounted, ref, watch} from "vue";
+import { onMounted, ref } from 'vue'
 
 const themeVars = useThemeVars()
 const message = useMessage()
 
 const props = defineProps({
   clickCopy: {
-    type: Boolean,
+    type   : Boolean,
     default: false
   }
 })
 
-let showIconList = ref([])
+const showIconList = ref([])
 
 const keyword = ref('')
-function handleSearchIcon() {
+function handleSearchIcon () {
   selectedIcon.value = ''
-    showIconList.value = []
-    for (const category in json) {
-      let list = []
-      for (const iconName in json[category]) {
-        if (keyword.value) {
-          if (json[category][iconName].includes(keyword.value) || keyword.value === iconName) {
-            if (category !== 'Editor') {
-              list.push([`ri-${iconName}-line`, iconName])
-              list.push([`ri-${iconName}-fill`, iconName])
-            } else {
-              list.push([`ri-${iconName}`, iconName])
-            }
-          }
-        } else {
+  showIconList.value = []
+  for (const category in json) {
+    const list = []
+    for (const iconName in json[category]) {
+      if (keyword.value) {
+        if (json[category][iconName].includes(keyword.value) || keyword.value === iconName) {
           if (category !== 'Editor') {
-            list.push([`ri-${iconName}-line`, iconName])
-            list.push([`ri-${iconName}-fill`, iconName])
+            list.push([ `ri-${iconName}-line`, iconName ])
+            list.push([ `ri-${iconName}-fill`, iconName ])
           } else {
-            list.push([`ri-${iconName}`, iconName])
+            list.push([ `ri-${iconName}`, iconName ])
           }
         }
-      }
-      if (list.length > 0) {
-        showIconList.value.push({
-          category: category,
-          list: list
-        })
+      } else {
+        if (category !== 'Editor') {
+          list.push([ `ri-${iconName}-line`, iconName ])
+          list.push([ `ri-${iconName}-fill`, iconName ])
+        } else {
+          list.push([ `ri-${iconName}`, iconName ])
+        }
       }
     }
+    if (list.length > 0) {
+      showIconList.value.push({
+        category,
+        list
+      })
+    }
   }
+}
 
 const selectedIcon = ref('')
-const emit = defineEmits(['selectIcon'])
-function handleCopy(name) {
+const emit = defineEmits([ 'selectIcon' ])
+function handleCopy (name) {
   selectedIcon.value = name
   if (props.clickCopy) {
-    let val = `<i class="${name}"></i>`
-    navigator.clipboard.writeText(val).then(()=> {
+    const val = `<i class="${name}"></i>`
+    navigator.clipboard.writeText(val).then(() => {
       message.success('复制成功！ ' + val)
-    }, (error)=> {
+    }, (error) => {
       console.log(error)
     })
   }
@@ -68,36 +68,55 @@ const getSelected = () => {
   return selectedIcon.value
 }
 
+defineExpose({
+  getSelected
+})
+
 const defaultExpandedNames = ref([])
 
 onMounted(() => {
   handleSearchIcon()
   for (let i = 0; i < showIconList.value.length; i++) {
-    if (showIconList.value[i].list.length > 0)
-      defaultExpandedNames.value.push(showIconList.value[i].category)
+    if (showIconList.value[i].list.length > 0) { defaultExpandedNames.value.push(showIconList.value[i].category) }
   }
 })
 </script>
 
 <template>
   <div class="hb-is-wrap">
-    <n-space align="center" style="margin-bottom: 15px">
-      <n-input v-model:value="keyword" placeholder="请输入关键词"/>
-      <n-button type="info" @click="handleSearchIcon">搜索</n-button>
+    <n-space
+      align="center"
+      style="margin-bottom: 15px"
+    >
+      <n-input
+        v-model:value="keyword"
+        placeholder="请输入关键词"
+      />
+      <n-button
+        type="info"
+        @click="handleSearchIcon"
+      >
+        搜索
+      </n-button>
     </n-space>
     <n-collapse :default-expanded-names="defaultExpandedNames">
-      <n-collapse-item v-for="(item, index) in showIconList" :key="item.category" :title="item.category" :name="item.category">
+      <n-collapse-item
+        v-for="item in showIconList"
+        :key="item.category"
+        :title="item.category"
+        :name="item.category"
+      >
         <div class="hb-is-category-list">
           <div
-              :class="!props.clickCopy && selectedIcon === icon[0] ? 'hb-is-icon-item-active' : 'hb-is-icon-item'"
-              v-for="icon in item.list"
-              :key="icon[0]"
-              :title="props.needCopy ? '点击复制' : '点击选择'"
-              @click="handleCopy(icon[0])"
+            v-for="icon in item.list"
+            :key="icon[0]"
+            :class="!props.clickCopy && selectedIcon === icon[0] ? 'hb-is-icon-item-active' : 'hb-is-icon-item'"
+            :title="props.needCopy ? '点击复制' : '点击选择'"
+            @click="handleCopy(icon[0])"
           >
             <div :class="!props.clickCopy && selectedIcon === icon[0] ? 'hb-is-icon-active' : 'hb-is-icon'">
               <n-icon>
-                <i :class="icon[0]"></i>
+                <i :class="icon[0]" />
               </n-icon>
             </div>
             <div class="hb-is-icon-name">

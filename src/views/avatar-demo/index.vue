@@ -38,7 +38,7 @@ function getCropperDataModal(){
         <n-space vertical>
           <h2>头像裁剪组件</h2>
           <n-alert type="info">
-            在卡片组件中使用
+            在卡片组件中使用，支持拖拽图片到灰色区域内
           </n-alert>
           <div style="display: flex">
             <div style="flex: 9">

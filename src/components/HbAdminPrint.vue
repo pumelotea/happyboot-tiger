@@ -1,24 +1,24 @@
 <script setup>
-import print from "print-js"
-import {uuid} from "@/global/framework";
+import print from 'print-js'
+import { uuid } from '@/global/framework'
 
 const props = defineProps({
-  options:{
-    type:Object,
-    required:false,
-    default:()=>{
+  options: {
+    type    : Object,
+    required: false,
+    default : () => {
       return {
-        type:'html',
-        header:null,
-        targetStyles:['*'],
-        style:"@page {margin:10mm 10mm}"
+        type        : 'html',
+        header      : null,
+        targetStyles: [ '*' ],
+        style       : '@page {margin:10mm 10mm}'
       }
     }
   }
 })
 
 const id = uuid()
-function doPrint(){
+function doPrint () {
   print({
     printable: id,
     ...props.options
@@ -26,17 +26,16 @@ function doPrint(){
 }
 
 defineExpose({
-  print:doPrint
+  print: doPrint
 })
 
 </script>
 
 <template>
   <div :id="id">
-    <slot/>
+    <slot />
   </div>
 </template>
-
 
 <style scoped>
 
