@@ -48,10 +48,18 @@ watch(isShow, () => {
   emit('update:value', isShow.value)
 })
 
+watch(() => props.initialIndex, () => {
+  pIndex.value = props.initialIndex
+})
+
 watch(pIndex, () => {
   if (props.isThumb) {
-    const prevThumbBox = document.getElementById('HbPrevThumbBox')
-    prevThumbBox.scrollLeft = (pIndex.value - 1) * 100
+    nextTick(() =>{
+      const prevThumbBox = HbPrevThumbBox.value
+      if (prevThumbBox) {
+        prevThumbBox.scrollLeft = (pIndex.value - 1) * 100
+      }
+    })
   }
 })
 
@@ -97,14 +105,14 @@ function setImage (image, el, type) {
 
 function initialPreview () {
   if (props.list.length > 0) {
-    const prevImg = document.getElementById('HbPrevImg')
+    const prevImg = HbPrevImg.value
     if (prevImg) {
       screenWidth = prevImg.parentNode.offsetWidth
       screenHeight = prevImg.parentNode.offsetHeight
       initialImage(prevImg)
 
       if (props.isThumb) {
-        const prevThumb = document.getElementById('HbPrevThumb')
+        const prevThumb = HbPrevThumb.value
         prevThumb.style.width = props.list.length * 100 + 'px'
       }
 
@@ -137,7 +145,7 @@ function initialPreview () {
         isDrag = false
         prevImg.style.transition = 'all .3s'
       })
-      document.getElementById('HbPrevWrap').addEventListener('wheel', e => {
+      HbPrevWrap.value.addEventListener('wheel', e => {
         // 前面是谷歌的，后面是火狐的
         if (e.wheelDelta > 0 || e.detail > 0) {
           if (elScale.x < 1.9) {
@@ -163,10 +171,15 @@ function initialPreview () {
 }
 
 function handlePrevIndex (index) {
+  const prevImg = HbPrevImg.value
+  prevImg.style.transition = 'none'
   pIndex.value = index
   elScale = { x: 1, y: 1 }
   elRotate = 0
-  document.getElementById('HbPrevImg').style.transform = 'scale(1) rotate(0deg)'
+  HbPrevImg.value.style.transform = 'scale(1) rotate(0deg)'
+  setTimeout(() => {
+    prevImg.style.transition = 'all .3s'
+  }, 30)
 }
 
 function prevLeft () {
@@ -175,7 +188,7 @@ function prevLeft () {
   } else {
     pIndex.value = props.list.length - 1
   }
-  const prevImg = document.getElementById('HbPrevImg')
+  const prevImg = HbPrevImg.value
 
   prevImg.style.transition = 'none'
   initialImage(prevImg)
@@ -190,7 +203,7 @@ function prevRight () {
   } else {
     pIndex.value = 0
   }
-  const prevImg = document.getElementById('HbPrevImg')
+  const prevImg = HbPrevImg.value
   prevImg.style.transition = 'none'
   initialImage(prevImg)
   setTimeout(() => {
@@ -199,47 +212,50 @@ function prevRight () {
 }
 
 function prevOriginal () {
-  const prevImg = document.getElementById('HbPrevImg')
+  const prevImg = HbPrevImg.value
   initialImage(prevImg, 'original')
   prevImg.style.transform = `scale(${elScale.x},${elScale.y}) rotate(${elRotate}deg)`
 }
 
 function prevRotateLeft () {
-  const prevImg = document.getElementById('HbPrevImg')
+  const prevImg = HbPrevImg.value
   prevImg.style.transform = `scale(${elScale.x},${elScale.y}) rotate(${elRotate -= 90}deg)`
 }
 
 function prevRotateRight () {
-  const prevImg = document.getElementById('HbPrevImg')
+  const prevImg = HbPrevImg.value
   prevImg.style.transform = `scale(${elScale.x},${elScale.y}) rotate(${elRotate += 90}deg)`
 }
 
 onMounted(() => {
-  nextTick(() => {
-    initialPreview()
-  })
+  initialPreview()
 })
+
+const HbPrevWrap = ref()
+const HbPrevImg = ref()
+const HbPrevThumbBox = ref()
+const HbPrevThumb = ref()
 
 </script>
 <template>
   <div
     v-if="isShow"
-    id="HbPrevWrap"
+    ref="HbPrevWrap"
     class="hb-prev-wrap"
   >
     <img
-      id="HbPrevImg"
+      ref="HbPrevImg"
       class="hb-prev-img"
       alt="预览图"
       :src="list[pIndex]"
     >
     <div
       v-if="props.isThumb"
-      id="HbPrevThumbBox"
+      ref="HbPrevThumbBox"
       class="hb-prev-thumb-box"
     >
       <div
-        id="HbPrevThumb"
+        ref="HbPrevThumb"
         class="hb-prev-thumb-list"
       >
         <div
