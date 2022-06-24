@@ -252,9 +252,9 @@ const routerData = [
         }
       },
       {
-        name       : '打印',
+        name       : '打印组件',
         path       : '/print',
-        view       : '/avatar-demo/index.vue',
+        view       : '/print-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-command-line',

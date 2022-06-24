@@ -5,7 +5,7 @@ import { createHappyFramework, createEmptyMenuItem } from 'happykit'
  * UUID生成
  * @returns {string}
  */
-function uuid () {
+export function uuid () {
   const s = []
   const hexDigits = '0123456789abcdef'
   for (let i = 0; i < 36; i++) {
