@@ -1,21 +1,21 @@
 <script setup>
-import {nextTick, onMounted, ref, watch} from "vue";
+import { nextTick, onMounted, ref, watch } from 'vue'
 
 const props = defineProps({
   value: {
-    type: Boolean,
+    type   : Boolean,
     default: false
   },
   isThumb: {
-    type: Boolean,
+    type   : Boolean,
     default: false
   },
   list: {
-    type: Array,
+    type   : Array,
     default: () => []
   },
   initialIndex: {
-    type: Number,
+    type   : Number,
     default: 0
   }
 })
@@ -24,14 +24,14 @@ const isShow = ref(false)
 isShow.value = props.value
 const pIndex = ref(0)
 pIndex.value = props.initialIndex
-let elWidth = 0  //预览图片宽度
-let elHeight = 0  //预览图片高度
-let elPosition = {x: 0, y: 0}  //预览图片当前的位置
-let elScale = {x: 1, y:1}  //预览图片的缩放旋转
+let elWidth = 0 // 预览图片宽度
+let elHeight = 0 // 预览图片高度
+let elPosition = { x: 0, y: 0 } // 预览图片当前的位置
+let elScale = { x: 1, y: 1 } // 预览图片的缩放旋转
 let elRotate = 0
-let screenWidth = 0  //显示区域宽度
-let screenHeight = 0  //显示区域高度
-let tempMove = {x: 0, y: 0}
+let screenWidth = 0 // 显示区域宽度
+let screenHeight = 0 // 显示区域高度
+const tempMove = { x: 0, y: 0 }
 let isDrag = false
 
 watch(() => props.value, () => {
@@ -43,39 +43,39 @@ watch(() => props.value, () => {
   }
 })
 
-const emit = defineEmits(['update:value'])
+const emit = defineEmits([ 'update:value' ])
 watch(isShow, () => {
   emit('update:value', isShow.value)
 })
 
 watch(pIndex, () => {
   if (props.isThumb) {
-    let prevThumbBox = document.getElementById('HbPrevThumbBox')
+    const prevThumbBox = document.getElementById('HbPrevThumbBox')
     prevThumbBox.scrollLeft = (pIndex.value - 1) * 100
   }
 })
 
-function getElementPos(el) {
-  let pos = [parseInt(el.style.left+0), parseInt(el.style.top+0)]
-  return {x:pos[0], y:pos[1]};
+function getElementPos (el) {
+  const pos = [ parseInt(el.style.left + 0), parseInt(el.style.top + 0) ]
+  return { x: pos[0], y: pos[1] }
 }
 
-function initialImage(el, type = 'fit') {
-  let image = new Image()
+function initialImage (el, type = 'fit') {
+  const image = new Image()
   image.src = props.list[pIndex.value]
-  if(image.complete){
+  if (image.complete) {
     setImage(image, el, type)
-  }else {
+  } else {
     image.onload = () => {
       setImage(image, el, type)
     }
   }
 }
 
-function setImage(image, el, type) {
-  let imgWidth = image.naturalWidth
-  let imgHeight = image.naturalHeight
-  let imgRatio = imgWidth/imgHeight
+function setImage (image, el, type) {
+  const imgWidth = image.naturalWidth
+  const imgHeight = image.naturalHeight
+  const imgRatio = imgWidth / imgHeight
   if (type === 'fit') {
     elWidth = Math.ceil(screenHeight * imgRatio / 2)
     elHeight = Math.ceil(screenHeight / 2)
@@ -83,28 +83,28 @@ function setImage(image, el, type) {
     elWidth = imgWidth
     elHeight = imgHeight
   }
-  //设置预览图的初始宽高度
+  // 设置预览图的初始宽高度
   el.style.width = elWidth + 'px'
   el.style.height = elHeight + 'px'
-  //设置预览图的初始位置
+  // 设置预览图的初始位置
   el.style.left = Math.ceil((screenWidth - elWidth) / 2) + 'px'
   el.style.top = Math.ceil((screenHeight - elHeight) / 2) + 'px'
 
-  elScale = {x: 1, y:1}
+  elScale = { x: 1, y: 1 }
   elRotate = 0
   el.style.transform = 'scale(1) rotate(0deg)'
 }
 
-function initialPreview() {
+function initialPreview () {
   if (props.list.length > 0) {
-    let prevImg = document.getElementById('HbPrevImg')
+    const prevImg = document.getElementById('HbPrevImg')
     if (prevImg) {
       screenWidth = prevImg.parentNode.offsetWidth
       screenHeight = prevImg.parentNode.offsetHeight
       initialImage(prevImg)
 
       if (props.isThumb) {
-        let prevThumb = document.getElementById('HbPrevThumb')
+        const prevThumb = document.getElementById('HbPrevThumb')
         prevThumb.style.width = props.list.length * 100 + 'px'
       }
 
@@ -119,8 +119,8 @@ function initialPreview() {
         e.preventDefault()
         if (isDrag) {
           document.body.style.cursor = 'move'
-          let left = elPosition.x + e.clientX - tempMove.x
-          let top = elPosition.y + e.clientY - tempMove.y
+          const left = elPosition.x + e.clientX - tempMove.x
+          const top = elPosition.y + e.clientY - tempMove.y
 
           prevImg.style.transition = 'none'
           prevImg.style.left = left + 'px'
@@ -138,7 +138,7 @@ function initialPreview() {
         prevImg.style.transition = 'all .3s'
       })
       document.getElementById('HbPrevWrap').addEventListener('wheel', e => {
-        //前面是谷歌的，后面是火狐的
+        // 前面是谷歌的，后面是火狐的
         if (e.wheelDelta > 0 || e.detail > 0) {
           if (elScale.x < 1.9) {
             elScale.x += 0.1
@@ -152,7 +152,7 @@ function initialPreview() {
           }
         }
 
-        //设置缩放
+        // 设置缩放
         prevImg.style.transform = `scale(${elScale.x},${elScale.y}) rotate(${elRotate}deg)`
         elPosition = getElementPos(prevImg)
       })
@@ -162,20 +162,20 @@ function initialPreview() {
   }
 }
 
-function handlePrevIndex(index) {
+function handlePrevIndex (index) {
   pIndex.value = index
-  elScale = {x: 1, y:1}
+  elScale = { x: 1, y: 1 }
   elRotate = 0
   document.getElementById('HbPrevImg').style.transform = 'scale(1) rotate(0deg)'
 }
 
-function prevLeft() {
+function prevLeft () {
   if (pIndex.value > 0) {
     pIndex.value--
   } else {
     pIndex.value = props.list.length - 1
   }
-  let prevImg = document.getElementById('HbPrevImg')
+  const prevImg = document.getElementById('HbPrevImg')
 
   prevImg.style.transition = 'none'
   initialImage(prevImg)
@@ -184,13 +184,13 @@ function prevLeft() {
   }, 30)
 }
 
-function prevRight() {
-  if (pIndex.value < (props.list.length-1)) {
+function prevRight () {
+  if (pIndex.value < (props.list.length - 1)) {
     pIndex.value++
   } else {
     pIndex.value = 0
   }
-  let prevImg = document.getElementById('HbPrevImg')
+  const prevImg = document.getElementById('HbPrevImg')
   prevImg.style.transition = 'none'
   initialImage(prevImg)
   setTimeout(() => {
@@ -198,19 +198,19 @@ function prevRight() {
   }, 30)
 }
 
-function prevOriginal() {
-  let prevImg = document.getElementById('HbPrevImg')
+function prevOriginal () {
+  const prevImg = document.getElementById('HbPrevImg')
   initialImage(prevImg, 'original')
   prevImg.style.transform = `scale(${elScale.x},${elScale.y}) rotate(${elRotate}deg)`
 }
 
-function prevRotateLeft() {
-  let prevImg = document.getElementById('HbPrevImg')
+function prevRotateLeft () {
+  const prevImg = document.getElementById('HbPrevImg')
   prevImg.style.transform = `scale(${elScale.x},${elScale.y}) rotate(${elRotate -= 90}deg)`
 }
 
-function prevRotateRight() {
-  let prevImg = document.getElementById('HbPrevImg')
+function prevRotateRight () {
+  const prevImg = document.getElementById('HbPrevImg')
   prevImg.style.transform = `scale(${elScale.x},${elScale.y}) rotate(${elRotate += 90}deg)`
 }
 
@@ -220,48 +220,84 @@ onMounted(() => {
   })
 })
 
-
 </script>
 <template>
-  <div id="HbPrevWrap" class="hb-prev-wrap" v-if="isShow">
+  <div
+    v-if="isShow"
+    id="HbPrevWrap"
+    class="hb-prev-wrap"
+  >
     <img
-        id="HbPrevImg"
-        class="hb-prev-img"
-        alt="预览图"
-        :src="list[pIndex]"
-    />
-    <div class="hb-prev-thumb-box" id="HbPrevThumbBox" v-if="props.isThumb">
-      <div class="hb-prev-thumb-list" id="HbPrevThumb">
+      id="HbPrevImg"
+      class="hb-prev-img"
+      alt="预览图"
+      :src="list[pIndex]"
+    >
+    <div
+      v-if="props.isThumb"
+      id="HbPrevThumbBox"
+      class="hb-prev-thumb-box"
+    >
+      <div
+        id="HbPrevThumb"
+        class="hb-prev-thumb-list"
+      >
         <div
-            class="hb-prev-thumb-item"
-            v-for="(item, i) in props.list"
-            :key="i"
-            :class="pIndex === i ? 'hb-prev-thumb-item-active' : ''"
-            @click="handlePrevIndex(i)"
+          v-for="(item, i) in props.list"
+          :key="i"
+          class="hb-prev-thumb-item"
+          :class="pIndex === i ? 'hb-prev-thumb-item-active' : ''"
+          @click="handlePrevIndex(i)"
         >
-          <img class="hb-prev-thumb-img" :src="item">
+          <img
+            class="hb-prev-thumb-img"
+            :src="item"
+          >
         </div>
       </div>
     </div>
     <div class="hb-prev-bar">
-      <div class="hb-prev-btn" @click="prevRotateLeft" title="向左旋转">
-        <i class="ri-anticlockwise-line"></i>
+      <div
+        class="hb-prev-btn"
+        title="向左旋转"
+        @click="prevRotateLeft"
+      >
+        <i class="ri-anticlockwise-line" />
       </div>
-      <div class="hb-prev-btn" @click="prevLeft" title="前一张">
-        <i class="ri-arrow-left-s-line"></i>
+      <div
+        class="hb-prev-btn"
+        title="前一张"
+        @click="prevLeft"
+      >
+        <i class="ri-arrow-left-s-line" />
       </div>
-      <div class="hb-prev-btn" @click="prevOriginal" title="图片原始大小">
-        <i class="ri-aspect-ratio-line"></i>
+      <div
+        class="hb-prev-btn"
+        title="图片原始大小"
+        @click="prevOriginal"
+      >
+        <i class="ri-aspect-ratio-line" />
       </div>
-      <div class="hb-prev-btn" @click="prevRight" title="后一张">
-        <i class="ri-arrow-right-s-line"></i>
+      <div
+        class="hb-prev-btn"
+        title="后一张"
+        @click="prevRight"
+      >
+        <i class="ri-arrow-right-s-line" />
       </div>
-      <div class="hb-prev-btn" @click="prevRotateRight" title="向右旋转">
-        <i class="ri-clockwise-line"></i>
+      <div
+        class="hb-prev-btn"
+        title="向右旋转"
+        @click="prevRotateRight"
+      >
+        <i class="ri-clockwise-line" />
       </div>
     </div>
-    <div class="hb-prev-close" @click="isShow = false">
-      <i class="ri-close-line"></i>
+    <div
+      class="hb-prev-close"
+      @click="isShow = false"
+    >
+      <i class="ri-close-line" />
     </div>
   </div>
 </template>

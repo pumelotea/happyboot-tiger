@@ -197,11 +197,7 @@ const routerData = [
         isKeepalive: false,
         icon       : 'ri-command-line',
         type       : 'menu',
-        children   : [],
-        budge      : {
-          value: '新',
-          type : 'info'
-        }
+        children   : []
       },
       {
         name       : '图片上传组件',

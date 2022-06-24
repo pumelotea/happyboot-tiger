@@ -1,5 +1,5 @@
 <script setup>
-import {NButton} from "naive-ui"
+import {NLayout,NLayoutContent,NAlert,NButton,NSpace,NCard} from 'naive-ui';
 import HbAdminImagePreview from "@/components/HbAdminImagePreview"
 import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
 import {ref} from "vue"
@@ -20,22 +20,36 @@ const list = ref([
 ])
 
 const isShow = ref(false)
-
+const current = ref(0)
+function handleImgClick(index){
+  isShow.value = true
+  current.value = index
+}
 
 </script>
 <template>
   <hb-admin-page-layout>
     <n-layout style="padding:20px">
       <n-layout-content>
-        <n-button @click="isShow = true">点击图片预览</n-button>
+        <n-space vertical>
+          <h2>图片预览组件</h2>
+          <n-alert type="info">
+            传入一个图片数组即可，支持预览图列表，点击图片预览
+          </n-alert>
+          <n-card>
+            <n-space>
+              <img  class="image" v-for="(e,index) in list" :src="e" @click="handleImgClick(index)"/>
+            </n-space>
+          </n-card>
+        </n-space>
       </n-layout-content>
     </n-layout>
   </hb-admin-page-layout>
-  <hb-admin-image-preview v-model:value="isShow" :list="list" isThumb/>
+  <hb-admin-image-preview v-model:value="isShow" :list="list" isThumb :initial-index="current"/>
 </template>
 
 <style scoped>
-.no-key-btn{
-
+.image{
+  width: 100px;
 }
 </style>

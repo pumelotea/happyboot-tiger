@@ -1,11 +1,12 @@
 <script setup>
 import {
-  NLayout, NLayoutContent, NAlert, NInput,
-  NRadioGroup, NRadio, NSlider,
-  NColorPicker, NForm, NFormItem, NSpace, NCard, NCollapse, NCollapseItem
+  NLayout, NLayoutContent, NAlert, NInput,NInputGroup,
+  NRadioGroup, NRadio, NSlider,NButton,
+  NColorPicker, NForm, NFormItem, NSpace, NCard, NCollapse,
+  NCollapseItem,
 } from 'naive-ui';
 import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue";
-import { reactive, ref} from "vue";
+import {reactive, ref} from "vue";
 import HbAdminQrCode from "@/components/HbAdminQrCode";
 
 // 二维码配置参数
@@ -34,7 +35,23 @@ const model = reactive({
 })
 
 const text = ref('HappyBoot Tiger')
+const fileInput = ref(null)
 
+function chooseFile () {
+  setTimeout(() => {
+    fileInput.value.click()
+  }, 400)
+}
+
+function handleChange(e){
+  const img = e.target.files[0]
+  let reader = new FileReader();
+  reader.onload = function (evt) {
+    let base64 = evt.target.result;
+    model.logoUrl = base64
+  };
+  reader.readAsDataURL(img);
+}
 
 </script>
 <template>
@@ -47,7 +64,7 @@ const text = ref('HappyBoot Tiger')
             基于qrcode库实现
           </n-alert>
           <div style="display: flex;overflow: auto">
-            <div style="margin-bottom: 10px;margin-right: 10px;width: 400px;height: 100%">
+            <div style="margin-bottom: 10px;margin-right: 10px;width: 400px;height: 600px;overflow: auto">
               <n-card title="二维码配置">
                 <n-collapse :default-expanded-names="['1','2','3']">
                   <n-collapse-item title="基本设置" name="1">
@@ -92,8 +109,14 @@ const text = ref('HappyBoot Tiger')
                   </n-collapse-item>
                   <n-collapse-item title="Logo设置" name="2">
                     <n-form>
-                      <n-form-item label="logo">
-                        <n-input v-model:value="model.logoUrl"></n-input>
+                      <n-form-item label="logo（请选择尺寸小一些的图片）">
+                        <n-input-group style="width: 100%">
+                          <n-input v-model:value="model.logoUrl"></n-input>
+                          <input type="file" style="display: none" ref="fileInput" @change="handleChange">
+                          <n-button type="primary" ghost @click="chooseFile">
+                            上传
+                          </n-button>
+                        </n-input-group>
                       </n-form-item>
                       <n-form-item label="logo边距">
                         <n-slider :min="0" :max="100" :step="1" v-model:value="model.logoBorderSize"/>
@@ -128,10 +151,10 @@ const text = ref('HappyBoot Tiger')
                 </n-collapse>
               </n-card>
             </div>
-            <div style="flex: 1">
-              <n-card title="生成结果">
-                <div style="display: flex;justify-content: center">
-                  <hb-admin-qr-code :text="text" :options="model"/>
+            <div style="flex: 1;height: 600px" >
+              <n-card title="生成结果" style="height: 100%">
+                <div style="display: flex;justify-content: center;align-items:center;height: 100%">
+                    <hb-admin-qr-code :text="text" :options="model"/>
                 </div>
               </n-card>
             </div>

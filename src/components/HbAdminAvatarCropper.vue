@@ -60,7 +60,7 @@ function onDrop (e) {
   e.preventDefault()
   dropHover.value = false
   const img = e.dataTransfer.files[0]
-  if (!img.type || !accept.toLocaleLowerCase().includes(img.type.toLocaleLowerCase())) {
+  if (!img ||!img.type || !accept.toLocaleLowerCase().includes(img.type.toLocaleLowerCase())) {
     message.error('文件类型不支持')
     return
   }
