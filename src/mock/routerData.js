@@ -171,7 +171,7 @@ const routerData = [
         view       : '/custom-tab-title-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-command-line',
+        icon       : 'ri-compass-discover-line',
         type       : 'menu',
         children   : []
       },
@@ -181,7 +181,7 @@ const routerData = [
         view       : '/editor-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-command-line',
+        icon       : 'ri-file-text-line',
         type       : 'menu',
         children   : [],
         budge      : {
@@ -195,7 +195,7 @@ const routerData = [
         view       : '/image-preview-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-command-line',
+        icon       : 'ri-gallery-line',
         type       : 'menu',
         children   : []
       },
@@ -205,7 +205,7 @@ const routerData = [
         view       : '/uploader-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-command-line',
+        icon       : 'ri-upload-line',
         type       : 'menu',
         children   : [],
         budge      : {
@@ -219,37 +219,29 @@ const routerData = [
         view       : '/avatar-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-command-line',
+        icon       : 'ri-crop-line',
         type       : 'menu',
         children   : []
       },
       {
         name       : '锁屏组件',
-        path       : '/lock',
-        view       : '/avatar-demo/index.vue',
+        path       : '/screen-locker',
+        view       : '/screen-locker-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-command-line',
+        icon       : 'ri-mac-line',
         type       : 'menu',
-        children   : [],
-        budge      : {
-          value: '新',
-          type : 'info'
-        }
+        children   : []
       },
       {
-        name       : '图标选择器',
+        name       : '图标选择组件',
         path       : '/icon-select',
         view       : '/icon-select-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-command-line',
+        icon       : 'ri-remixicon-line',
         type       : 'menu',
-        children   : [],
-        budge      : {
-          value: '新',
-          type : 'info'
-        }
+        children   : []
       },
       {
         name       : '打印组件',
@@ -257,7 +249,7 @@ const routerData = [
         view       : '/print-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-command-line',
+        icon       : 'ri-printer-line',
         type       : 'menu',
         children   : []
       },
@@ -267,7 +259,7 @@ const routerData = [
         view       : '/copy-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-command-line',
+        icon       : 'ri-clipboard-line',
         type       : 'menu',
         children   : []
       },
@@ -277,7 +269,17 @@ const routerData = [
         view       : '/qrcode-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-command-line',
+        icon       : 'ri-qr-code-line',
+        type       : 'menu',
+        children   : []
+      },
+      {
+        name       : '视差卡片',
+        path       : '/parallax',
+        view       : '/parallax-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-artboard-2-line',
         type       : 'menu',
         children   : []
       }

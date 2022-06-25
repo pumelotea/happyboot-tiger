@@ -49,10 +49,10 @@ const vars = useThemeVars()
 <style scoped>
 .hb-admin-loading-com {
   position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
+  left: -300px;
+  top: -300px;
+  bottom: -300px;
+  right: -300px;
   display: flex;
   align-items: center;
   justify-content: center;
