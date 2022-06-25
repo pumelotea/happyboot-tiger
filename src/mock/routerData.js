@@ -300,7 +300,7 @@ const routerData = [
       {
         name       : '压缩包生成',
         path       : '/zip',
-        view       : '/parallax-demo/index.vue',
+        view       : '/zip-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-file-zip-line',
