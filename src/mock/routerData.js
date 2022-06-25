@@ -305,11 +305,7 @@ const routerData = [
         isKeepalive: false,
         icon       : 'ri-file-zip-line',
         type       : 'menu',
-        children   : [],
-        budge      : {
-          value: '新',
-          type : 'info'
-        }
+        children   : []
       }
     ]
   },
