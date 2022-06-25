@@ -209,7 +209,7 @@ const user = security.getUser()
   background-size: 200%;
   animation: sun 7s infinite;
   position: relative;
-  box-shadow:  0 0 50px 10px rgba(0, 0, 0, 0.15);
+  box-shadow:  0 0 20px 2px rgba(0, 0, 0, 0.15);
 }
 
 .hb-screen-slider:before {
@@ -228,6 +228,7 @@ const user = security.getUser()
   z-index: -1;
   /* 设置模糊度 显示发光效果 */
   filter: blur(10px);
+  opacity: 0.5;
   animation: sun 7s infinite;
 }
 
