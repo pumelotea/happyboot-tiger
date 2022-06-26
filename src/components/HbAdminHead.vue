@@ -12,7 +12,7 @@ import {
   NBreadcrumb,
   NBreadcrumbItem
 } from 'naive-ui'
-import { Moon, SunnyOutline, Notifications, CubeOutline } from '@vicons/ionicons5'
+import { Moon, SunnyOutline, Notifications, CubeOutline, LogoGithub} from '@vicons/ionicons5'
 import { h, computed } from 'vue'
 import { isDarkTheme } from '@/global/config'
 import framework from '@/global/framework'
@@ -95,6 +95,10 @@ const breadcrumb = computed(() => {
   return currentMenuRoute.value?.menuItem.breadcrumb
 })
 
+function gotoGithub(){
+  window.open('https://github.com/pumelotea/happyboot-tiger')
+}
+
 </script>
 
 <template>
@@ -147,6 +151,13 @@ const breadcrumb = computed(() => {
           <n-icon :component="SunnyOutline" />
         </template>
       </n-switch>
+      <n-divider vertical />
+      <n-icon
+          size="25"
+          color="#CFCFCF"
+          :component="LogoGithub"
+          @click="gotoGithub"
+      />
       <n-divider vertical />
       <n-icon
         size="25"
