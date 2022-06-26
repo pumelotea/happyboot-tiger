@@ -130,7 +130,7 @@ const routerData = [
     icon       : 'ri-collage-fill',
     type       : 'menu',
     budge      : {
-      value: '14',
+      value: '15',
       type : 'info'
     },
     children: [
