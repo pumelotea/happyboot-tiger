@@ -1,7 +1,7 @@
 <script setup>
 import { NIcon, NAvatar } from 'naive-ui'
 import { ArrowForward, LockOpen } from '@vicons/ionicons5'
-import {computed, ref, watch} from 'vue'
+import { computed, ref, watch } from 'vue'
 import security from '@/global/security'
 
 const props = defineProps({
@@ -46,10 +46,10 @@ function onMousemove (e) {
     distance = maxDistance
     if (!isTrigger.value) {
       isTrigger.value = true
-      setTimeout(()=>{
+      setTimeout(() => {
         emit('update:open', false)
         emit('unlock')
-      },300)
+      }, 300)
     }
   }
   if (props.open) {
@@ -75,8 +75,8 @@ function onMouseup (e) {
   }
 }
 
-watch(()=>props.open,()=>{
-  if (props.open){
+watch(() => props.open, () => {
+  if (props.open) {
     isTrigger.value = false
   }
 })

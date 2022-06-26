@@ -306,6 +306,16 @@ const routerData = [
         icon       : 'ri-file-zip-line',
         type       : 'menu',
         children   : []
+      },
+      {
+        name       : '缩放卡片',
+        path       : '/scale-card',
+        view       : '/scale-card-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-aspect-ratio-line',
+        type       : 'menu',
+        children   : []
       }
     ]
   },
