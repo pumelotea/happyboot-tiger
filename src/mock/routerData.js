@@ -190,7 +190,17 @@ const routerData = [
         }
       },
       {
-        name       : '图片预览组件',
+        name       : '图片组件',
+        path       : '/image',
+        view       : '/image-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-gallery-line',
+        type       : 'menu',
+        children   : []
+      },
+      {
+        name       : '多图片预览组件',
         path       : '/image-preview',
         view       : '/image-preview-demo/index.vue',
         isRouter   : true,
@@ -237,6 +247,16 @@ const routerData = [
         name       : '图标选择组件',
         path       : '/icon-select',
         view       : '/icon-select-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-remixicon-line',
+        type       : 'menu',
+        children   : []
+      },
+      {
+        name       : '图片工厂组件',
+        path       : '/image-factory',
+        view       : '/image-factory-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-remixicon-line',
