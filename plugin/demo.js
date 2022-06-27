@@ -35,6 +35,3 @@ export default function DemoPlugin() {
     }
   }
 }
-
-module.exports = DemoPlugin
-DemoPlugin['default'] = DemoPlugin

@@ -1,6 +1,6 @@
 <script setup>
 import QRCode from 'qrcode'
-import { watch, ref, defineProps, onMounted } from 'vue'
+import { watch, ref, onMounted } from 'vue'
 const props = defineProps({
   text: {
     required: true,
