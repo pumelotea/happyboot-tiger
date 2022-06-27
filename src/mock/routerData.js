@@ -130,7 +130,7 @@ const routerData = [
     icon       : 'ri-collage-fill',
     type       : 'menu',
     budge      : {
-      value: '14',
+      value: '15',
       type : 'info'
     },
     children: [
@@ -300,16 +300,22 @@ const routerData = [
       {
         name       : '压缩包生成',
         path       : '/zip',
-        view       : '/parallax-demo/index.vue',
+        view       : '/zip-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-file-zip-line',
         type       : 'menu',
-        children   : [],
-        budge      : {
-          value: '新',
-          type : 'info'
-        }
+        children   : []
+      },
+      {
+        name       : '缩放卡片',
+        path       : '/scale-card',
+        view       : '/scale-card-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-aspect-ratio-line',
+        type       : 'menu',
+        children   : []
       }
     ]
   },
