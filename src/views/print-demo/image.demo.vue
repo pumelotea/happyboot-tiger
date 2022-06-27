@@ -1,7 +1,8 @@
+<hb-demo>打印图片</hb-demo>
 <script setup>
-import {NButton, NSpace} from 'naive-ui';
-import HbAdminPrint from "@/components/HbAdminPrint";
-import {ref} from "vue";
+import {NButton, NSpace} from 'naive-ui'
+import HbAdminPrint from "@/components/HbAdminPrint"
+import {ref} from "vue"
 
 const printPicInstance = ref(null)
 function printPic() {

@@ -1,3 +1,4 @@
+<hb-demo>模态框用法</hb-demo>
 <script setup>
 import {NButton, NSpace, NCard, NModal, NIcon, useMessage} from 'naive-ui';
 import HbAdminIconSelect from "@/components/HbAdminIconSelect.vue"

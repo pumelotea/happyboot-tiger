@@ -1,3 +1,6 @@
+<hb-demo>
+基本用法
+</hb-demo>
 <script setup>
 import {NButton, NSpace} from 'naive-ui';
 import jszip from 'jszip'
@@ -27,3 +30,11 @@ async function makeZip(){
     <n-button type="info" @click="makeZip">生成压缩包</n-button>
   </n-space>
 </template>
+<style scoped>
+.a{}
+.x{}
+.a2{}
+</style>
+<style scoped>
+.b{}
+</style>

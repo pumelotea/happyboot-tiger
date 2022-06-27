@@ -1,60 +1,8 @@
 <script setup>
-import {NLayout,NLayoutContent,NAlert,NSpace} from 'naive-ui';
+import {NLayout,NLayoutContent,NAlert,NSpace} from 'naive-ui'
 import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
-import HbAdminDemoCard from "@/components/HbAdminDemoCard";
-import DemoModal from "./demo-modal";
-import DemoBase from "./demo-base";
-
-const codeBase = `
-<script setup>
-import HbAdminIconSelect from "@/components/HbAdminIconSelect.vue"
-<\/script>
-<template>
-  <hb-admin-icon-select :click-copy="true"\/>
-<\/template>
-`
-
-const codeModal = `<script setup>
-import {NButton, NSpace, NCard, NModal, NIcon, useMessage} from 'naive-ui';
-import HbAdminIconSelect from "@/components/HbAdminIconSelect.vue"
-import {ref} from "vue";
-
-const message = useMessage()
-const showModal = ref(false)
-
-const selectedIcon = ref('')
-
-function getSelectedIcon(icon) {
-  selectedIcon.value = icon
-}
-
-function handleSelectIcon() {
-  message.success('选中的图标： ' + selectedIcon.value)
-  showModal.value = false
-}
-<\/script>
-<template>
-  <n-button type="info" @click="showModal = true">在弹出面板中使用</n-button>
-  <n-modal v-model:show="showModal">
-    <n-card title="图标选择框" style="width: 70%">
-      <template #header-extra>
-        <n-icon>
-          <i class="ri-close-line" style="font-size: 20px;cursor: pointer;" @click="()=>{showModal=false}"></i>
-        </n-icon>
-      </template>
-      <n-card style="max-height: 80vh;overflow: auto">
-        <hb-admin-icon-select @selectIcon="getSelectedIcon"/>
-      </n-card>
-      <template #footer>
-        <n-space justify="end">
-          <n-button @click="()=>{showModal=false}">取消</n-button>
-          <n-button type="success" @click="handleSelectIcon">确定</n-button>
-        </n-space>
-      </template>
-    </n-card>
-  </n-modal>
-<\/template>
-`
+import DemoBase from "./base.demo"
+import DemoModal from "./modal.demo"
 
 </script>
 <template>
@@ -66,12 +14,8 @@ function handleSelectIcon() {
           <n-alert type="info">
             基于RemixIcon图标库
           </n-alert>
-          <hb-admin-demo-card title="弹出式" :code="codeModal">
-            <demo-modal/>
-          </hb-admin-demo-card>
-          <hb-admin-demo-card title="卡片式" :code="codeBase">
-            <demo-base/>
-          </hb-admin-demo-card>
+          <demo-modal/>
+          <demo-base/>
         </n-space>
       </n-layout-content>
     </n-layout>

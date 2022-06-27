@@ -1,3 +1,6 @@
+<hb-demo>
+基本用法
+</hb-demo>
 <script setup>
 import {NButton,NSpace,NInput,useMessage} from 'naive-ui'
 import {ref} from "vue"

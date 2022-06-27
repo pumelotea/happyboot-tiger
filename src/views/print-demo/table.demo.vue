@@ -1,3 +1,4 @@
+<hb-demo>打印表格</hb-demo>
 <script setup>
 import {NButton, NSpace} from 'naive-ui'
 import HbAdminPrint from "@/components/HbAdminPrint"

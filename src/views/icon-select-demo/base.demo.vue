@@ -1,3 +1,4 @@
+<hb-demo>基本用法</hb-demo>
 <script setup>
 import HbAdminIconSelect from "@/components/HbAdminIconSelect.vue"
 </script>
