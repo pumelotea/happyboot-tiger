@@ -24,7 +24,7 @@ const model = reactive({
   //自定义参数
   logoSize: 80,
   logoBorderSize: 2,
-  logoUrl: '/src/assets/logo.png',
+  logoUrl: 'https://happykit.org/h_logo.png',
   logoBgColor: '#FFFFFFFF',
 
   bottomText: 'HappyBoot Tiger',
