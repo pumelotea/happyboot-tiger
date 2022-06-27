@@ -1,20 +1,4 @@
 <script setup>
-import {NLayout,NLayoutContent,NAlert,NSpace} from 'naive-ui';
-import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
-import HbAdminDemoCard from "@/components/HbAdminDemoCard";
-import DemoModal from "./demo-modal";
-import DemoBase from "./demo-base";
-
-const codeBase = `
-<script setup>
-import HbAdminIconSelect from "@/components/HbAdminIconSelect.vue"
-<\/script>
-<template>
-  <hb-admin-icon-select :click-copy="true"\/>
-<\/template>
-`
-
-const codeModal = `<script setup>
 import {NButton, NSpace, NCard, NModal, NIcon, useMessage} from 'naive-ui';
 import HbAdminIconSelect from "@/components/HbAdminIconSelect.vue"
 import {ref} from "vue";
@@ -32,7 +16,7 @@ function handleSelectIcon() {
   message.success('选中的图标： ' + selectedIcon.value)
   showModal.value = false
 }
-<\/script>
+</script>
 <template>
   <n-button type="info" @click="showModal = true">在弹出面板中使用</n-button>
   <n-modal v-model:show="showModal">
@@ -53,27 +37,4 @@ function handleSelectIcon() {
       </template>
     </n-card>
   </n-modal>
-<\/template>
-`
-
-</script>
-<template>
-  <hb-admin-page-layout>
-    <n-layout style="padding:20px">
-      <n-layout-content>
-        <n-space vertical>
-          <h2>图标选择组件</h2>
-          <n-alert type="info">
-            基于RemixIcon图标库
-          </n-alert>
-          <hb-admin-demo-card title="弹出式" :code="codeModal">
-            <demo-modal/>
-          </hb-admin-demo-card>
-          <hb-admin-demo-card title="卡片式" :code="codeBase">
-            <demo-base/>
-          </hb-admin-demo-card>
-        </n-space>
-      </n-layout-content>
-    </n-layout>
-  </hb-admin-page-layout>
 </template>
