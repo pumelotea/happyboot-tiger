@@ -33,6 +33,10 @@ const props = defineProps({
   isPreview: {
     type: Boolean,
     default: false
+  },
+  crossOrigin: {
+    type: false,
+    default: false
   }
 })
 
@@ -61,7 +65,6 @@ function calcImg() {
   //设置容器宽度
   HbImgWrap.value.style.width = divWidth + 'px'
 
-  console.log(divHeight + ';' + divWidth)
   //容器宽高比
   let divPercent = divWidth / divHeight
   if (imgWidth > divWidth && imgHeight < divHeight) { //图片宽比容器大 高比容器小
@@ -103,6 +106,9 @@ const isShow = ref(false)
 
 onMounted(() => {
   let image = new Image()
+  if (props.crossOrigin) {
+    image.crossOrigin = 'Anonymous'
+  }
   image.src = props.src
   if(image.complete){
     imgHeight = HbImg.value.naturalHeight
