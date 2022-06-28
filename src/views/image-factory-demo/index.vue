@@ -27,7 +27,6 @@ import HbAdminImageFactory from "@/components/HbAdminImageFactory/index.vue";
 
 <style scoped>
 .demo-image-factory{
-  height: 700px;
   width: 100%;
 }
 </style>
