@@ -1,7 +1,9 @@
 <script setup>
-import {NLayout, NLayoutContent, NAlert, NSpace, NCard} from 'naive-ui';
+import {NLayout, NLayoutContent, NAlert, NSpace} from 'naive-ui';
 import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
-import HbAdminScaleCard from "@/components/HbAdminScaleCard";
+import DemoContain from "./contain.demo"
+import DemoCover from "./cover.demo"
+import DemoFill from "./fill.demo"
 </script>
 <template>
   <hb-admin-page-layout>
@@ -12,27 +14,9 @@ import HbAdminScaleCard from "@/components/HbAdminScaleCard";
           <n-alert type="info">
             该卡片可以方便的缩放一些数据可视化组件
           </n-alert>
-          <n-card title="contain模式">
-            <div style="height: 500px">
-              <hb-admin-scale-card :width="1280" :height="768" mode="contain">
-                <iframe frameborder="0" style="width: 100%;height: 100%;box-sizing: border-box;border:1px solid grey"  src="https://happykit.org/"></iframe>
-              </hb-admin-scale-card>
-            </div>
-          </n-card>
-          <n-card title="fill模式">
-            <div style="height: 500px">
-              <hb-admin-scale-card :width="1280" :height="768" mode="fill">
-                <iframe frameborder="0" style="width: 100%;height: 100%;box-sizing: border-box;border:1px solid grey"  src="https://happykit.org/"></iframe>
-              </hb-admin-scale-card>
-            </div>
-          </n-card>
-          <n-card title="cover模式">
-            <div style="height: 500px">
-              <hb-admin-scale-card :width="1280" :height="768" mode="cover">
-                <iframe frameborder="0" style="width: 100%;height: 100%;overflow:hidden;box-sizing: border-box;border:1px solid grey"  src="https://happykit.org/"></iframe>
-              </hb-admin-scale-card>
-            </div>
-          </n-card>
+          <demo-contain/>
+          <demo-cover/>
+          <demo-fill/>
         </n-space>
       </n-layout-content>
     </n-layout>
