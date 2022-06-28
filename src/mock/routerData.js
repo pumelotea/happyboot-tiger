@@ -1,5 +1,15 @@
 const routerData = [
   {
+    name       : '组件库',
+    path       : '/components',
+    view       : '/component-list/index.vue',
+    isRouter   : true,
+    isKeepalive: true,
+    icon       : 'ri-apps-line',
+    type       : 'menu',
+    children   : []
+  },
+  {
     name       : '主控台',
     path       : '/dashboard',
     view       : '/dashboard/index.vue',
@@ -130,7 +140,7 @@ const routerData = [
     icon       : 'ri-collage-fill',
     type       : 'menu',
     budge      : {
-      value: '15',
+      value: '16',
       type : 'info'
     },
     children: [
@@ -195,7 +205,7 @@ const routerData = [
         view       : '/image-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-gallery-line',
+        icon       : 'ri-image-line',
         type       : 'menu',
         children   : []
       },
@@ -259,7 +269,7 @@ const routerData = [
         view       : '/image-factory-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-remixicon-line',
+        icon       : 'ri-building-3-line',
         type       : 'menu',
         children   : []
       },
@@ -302,20 +312,6 @@ const routerData = [
         icon       : 'ri-artboard-2-line',
         type       : 'menu',
         children   : []
-      },
-      {
-        name       : '图片压缩',
-        path       : '/image-compress',
-        view       : '/parallax-demo/index.vue',
-        isRouter   : true,
-        isKeepalive: false,
-        icon       : 'ri-folder-zip-line',
-        type       : 'menu',
-        children   : [],
-        budge      : {
-          value: '新',
-          type : 'info'
-        }
       },
       {
         name       : '压缩包生成',
