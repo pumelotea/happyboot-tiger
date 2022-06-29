@@ -264,7 +264,7 @@ const routerData = [
         children   : []
       },
       {
-        name       : '图片工厂组件',
+        name       : '图片工厂',
         path       : '/image-factory',
         view       : '/image-factory-demo/index.vue',
         isRouter   : true,
