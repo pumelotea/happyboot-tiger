@@ -1,7 +1,9 @@
 <script setup>
-import {nextTick, reactive, ref} from 'vue'
-import { NButtonGroup, NButton, NIcon, useMessage,  NForm, NFormItem, NInput, NInputGroup, NInputGroupLabel, NSpace, NRadio, NRadioGroup, NCard } from 'naive-ui'
-import { MoveSharp, Add, Remove, Crop, ArrowRedoOutline, ArrowUndoOutline, CloudUploadOutline } from '@vicons/ionicons5'
+import {reactive, ref} from 'vue'
+import { NButton, NIcon, useMessage,  NForm, NFormItem, NInput, NInputGroup, NInputGroupLabel, NSpace, NRadio, NRadioGroup, NCard } from 'naive-ui'
+import { CloudUploadOutline } from '@vicons/ionicons5'
+import { watermark } from '@/utils/imageFactory'
+
 const message = useMessage()
 const accept = 'image/jpg,image/jpeg,image/png'
 
@@ -11,7 +13,7 @@ const form = reactive({
     type: 'upload',  //upload：本地上传；link：链接地址；
     url: '',  //链接地址
     file: null,  //图片文件
-    Object: null,  //图片对象
+    object: null,  //图片对象
     width: 0,
     height: 0,
   },
@@ -20,7 +22,7 @@ const form = reactive({
     type: 'upload',  //upload：本地上传；link：链接地址；
     url: '',  //链接地址
     file: null,  //图片文件
-    Object: null,  //图片对象
+    object: null,  //图片对象
     width: 0,
     height: 0,
     position: 'leftTop',
@@ -135,8 +137,13 @@ function handleResult() {
     form.sign.top = (form.image.height - form.sign.height) / 2
   }
 
-  watermark((base64) => {
-    HbImagePreview.value.src = base64
+  watermark(res => {
+    if (res.success) {
+      HbImagePreview.value.src = res.data
+    } else {
+      HbImagePreview.value.src = ''
+      message.error(res.data)
+    }
   },
       form.image.object,
       form.sign.object,
@@ -148,44 +155,6 @@ function handleResult() {
       form.sign.height
   )
 }
-//***********************************************************
-/**
- * 图片添加水印
- *  image: Image(),  //底图对象
- *  sign: Image(),  //水印对象
- *  left: 0,  //水印左侧位置
- *  top: 0,  //水印顶部位置
- *  imageWidth  //底图宽度
- *  imageHeight  //底图高度
- *  signWidth  //水印宽度
- *  signHeight  //水印高度
- * */
-async function watermark(callback, image, sign, left = 0, top = 0, imageWidth = '', imageHeight = '', signWidth = '', signHeight = '') {
-  if (!image || !sign) {
-    message.error('请传入底图和水印！')
-  } else {
-    let imageSize = {w: 0, h: 0}
-    let signSize = {w: 0, h: 0}
-    imageSize.w = imageWidth || image.width
-    imageSize.h = imageHeight || image.height
-    signSize.w = signWidth || sign.width
-    signSize.h = signHeight || sign.height
-    //创建一个canvas
-    const canvas = document.createElement('canvas')
-    //根据底图的大小设置canvas的宽高
-    canvas.width = imageSize.w
-    canvas.height = imageSize.h
-    const ctx = canvas.getContext('2d')
-    //绘制底图
-    ctx.drawImage(image, 0, 0, imageSize.w, imageSize.h)
-    //绘制水印
-    ctx.drawImage(sign, left, top, signSize.w, signSize.h)
-    //返回base64
-    callback(canvas.toDataURL('image/png', 1))
-  }
-}
-//***********************************************************
-
 </script>
 <template>
   <div class="hb-image-factory-wrap">
