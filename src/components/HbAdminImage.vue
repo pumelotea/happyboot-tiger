@@ -35,7 +35,7 @@ const props = defineProps({
     default: false
   },
   crossOrigin: {
-    type: false,
+    type: Boolean,
     default: false
   }
 })
