@@ -137,3 +137,32 @@ export function resize(callback, image, width = 0, height = 0) {
     })
   }
 }
+
+/**
+ * 调整图片质量
+ * callback  //回调方法，返回base64的图片
+ * image: Image()  //底图对象
+ * quality: Number  //图片质量 0 - 1
+ * */
+export function quality(callback, image, quality = 1) {
+  if (!image) {
+    callback({
+      success: false,
+      data: '底图不能为空！'
+    })
+  } else {
+    //创建一个canvas
+    const canvas = document.createElement('canvas')
+    //根据调整的大小设置canvas的宽高
+    canvas.width = image.width
+    canvas.height = image.height
+    const ctx = canvas.getContext('2d')
+    //绘制底图
+    ctx.drawImage(image, 0, 0)
+    //返回base64
+    callback({
+      success: true,
+      data: canvas.toDataURL('image/png', quality)
+    })
+  }
+}

@@ -34,6 +34,25 @@ const code2 = '1.首先引入 \nimport { cropper } from \'@/utils/imageFactory\'
     ' * height: Number  //底图高度\n' +
     ' * */\n' +
     'cropper(callback, image, left, right, top, bottom, width, height)'
+
+const code3 = '1.首先引入 \nimport { resize } from \'@/utils/imageFactory\' \n2.然后调用 \n' +
+    '/**\n' +
+    ' * 调整图片尺寸\n' +
+    ' * callback  //回调方法，返回base64的图片\n' +
+    ' * image: Image()  //底图对象\n' +
+    ' * width: Number  //调整的宽度\n' +
+    ' * height: Number  //调整的高度\n' +
+    ' * */\n' +
+    'resize(callback, image, width, height)'
+
+const code4 = '1.首先引入 \nimport { quality } from \'@/utils/imageFactory\' \n2.然后调用 \n' +
+    '/**\n' +
+    ' * 调整图片质量\n' +
+    ' * callback  //回调方法，返回base64的图片\n' +
+    ' * image: Image()  //底图对象\n' +
+    ' * quality: Number  //图片质量 0 - 1\n' +
+    ' * */\n' +
+    'quality(callback, image, quality)'
 </script>
 
 <template>
@@ -43,7 +62,7 @@ const code2 = '1.首先引入 \nimport { cropper } from \'@/utils/imageFactory\'
         <n-space vertical>
           <h2>图片工厂组件</h2>
           <n-alert type="info">
-            此组件可以上传或者传入一个图片地址进行对图片的一些二次加工处理。例如：调整图片大小、设置图片质量、添加图片水印等。
+            此组件可以上传或者传入一个图片地址进行对图片的一些二次加工处理。例如：添加图片水印、图片裁剪、调整图片尺寸、设置图片质量等。
           </n-alert>
           <n-card>
             <hb-admin-image-factory type="watermark" />
@@ -62,6 +81,20 @@ const code2 = '1.首先引入 \nimport { cropper } from \'@/utils/imageFactory\'
             <n-collapse>
               <n-collapse-item title="图片裁剪 - 使用说明">
                 <n-code :code="code2" language="javascript" :hljs="hljs"></n-code>
+              </n-collapse-item>
+            </n-collapse>
+          </n-card>
+          <n-card>
+            <n-collapse>
+              <n-collapse-item title="调整图片尺寸 - 使用说明">
+                <n-code :code="code3" language="javascript" :hljs="hljs"></n-code>
+              </n-collapse-item>
+            </n-collapse>
+          </n-card>
+          <n-card>
+            <n-collapse>
+              <n-collapse-item title="调整图片质量 - 使用说明">
+                <n-code :code="code4" language="javascript" :hljs="hljs"></n-code>
               </n-collapse-item>
             </n-collapse>
           </n-card>
