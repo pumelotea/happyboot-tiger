@@ -97,7 +97,7 @@ const routerData = [
     isRouter   : false,
     isKeepalive: false,
     type       : 'menu',
-    icon       : 'ri-table-line',
+    icon       : 'ri-link',
     children   : [
       {
         name       : 'iframe内嵌外链',
@@ -105,7 +105,7 @@ const routerData = [
         view       : '/iframe/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-menu-line',
+        icon       : 'ri-links-line',
         type       : 'menu',
         externalLink: true, //外链
         linkTarget: '_tab', //刷新自己
@@ -118,7 +118,7 @@ const routerData = [
         view       : '/iframe/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-menu-line',
+        icon       : 'ri-links-line',
         type       : 'menu',
         externalLink: true, //外链
         linkTarget: '_blank',
@@ -131,7 +131,7 @@ const routerData = [
         view       : '/iframe/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-menu-line',
+        icon       : 'ri-links-line',
         type       : 'menu',
         externalLink: true, //外链
         linkTarget: '_self',
