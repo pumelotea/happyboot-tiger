@@ -91,6 +91,56 @@ const routerData = [
     children   : []
   },
   {
+    name       : '跳转方式',
+    path       : '/goto-mode',
+    view       : '',
+    isRouter   : false,
+    isKeepalive: false,
+    type       : 'menu',
+    icon       : 'ri-table-line',
+    children   : [
+      {
+        name       : 'iframe内嵌外链',
+        path       : '/iframe-link',
+        view       : '/iframe/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-menu-line',
+        type       : 'menu',
+        externalLink: true, //外链
+        linkTarget: '_tab', //刷新自己
+        externalLinkAddress: 'https://happykit.org',
+        children   : []
+      },
+      {
+        name       : 'blank跳出外链',
+        path       : '/out-link',
+        view       : '/iframe/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-menu-line',
+        type       : 'menu',
+        externalLink: true, //外链
+        linkTarget: '_blank',
+        externalLinkAddress: 'https://happykit.org',
+        children   : []
+      },
+      {
+        name       : 'self跳出外链',
+        path       : '/out-link',
+        view       : '/iframe/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-menu-line',
+        type       : 'menu',
+        externalLink: true, //外链
+        linkTarget: '_self',
+        externalLinkAddress: 'https://happykit.org',
+        children   : []
+      },
+    ]
+  },
+  {
     name       : '系统设置',
     path       : '/setting',
     view       : '',

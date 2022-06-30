@@ -76,7 +76,7 @@ function createMenuAdapter () {
           treeNode.isKeepalive = tree[i].isKeepalive || false
           treeNode.type = tree[i].type || 'menu'
           treeNode.externalLink = tree[i].externalLink || false
-          treeNode.linkTarget = linkTargetMap[tree[i].externalLink] || 'tab'
+          treeNode.linkTarget = linkTargetMap[tree[i].linkTarget] || 'tab'
           treeNode.externalLinkAddress = tree[i].externalLinkAddress || ''
           treeNode.hide = tree[i].hide || false
           treeNode.isHome = tree[i].isHome || false
