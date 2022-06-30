@@ -1,41 +1,42 @@
 <script setup>
 import { NIcon, useThemeVars } from 'naive-ui'
-import HbAdminImagePreview from "@/components/HbAdminImagePreview"
-const themeVars = useThemeVars()
+import HbAdminImagePreview from '@/components/HbAdminImagePreview'
+
 /**
  * 功能说明：
  * 设置宽高后，图片将按比例缩放到完整显示较小的边，长的边会进行裁剪
  * */
 
-import {nextTick, onMounted, ref} from "vue";
+import { nextTick, onMounted, ref } from 'vue'
+const themeVars = useThemeVars()
 
 const props = defineProps({
   src: {
-    type: String,
+    type   : String,
     default: ''
   },
   prevSrc: {
-    type: String,
+    type   : String,
     default: ''
   },
   height: {
-    type: Number,
+    type   : Number,
     default: null
   },
   width: {
-    type: Number,
+    type   : Number,
     default: null
   },
   radius: {
-    type: String,
+    type   : String,
     default: '0px'
   },
   isPreview: {
-    type: Boolean,
+    type   : Boolean,
     default: false
   },
   crossOrigin: {
-    type: Boolean,
+    type   : Boolean,
     default: false
   }
 })
@@ -45,56 +46,56 @@ const HbImg = ref()
 let imgHeight = 0
 let imgWidth = 0
 
-function calcImg() {
-  //图片宽高比
-  let WHPercent = imgWidth / imgHeight
-  //图片高宽比
-  let HWPercent = imgHeight / imgWidth
-  //容器高度
+function calcImg () {
+  // 图片宽高比
+  const WHPercent = imgWidth / imgHeight
+  // 图片高宽比
+  const HWPercent = imgHeight / imgWidth
+  // 容器高度
   let divHeight = imgHeight
   if (props.height) {
     divHeight = props.height
   }
-  //容器宽度
+  // 容器宽度
   let divWidth = imgWidth
   if (props.width) {
     divWidth = props.width
   }
-  //设置容器高度
+  // 设置容器高度
   HbImgWrap.value.style.height = divHeight + 'px'
-  //设置容器宽度
+  // 设置容器宽度
   HbImgWrap.value.style.width = divWidth + 'px'
 
-  //容器宽高比
-  let divPercent = divWidth / divHeight
-  if (imgWidth > divWidth && imgHeight < divHeight) { //图片宽比容器大 高比容器小
+  // 容器宽高比
+  const divPercent = divWidth / divHeight
+  if (imgWidth > divWidth && imgHeight < divHeight) { // 图片宽比容器大 高比容器小
     HbImg.value.style.setProperty('height', divHeight + 'px', 'important')
     HbImg.value.style.setProperty('width', divHeight * WHPercent + 'px', 'important')
-  }else if (imgWidth < divWidth && imgHeight > divHeight) { //图片高比容器大 宽比容器小
+  } else if (imgWidth < divWidth && imgHeight > divHeight) { // 图片高比容器大 宽比容器小
     HbImg.value.style.setProperty('height', divWidth * HWPercent + 'px', 'important')
     HbImg.value.style.setProperty('width', divWidth + 'px', 'important')
-  }else {  // 图片宽高都大于容器  或  图片宽高都小于容器
+  } else { // 图片宽高都大于容器  或  图片宽高都小于容器
     if (WHPercent > 1) {
-      if(WHPercent > divPercent){
+      if (WHPercent > divPercent) {
         HbImg.value.style.setProperty('height', divHeight + 'px', 'important')
         HbImg.value.style.setProperty('width', divHeight * WHPercent + 'px', 'important')
-      }else {
+      } else {
         HbImg.value.style.setProperty('height', divWidth * HWPercent + 'px', 'important')
         HbImg.value.style.setProperty('width', divWidth + 'px', 'important')
       }
-    }else if (WHPercent < 1) {
-      if(divPercent >= 1){
+    } else if (WHPercent < 1) {
+      if (divPercent >= 1) {
         HbImg.value.style.setProperty('height', divWidth * HWPercent + 'px', 'important')
         HbImg.value.style.setProperty('width', divWidth + 'px', 'important')
-      }else {
+      } else {
         HbImg.value.style.setProperty('height', divHeight + 'px', 'important')
         HbImg.value.style.setProperty('width', divHeight * WHPercent + 'px', 'important')
       }
-    }else {
-      if(divPercent >= 1){
+    } else {
+      if (divPercent >= 1) {
         HbImg.value.style.setProperty('height', divWidth * HWPercent + 'px', 'important')
         HbImg.value.style.setProperty('width', divWidth + 'px', 'important')
-      }else {
+      } else {
         HbImg.value.style.setProperty('height', divHeight + 'px', 'important')
         HbImg.value.style.setProperty('width', divHeight * WHPercent + 'px', 'important')
       }
@@ -105,16 +106,16 @@ function calcImg() {
 const isShow = ref(false)
 
 onMounted(() => {
-  let image = new Image()
+  const image = new Image()
   if (props.crossOrigin) {
     image.crossOrigin = 'Anonymous'
   }
   image.src = props.src
-  if(image.complete){
+  if (image.complete) {
     imgHeight = HbImg.value.naturalHeight
     imgWidth = HbImg.value.naturalWidth
     calcImg()
-  }else {
+  } else {
     HbImg.value.src = 'images/no-img.png'
     nextTick(() => {
       image.onload = () => {
@@ -136,15 +137,32 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="HbImgWrap" class="hb-img-wrap" :style="`border-radius: ${props.radius};`">
-    <img ref="HbImg" class="hb-img" :src="src">
-    <div class="hb-img-prev" v-show="props.isPreview">
-      <n-icon style="cursor: pointer" @click="isShow = true">
-        <i class="ri-eye-line"></i>
+  <div
+    ref="HbImgWrap"
+    class="hb-img-wrap"
+    :style="`border-radius: ${props.radius};`"
+  >
+    <img
+      ref="HbImg"
+      class="hb-img"
+      :src="src"
+    >
+    <div
+      v-show="props.isPreview"
+      class="hb-img-prev"
+    >
+      <n-icon
+        style="cursor: pointer"
+        @click="isShow = true"
+      >
+        <i class="ri-eye-line" />
       </n-icon>
     </div>
   </div>
-  <hb-admin-image-preview v-model:value="isShow" :list="[props.prevSrc || props.src]"/>
+  <hb-admin-image-preview
+    v-model:value="isShow"
+    :list="[props.prevSrc || props.src]"
+  />
 </template>
 
 <style scoped>

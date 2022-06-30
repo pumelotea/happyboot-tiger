@@ -100,44 +100,44 @@ const routerData = [
     icon       : 'ri-link',
     children   : [
       {
-        name       : 'iframe内嵌外链',
-        path       : '/iframe-link',
-        view       : '/iframe/index.vue',
-        isRouter   : true,
-        isKeepalive: false,
-        icon       : 'ri-links-line',
-        type       : 'menu',
-        externalLink: true, //外链
-        linkTarget: '_tab', //刷新自己
+        name               : 'iframe内嵌外链',
+        path               : '/iframe-link',
+        view               : '/iframe/index.vue',
+        isRouter           : true,
+        isKeepalive        : false,
+        icon               : 'ri-links-line',
+        type               : 'menu',
+        externalLink       : true, // 外链
+        linkTarget         : '_tab', // 刷新自己
         externalLinkAddress: 'https://happykit.org',
-        children   : []
+        children           : []
       },
       {
-        name       : 'blank跳出外链',
-        path       : '/out-link',
-        view       : '/iframe/index.vue',
-        isRouter   : true,
-        isKeepalive: false,
-        icon       : 'ri-links-line',
-        type       : 'menu',
-        externalLink: true, //外链
-        linkTarget: '_blank',
+        name               : 'blank跳出外链',
+        path               : '/out-link',
+        view               : '/iframe/index.vue',
+        isRouter           : true,
+        isKeepalive        : false,
+        icon               : 'ri-links-line',
+        type               : 'menu',
+        externalLink       : true, // 外链
+        linkTarget         : '_blank',
         externalLinkAddress: 'https://happykit.org',
-        children   : []
+        children           : []
       },
       {
-        name       : 'self跳出外链',
-        path       : '/out-link',
-        view       : '/iframe/index.vue',
-        isRouter   : true,
-        isKeepalive: false,
-        icon       : 'ri-links-line',
-        type       : 'menu',
-        externalLink: true, //外链
-        linkTarget: '_self',
+        name               : 'self跳出外链',
+        path               : '/out-link',
+        view               : '/iframe/index.vue',
+        isRouter           : true,
+        isKeepalive        : false,
+        icon               : 'ri-links-line',
+        type               : 'menu',
+        externalLink       : true, // 外链
+        linkTarget         : '_self',
         externalLinkAddress: 'https://happykit.org',
-        children   : []
-      },
+        children           : []
+      }
     ]
   },
   {
