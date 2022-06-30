@@ -1,5 +1,5 @@
 <script setup>
-import { nextTick, onMounted, ref, watch } from 'vue'
+import { nextTick, onMounted, ref, toRefs, watch } from 'vue'
 
 const props = defineProps({
   value: {
@@ -21,9 +21,10 @@ const props = defineProps({
 })
 
 const isShow = ref(false)
-isShow.value = props.value
+const { value, initialIndex } = toRefs(props)
+isShow.value = value.value
 const pIndex = ref(0)
-pIndex.value = props.initialIndex
+pIndex.value = initialIndex.value
 let elWidth = 0 // 预览图片宽度
 let elHeight = 0 // 预览图片高度
 let elPosition = { x: 0, y: 0 } // 预览图片当前的位置
