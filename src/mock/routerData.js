@@ -382,6 +382,16 @@ const routerData = [
         icon       : 'ri-aspect-ratio-line',
         type       : 'menu',
         children   : []
+      },
+      {
+        name       : 'ECharts图表',
+        path       : '/charts',
+        view       : '/charts-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-pie-chart-line',
+        type       : 'menu',
+        children   : []
       }
     ]
   },
