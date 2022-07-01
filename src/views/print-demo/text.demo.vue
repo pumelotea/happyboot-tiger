@@ -1,18 +1,21 @@
 <hb-demo>打印文本</hb-demo>
 <script setup>
-import {NButton, NSpace} from 'naive-ui'
-import HbAdminPrint from "@/components/HbAdminPrint"
-import {ref} from "vue"
+import { NButton, NSpace } from 'naive-ui'
+import HbAdminPrint from '@/components/HbAdminPrint'
+import { ref } from 'vue'
 
 const printTextInstance = ref(null)
 
-function printText() {
+function printText () {
   printTextInstance.value.print()
 }
 </script>
 <template>
   <div>
-    <hb-admin-print ref="printTextInstance" class="demo-text">
+    <hb-admin-print
+      ref="printTextInstance"
+      class="demo-text"
+    >
       <p style="margin-bottom: 10mm;text-indent: 30px">
         据此前多方爆料，不出意外的话苹果将继续在今年9月举行秋季新品发布会，届时全新的iPhone
         14系列将正式与大家见面。作为全球最受瞩目的移动设备，该机早早便受到了外界的广泛关注，尤其外观方面的升级更是大家关注的焦点。现在有最新消息，随着该机的渲染图频频曝光，近日关于该机的新配色也有不少爆料传出。继此前的紫色版本后，现在有最新消息，近日有海外爆料达人进一步晒出了该机另一款新配色的渲染图。
@@ -37,8 +40,16 @@ function printText() {
       </p>
     </hb-admin-print>
   </div>
-  <n-space justify="flex-end" style="margin-top: 10px">
-    <n-button type="info" @click="printText">打印文字</n-button>
+  <n-space
+    justify="flex-end"
+    style="margin-top: 10px"
+  >
+    <n-button
+      type="info"
+      @click="printText"
+    >
+      打印文字
+    </n-button>
   </n-space>
 </template>
 <style scoped>
