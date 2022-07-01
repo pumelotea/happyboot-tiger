@@ -69,6 +69,17 @@ const naviMenuData = computed(() => {
 })
 
 function menuChoose (key, item) {
+  const node = item.original
+  if (node.externalLink) {
+    if (node.linkTarget === 'blank') {
+      window.open(node.externalLinkAddress, '_blank')
+      return
+    }
+    if (node.linkTarget === 'self') {
+      window.open(node.externalLinkAddress, '_self')
+      return
+    }
+  }
   framework.clickMenuItem(key, menuItems => {
     router.push(menuItems[0].routerPath)
   })

@@ -72,7 +72,8 @@ module.exports = {
     "no-cond-assign": "error",
     "no-empty": "warn",
     "no-constant-condition": "warn",
-    "vue/no-multiple-template-root": "off"
+    "vue/no-multiple-template-root": "off",
+    "n/no-callback-literal":"off"
   },
   "parser": "vue-eslint-parser",
   // others ...

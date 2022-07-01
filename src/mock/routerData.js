@@ -91,6 +91,56 @@ const routerData = [
     children   : []
   },
   {
+    name       : '跳转方式',
+    path       : '/goto-mode',
+    view       : '',
+    isRouter   : false,
+    isKeepalive: false,
+    type       : 'menu',
+    icon       : 'ri-link',
+    children   : [
+      {
+        name               : 'iframe内嵌外链',
+        path               : '/iframe-link',
+        view               : '/iframe/index.vue',
+        isRouter           : true,
+        isKeepalive        : false,
+        icon               : 'ri-links-line',
+        type               : 'menu',
+        externalLink       : true, // 外链
+        linkTarget         : '_tab', // 刷新自己
+        externalLinkAddress: 'https://happykit.org',
+        children           : []
+      },
+      {
+        name               : 'blank跳出外链',
+        path               : '/out-link',
+        view               : '/iframe/index.vue',
+        isRouter           : true,
+        isKeepalive        : false,
+        icon               : 'ri-links-line',
+        type               : 'menu',
+        externalLink       : true, // 外链
+        linkTarget         : '_blank',
+        externalLinkAddress: 'https://happykit.org',
+        children           : []
+      },
+      {
+        name               : 'self跳出外链',
+        path               : '/out-link',
+        view               : '/iframe/index.vue',
+        isRouter           : true,
+        isKeepalive        : false,
+        icon               : 'ri-links-line',
+        type               : 'menu',
+        externalLink       : true, // 外链
+        linkTarget         : '_self',
+        externalLinkAddress: 'https://happykit.org',
+        children           : []
+      }
+    ]
+  },
+  {
     name       : '系统设置',
     path       : '/setting',
     view       : '',
@@ -264,7 +314,7 @@ const routerData = [
         children   : []
       },
       {
-        name       : '图片工厂组件',
+        name       : '图片工厂',
         path       : '/image-factory',
         view       : '/image-factory-demo/index.vue',
         isRouter   : true,
@@ -304,16 +354,6 @@ const routerData = [
         children   : []
       },
       {
-        name       : '视差卡片',
-        path       : '/parallax',
-        view       : '/parallax-demo/index.vue',
-        isRouter   : true,
-        isKeepalive: false,
-        icon       : 'ri-artboard-2-line',
-        type       : 'menu',
-        children   : []
-      },
-      {
         name       : '压缩包生成',
         path       : '/zip',
         view       : '/zip-demo/index.vue',
@@ -330,6 +370,16 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-aspect-ratio-line',
+        type       : 'menu',
+        children   : []
+      },
+      {
+        name       : 'ECharts图表',
+        path       : '/charts',
+        view       : '/charts-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-pie-chart-line',
         type       : 'menu',
         children   : []
       }

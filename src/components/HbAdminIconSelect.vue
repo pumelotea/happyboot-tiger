@@ -20,6 +20,9 @@ function handleSearchIcon () {
   selectedIcon.value = ''
   showIconList.value = []
   for (const category in json) {
+    if (!Object.prototype.hasOwnProperty.call(json, category)) {
+      continue
+    }
     const list = []
     for (const iconName in json[category]) {
       if (keyword.value) {

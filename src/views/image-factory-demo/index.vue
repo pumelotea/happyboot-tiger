@@ -1,7 +1,8 @@
 <script setup>
-import {NLayout,NLayoutContent,NAlert,NButton,NSpace,NCard,NModal, NTimeline, NTimelineItem,NIcon,useMessage, NCode, NCollapse, NCollapseItem} from 'naive-ui';
+import {NLayout,NLayoutContent,NAlert,NSpace,NCard, NCode, NCollapse, NCollapseItem} from 'naive-ui';
 import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
-import HbAdminImageFactory from "@/components/HbAdminImageFactory/index.vue"
+import DemoCropper from "./cropper.demo.vue"
+import DemoWatermark from "./watermark.demo.vue"
 import hljs from 'highlight.js/lib/core'
 import xml from 'highlight.js/lib/languages/xml'
 import javascript from 'highlight.js/lib/languages/javascript'
@@ -60,44 +61,40 @@ const code4 = '1.首先引入 \nimport { quality } from \'@/utils/imageFactory\'
     <n-layout style="padding:20px">
       <n-layout-content>
         <n-space vertical>
-          <h2>图片工厂组件</h2>
+          <h2>图片工厂</h2>
           <n-alert type="info">
-            此组件可以上传或者传入一个图片地址进行对图片的一些二次加工处理。例如：添加图片水印、图片裁剪、调整图片尺寸、设置图片质量等。
+            图片工厂是一个类库，可以上传或者传入一个图片地址进行对图片的一些二次加工处理。例如：添加图片水印、图片裁剪、调整图片尺寸、设置图片质量等。
           </n-alert>
           <n-card>
-            <hb-admin-image-factory type="watermark" />
-          </n-card>
-          <n-card>
             <n-collapse>
-              <n-collapse-item title="水印添加 - 使用说明">
+              <n-collapse-item title="水印添加">
                 <n-code :code="code1" language="javascript" :hljs="hljs"></n-code>
               </n-collapse-item>
             </n-collapse>
           </n-card>
           <n-card>
-            <hb-admin-image-factory type="cropper" />
-          </n-card>
-          <n-card>
             <n-collapse>
-              <n-collapse-item title="图片裁剪 - 使用说明">
+              <n-collapse-item title="图片裁剪">
                 <n-code :code="code2" language="javascript" :hljs="hljs"></n-code>
               </n-collapse-item>
             </n-collapse>
           </n-card>
           <n-card>
             <n-collapse>
-              <n-collapse-item title="调整图片尺寸 - 使用说明">
+              <n-collapse-item title="调整图片尺寸">
                 <n-code :code="code3" language="javascript" :hljs="hljs"></n-code>
               </n-collapse-item>
             </n-collapse>
           </n-card>
           <n-card>
             <n-collapse>
-              <n-collapse-item title="调整图片质量 - 使用说明">
+              <n-collapse-item title="调整图片质量">
                 <n-code :code="code4" language="javascript" :hljs="hljs"></n-code>
               </n-collapse-item>
             </n-collapse>
           </n-card>
+          <demo-cropper/>
+          <demo-watermark/>
         </n-space>
       </n-layout-content>
     </n-layout>
