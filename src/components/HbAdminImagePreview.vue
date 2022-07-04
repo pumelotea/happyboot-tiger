@@ -17,6 +17,10 @@ const props = defineProps({
   initialIndex: {
     type   : Number,
     default: 0
+  },
+  clickHide: {
+    type   : Boolean,
+    default: true
   }
 })
 
@@ -228,6 +232,12 @@ function prevRotateRight () {
   prevImg.style.transform = `scale(${elScale.x},${elScale.y}) rotate(${elRotate += 90}deg)`
 }
 
+function handleClose () {
+  if (props.clickHide) {
+    isShow.value = false
+  }
+}
+
 onMounted(() => {
   initialPreview()
 })
@@ -244,6 +254,7 @@ const HbPrevThumb = ref()
     ref="HbPrevWrap"
     class="hb-prev-wrap"
   >
+    <div class="hb-prev-mask" @click="handleClose"></div>
     <img
       ref="HbPrevImg"
       class="hb-prev-img"
@@ -326,8 +337,12 @@ const HbPrevThumb = ref()
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0,0,0,0.5);
   z-index: 99999;
+}
+.hb-prev-mask{
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5);
 }
 .hb-prev-img{
   position: fixed;
