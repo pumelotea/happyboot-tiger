@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref} from "vue";
+import {onBeforeUnmount, onMounted, ref} from "vue";
 
 const props = defineProps({
   speed:{
@@ -19,6 +19,8 @@ let top = 0
 let height = 0
 let shadowHeight = 0
 let sp = props.speed / 1000
+let end = false
+
 function refresh(){
 
   height = refRoll1.value.clientHeight
@@ -50,6 +52,9 @@ function refresh(){
 
 function doAnimationFrame(){
   requestAnimationFrame(()=>{
+    if (end){
+      return
+    }
     if (height > box.value.clientHeight){
       if (props.direction === 'down'){
         top += sp
@@ -66,6 +71,10 @@ function doAnimationFrame(){
 }
 
 onMounted(doAnimationFrame)
+
+onBeforeUnmount(()=>{
+  end = true
+})
 
 </script>
 <template>
