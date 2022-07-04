@@ -270,6 +270,16 @@ const routerData = [
         children   : []
       },
       {
+        name       : '滚动组件',
+        path       : '/scroll-list',
+        view       : '/scroll-list-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-file-list-line',
+        type       : 'menu',
+        children   : []
+      },
+      {
         name       : '图片上传组件',
         path       : '/uploader',
         view       : '/uploader-demo/index.vue',
