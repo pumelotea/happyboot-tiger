@@ -402,6 +402,16 @@ const routerData = [
         icon       : 'ri-video-line',
         type       : 'menu',
         children   : []
+      },
+      {
+        name       : '滚动列表',
+        path       : '/roll-list',
+        view       : '/roll-list-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-list-check',
+        type       : 'menu',
+        children   : []
       }
     ]
   },
