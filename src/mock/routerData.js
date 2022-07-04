@@ -382,6 +382,16 @@ const routerData = [
         icon       : 'ri-pie-chart-line',
         type       : 'menu',
         children   : []
+      },
+      {
+        name       : '视频播放器',
+        path       : '/video',
+        view       : '/video-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-video-line',
+        type       : 'menu',
+        children   : []
       }
     ]
   },

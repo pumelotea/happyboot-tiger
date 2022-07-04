@@ -7,7 +7,7 @@
     "build-test": "vite build --mode test",
     "build-prod": "vite build --mode prod",
     "preview": "vite preview",
-    "lint": "eslint src/**/*.{js,vue} --fix"
+    "lint": "eslint src/**/*.{js,vue,demo.vue} --fix"
   },
   "dependencies": {
     "@vicons/ionicons5": "^0.12.0",
@@ -23,7 +23,8 @@
     "qs": "^6.10.5",
     "remixicon": "^2.5.0",
     "vue": "^3.2.25",
-    "vue-router": "^4.0.13"
+    "vue-router": "^4.0.13",
+    "xgplayer": "^2.31.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.0",

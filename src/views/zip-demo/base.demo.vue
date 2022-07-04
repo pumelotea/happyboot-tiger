@@ -2,20 +2,20 @@
 基本用法
 </hb-demo>
 <script setup>
-import {NButton, NSpace} from 'naive-ui';
+import { NButton, NSpace } from 'naive-ui'
 import jszip from 'jszip'
 
-async function makeZip(){
+async function makeZip () {
   const pack = jszip()
-  pack.file("hello.txt", 'hello world')
-  pack.folder("package").file("hello2.txt", 'hello happyboot tiger')
-  const data = await pack.generateAsync({type: "uint8array"})
-  const blob = new Blob([data])
-  const a = document.createElement("a");
-  const url = window.URL.createObjectURL(blob);
-  a.href = url;
-  a.download = `data.zip`;
-  a.click();
+  pack.file('hello.txt', 'hello world')
+  pack.folder('package').file('hello2.txt', 'hello happyboot tiger')
+  const data = await pack.generateAsync({ type: 'uint8array' })
+  const blob = new Blob([ data ])
+  const a = document.createElement('a')
+  const url = window.URL.createObjectURL(blob)
+  a.href = url
+  a.download = 'data.zip'
+  a.click()
   window.URL.revokeObjectURL(url)
 }
 </script>
@@ -26,8 +26,16 @@ async function makeZip(){
   -- package
   ---- hello2.txt
 </pre>
-  <n-space justify="flex-end" style="margin-top: 10px">
-    <n-button type="info" @click="makeZip">生成压缩包</n-button>
+  <n-space
+    justify="flex-end"
+    style="margin-top: 10px"
+  >
+    <n-button
+      type="info"
+      @click="makeZip"
+    >
+      生成压缩包
+    </n-button>
   </n-space>
 </template>
 <style scoped>
