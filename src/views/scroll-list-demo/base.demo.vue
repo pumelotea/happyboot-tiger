@@ -3,7 +3,7 @@
 </hb-demo>
 <script setup>
 import HbAdminScrollList from "@/components/HbAdminScrollList";
-import {ref} from "vue";
+import {nextTick, onMounted, ref} from "vue";
 import HbAdminImage from "@/components/HbAdminImage";
 
 const list = ref([
@@ -24,7 +24,7 @@ const list = ref([
 </script>
 
 <template>
-  <hb-admin-scroll-list style="height: 600px" :list="list" :animation="500" :interval="100">
+  <hb-admin-scroll-list style="height: 600px" :list="list" :animation="500" :interval="1000">
     <template #default="scope">
       <img :src="scope.data" style="height: 100px;"/>
     </template>
