@@ -188,11 +188,15 @@ onMounted(() => {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0, 0);
   color: v-bind(themeVars.textColor3);
   font-size: 28px;
   display: none;
   justify-content: center;
   align-items: center;
+  transition: background-color 0.5s;
+}
+.hb-img-prev:hover{
+  background-color: rgba(0,0,0,0.5);
 }
 </style>

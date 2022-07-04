@@ -90,6 +90,15 @@ function rollList() {
 
 onMounted(() => {
   initialList()
+  HbRollWrap.value.addEventListener('mousewheel', e => {
+    e.preventDefault()
+  })
+  HbRollWrap.value.addEventListener('mouseenter', e => {
+    clearInterval(timer)
+  })
+  HbRollWrap.value.addEventListener('mouseleave', e => {
+    rollList()
+  })
 })
 onBeforeUnmount(() => {
   clearInterval(timer)
