@@ -24,9 +24,9 @@ const list = ref([
     <n-layout style="padding:20px">
       <n-layout-content>
         <n-space vertical>
-          <h2>简单滚动列表</h2>
+          <h2>滚动区域</h2>
           <n-alert type="info">
-            简单自动滚动列表
+            滚动区域，支持在内部渲染任何元素
           </n-alert>
           <demo/>
         </n-space>

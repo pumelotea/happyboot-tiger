@@ -9,7 +9,7 @@ import Demo from "./base.demo"
     <n-layout style="padding:20px">
       <n-layout-content>
         <n-space vertical>
-          <h2>滚动组件</h2>
+          <h2>滚动列表</h2>
           <n-alert type="info">
             可以循环滚动插入的内容
           </n-alert>
