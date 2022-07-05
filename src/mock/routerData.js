@@ -270,7 +270,7 @@ const routerData = [
         children   : []
       },
       {
-        name       : '滚动组件',
+        name       : '滚动列表',
         path       : '/scroll-list',
         view       : '/scroll-list-demo/index.vue',
         isRouter   : true,
@@ -404,12 +404,12 @@ const routerData = [
         children   : []
       },
       {
-        name       : '滚动列表',
-        path       : '/roll-list',
-        view       : '/roll-list-demo/index.vue',
+        name       : '滚动区域',
+        path       : '/roll-area',
+        view       : '/roll-area-demo/index.vue',
         isRouter   : true,
         isKeepalive: false,
-        icon       : 'ri-list-check',
+        icon       : 'ri-layout-masonry-line',
         type       : 'menu',
         children   : []
       }

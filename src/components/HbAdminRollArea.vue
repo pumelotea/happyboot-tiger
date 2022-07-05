@@ -20,6 +20,7 @@ let height = 0
 let shadowHeight = 0
 let sp = props.speed / 1000
 let end = false
+let isMouseHover = false
 
 function refresh(){
 
@@ -55,6 +56,13 @@ function doAnimationFrame(){
     if (end){
       return
     }
+
+    if (isMouseHover){
+      refresh()
+      doAnimationFrame()
+      return
+    }
+
     if (height > box.value.clientHeight){
       if (props.direction === 'down'){
         top += sp
@@ -70,6 +78,14 @@ function doAnimationFrame(){
   })
 }
 
+function onMouseEnter(){
+  isMouseHover = true
+}
+
+function onMouseLeaver(){
+  isMouseHover = false
+}
+
 onMounted(doAnimationFrame)
 
 onBeforeUnmount(()=>{
@@ -78,7 +94,7 @@ onBeforeUnmount(()=>{
 
 </script>
 <template>
-  <div class="hb-admin-roll-list-com" ref="box">
+  <div class="hb-admin-roll-list-com" ref="box" @mouseenter="onMouseEnter" @mouseleave="onMouseLeaver">
     <div class="roll-item" ref="refRoll1">
       <div class="list-item">
         <slot/>
