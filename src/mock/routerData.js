@@ -422,6 +422,16 @@ const routerData = [
         icon       : 'ri-layout-masonry-line',
         type       : 'menu',
         children   : []
+      },
+      {
+        name       : '虚拟列表',
+        path       : '/virtual-list',
+        view       : '/virtual-list-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-list-check',
+        type       : 'menu',
+        children   : []
       }
     ]
   },
