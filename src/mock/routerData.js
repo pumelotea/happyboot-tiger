@@ -404,6 +404,16 @@ const routerData = [
         children   : []
       },
       {
+        name       : '音频播放器',
+        path       : '/audio',
+        view       : '/audio-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-music-2-line',
+        type       : 'menu',
+        children   : []
+      },
+      {
         name       : '滚动区域',
         path       : '/roll-area',
         view       : '/roll-area-demo/index.vue',
