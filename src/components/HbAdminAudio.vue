@@ -1,7 +1,7 @@
 <script setup>
-import { useMessage, NSlider } from 'naive-ui'
+import {useMessage, NSlider, useThemeVars} from 'naive-ui'
 import { onMounted, ref } from 'vue'
-
+const themeVars = useThemeVars()
 const message = useMessage()
 
 const props = defineProps({
@@ -336,7 +336,7 @@ function handleVolume (val) {
 .hb-controls-wrap{
   width: 250px;
   height: 50px;
-  background-color: #f2f3f5;
+  background-color: v-bind(themeVars.buttonColor2);
   border-radius: 5px;
   display: flex;
   justify-content: center;

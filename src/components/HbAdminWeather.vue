@@ -1,8 +1,6 @@
 <script setup>
 import {ref} from "vue";
-import {NPopover, useThemeVars} from "naive-ui";
-
-const themeVars = useThemeVars()
+import {NPopover} from "naive-ui";
 
 const props = defineProps({
   isSimple: {
@@ -124,7 +122,6 @@ const weatherDict = ref({
   height: 59px;
   padding: 5px;
   box-sizing: border-box;
-  background-color: v-bind(themeVars.baseColor);
   display: flex;
   flex-direction: column;
   border-radius: 3px;
