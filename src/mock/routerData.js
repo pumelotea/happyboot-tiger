@@ -432,6 +432,16 @@ const routerData = [
         icon       : 'ri-list-check',
         type       : 'menu',
         children   : []
+      },
+      {
+        name       : '天气预报',
+        path       : '/weather',
+        view       : '/weather-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-cloud-line',
+        type       : 'menu',
+        children   : []
       }
     ]
   },
