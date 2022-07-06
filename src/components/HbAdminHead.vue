@@ -13,12 +13,12 @@ import {
   NBreadcrumbItem
 } from 'naive-ui'
 import { Moon, SunnyOutline, Notifications, CubeOutline, LogoGithub } from '@vicons/ionicons5'
-import { h, computed } from 'vue'
+import {h, computed, ref} from 'vue'
 import { isDarkTheme } from '@/global/config'
 import framework from '@/global/framework'
 import { useRouter } from 'vue-router'
 import security from '@/global/security'
-
+import HbAdminWeather from "./HbAdminWeather";
 const router = useRouter()
 
 function renderCustomHeader () {
@@ -99,6 +99,16 @@ function gotoGithub () {
   window.open('https://github.com/pumelotea/happyboot-tiger')
 }
 
+const info = ref({
+  date: '今日',
+  now: 28,
+  height: 36,
+  low: 22,
+  type: 'sun',
+  windDirection: '西南风',
+  windPower: '2级'
+})
+
 </script>
 
 <template>
@@ -143,6 +153,16 @@ function gotoGithub () {
       </div>
     </div>
     <div class="head-right-area head-item-center">
+      <hb-admin-weather
+          is-simple
+          :date="info.date"
+          :type="info.type"
+          :now="info.now"
+          :height="info.height"
+          :low="info.low"
+          :windDirection="info.windDirection"
+          :windPower="info.windPower"
+      />
       <n-switch v-model:value="isDarkTheme">
         <template #checked-icon>
           <n-icon :component="Moon" />
