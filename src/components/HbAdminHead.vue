@@ -18,6 +18,7 @@ import { isDarkTheme } from '@/global/config'
 import framework from '@/global/framework'
 import { useRouter } from 'vue-router'
 import security from '@/global/security'
+import HbAdminMessage from "@/components/HbAdminMessage";
 import HbAdminWeather from "./HbAdminWeather";
 const router = useRouter()
 
@@ -179,12 +180,16 @@ const info = ref({
         @click="gotoGithub"
       />
       <n-divider vertical />
-      <n-icon
-        size="25"
-        color="#CFCFCF"
-        :component="Notifications"
-      />
-      <n-badge value="99+" />
+      <hb-admin-message>
+        <div class="head-notify">
+          <n-icon
+              size="25"
+              color="#CFCFCF"
+              :component="Notifications"
+          />
+          <n-badge value="99+" />
+        </div>
+      </hb-admin-message>
       <n-divider vertical />
       <n-dropdown
         trigger="hover"
@@ -235,5 +240,11 @@ const info = ref({
   width: 100%;
   height: 50px;
   object-fit: cover;
+}
+
+.head-notify{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
