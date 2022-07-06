@@ -254,7 +254,10 @@ const HbPrevThumb = ref()
     ref="HbPrevWrap"
     class="hb-prev-wrap"
   >
-    <div class="hb-prev-mask" @click="handleClose"></div>
+    <div
+      class="hb-prev-mask"
+      @click="handleClose"
+    />
     <img
       ref="HbPrevImg"
       class="hb-prev-img"

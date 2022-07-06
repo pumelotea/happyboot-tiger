@@ -1,40 +1,40 @@
 <script setup>
-import {useMessage, NSlider} from 'naive-ui'
-import {nextTick, onMounted, ref, watch} from "vue";
+import { useMessage, NSlider } from 'naive-ui'
+import { onMounted, ref } from 'vue'
 
 const message = useMessage()
 
 const props = defineProps({
   url: {
-    type: String,
+    type   : String,
     default: ''
   },
   type: {
-    type: String,
-    default: 'controls' //controls：控制面板；simple：简洁按钮；voice：语音按钮
+    type   : String,
+    default: 'controls' // controls：控制面板；simple：简洁按钮；voice：语音按钮
   }
 })
 
-//音频播放状态
+// 音频播放状态
 const state = ref(false)
-//音频时长
+// 音频时长
 const duration = ref(0)
-//当前时长
+// 当前时长
 const nowDuration = ref(0)
 
 const progress = ref(0)
 
-function handleSlider(val) {
+function handleSlider (val) {
   progress.value = val
-  hbAudio.value.currentTime = duration.value * val /100
+  hbAudio.value.currentTime = duration.value * val / 100
 }
 
-function formatTooltip(val) {
+function formatTooltip (val) {
   return val + '%'
 }
 
-let hbAudio = ref()
-function initialAudio() {
+const hbAudio = ref()
+function initialAudio () {
   if (props.url) {
     nowDuration.value = 0
     hbAudio.value.oncanplay = () => {
@@ -46,7 +46,7 @@ function initialAudio() {
         }
       })
       hbAudio.value.addEventListener('ended', () => {
-        if (!loop) {
+        if (!loop.value) {
           state.value = false
         }
       })
@@ -56,27 +56,27 @@ function initialAudio() {
   }
 }
 
-function formatTime(time = 0) {
+function formatTime (time = 0) {
   if (time > 60) {
-    let m = Math.floor(time / 60)
-    let s = time%60
-    if (s<10) {
-      s = '0'+ s
+    const m = Math.floor(time / 60)
+    let s = time % 60
+    if (s < 10) {
+      s = '0' + s
     }
-    return m + "'" + s + '"'
+    return m + '\'' + s + '"'
   } else {
     return time + '"'
   }
 }
 
-function getFormat(time = 0) {
+function getFormat (time = 0) {
   if (time > 60) {
-    let m = Math.floor(time / 60)
-    let s = time%60
-    if (s<10) {
-      s = '0'+ s
+    const m = Math.floor(time / 60)
+    let s = time % 60
+    if (s < 10) {
+      s = '0' + s
     }
-    return m + ":" + s
+    return m + ':' + s
   } else {
     let res = time
     if (time < 10) {
@@ -92,30 +92,29 @@ onMounted(() => {
   initialAudio()
 })
 
-
-function handlePlay() {
+function handlePlay () {
   hbAudio.value.play()
   state.value = true
 }
 
-function handlePause() {
+function handlePause () {
   hbAudio.value.pause()
   state.value = false
 }
 
-function handleReplay() {
+function handleReplay () {
   hbAudio.value.currentTime = 0
   nowDuration.value = duration.value
 }
 
 const loop = ref(false)
-function handleLoop(state) {
+function handleLoop (state) {
   loop.value = state
   hbAudio.value.loop = state
 }
 
 const muted = ref(false)
-function handleMuted(state) {
+function handleMuted (state) {
   if (state) {
     volume.value = 0
   } else {
@@ -126,7 +125,7 @@ function handleMuted(state) {
 }
 
 const volume = ref(100)
-function handleVolume(val) {
+function handleVolume (val) {
   if (val > 0) {
     muted.value = false
     hbAudio.value.muted = false
@@ -141,49 +140,108 @@ function handleVolume(val) {
 
 <template>
   <div>
-    <audio ref="hbAudio" :src="props.url" hidden="true"></audio>
+    <audio
+      ref="hbAudio"
+      :src="props.url"
+      hidden="true"
+    />
     <template v-if="props.type === 'simple'">
-      <div class="hb-simple-btn" :class="state ? 'hb-simple-rotate' : ''"  @click="state ? handlePause() : handlePlay()">
-        <i class="ri-disc-line" v-if="state"></i>
-        <i class="ri-volume-off-vibrate-line" v-else></i>
+      <div
+        class="hb-simple-btn"
+        :class="state ? 'hb-simple-rotate' : ''"
+        @click="state ? handlePause() : handlePlay()"
+      >
+        <i
+          v-if="state"
+          class="ri-disc-line"
+        />
+        <i
+          v-else
+          class="ri-volume-off-vibrate-line"
+        />
       </div>
     </template>
     <template v-if="props.type === 'voice'">
       <div class="hb-voice-wrap">
-        <div class="hb-voice-btn" @click="state ? handlePause() : handlePlay()">
+        <div
+          class="hb-voice-btn"
+          @click="state ? handlePause() : handlePlay()"
+        >
           <div :class="state ? 'hb-volume-change' : 'hb-voice-icon'">
-            <i class="ri-volume-down-line"></i>
-            <i class="ri-volume-up-line"></i>
+            <i class="ri-volume-down-line" />
+            <i class="ri-volume-up-line" />
           </div>
-          <div class="hb-voice-text">{{ formatTime(nowDuration) }}</div>
+          <div class="hb-voice-text">
+            {{ formatTime(nowDuration) }}
+          </div>
         </div>
         <div class="hb-restart-box">
-          <i class="ri-restart-line hb-restart" title="重新播放" @click="handleReplay" v-if="!state || nowDuration === duration"></i>
+          <i
+            v-if="!state || nowDuration === duration"
+            class="ri-restart-line hb-restart"
+            title="重新播放"
+            @click="handleReplay"
+          />
         </div>
       </div>
     </template>
     <template v-if="props.type === 'controls'">
       <div class="hb-controls-wrap">
         <div class="hb-controls-btn">
-          <i class="ri-pause-fill" v-if="state" @click="handlePause"></i>
-          <i class="ri-play-fill" v-else @click="handlePlay"></i>
+          <i
+            v-if="state"
+            class="ri-pause-fill"
+            @click="handlePause"
+          />
+          <i
+            v-else
+            class="ri-play-fill"
+            @click="handlePlay"
+          />
         </div>
         <div class="hb-controls-content">
-          <n-slider v-model:value="progress" @update:value="handleSlider" :format-tooltip="formatTooltip"/>
+          <n-slider
+            v-model:value="progress"
+            :format-tooltip="formatTooltip"
+            @update:value="handleSlider"
+          />
           <div class="hb-controls-time">
             {{ getFormat(nowDuration) }} / {{ getFormat(duration) }}
           </div>
         </div>
         <div class="hb-controls-voice">
           <div class="hb-controls-icon">
-            <i class="ri-refresh-fill" title="不循环" v-if="!loop" @click="handleLoop(true)"></i>
-            <i class="ri-refresh-line" title="循环" v-else @click="handleLoop(false)"></i>
+            <i
+              v-if="!loop"
+              class="ri-refresh-fill"
+              title="不循环"
+              @click="handleLoop(true)"
+            />
+            <i
+              v-else
+              class="ri-refresh-line"
+              title="循环"
+              @click="handleLoop(false)"
+            />
           </div>
           <div class="hb-controls-icon-volume">
-            <i class="ri-volume-mute-line" title="禁音" v-if="muted" @click="handleMuted(false)"></i>
-            <i class="ri-volume-up-line" v-else @click="handleMuted(true)"></i>
+            <i
+              v-if="muted"
+              class="ri-volume-mute-line"
+              title="禁音"
+              @click="handleMuted(false)"
+            />
+            <i
+              v-else
+              class="ri-volume-up-line"
+              @click="handleMuted(true)"
+            />
             <div class="hb-controls-volume">
-              <n-slider v-model:value="volume" @update:value="handleVolume" :format-tooltip="formatTooltip" />
+              <n-slider
+                v-model:value="volume"
+                :format-tooltip="formatTooltip"
+                @update:value="handleVolume"
+              />
             </div>
           </div>
         </div>

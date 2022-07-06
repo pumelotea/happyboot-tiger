@@ -2,9 +2,8 @@
 基本用法
 </hb-demo>
 <script setup>
-import HbAdminScrollList from "@/components/HbAdminScrollList";
-import {nextTick, onMounted, ref} from "vue";
-import HbAdminImage from "@/components/HbAdminImage";
+import HbAdminScrollList from '@/components/HbAdminScrollList'
+import { ref } from 'vue'
 
 const list = ref([
   'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
@@ -24,9 +23,17 @@ const list = ref([
 </script>
 
 <template>
-  <hb-admin-scroll-list style="height: 600px" :list="list" :animation="500" :interval="1000">
+  <hb-admin-scroll-list
+    style="height: 600px"
+    :list="list"
+    :animation="500"
+    :interval="1000"
+  >
     <template #default="scope">
-      <img :src="scope.data" style="height: 100px;"/>
+      <img
+        :src="scope.data"
+        style="height: 100px;"
+      >
     </template>
   </hb-admin-scroll-list>
 </template>

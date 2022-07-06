@@ -190,7 +190,7 @@ const routerData = [
     icon       : 'ri-collage-fill',
     type       : 'menu',
     budge      : {
-      value: '16',
+      value: '21',
       type : 'info'
     },
     children: [
@@ -245,7 +245,7 @@ const routerData = [
         type       : 'menu',
         children   : [],
         budge      : {
-          value: '新',
+          value: '开发中',
           type : 'info'
         }
       },
@@ -289,7 +289,7 @@ const routerData = [
         type       : 'menu',
         children   : [],
         budge      : {
-          value: '新',
+          value: '开发中',
           type : 'info'
         }
       },

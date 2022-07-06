@@ -1,5 +1,5 @@
 <hb-demo>
-固定Item高度，性能更强
+不定高Item，初始化耗时比较大
 </hb-demo>
 <script setup>
 import { NSkeleton, NButton, NAvatar } from 'naive-ui'
@@ -23,7 +23,7 @@ const pics = [
 const list = ref([])
 
 function addData () {
-  for (let i = 0; i < 10000; i++) {
+  for (let i = 0; i < 100; i++) {
     list.value.push({
       avatar: pics[i % pics.length],
       name  : '张三------' + i,
@@ -49,7 +49,10 @@ onMounted(addData)
     列表长度 {{ list.length }}
   </div>
   <div class="list-demo">
-    <hb-admin-virtual-list :data="list">
+    <hb-admin-virtual-list
+      :data="list"
+      item-height-mode="auto"
+    >
       <template #default="{item}">
         <div class="user-card">
           <div class="avatar">
