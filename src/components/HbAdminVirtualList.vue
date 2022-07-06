@@ -1,90 +1,88 @@
 <script setup>
-import {nextTick, onBeforeUnmount, onMounted, ref, toRefs, watch} from "vue";
-import {useDebounceFn} from "@vueuse/core";
-
+import { nextTick, onBeforeUnmount, onMounted, ref, toRefs, watch } from 'vue'
+import { useDebounceFn } from '@vueuse/core'
 
 const props = defineProps({
   data: {
-    type: Array,
-    require:false,
+    type   : Array,
+    require: false,
     default: () => []
   },
   itemHeightMode: {
-    type: String,
-    require:false,
-    default: 'fixed', // auto 、 fixed
+    type   : String,
+    require: false,
+    default: 'fixed' // auto 、 fixed
   },
   triggerMaskSpeed: {
-    type: Number,
-    require:false,
+    type   : Number,
+    require: false,
     default: 200
   },
   maxItemRender: {
-    type: Number,
-    require:false,
+    type   : Number,
+    require: false,
     default: 100
   },
   padSize: {
-    type: Number,
-    require:false,
+    type   : Number,
+    require: false,
     default: 10
   }
 })
 
-const {data, itemHeightMode, triggerMaskSpeed, maxItemRender, padSize} = toRefs(props)
+const { data, itemHeightMode, triggerMaskSpeed, maxItemRender, padSize } = toRefs(props)
 
-let list = ref([]) //原始数据
-let items = ref([]) //列表项
-let placeHolderItem = ref([])
-let placeHolderItemRefs = ref([])
-let renderList = ref([])
-let container = ref(null)
-let listBox = ref(null)
+const list = ref([]) // 原始数据
+const items = ref([]) // 列表项
+const placeHolderItem = ref([])
+const placeHolderItemRefs = ref([])
+const renderList = ref([])
+const container = ref(null)
+const listBox = ref(null)
 const height = ref(0)
 let shadowStartIndex = -1
 const speed = ref(0)
 let end = false
 
-
-function setPlaceHolderRef(el) {
+function setPlaceHolderRef (el) {
   if (el) {
     placeHolderItemRefs.value.push(el)
   }
 }
 
-function createItem(data) {
+function createItem (data) {
   return {
-    offsetTop: 0,
+    offsetTop : 0,
     itemHeight: 0,
-    rawData: data,
+    rawData   : data
   }
 }
 
-function getItemHeight(item) {
+function getItemHeight (item) {
   return item && item.clientHeight
 }
 
-function getContainerHeight() {
+function getContainerHeight () {
   return container.value.clientHeight
 }
 
-function afterRender() {
+function afterRender () {
   placeHolderItem.value.forEach((item, index) => {
-    //计算每个高度
+    // 计算每个高度
     const itemRef = placeHolderItemRefs.value[index]
     const itemHeight = getItemHeight(itemRef)
     item.itemHeight = itemHeight
-    //计算每个offset
+    // 计算每个offset
     item.offsetTop = height.value
     height.value += itemHeight
     items.value.push(item)
   })
-  //清空这一批渲染
+  // 清空这一批渲染
   placeHolderItem.value = []
   placeHolderItemRefs.value = []
 }
 
-async function initItem() {
+async function initItem () {
   height.value = 0
   shadowStartIndex = -1
   items.value = []
@@ -104,12 +102,12 @@ async function initItem() {
 
     if (itemHeightMode.value === 'fixed') {
       if (i === 0) {
-        //只渲染一条数据
+        // 只渲染一条数据
         placeHolderItem.value.push(createItem(list.value[i]))
         await nextTick(afterRender)
         firstItemHeight = items.value[0].itemHeight
       } else {
-        //直接计算
+        // 直接计算
         const item = createItem(list.value[i])
         item.offsetTop = height.value
         item.itemHeight = firstItemHeight
@@ -120,7 +118,7 @@ async function initItem() {
   }
 }
 
-function getStartItemIndex(offsetTop) {
+function getStartItemIndex (offsetTop) {
   for (let i = 0; i < items.value.length; i++) {
     if (items.value[i].offsetTop >= offsetTop) {
       return i
@@ -129,7 +127,7 @@ function getStartItemIndex(offsetTop) {
   return 0
 }
 
-function getEndItemIndex(startIndex, offsetTop) {
+function getEndItemIndex (startIndex, offsetTop) {
   const pHeight = getContainerHeight()
   for (let i = startIndex; i < items.value.length; i++) {
     if (items.value[i].offsetTop + items.value[i].itemHeight >= offsetTop + pHeight) {
@@ -139,7 +137,7 @@ function getEndItemIndex(startIndex, offsetTop) {
   return 0
 }
 
-function updateRenderList(startIndex, endIndex) {
+function updateRenderList (startIndex, endIndex) {
   renderList.value = []
   for (let i = startIndex; i < endIndex; i++) {
     if (items.value[i]) {
@@ -148,10 +146,10 @@ function updateRenderList(startIndex, endIndex) {
   }
 }
 
-function render(scrollTop) {
+function render (scrollTop) {
   const offsetTop = scrollTop
-  let sI = getStartItemIndex(offsetTop)
-  let eI = getEndItemIndex(sI, offsetTop)
+  const sI = getStartItemIndex(offsetTop)
+  const eI = getEndItemIndex(sI, offsetTop)
 
   if (items.value.length === 0) {
     return
@@ -163,7 +161,7 @@ function render(scrollTop) {
   }
 }
 
-function destroy() {
+function destroy () {
   end = true
 }
 
@@ -178,12 +176,12 @@ const updateLoadState = useDebounceFn(() => {
   }
 }, 10)
 
-function tickRollSpeed() {
+function tickRollSpeed () {
   if (end) {
     return
   }
   const y = listBox.value.scrollTop
-  let delta = y - lastY
+  const delta = y - lastY
   lastY = y
   speed.value = Math.abs(delta)
 
@@ -193,14 +191,14 @@ function tickRollSpeed() {
   })
 }
 
-function onScroll(e) {
+function onScroll (e) {
   render(e.target.scrollTop)
 }
 
 watch(data, async () => {
   await initItem()
   render(listBox.value.scrollTop)
-}, {deep: true})
+}, { deep: true })
 
 onMounted(async () => {
   tickRollSpeed()
@@ -212,24 +210,43 @@ onBeforeUnmount(destroy)
 
 </script>
 <template>
-  <div class="hb-admin-virtual-list-com" ref="container">
-    <div class="virtual-list-placeholder" @scroll="onScroll" ref="listBox">
-      <div class="virtual-list-scroll-box" :style="`height:${height}px`">
-        <div class="virtual-list-item" v-for="e in renderList"
-             :style="`transform: translate3d(0, ${e.offsetTop}px, 0);`">
+  <div
+    ref="container"
+    class="hb-admin-virtual-list-com"
+  >
+    <div
+      ref="listBox"
+      class="virtual-list-placeholder"
+      @scroll="onScroll"
+    >
+      <div
+        class="virtual-list-scroll-box"
+        :style="`height:${height}px`"
+      >
+        <div
+          v-for="(e,i) in renderList"
+          :key="i"
+          class="virtual-list-item"
+          :style="`transform: translate3d(0, ${e.offsetTop}px, 0);`"
+        >
           <template v-if="needLoading">
-            <slot name="loading"></slot>
+            <slot name="loading" />
           </template>
           <template v-else>
-            <slot :item="e.rawData"></slot>
+            <slot :item="e.rawData" />
           </template>
         </div>
       </div>
     </div>
     <div class="virtual-list-temp-box">
-      <template v-for="e in placeHolderItem">
-        <div class="virtual-list-item" :ref="setPlaceHolderRef">
-          <slot :item="e.rawData"></slot>
+      <template
+        v-for="e in placeHolderItem"
+      >
+        <div
+          :ref="setPlaceHolderRef"
+          class="virtual-list-item"
+        >
+          <slot :item="e.rawData" />
         </div>
       </template>
     </div>

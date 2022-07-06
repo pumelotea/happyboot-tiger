@@ -2,7 +2,7 @@
 基本用法
 </hb-demo>
 <script setup>
-import HbAdminRollArea from "@/components/HbAdminRollArea";
+import HbAdminRollArea from '@/components/HbAdminRollArea'
 import { ref } from 'vue'
 
 const list = ref([
@@ -22,11 +22,23 @@ const list = ref([
 </script>
 <template>
   <div style="height: 600px;width: 400px;box-shadow: inset 0 0 5px 10px rgba(0,0,0,0.1);border-radius: 5px">
-    <hb-admin-roll-area :speed="3000" direction="up">
-      <div v-for="e in list" class="card">
-        <img :src="e" style="height: 100%;width: 100%;display: block;">
+    <hb-admin-roll-area
+      :speed="3000"
+      direction="up"
+    >
+      <div
+        v-for="(e,i) in list"
+        :key="i"
+        class="card"
+      >
+        <img
+          :src="e"
+          style="height: 100%;width: 100%;display: block;"
+        >
       </div>
-      <div style="height: 30px;display: flex;justify-content: center;align-items: center;background: #d0d0d0">END</div>
+      <div style="height: 30px;display: flex;justify-content: center;align-items: center;background: #d0d0d0">
+        END
+      </div>
     </hb-admin-roll-area>
   </div>
 </template>

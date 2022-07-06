@@ -1,18 +1,18 @@
 <script setup>
 
-import {nextTick, onBeforeUnmount, onMounted, ref, watch} from "vue";
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 const props = defineProps({
   list: {
-    type: Array,
+    type   : Array,
     default: () => []
   },
   animation: {
-    type: Number,
+    type   : Number,
     default: 300
   },
   interval: {
-    type: Number,
+    type   : Number,
     default: 500
   }
 })
@@ -24,7 +24,7 @@ function setItemRef (el) {
   HbRollItemRef.push(el)
 }
 
-let showList = ref([])
+const showList = ref([])
 let wrapHeight = 0
 let itemHeightList = []
 let timer = null
@@ -38,7 +38,7 @@ watch(props.list, () => {
   initialList()
 })
 
-function initialList() {
+function initialList () {
   showList.value = []
   itemHeightList = []
 
@@ -63,7 +63,7 @@ function initialList() {
   })
 }
 
-function rollList() {
+function rollList () {
   timer = setInterval(() => {
     let time = 0
     for (let i = 0; i <= props.animation; i++) {
@@ -79,7 +79,7 @@ function rollList() {
     }
   }, (props.interval + props.animation))
 
-  function scrollAnimation(top, time) {
+  function scrollAnimation (top, time) {
     setTimeout(() => {
       if (HbRollWrap.value) {
         HbRollWrap.value.scrollTop = top
@@ -107,9 +107,16 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="hb-roll-wrap" ref="HbRollWrap">
-    <div :ref="setItemRef" v-for="(item, index) in showList" :key="index">
-      <slot :data="item"/>
+  <div
+    ref="HbRollWrap"
+    class="hb-roll-wrap"
+  >
+    <div
+      v-for="(item, index) in showList"
+      :ref="setItemRef"
+      :key="index"
+    >
+      <slot :data="item" />
     </div>
   </div>
 </template>

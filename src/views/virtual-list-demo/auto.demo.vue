@@ -2,9 +2,9 @@
 不定高Item，初始化耗时比较大
 </hb-demo>
 <script setup>
-import { NSkeleton,NButton, NAvatar} from 'naive-ui'
-import {onMounted, ref} from "vue";
-import HbAdminVirtualList from "@/components/HbAdminVirtualList";
+import { NSkeleton, NButton, NAvatar } from 'naive-ui'
+import { onMounted, ref } from 'vue'
+import HbAdminVirtualList from '@/components/HbAdminVirtualList'
 
 const pics = [
   'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
@@ -22,13 +22,13 @@ const pics = [
 ]
 const list = ref([])
 
-function addData(){
-  for (let i = 0; i <100; i++) {
+function addData () {
+  for (let i = 0; i < 100; i++) {
     list.value.push({
       avatar: pics[i % pics.length],
-      name: "张三------" + i,
-      age: (Math.random() * 100 + 1).toFixed(0),
-      score: (Math.random() * 10 + 1).toFixed(2)
+      name  : '张三------' + i,
+      age   : (Math.random() * 100 + 1).toFixed(0),
+      score : (Math.random() * 10 + 1).toFixed(2)
     })
   }
 }
@@ -37,14 +37,30 @@ onMounted(addData)
 
 </script>
 <template>
-  <div style="margin-bottom: 10px"><n-button type="info" @click="addData">添加数据</n-button></div>
-  <div style="margin-bottom: 10px">列表长度 {{list.length}}</div>
+  <div style="margin-bottom: 10px">
+    <n-button
+      type="info"
+      @click="addData"
+    >
+      添加数据
+    </n-button>
+  </div>
+  <div style="margin-bottom: 10px">
+    列表长度 {{ list.length }}
+  </div>
   <div class="list-demo">
-    <hb-admin-virtual-list :data="list" item-height-mode="auto">
-      <template v-slot:default="{item}">
+    <hb-admin-virtual-list
+      :data="list"
+      item-height-mode="auto"
+    >
+      <template #default="{item}">
         <div class="user-card">
           <div class="avatar">
-            <n-avatar size="large" :src="item.avatar" round></n-avatar>
+            <n-avatar
+              size="large"
+              :src="item.avatar"
+              round
+            />
           </div>
           <div class="text">
             <div>{{ item.name }}</div>
@@ -56,11 +72,20 @@ onMounted(addData)
       <template #loading>
         <div class="user-card">
           <div class="avatar">
-            <n-skeleton circle size="large"/>
+            <n-skeleton
+              circle
+              size="large"
+            />
           </div>
           <div class="text">
-            <n-skeleton text :repeat="2"/>
-            <n-skeleton text style="width: 60%"/>
+            <n-skeleton
+              text
+              :repeat="2"
+            />
+            <n-skeleton
+              text
+              style="width: 60%"
+            />
           </div>
         </div>
       </template>
