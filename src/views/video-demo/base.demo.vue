@@ -15,7 +15,7 @@ const box = ref(null)
 function init () {
   new Player({
     el            : box.value,
-    url           : '9c67d262-f53e-4358-9f99-beef9538e579.mp4',
+    url           : 'https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/public/9c67d262-f53e-4358-9f99-beef9538e579.mp4',
     controlPlugins: [
       play,
       fullscreen,
