@@ -102,7 +102,7 @@ async function createQrCode(){
   <div>
     <img class="image-bg" v-if="!loadedVideoBg" src="/src/assets/bg-2.jpg"/>
     <video @loadeddata="onVideoBgLoad" @error="onVideoBgError" class="bg-video" loop muted autoplay
-           src="/9c67d262-f53e-4358-9f99-beef9538e579.mp4"></video>
+           src="https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/public/9c67d262-f53e-4358-9f99-beef9538e579.mp4"></video>
     <n-layout class="hb-admin-login" content-style="width:100%;">
       <n-space vertical justify="center" align="center" style="height: 100%;width: 100%;">
         <n-card hoverable class="hb-card animate__animated animate__fadeIn animate__slow" content-style="height: 180px">
