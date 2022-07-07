@@ -24,7 +24,7 @@ const list = ref([
 
 <template>
   <hb-admin-scroll-list
-    style="height: 600px"
+    style="height: 600px;width: 300px;background-color: #E1E1E1;"
     :list="list"
     :animation="500"
     :interval="1000"
@@ -32,7 +32,7 @@ const list = ref([
     <template #default="scope">
       <img
         :src="scope.data"
-        style="height: 100px;"
+        style="width: 290px;margin: 5px"
       >
     </template>
   </hb-admin-scroll-list>
