@@ -7,7 +7,7 @@ import HbAdminAudio from '@/components/HbAdminAudio.vue'
 
 <template>
   <div>
-    <hb-admin-audio url="/audio/music.mp3" />
+    <hb-admin-audio url="https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/public/audio/music.mp3" />
   </div>
 </template>
 
