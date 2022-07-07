@@ -172,12 +172,12 @@ function handleVolume (val) {
             <i class="ri-volume-up-line" />
           </div>
           <div class="hb-voice-text">
-            {{ formatTime(nowDuration) }}
+            {{ nowDuration === 0 ? formatTime(duration) : formatTime(nowDuration) }}
           </div>
         </div>
         <div class="hb-restart-box">
           <i
-            v-if="!state || nowDuration === duration"
+            v-if="!state && nowDuration !== 0"
             class="ri-restart-line hb-restart"
             title="重新播放"
             @click="handleReplay"
@@ -255,7 +255,7 @@ function handleVolume (val) {
   width: 34px;
   height: 34px;
   font-size: 26px;
-  color: #555;
+  color: v-bind(themeVars.textColor3);
   border: 1px solid #f2f3f5;
   display: flex;
   justify-content: center;
@@ -265,7 +265,7 @@ function handleVolume (val) {
   cursor: pointer;
 }
 .hb-simple-btn:hover{
-  background-color: rgba(200,200,200,0.05);
+  background-color: rgba(200,200,200,0.1);
 }
 .hb-simple-rotate {
   animation: myRotating 3s linear infinite;
@@ -289,17 +289,21 @@ function handleVolume (val) {
 .hb-voice-btn{
   width: 74px;
   height: 29px;
-  border: 1px solid #999;
   border-radius: 50px;
   font-size: 22px;
-  color: #666;
+  color: v-bind(themeVars.textColor3);
+  border: 1px solid #f2f3f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 4px rgba(0, 0, 0, .04);
   display: flex;
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
 }
+.hb-voice-btn:hover{
+  background-color: rgba(200,200,200,0.1);
+}
 .hb-voice-text{
-  color: #333;
+  color: v-bind(themeVars.textColor2);
   font-size: 14px;
 }
 .hb-voice-icon{
@@ -345,17 +349,18 @@ function handleVolume (val) {
   box-sizing: border-box;
 }
 .hb-controls-btn{
-  width: 26px;
-  height: 26px;
+  width: 33px;
+  height: 33px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 26px;
   cursor: pointer;
   border-radius: 50px;
+  transition: background-color .3s;
 }
 .hb-controls-btn:hover{
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0.15);
 }
 .hb-controls-content{
   flex: 1;
@@ -384,6 +389,7 @@ function handleVolume (val) {
   align-items: center;
   padding: 5px;
   box-sizing: border-box;
+  transition: background-color .3s;
 }
 .hb-controls-icon-volume{
   min-width: 23px;
@@ -396,9 +402,10 @@ function handleVolume (val) {
   align-items: center;
   padding: 5px;
   box-sizing: border-box;
+  transition: background-color .3s;
 }
 .hb-controls-icon:hover, .hb-controls-icon-volume:hover{
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0.15);
 }
 .hb-controls-volume{
   width: 0;
