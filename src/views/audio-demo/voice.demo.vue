@@ -8,7 +8,7 @@ import HbAdminAudio from '@/components/HbAdminAudio.vue'
 <template>
   <div>
     <hb-admin-audio
-      url="https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/public/audio/music.mp3"
+      url="https://www.cambridgeenglish.org/images/506891-a2-key-for-schools-listening-sample-test.mp3"
       type="voice"
     />
   </div>

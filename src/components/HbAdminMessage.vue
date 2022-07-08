@@ -81,7 +81,7 @@ const notice = [
           <div class="message-list">
             <div class="message-item" v-for="e in messages">
               <div class="message-icon">
-                <n-icon-wrapper :color="e.color" :size="40" border-radius="100">
+                <n-icon-wrapper :color="e.color" :size="40" :border-radius="100">
                   <n-icon  :size="25">
                     <i :class="e.icon"></i>
                   </n-icon>
