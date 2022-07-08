@@ -1,6 +1,6 @@
 <script setup>
 import {reactive, ref} from 'vue'
-import { NButton, NIcon, useMessage,  NForm, NFormItem, NInput, NInputGroup, NInputGroupLabel, NSpace, NRadio, NRadioGroup, NCard } from 'naive-ui'
+import { NButton, NIcon, useMessage,  NForm, NFormItem, NInput, NInputNumber, NInputGroup, NInputGroupLabel, NSpace, NRadio, NRadioGroup, NCard } from 'naive-ui'
 import { CloudUploadOutline } from '@vicons/ionicons5'
 import { watermark } from '@/utils/imageFactory'
 
@@ -191,11 +191,11 @@ function handleResult() {
           <n-form-item label="底图图片宽高">
             <n-input-group>
               <n-input-group-label>宽度</n-input-group-label>
-              <n-input v-model:value="form.image.width"></n-input>
+              <n-input-number :show-button="false" v-model:value="form.image.width"></n-input-number>
               <n-input-group-label>px</n-input-group-label>
               <div style="display: flex;align-items: center;padding:0 10px;">-</div>
               <n-input-group-label>高度</n-input-group-label>
-              <n-input v-model:value="form.image.height"></n-input>
+              <n-input-number :show-button="false" v-model:value="form.image.height"></n-input-number>
               <n-input-group-label>px</n-input-group-label>
             </n-input-group>
           </n-form-item>
@@ -226,11 +226,11 @@ function handleResult() {
           <n-form-item label="水印图片宽高">
             <n-input-group>
               <n-input-group-label>宽度</n-input-group-label>
-              <n-input v-model:value="form.sign.width"></n-input>
+              <n-input-number :show-button="false" v-model:value="form.sign.width"></n-input-number>
               <n-input-group-label>px</n-input-group-label>
               <div style="display: flex;align-items: center;padding:0 10px;">-</div>
               <n-input-group-label>高度</n-input-group-label>
-              <n-input v-model:value="form.sign.height"></n-input>
+              <n-input-number :show-button="false" v-model:value="form.sign.height"></n-input-number>
               <n-input-group-label>px</n-input-group-label>
             </n-input-group>
           </n-form-item>
@@ -249,11 +249,11 @@ function handleResult() {
           <n-form-item label="水印位置参数" v-if="form.sign.position === 'free'">
             <n-input-group>
               <n-input-group-label>距左</n-input-group-label>
-              <n-input v-model:value="form.sign.left"></n-input>
+              <n-input-number :show-button="false" v-model:value="form.sign.left"></n-input-number>
               <n-input-group-label>px</n-input-group-label>
               <div style="display: flex;align-items: center;padding:0 10px;">-</div>
               <n-input-group-label>距顶</n-input-group-label>
-              <n-input v-model:value="form.sign.top"></n-input>
+              <n-input-number :show-button="false" v-model:value="form.sign.top"></n-input-number>
               <n-input-group-label>px</n-input-group-label>
             </n-input-group>
           </n-form-item>
