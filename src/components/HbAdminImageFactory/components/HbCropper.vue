@@ -1,6 +1,6 @@
 <script setup>
 import {computed, reactive, ref, watch} from 'vue'
-import { NButton, NIcon, useMessage,  NForm, NFormItem, NInput, NInputGroup, NInputGroupLabel, NSpace, NRadio, NRadioGroup, NCard, NSlider } from 'naive-ui'
+import { NButton, NIcon, useMessage,  NForm, NFormItem, NInput, NInputNumber, NInputGroup, NInputGroupLabel, NSpace, NRadio, NRadioGroup, NCard, NSlider } from 'naive-ui'
 import { CloudUploadOutline } from '@vicons/ionicons5'
 import { cropper, resize } from '@/utils/imageFactory'
 
@@ -173,11 +173,11 @@ function handleResult() {
           <n-form-item label="底图图片宽高">
             <n-input-group>
               <n-input-group-label>宽度</n-input-group-label>
-              <n-input v-model:value="form.width"></n-input>
+              <n-input-number :show-button="false" v-model:value="form.width"></n-input-number>
               <n-input-group-label>px</n-input-group-label>
               <div style="display: flex;align-items: center;padding:0 10px;">-</div>
               <n-input-group-label>高度</n-input-group-label>
-              <n-input v-model:value="form.height"></n-input>
+              <n-input-number :show-button="false" v-model:value="form.height"></n-input-number>
               <n-input-group-label>px</n-input-group-label>
             </n-input-group>
           </n-form-item>
