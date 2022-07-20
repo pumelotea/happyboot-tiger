@@ -16,8 +16,8 @@ const router = useRouter()
 const message = useMessage()
 
 const loginForm = reactive({
-  username: '',
-  password: ''
+  username: 'admin',
+  password: 'admin'
 })
 
 const loginFormRef = ref(null)
