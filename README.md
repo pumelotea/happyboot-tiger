@@ -13,8 +13,8 @@
 
 ## 演示地址
 > 废话不多说，具体效果请直接看演示地址！   
-https://tiger.happykit.org
-
+- https://tiger.happykit.org
+- https://happyboot-tiger-pumelotea.vercel.app
 ## 特性 
 - 菜单权限、按钮权限控制
 - 用户状态统一管理
