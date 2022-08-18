@@ -442,6 +442,20 @@ const routerData = [
         icon       : 'ri-cloud-line',
         type       : 'menu',
         children   : []
+      },
+      {
+        name       : 'Markdown编辑器',
+        path       : '/markdown',
+        view       : '/markdown-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-markdown-line',
+        type       : 'menu',
+        children   : [],
+        budge      : {
+          value: '新',
+          type : 'error'
+        },
       }
     ]
   },
