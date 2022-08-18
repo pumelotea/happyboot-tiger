@@ -36,7 +36,8 @@
     "xgplayer": "^2.31.6",
     "github-markdown-css": "^5.1.0",
     "highlight.js": "^11.6.0",
-    "katex": "^0.16.0"
+    "katex": "^0.16.0",
+    "naive-ui": "^2.32.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.0",
@@ -46,7 +47,6 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-vue": "^9.1.1",
-    "naive-ui": "^2.30.5",
     "vfonts": "^0.0.3",
     "vite": "^2.8.0",
     "vite-plugin-eslint": "^1.6.1"
