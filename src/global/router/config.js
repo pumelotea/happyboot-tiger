@@ -43,7 +43,8 @@ const beforeInterceptor = createDefaultRouterInterceptor({
     parentRoute: {
       name: 'home',
       path: '/',
-      component: () => import('/src/views/home/index.vue')
+      component: () => import('/src/views/home/index.vue'),
+      redirect: '/components'
     },
     routes: [],
     viewLoader(view) {
