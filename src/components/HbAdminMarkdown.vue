@@ -70,10 +70,19 @@ onMounted(()=>{
 </script>
 
 <template>
-  <Editor :locale="zh_Hans" :value="text" :plugins="plugins" :placeholder="placeholder" @change="handleChange" />
+  <div class="hb-admin-markdown">
+    <Editor style="height: 100%" :locale="zh_Hans" :value="text" :plugins="plugins" :placeholder="placeholder" @change="handleChange" />
+  </div>
 </template>
 
 <style>
+
+.hb-admin-markdown{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 .bytemd {
   height: 100% !important;
   z-index: 1;
