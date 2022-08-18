@@ -20,10 +20,10 @@ import {
   dateZhCN
 } from "naive-ui"
 
-import {theme, isMenuCollapsed} from "../../global/config";
+import {theme, isMenuCollapsed} from "@/global/config";
 import {h, ref} from "vue";
 import {CubeOutline, AlbumsOutline} from "@vicons/ionicons5";
-import framework from "../../global/framework";
+import framework from "@/global/framework";
 
 function onLayoutCollapsed(collapsed) {
   isMenuCollapsed.value = collapsed
