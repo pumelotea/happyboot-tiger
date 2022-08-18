@@ -81,7 +81,7 @@ function openUserList() {
           </n-layout-header>
           <n-layout-content class="main-content" embedded>
             <router-view v-slot="{ Component }">
-              <component :is="Component"></component>
+              <component class="animate__animated animate__fadeIn" :is="Component"></component>
             </router-view>
             <div class="empty-route-body" v-if="!currentMenuRoute">
               <n-empty size="huge" description="还没打开页面呐 ~">
