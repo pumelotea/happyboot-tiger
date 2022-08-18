@@ -1,5 +1,7 @@
 # happyboot-tiger
 
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=pumelotea&locale=cn&repo=happyboot-tiger&show_icons=true)](https://github.com/pumelotea/happyboot-tiger)
+
 [![OSCS Status](https://www.oscs1024.com/platform/badge/pumelotea/happyboot-tiger.svg?size=small)](https://www.oscs1024.com/project/pumelotea/happyboot-tiger?ref=badge_small)
 
 ## 效果图
