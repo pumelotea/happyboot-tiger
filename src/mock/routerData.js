@@ -190,7 +190,7 @@ const routerData = [
     icon       : 'ri-collage-fill',
     type       : 'menu',
     budge      : {
-      value: '21',
+      value: '22',
       type : 'info'
     },
     children: [
@@ -442,6 +442,20 @@ const routerData = [
         icon       : 'ri-cloud-line',
         type       : 'menu',
         children   : []
+      },
+      {
+        name       : 'Markdown编辑器',
+        path       : '/markdown',
+        view       : '/markdown-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-markdown-line',
+        type       : 'menu',
+        children   : [],
+        budge      : {
+          value: '新',
+          type : 'error'
+        },
       }
     ]
   },

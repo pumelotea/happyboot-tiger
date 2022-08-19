@@ -20,10 +20,10 @@ import {
   dateZhCN
 } from "naive-ui"
 
-import {theme, isMenuCollapsed} from "../../global/config";
+import {theme, isMenuCollapsed} from "@/global/config";
 import {h, ref} from "vue";
 import {CubeOutline, AlbumsOutline} from "@vicons/ionicons5";
-import framework from "../../global/framework";
+import framework from "@/global/framework";
 
 function onLayoutCollapsed(collapsed) {
   isMenuCollapsed.value = collapsed
@@ -81,7 +81,7 @@ function openUserList() {
           </n-layout-header>
           <n-layout-content class="main-content" embedded>
             <router-view v-slot="{ Component }">
-              <component :is="Component"></component>
+              <component class="animate__animated animate__fadeIn" :is="Component"></component>
             </router-view>
             <div class="empty-route-body" v-if="!currentMenuRoute">
               <n-empty size="huge" description="还没打开页面呐 ~">
