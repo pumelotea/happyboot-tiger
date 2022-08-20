@@ -17,7 +17,7 @@ import mediumzoom from '@bytemd/plugin-medium-zoom'
 import mermaid from '@bytemd/plugin-mermaid'
 import mermaidLang from '@bytemd/plugin-mermaid/locales/zh_Hans.json'
 
-import { onMounted, ref, watch } from 'vue'
+import { onBeforeMount, onMounted, ref, watch } from 'vue'
 
 const plugins = [
   gfm({
@@ -63,15 +63,43 @@ watch(() => props.value, () => {
   text.value = props.value
 })
 
+const dom = ref(null)
+const editor = ref(null)
+
+function addAttrListener () {
+  const target = editor.value.el.children[0]
+  // 实例化MutationObserver
+  const attrListener = new MutationObserver((mutations) => {
+    const fullscreen = mutations[0].target.classList.contains('bytemd-fullscreen')
+    if (fullscreen) {
+      document.getElementById('pop-body').append(editor.value.el)
+    } else {
+      dom.value.append(editor.value.el)
+    }
+  })
+  // 监听dom的属性，仅监听fill属性的改变。
+  attrListener.observe(target, { attributes: true })
+  return attrListener.disconnect
+}
+
+let cancel
 onMounted(() => {
   text.value = props.value
+  cancel = addAttrListener()
 })
 
+onBeforeMount(() => {
+  cancel && cancel()
+})
 </script>
 
 <template>
-  <div class="hb-admin-markdown">
+  <div
+    ref="dom"
+    class="hb-admin-markdown"
+  >
     <Editor
+      ref="editor"
       style="height: 100%"
       :locale="zh_Hans"
       :value="text"
