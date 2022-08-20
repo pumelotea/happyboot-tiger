@@ -90,7 +90,6 @@ function menuChoose (key, item) {
   <n-menu
     class="hb-admin-menu-com"
     :options="naviMenuData"
-    show-trigger
     :collapsed-width="64"
     :collapsed-icon-size="22"
     key-field="menuId"

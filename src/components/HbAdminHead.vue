@@ -7,19 +7,21 @@ import {
   NCarousel,
   NDivider,
   NDropdown,
+  NButton,
   useMessage,
   NText,
   NBreadcrumb,
   NBreadcrumbItem
 } from 'naive-ui'
 import { Moon, SunnyOutline, Notifications, CubeOutline, LogoGithub } from '@vicons/ionicons5'
-import {h, computed, ref} from 'vue'
-import { isDarkTheme } from '@/global/config'
+import { h, computed, ref } from 'vue'
+import { isDarkTheme, isMenuCollapsed } from '@/global/config'
 import framework from '@/global/framework'
 import { useRouter } from 'vue-router'
 import security from '@/global/security'
-import HbAdminMessage from "@/components/HbAdminMessage";
-import HbAdminWeather from "./HbAdminWeather";
+import HbAdminMessage from '@/components/HbAdminMessage'
+import HbAdminWeather from './HbAdminWeather'
+
 const router = useRouter()
 
 function renderCustomHeader () {
@@ -101,13 +103,13 @@ function gotoGithub () {
 }
 
 const info = ref({
-  date: '今日',
-  now: 28,
-  height: 36,
-  low: 22,
-  type: 'sun',
+  date         : '今日',
+  now          : 28,
+  height       : 36,
+  low          : 22,
+  type         : 'sun',
   windDirection: '西南风',
-  windPower: '2级'
+  windPower    : '2级'
 })
 
 </script>
@@ -115,6 +117,22 @@ const info = ref({
 <template>
   <div class="hb-admin-head-com">
     <div class="head-left-area head-item-center">
+      <n-button
+        class="menu-toggle-button"
+        text
+        @click="isMenuCollapsed = !isMenuCollapsed"
+      >
+        <n-icon size="20">
+          <i
+            v-if="isMenuCollapsed"
+            class="ri-menu-unfold-line"
+          />
+          <i
+            v-else
+            class="ri-menu-fold-line"
+          />
+        </n-icon>
+      </n-button>
       <n-breadcrumb>
         <n-breadcrumb-item
           v-for="e in breadcrumb"
@@ -155,14 +173,14 @@ const info = ref({
     </div>
     <div class="head-right-area head-item-center">
       <hb-admin-weather
-          is-simple
-          :date="info.date"
-          :type="info.type"
-          :now="info.now"
-          :height="info.height"
-          :low="info.low"
-          :windDirection="info.windDirection"
-          :windPower="info.windPower"
+        is-simple
+        :date="info.date"
+        :type="info.type"
+        :now="info.now"
+        :height="info.height"
+        :low="info.low"
+        :wind-direction="info.windDirection"
+        :wind-power="info.windPower"
       />
       <n-switch v-model:value="isDarkTheme">
         <template #checked-icon>
@@ -183,9 +201,9 @@ const info = ref({
       <hb-admin-message>
         <div class="head-notify">
           <n-icon
-              size="25"
-              color="#CFCFCF"
-              :component="Notifications"
+            size="25"
+            color="#CFCFCF"
+            :component="Notifications"
           />
           <n-badge value="99+" />
         </div>
@@ -220,6 +238,15 @@ const info = ref({
 
 .head-left-area {
   padding: 0 20px;
+}
+
+.menu-toggle-button{
+  margin-left: -10px;
+  margin-right: 20px;
+}
+
+.menu-toggle-button:hover{
+
 }
 
 .head-center-area {

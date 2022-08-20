@@ -52,7 +52,7 @@ function openUserList() {
             collapse-mode="width"
             :collapsed-width="64"
             :width="240"
-            show-trigger
+            :collapsed="isMenuCollapsed"
             content-style="display: flex;flex-direction: column;"
             @update:collapsed="onLayoutCollapsed"
         >
@@ -119,6 +119,7 @@ function openUserList() {
 
 .main-content {
   flex: 1;
+  z-index: 1;
 }
 
 .main-foot {

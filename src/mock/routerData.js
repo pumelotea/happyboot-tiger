@@ -455,7 +455,7 @@ const routerData = [
         budge      : {
           value: '新',
           type : 'error'
-        },
+        }
       }
     ]
   },

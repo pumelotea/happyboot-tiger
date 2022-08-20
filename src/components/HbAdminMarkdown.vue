@@ -17,11 +17,11 @@ import mediumzoom from '@bytemd/plugin-medium-zoom'
 import mermaid from '@bytemd/plugin-mermaid'
 import mermaidLang from '@bytemd/plugin-mermaid/locales/zh_Hans.json'
 
-import {onMounted, ref, watch} from "vue"
+import { onMounted, ref, watch } from 'vue'
 
 const plugins = [
   gfm({
-    locale:gfmLang,
+    locale: gfmLang
   }),
   breaks(),
   frontmatter(),
@@ -31,39 +31,39 @@ const plugins = [
 
   }),
   mermaid({
-    locale:mermaidLang,
+    locale: mermaidLang
   }),
   math({
-    locale:mathLang,
-  }),
+    locale: mathLang
+  })
   // Add more plugins here
 ]
 
-const text = ref("")
+const text = ref('')
 
 const props = defineProps({
-  value:{
-    type:String,
-    default:()=>""
+  value: {
+    type   : String,
+    default: () => ''
   },
-  placeholder:{
-    type:String,
-    default:()=>"请输入内容"
+  placeholder: {
+    type   : String,
+    default: () => '请输入内容'
   }
 })
 
-const emit = defineEmits(["update:value"])
+const emit = defineEmits([ 'update:value' ])
 
-function handleChange(v) {
+function handleChange (v) {
   text.value = v
-  emit("update:value",v)
+  emit('update:value', v)
 }
 
-watch(()=>props.value,()=>{
+watch(() => props.value, () => {
   text.value = props.value
 })
 
-onMounted(()=>{
+onMounted(() => {
   text.value = props.value
 })
 
@@ -71,7 +71,14 @@ onMounted(()=>{
 
 <template>
   <div class="hb-admin-markdown">
-    <Editor style="height: 100%" :locale="zh_Hans" :value="text" :plugins="plugins" :placeholder="placeholder" @change="handleChange" />
+    <Editor
+      style="height: 100%"
+      :locale="zh_Hans"
+      :value="text"
+      :plugins="plugins"
+      :placeholder="placeholder"
+      @change="handleChange"
+    />
   </div>
 </template>
 
