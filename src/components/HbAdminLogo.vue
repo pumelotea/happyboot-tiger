@@ -53,6 +53,7 @@ const enterActiveClass = computed(() => {
 <style scoped>
 .hb-admin-logo-com{
   height: 60px;
+  overflow: hidden;
 }
 
 .logo-box{

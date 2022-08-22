@@ -7,8 +7,16 @@ const vars = useThemeVars()
 </script>
 <template>
   <router-view/>
+  <!--
+    生产环境下这个dev-tool可以注释掉
+  -->
   <hb-admin-dev-tool/>
   <hb-admin-loading/>
+  <!--
+    用于放置一些需要全局fixed的弹出组件，并且让组件支持适配主题。
+    注意：如果直接放到document.body下那么会脱离naive-ui的config-provider,就无法使用它提供的主题适配变量了。
+  -->
+  <div id="pop-body"></div>
 </template>
 
 <style>
