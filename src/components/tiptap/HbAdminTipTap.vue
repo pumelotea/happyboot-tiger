@@ -9,6 +9,7 @@ import TableRow from '@tiptap/extension-table-row'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
+import 'github-markdown-css'
 // load all highlight.js languages
 import { lowlight } from 'lowlight'
 
