@@ -4,14 +4,14 @@ import StarterKit from '@tiptap/starter-kit'
 import MenuBar from "./MenuBar"
 import Highlight from '@tiptap/extension-highlight'
 import Image from '@tiptap/extension-image'
+import Video from './extension/video'
 import Table from '@tiptap/extension-table'
 import TableRow from '@tiptap/extension-table-row'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
-import 'github-markdown-css'
 // load all highlight.js languages
-import { lowlight } from 'lowlight'
+import {lowlight} from 'lowlight'
 
 import CodeBlockComponent from './CodeBlockComponent.vue'
 
@@ -38,6 +38,7 @@ const editor = useEditor({
   extensions: [
     StarterKit,
     Image,
+    Video,
     Highlight.configure({multicolor: true}),
     Table.configure({
       resizable: true
@@ -46,12 +47,12 @@ const editor = useEditor({
     TableHeader,
     CustomTableCell,
     CodeBlockLowlight
-      .extend({
-        addNodeView() {
-          return VueNodeViewRenderer(CodeBlockComponent)
-        },
-      })
-      .configure({ lowlight }),
+        .extend({
+          addNodeView() {
+            return VueNodeViewRenderer(CodeBlockComponent)
+          },
+        })
+        .configure({lowlight}),
   ],
 })
 </script>

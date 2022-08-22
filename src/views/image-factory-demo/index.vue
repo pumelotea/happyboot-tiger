@@ -11,8 +11,8 @@ hljs.registerLanguage('xml', xml)
 const code1 = '1.首先引入 \nimport { watermark } from \'@/utils/imageFactory\' \n2.然后调用 \n/**\n' +
     ' * 图片添加水印\n' +
     ' *  callback  //回调方法，返回base64的图片【{success: true, data: "base64数据"}】\n' +
-    ' *  image: Image()  //底图对象\n' +
-    ' *  sign: Image()  //水印对象\n' +
+    ' *  image: Video()  //底图对象\n' +
+    ' *  sign: Video()  //水印对象\n' +
     ' *  left: Number  //水印左侧位置\n' +
     ' *  top: Number  //水印顶部位置\n' +
     ' *  imageWidth: Number  //底图宽度\n' +
@@ -26,7 +26,7 @@ const code2 = '1.首先引入 \nimport { cropper } from \'@/utils/imageFactory\'
     '/**\n' +
     ' * 图片裁剪\n' +
     ' * callback  //回调方法，返回base64的图片\n' +
-    ' * image: Image()  //底图对象\n' +
+    ' * image: Video()  //底图对象\n' +
     ' * left: Number  //裁剪左侧距离\n' +
     ' * right: Number  //裁剪右侧距离\n' +
     ' * top: Number  //裁剪顶部距离\n' +
@@ -40,7 +40,7 @@ const code3 = '1.首先引入 \nimport { resize } from \'@/utils/imageFactory\' 
     '/**\n' +
     ' * 调整图片尺寸\n' +
     ' * callback  //回调方法，返回base64的图片\n' +
-    ' * image: Image()  //底图对象\n' +
+    ' * image: Video()  //底图对象\n' +
     ' * width: Number  //调整的宽度\n' +
     ' * height: Number  //调整的高度\n' +
     ' * */\n' +
@@ -50,7 +50,7 @@ const code4 = '1.首先引入 \nimport { quality } from \'@/utils/imageFactory\'
     '/**\n' +
     ' * 调整图片质量\n' +
     ' * callback  //回调方法，返回base64的图片\n' +
-    ' * image: Image()  //底图对象\n' +
+    ' * image: Video()  //底图对象\n' +
     ' * quality: Number  //图片质量 0 - 1\n' +
     ' * */\n' +
     'quality(callback, image, quality)'

@@ -164,6 +164,16 @@ export default {
         }
       },
       {
+        icon: 'video-line',
+        title: '插入视频',
+        action: () => {
+          const url = window.prompt('URL')
+          if (url) {
+            props.editor.chain().focus().setVideo({ src: url }).run()
+          }
+        }
+      },
+      {
         type: 'divider'
       },
       {
