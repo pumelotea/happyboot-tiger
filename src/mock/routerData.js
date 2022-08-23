@@ -178,6 +178,16 @@ const routerData = [
         icon       : 'ri-file-user-line',
         type       : 'menu',
         children   : []
+      },
+      {
+        name       : '百度地图',
+        path       : '/baidu-map',
+        view       : '/baidu-map-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-map-line',
+        type       : 'menu',
+        children   : []
       }
     ]
   },
@@ -450,6 +460,20 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-markdown-line',
+        type       : 'menu',
+        children   : [],
+        budge      : {
+          value: '新',
+          type : 'error'
+        }
+      },
+      {
+        name       : '可调整容器',
+        path       : '/adjustable-container',
+        view       : '/adjustable-container-demo/index.vue',
+        isRouter   : true,
+        isKeepalive: false,
+        icon       : 'ri-shape-line',
         type       : 'menu',
         children   : [],
         budge      : {
