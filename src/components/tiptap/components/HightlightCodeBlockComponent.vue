@@ -1,7 +1,7 @@
 <script setup>
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
 import {NPopselect,NButton} from 'naive-ui'
-import {computed, ref, watch} from "vue";
+import {ref, watch} from "vue";
 
 const props = defineProps(nodeViewProps)
 
