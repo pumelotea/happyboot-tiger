@@ -28,10 +28,10 @@ watch(selectedLanguage,()=>{
   <node-view-wrapper class="code-block">
     <div class="lang-select" contenteditable="false">
       <n-popselect v-model:value="selectedLanguage" :options="languages" trigger="click" style="max-height: 300px;overflow: auto">
-        <n-button text type="warning" size="small">{{ selectedLanguage || 'auto' }}</n-button>
+        <n-button text type="info" size="small">{{ selectedLanguage || 'auto' }}</n-button>
       </n-popselect>
     </div>
-    <pre><code><node-view-content/></code></pre>
+    <pre><node-view-content/></pre>
   </node-view-wrapper>
 </template>
 
@@ -44,7 +44,6 @@ watch(selectedLanguage,()=>{
   position: absolute;
   top: 0;
   right: 0;
-  background: #0D0D0D;
   border-radius: 4px;
   padding: 0 10px;
 }
