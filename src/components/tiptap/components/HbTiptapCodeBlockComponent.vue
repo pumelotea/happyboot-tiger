@@ -14,13 +14,17 @@ const languages = props.extension.options.lowlight.listLanguages().map(e=>{
 
 languages.unshift({
   label: 'auto',
-  value: null
+  value: 'auto'
 })
 
 const selectedLanguage = ref(null)
 
 watch(selectedLanguage,()=>{
-  props.updateAttributes({ language:selectedLanguage.value })
+  if (selectedLanguage.value === 'auto'){
+    props.updateAttributes({ language:null })
+  }else{
+    props.updateAttributes({ language:selectedLanguage.value })
+  }
 })
 
 </script>
