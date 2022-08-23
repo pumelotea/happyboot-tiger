@@ -1,10 +1,10 @@
 <script setup>
 import {useEditor, EditorContent, VueNodeViewRenderer} from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
-import MenuBar from "./MenuBar"
+import MenuBar from "./components/MenuBar"
 import Highlight from '@tiptap/extension-highlight'
 import Image from '@tiptap/extension-image'
-import Video from './extension/video'
+import VideoXigua from './extension/video-xigua'
 import Table from '@tiptap/extension-table'
 import TableRow from '@tiptap/extension-table-row'
 import TableCell from '@tiptap/extension-table-cell'
@@ -13,14 +13,13 @@ import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 // load all highlight.js languages
 import {lowlight} from 'lowlight'
 
-import CodeBlockComponent from './CodeBlockComponent.vue'
+import CodeBlockComponent from './components/HightlightCodeBlockComponent.vue'
+import VideoXiguaComponent from './components/VideoXiguaComponent.vue'
 
 const CustomTableCell = TableCell.extend({
   addAttributes() {
     return {
-      // 展开现有属性,?.是可选链操作符,可以自行百度(懂的大佬当我没说)
       ...this.parent?.(),
-
       // 添加新的属性
       backgroundColor: {
         default: null,
@@ -38,7 +37,6 @@ const editor = useEditor({
   extensions: [
     StarterKit,
     Image,
-    Video,
     Highlight.configure({multicolor: true}),
     Table.configure({
       resizable: true
@@ -53,6 +51,11 @@ const editor = useEditor({
           },
         })
         .configure({lowlight}),
+    VideoXigua.extend({
+      addNodeView(){
+        return VueNodeViewRenderer(VideoXiguaComponent)
+      }
+    })
   ],
 })
 </script>
