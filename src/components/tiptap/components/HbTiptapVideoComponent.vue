@@ -36,7 +36,7 @@ function init () {
 onMounted(init)
 
 onBeforeUnmount(()=>{
-  editor&&editor.destory(true)
+  editor&&editor.destroy(true)
 })
 
 </script>

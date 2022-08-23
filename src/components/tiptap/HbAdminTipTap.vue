@@ -18,6 +18,7 @@ import {lowlight} from 'lowlight'
 //扩展组件
 import HbTiptapCodeBlockComponent from './components/HbTiptapCodeBlockComponent.vue'
 import HbTiptapVideoComponent from './components/HbTiptapVideoComponent.vue'
+import HbTiptapImageComponent from './components/HbTiptapImageComponent.vue'
 
 const CustomTableCell = TableCell.extend({
   addAttributes() {
@@ -51,9 +52,12 @@ const editor = useEditor({
           addNodeView() {
             return VueNodeViewRenderer(HbTiptapCodeBlockComponent)
           },
-        })
-        .configure({lowlight}),
-    HbImage,
+        }).configure({lowlight}),
+    HbImage.extend({
+      addNodeView(){
+        return VueNodeViewRenderer(HbTiptapImageComponent)
+      }
+    }),
     HbVideo.extend({
       addNodeView(){
         return VueNodeViewRenderer(HbTiptapVideoComponent)

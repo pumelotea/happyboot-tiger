@@ -43,7 +43,7 @@ export const HbImage = Node.create({
   parseHTML() {
     return [
       {
-        tag: 'video[src]'
+        tag: 'img[src]'
       },
     ]
   },

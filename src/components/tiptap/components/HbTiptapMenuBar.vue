@@ -137,7 +137,7 @@ const items = [
     action: () => {
       const url = window.prompt('URL')
       if (url) {
-        props.editor.chain().focus().setImage({src: url}).run()
+        props.editor.chain().focus().setHbImage({src: url}).run()
       }
     }
   },
