@@ -1,11 +1,13 @@
 import {
   mergeAttributes,
   Node,
+  nodeInputRule,
 } from '@tiptap/core'
 
+export const inputRegex = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/
 
-export const VideoXigua = Node.create({
-  name: 'video-xigua',
+export const HbImage = Node.create({
+  name: 'hb-image',
 
   addOptions() {
     return {
@@ -41,18 +43,18 @@ export const VideoXigua = Node.create({
   parseHTML() {
     return [
       {
-        tag: 'div'
+        tag: 'video[src]'
       },
     ]
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['div', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)]
+    return ['img', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)]
   },
 
   addCommands() {
     return {
-      setVideo: options => ({ commands }) => {
+      setHbImage: options => ({ commands }) => {
         return commands.insertContent({
           type: this.name,
           attrs: options,
@@ -60,6 +62,19 @@ export const VideoXigua = Node.create({
       },
     }
   },
+
+  addInputRules() {
+    return [
+      nodeInputRule({
+        find: inputRegex,
+        type: this.type,
+        getAttributes: match => {
+          const [,, alt, src, title] = match
+          return { src, alt, title }
+        },
+      }),
+    ]
+  },
 })
 
-export default VideoXigua
+export default HbImage

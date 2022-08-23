@@ -1,20 +1,23 @@
 <script setup>
 import {useEditor, EditorContent, VueNodeViewRenderer} from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
-import MenuBar from "./components/MenuBar"
+import HbTiptapMenuBar from "./components/HbTiptapMenuBar"
 import Highlight from '@tiptap/extension-highlight'
-import Image from '@tiptap/extension-image'
-import VideoXigua from './extension/video-xigua'
+import HbVideo from './extension/hb-video'
+import HbImage from './extension/hb-image'
 import Table from '@tiptap/extension-table'
 import TableRow from '@tiptap/extension-table-row'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
+CodeBlockLowlight.name = 'code-block'
+
 // load all highlight.js languages
 import {lowlight} from 'lowlight'
 
-import CodeBlockComponent from './components/HightlightCodeBlockComponent.vue'
-import VideoXiguaComponent from './components/VideoXiguaComponent.vue'
+//扩展组件
+import HbTiptapCodeBlockComponent from './components/HbTiptapCodeBlockComponent.vue'
+import HbTiptapVideoComponent from './components/HbTiptapVideoComponent.vue'
 
 const CustomTableCell = TableCell.extend({
   addAttributes() {
@@ -36,7 +39,6 @@ const editor = useEditor({
   content: `123123`,
   extensions: [
     StarterKit,
-    Image,
     Highlight.configure({multicolor: true}),
     Table.configure({
       resizable: true
@@ -47,13 +49,14 @@ const editor = useEditor({
     CodeBlockLowlight
         .extend({
           addNodeView() {
-            return VueNodeViewRenderer(CodeBlockComponent)
+            return VueNodeViewRenderer(HbTiptapCodeBlockComponent)
           },
         })
         .configure({lowlight}),
-    VideoXigua.extend({
+    HbImage,
+    HbVideo.extend({
       addNodeView(){
-        return VueNodeViewRenderer(VideoXiguaComponent)
+        return VueNodeViewRenderer(HbTiptapVideoComponent)
       }
     })
   ],
@@ -62,7 +65,7 @@ const editor = useEditor({
 
 <template>
   <div class="editor" v-if="editor">
-    <menu-bar class="editor-header" :editor="editor"></menu-bar>
+    <hb-tiptap-menu-bar class="editor-header" :editor="editor"></hb-tiptap-menu-bar>
     <editor-content class="editor-body" :editor="editor"/>
   </div>
 </template>
