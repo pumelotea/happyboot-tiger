@@ -15,7 +15,7 @@ import BaseDemo from './base.demo'
             在开发中
           </n-alert>
         </n-space>
-        <base-demo></base-demo>
+        <base-demo style="margin-top: 10px"></base-demo>
       </n-layout-content>
     </n-layout>
   </hb-admin-page-layout>

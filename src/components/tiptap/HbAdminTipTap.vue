@@ -114,7 +114,6 @@ const editor = useEditor({
   width: 100%;
   margin: 0;
   overflow: hidden;
-  display: table;
 }
 
 .ProseMirror table td, .ProseMirror table th {
