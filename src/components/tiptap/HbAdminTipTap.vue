@@ -10,7 +10,10 @@ import TableRow from '@tiptap/extension-table-row'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
+
 CodeBlockLowlight.name = 'code-block'
+import 'highlight.js/styles/vs.css'
+import 'github-markdown-css'
 
 // load all highlight.js languages
 import {lowlight} from 'lowlight'
@@ -37,7 +40,7 @@ const CustomTableCell = TableCell.extend({
   }
 })
 const editor = useEditor({
-  content: `123123`,
+  content: `hello world`,
   extensions: [
     StarterKit,
     Highlight.configure({multicolor: true}),
@@ -54,12 +57,12 @@ const editor = useEditor({
           },
         }).configure({lowlight}),
     HbImage.extend({
-      addNodeView(){
+      addNodeView() {
         return VueNodeViewRenderer(HbTiptapImageComponent)
       }
     }),
     HbVideo.extend({
-      addNodeView(){
+      addNodeView() {
         return VueNodeViewRenderer(HbTiptapVideoComponent)
       }
     })
@@ -70,11 +73,11 @@ const editor = useEditor({
 <template>
   <div class="editor" v-if="editor">
     <hb-tiptap-menu-bar class="editor-header" :editor="editor"></hb-tiptap-menu-bar>
-    <editor-content class="editor-body" :editor="editor"/>
+    <editor-content class="editor-body markdown-body" :editor="editor"/>
   </div>
 </template>
 
-<style>
+<style scoped>
 .editor {
   border: 1px solid #cccccc;
   border-radius: 3px;
@@ -96,7 +99,8 @@ const editor = useEditor({
   -webkit-overflow-scrolling: touch;
   padding: 10px;
 }
-
+</style>
+<style>
 .ProseMirror {
 }
 
@@ -104,105 +108,13 @@ const editor = useEditor({
   outline: none;
 }
 
-.ProseMirror ul,
-.ProseMirror ol {
-  padding: 0 1rem;
-}
-
-.ProseMirror h1,
-.ProseMirror h2,
-.ProseMirror h3,
-.ProseMirror h4,
-.ProseMirror h5,
-.ProseMirror h6 {
-  line-height: 1.1;
-}
-
-.ProseMirror mark {
-  background-color: #faf594;
-}
-
-.ProseMirror img {
-  max-width: 100%;
-  height: auto;
-}
-
-.ProseMirror hr {
-  margin: 1rem 0;
-}
-
-.ProseMirror blockquote {
-  padding-left: 1rem;
-  border-left: 2px solid rgba(13, 13, 13, 0.1);
-}
-
-.ProseMirror hr {
-  border: none;
-  border-top: 2px solid rgba(13, 13, 13, 0.1);
-  margin: 2rem 0;
-}
-
-.ProseMirror ul[data-type="taskList"] {
-  list-style: none;
-  padding: 0;
-}
-
-.ProseMirror ul[data-type="taskList"] li {
-  display: flex;
-  align-items: center;
-}
-
-.ProseMirror ul[data-type="taskList"] li > label {
-  flex: 0 0 auto;
-  margin-right: .5rem;
-  user-select: none;
-}
-
-.ProseMirror ul[data-type="taskList"] li > div {
-  flex: 1 1 auto;
-}
-
-</style>
-<style>
-.ProseMirror {
-  margin: 1rem 0
-}
-
-.ProseMirror > * + * {
-  margin-top: .75em
-}
-
-.ProseMirror ul, .ProseMirror ol {
-  padding: 0 1rem
-}
-
-.ProseMirror h1, .ProseMirror h2, .ProseMirror h3, .ProseMirror h4, .ProseMirror h5, .ProseMirror h6 {
-  line-height: 1.1
-}
-
-
-.ProseMirror img {
-  max-width: 100%;
-  height: auto
-}
-
-.ProseMirror blockquote {
-  padding-left: 1rem;
-  border-left: 2px solid rgba(13, 13, 13, .1)
-}
-
-.ProseMirror hr {
-  border: none;
-  border-top: 2px solid rgba(13, 13, 13, .1);
-  margin: 2rem 0
-}
-
 .ProseMirror table {
   border-collapse: collapse;
   table-layout: fixed;
   width: 100%;
   margin: 0;
-  overflow: hidden
+  overflow: hidden;
+  display: table;
 }
 
 .ProseMirror table td, .ProseMirror table th {
@@ -242,7 +154,7 @@ const editor = useEditor({
   top: 0;
   bottom: -2px;
   width: 4px;
-  background-color: #adf;
+  background-color: #00b2ff;
   pointer-events: none
 }
 
@@ -258,73 +170,4 @@ const editor = useEditor({
   cursor: ew-resize;
   cursor: col-resize
 }
-</style>
-<style>
-.ProseMirror pre {
-  background: #0D0D0D;
-  color: #FFF;
-  font-family: 'JetBrainsMono', monospace;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-}
-
-.ProseMirror pre code {
-  color: inherit;
-  padding: 0;
-  background: none;
-  font-size: 0.8rem;
-}
-
-.ProseMirror pre .hljs-comment,
-.ProseMirror pre .hljs-quote {
-  color: #616161;
-}
-
-.ProseMirror pre .hljs-variable,
-.ProseMirror pre .hljs-template-variable,
-.ProseMirror pre .hljs-attribute,
-.ProseMirror pre .hljs-tag,
-.ProseMirror pre .hljs-name,
-.ProseMirror pre .hljs-regexp,
-.ProseMirror pre .hljs-link,
-.ProseMirror pre .hljs-name,
-.ProseMirror pre .hljs-selector-id,
-.ProseMirror pre .hljs-selector-class {
-  color: #F98181;
-}
-
-.ProseMirror pre .hljs-number,
-.ProseMirror pre .hljs-meta,
-.ProseMirror pre .hljs-built_in,
-.ProseMirror pre .hljs-builtin-name,
-.ProseMirror pre .hljs-literal,
-.ProseMirror pre .hljs-type,
-.ProseMirror pre .hljs-params {
-  color: #FBBC88;
-}
-
-.ProseMirror pre .hljs-string,
-.ProseMirror pre .hljs-symbol,
-.ProseMirror pre .hljs-bullet {
-  color: #B9F18D;
-}
-
-.ProseMirror pre .hljs-title,
-.ProseMirror pre .hljs-section {
-  color: #FAF594;
-}
-
-.ProseMirror pre .hljs-keyword,
-.ProseMirror pre .hljs-selector-tag {
-  color: #70CFF8;
-}
-
-.ProseMirror pre .hljs-emphasis {
-  font-style: italic;
-}
-
-.ProseMirror pre .hljs-strong {
-  font-weight: 700;
-}
-
 </style>
