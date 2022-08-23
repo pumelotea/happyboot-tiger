@@ -8,6 +8,7 @@ import volume from 'xgplayer/dist/controls/volume'
 import pip from 'xgplayer/dist/controls/pip'
 import flex from 'xgplayer/dist/controls/flex'
 import {onBeforeUnmount, onMounted,ref} from "vue";
+import HbAdminAdjustableContainer from "@/components/HbAdminAdjustableContainer";
 
 const box = ref(null)
 const props = defineProps(nodeViewProps)
@@ -18,6 +19,7 @@ function init () {
     el            : box.value,
     // url           : 'https://media.w3.org/2010/05/sintel/trailer.mp4',
     url           : props.node.attrs.src,
+    fluid: true,
     controlPlugins: [
       play,
       fullscreen,
@@ -42,12 +44,19 @@ onBeforeUnmount(()=>{
 </script>
 <template>
   <node-view-wrapper class="video-block">
-    <div ref="box"></div>
+    <hb-admin-adjustable-container>
+      <div ref="box" class="video-box"></div>
+    </hb-admin-adjustable-container>
   </node-view-wrapper>
 </template>
 
 <style scoped>
 .video-block {
   position: relative;
+}
+
+.video-box{
+  height: 100%;
+  width: 100%;
 }
 </style>

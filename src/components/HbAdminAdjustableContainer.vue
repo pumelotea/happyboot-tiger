@@ -108,7 +108,7 @@ onMounted(() => {
 
 <template>
   <div class="hb-ac-wrap" ref="ACWrap">
-    <div ref="AdjustableContainer">
+    <div ref="AdjustableContainer" class="hb-ac-content">
       <slot/>
     </div>
     <div class="hb-ac-bar">
@@ -146,5 +146,9 @@ onMounted(() => {
 }
 .hb-ac-input{
   width: 50px;
+}
+
+.hb-ac-content{
+  position: relative;
 }
 </style>
