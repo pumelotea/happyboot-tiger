@@ -67,27 +67,27 @@ function insertTable(r,c) {
     />
     <div class="divider"/>
     <hb-tiptap-menu-item icon="h-1" title="标题1"
-                         :action="() => props.editor.chain().focus().toggleHeading().run()"
+                         :action="() => props.editor.chain().focus().toggleHeading({level: 1}).run()"
                          :is-active="() => props.editor.isActive('heading', {level: 1})"
     />
     <hb-tiptap-menu-item icon="h-2" title="标题2"
-                         :action="() => props.editor.chain().focus().toggleHeading().run()"
+                         :action="() => props.editor.chain().focus().toggleHeading({level: 2}).run()"
                          :is-active="() => props.editor.isActive('heading', {level: 2})"
     />
     <hb-tiptap-menu-item icon="h-3" title="标题3"
-                         :action="() => props.editor.chain().focus().toggleHeading().run()"
+                         :action="() => props.editor.chain().focus().toggleHeading({level: 3}).run()"
                          :is-active="() => props.editor.isActive('heading', {level: 3})"
     />
     <hb-tiptap-menu-item icon="h-4" title="标题4"
-                         :action="() => props.editor.chain().focus().toggleHeading().run()"
+                         :action="() => props.editor.chain().focus().toggleHeading({level: 4}).run()"
                          :is-active="() => props.editor.isActive('heading', {level: 4})"
     />
     <hb-tiptap-menu-item icon="h-5" title="标题5"
-                         :action="() => props.editor.chain().focus().toggleHeading().run()"
+                         :action="() => props.editor.chain().focus().toggleHeading({level: 5}).run()"
                          :is-active="() => props.editor.isActive('heading', {level: 5})"
     />
     <hb-tiptap-menu-item icon="h-6" title="标题6"
-                         :action="() => props.editor.chain().focus().toggleHeading().run()"
+                         :action="() => props.editor.chain().focus().toggleHeading({level: 6}).run()"
                          :is-active="() => props.editor.isActive('heading', {level: 6})"
     />
     <div class="divider"/>
