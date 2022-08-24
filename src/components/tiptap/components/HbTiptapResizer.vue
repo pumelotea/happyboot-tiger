@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue"
+import {onMounted, ref, watch} from "vue"
 
 const props = defineProps({
   w:{
@@ -14,6 +14,16 @@ const props = defineProps({
 
 const width = ref(props.w)
 const height = ref(props.h)
+
+watch(()=>[props.w,props.h],()=>{
+  width.value = props.w
+  height.value = props.h
+})
+
+onMounted(()=>{
+  width.value = props.w
+  height.value = props.h
+})
 
 let startWidth = width.value
 let startHeight = height.value
