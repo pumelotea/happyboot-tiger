@@ -1,5 +1,7 @@
 <script setup>
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
+import HbTiptapResizer from "@/components/tiptap/components/HbTiptapResizer";
+
 import Player from 'xgplayer/dist/core_player'
 import play from 'xgplayer/dist/controls/play'
 import fullscreen from 'xgplayer/dist/controls/fullscreen'
@@ -8,7 +10,6 @@ import volume from 'xgplayer/dist/controls/volume'
 import pip from 'xgplayer/dist/controls/pip'
 import flex from 'xgplayer/dist/controls/flex'
 import {onBeforeUnmount, onMounted,ref} from "vue";
-import HbAdminAdjustableContainer from "@/components/HbAdminAdjustableContainer";
 
 const box = ref(null)
 const props = defineProps(nodeViewProps)
@@ -19,7 +20,6 @@ function init () {
     el            : box.value,
     // url           : 'https://media.w3.org/2010/05/sintel/trailer.mp4',
     url           : props.node.attrs.src,
-    fluid: true,
     controlPlugins: [
       play,
       fullscreen,
@@ -43,20 +43,35 @@ onBeforeUnmount(()=>{
 
 </script>
 <template>
-  <node-view-wrapper class="video-block">
-    <hb-admin-adjustable-container>
-      <div ref="box" class="video-box"></div>
-    </hb-admin-adjustable-container>
+  <node-view-wrapper class="video-block" as="span">
+    <hb-tiptap-resizer>
+      <template #default="{width,height}">
+        <div :style="`width: ${width}px;height: ${height}px`" class="video-resizer">
+          <div ref="box" class="video-box"></div>
+        </div>
+      </template>
+    </hb-tiptap-resizer>
   </node-view-wrapper>
 </template>
 
 <style scoped>
 .video-block {
   position: relative;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  line-height: 0;
+  float: none;
+  vertical-align: baseline;
+  padding: 0 5px;
 }
 
 .video-box{
-  height: 100%;
-  width: 100%;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.video-resizer{
+  max-width: 100%;
 }
 </style>

@@ -122,6 +122,7 @@ function insertTable() {
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 10px;
+  user-select: none;
 }
 
 .grid-row {

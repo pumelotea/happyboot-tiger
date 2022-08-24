@@ -11,7 +11,7 @@ export const HbImage = Node.create({
 
   addOptions() {
     return {
-      inline: false,
+      inline: true,
       HTMLAttributes: {},
     }
   },

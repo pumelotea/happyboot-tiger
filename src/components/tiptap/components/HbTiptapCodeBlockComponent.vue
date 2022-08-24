@@ -29,7 +29,7 @@ watch(selectedLanguage,()=>{
 
 </script>
 <template>
-  <node-view-wrapper class="code-block">
+  <node-view-wrapper class="code-block" as="p">
     <div class="lang-select" contenteditable="false">
       <n-popselect v-model:value="selectedLanguage" :options="languages" trigger="click" style="max-height: 300px;overflow: auto">
         <n-button text type="info" size="small">{{ selectedLanguage || 'auto' }}</n-button>

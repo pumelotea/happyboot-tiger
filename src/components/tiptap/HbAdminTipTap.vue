@@ -39,7 +39,7 @@ const CustomTableCell = TableCell.extend({
   }
 })
 const editor = useEditor({
-  content: `hello world`,
+  content: `<video src="https://media.w3.org/2010/05/sintel/trailer.mp4"/>`,
   extensions: [
     StarterKit,
     Highlight.configure({multicolor: true}),
