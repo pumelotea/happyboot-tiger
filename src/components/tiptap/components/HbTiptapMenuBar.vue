@@ -144,9 +144,9 @@ function insertTable(r,c) {
     <hb-tiptap-menu-item icon="delete-column" title="删除行"
                          :action="() => props.editor.chain().focus().deleteColumn().run()"
     />
-    <hb-tiptap-menu-item icon="sip-line" title="单元格背景色"
-                         :action="() => props.editor.chain().focus().toggleHeaderCell().run()"
-    />
+<!--    <hb-tiptap-menu-item icon="sip-line" title="单元格背景色"-->
+<!--                         :action="() => props.editor.chain().focus().toggleHeaderCell().run()"-->
+<!--    />-->
   </div>
 </template>
 
