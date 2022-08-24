@@ -21,6 +21,7 @@ import {lowlight} from 'lowlight'
 import HbTiptapCodeBlockComponent from './components/HbTiptapCodeBlockComponent.vue'
 import HbTiptapVideoComponent from './components/HbTiptapVideoComponent.vue'
 import HbTiptapImageComponent from './components/HbTiptapImageComponent.vue'
+import {onBeforeUnmount, onMounted, watch} from "vue";
 
 const CustomTableCell = TableCell.extend({
   addAttributes() {
@@ -38,8 +39,9 @@ const CustomTableCell = TableCell.extend({
     }
   }
 })
-const editor = useEditor({
-  content: `<video src="https://media.w3.org/2010/05/sintel/trailer.mp4"/>`,
+let editor
+editor = useEditor({
+  content: `<p><video src="https://media.w3.org/2010/05/sintel/trailer.mp4"></video><img src="1"></p>`,
   extensions: [
     StarterKit,
     Highlight.configure({multicolor: true}),
@@ -66,7 +68,46 @@ const editor = useEditor({
       }
     })
   ],
+  onUpdate: () => {
+    // HTML
+    emit('update:modelValue', editor.value.getHTML())
+
+    // JSON
+    // this.$emit('update:modelValue', this.editor.getJSON())
+  },
 })
+
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: '',
+  },
+})
+
+const emit = defineEmits(['update:modelValue'])
+
+watch(()=>props.modelValue,(value)=>{
+  // HTML
+  const isSame =editor.value.getHTML() === value
+
+  // JSON
+  // const isSame = JSON.stringify(this.editor.getJSON()) === JSON.stringify(value)
+
+  if (isSame) {
+    return
+  }
+
+  editor.value.commands.setContent(value, false)
+})
+
+onMounted(()=>{
+  emit('update:modelValue', editor.value.getHTML())
+})
+
+onBeforeUnmount(()=>{
+  editor.destroy()
+})
+
 </script>
 
 <template>

@@ -1,8 +1,19 @@
 <script setup>
 import { ref } from "vue"
 
-const width = ref(400)
-const height = ref(300)
+const props = defineProps({
+  w:{
+    type:Number,
+    default:400,
+  },
+  h:{
+    type:Number,
+    default:300,
+  }
+})
+
+const width = ref(props.w)
+const height = ref(props.h)
 
 let startWidth = width.value
 let startHeight = height.value
@@ -48,6 +59,7 @@ function onmouseup(e){
   isMousedown = false
   document.removeEventListener('mousemove',onmousemove)
   document.removeEventListener('mouseup',onmouseup)
+  emitSize()
 }
 
 const isHover = ref(false)
@@ -60,6 +72,12 @@ function leave(){
     return
   }
   isHover.value = false
+}
+
+const emit = defineEmits(['on-change'])
+
+function emitSize(){
+  emit('on-change',width.value,height.value)
 }
 
 

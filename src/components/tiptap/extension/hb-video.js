@@ -35,6 +35,12 @@ export const HbVideo = Node.create({
       title: {
         default: null,
       },
+      width:{
+        default: 400,
+      },
+      height:{
+        default: 300,
+      }
     }
   },
 
