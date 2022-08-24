@@ -11,12 +11,14 @@ let startY = 0
 let deltaX = 0
 let deltaY = 0
 let startPos = ''
+let isMousedown = false
 function onmousedown(e,pos){
   startWidth = width.value
   startHeight = height.value
   startX = e.screenX
   startY = e.screenY
   startPos = pos
+  isMousedown = true
   document.addEventListener('mousemove',onmousemove)
   document.addEventListener('mouseup',onmouseup)
 }
@@ -43,24 +45,38 @@ function onmousemove(e){
 }
 
 function onmouseup(e){
+  isMousedown = false
   document.removeEventListener('mousemove',onmousemove)
   document.removeEventListener('mouseup',onmouseup)
 }
 
+const isHover = ref(false)
+function hover(){
+  isHover.value = true
+}
+
+function leave(){
+  if (isMousedown){
+    return
+  }
+  isHover.value = false
+}
 
 
 </script>
 
 <template>
-<div class="box-resizer" draggable="false">
-  <div class="l-line resize-line-v"></div>
-  <div class="r-line resize-line-v"></div>
-  <div class="t-line resize-line-h"></div>
-  <div class="b-line resize-line-h"></div>
-  <div class="lt-resizer resize-cube" @mousedown="e=>onmousedown(e,'lt')"></div>
-  <div class="lb-resizer resize-cube" @mousedown="e=>onmousedown(e,'lb')"></div>
-  <div class="rt-resizer resize-cube" @mousedown="e=>onmousedown(e,'rt')"></div>
-  <div class="rb-resizer resize-cube" @mousedown="e=>onmousedown(e,'rb')"></div>
+<div class="box-resizer" draggable="false" @mouseenter="hover" @mouseleave="leave">
+  <template v-if="isHover">
+    <div class="l-line resize-line-v"></div>
+    <div class="r-line resize-line-v"></div>
+    <div class="t-line resize-line-h"></div>
+    <div class="b-line resize-line-h"></div>
+    <div class="lt-resizer resize-cube" @mousedown="e=>onmousedown(e,'lt')"></div>
+    <div class="lb-resizer resize-cube" @mousedown="e=>onmousedown(e,'lb')"></div>
+    <div class="rt-resizer resize-cube" @mousedown="e=>onmousedown(e,'rt')"></div>
+    <div class="rb-resizer resize-cube" @mousedown="e=>onmousedown(e,'rb')"></div>
+  </template>
   <slot :width="width" :height="height"/>
 </div>
 </template>

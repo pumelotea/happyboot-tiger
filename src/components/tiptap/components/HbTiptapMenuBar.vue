@@ -116,7 +116,7 @@ function insertTable(r,c) {
     <div class="divider"/>
     <n-popover trigger="hover" placement="bottom">
       <template #trigger>
-        <hb-tiptap-menu-item icon="table-2" title="插入表格"/>
+        <hb-tiptap-menu-item icon="table-2" title="插入表格" :action="()=>{}"/>
       </template>
       <hb-tiptap-table-creator @insert="insertTable"/>
     </n-popover>
