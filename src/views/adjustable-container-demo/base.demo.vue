@@ -9,7 +9,7 @@ import HbAdminAdjustableContainer from "@/components/HbAdminAdjustableContainer.
 <template>
   <div>
     <hb-admin-adjustable-container>
-      <div style="height: 100%;width: 100%;background-color: #000;"></div>
+      <img style="max-width: 100%;max-height: 100%;" src="http://localhost:3000/src/assets/logo.png"/>
     </hb-admin-adjustable-container>
   </div>
 </template>
