@@ -1,6 +1,8 @@
 <script setup>
 import {NLayout,NLayoutContent,NAlert,NSpace} from 'naive-ui';
 import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue";
+import BaseDemo from './base.demo'
+
 
 </script>
 <template>
@@ -13,13 +15,8 @@ import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue";
             在开发中
           </n-alert>
         </n-space>
+        <base-demo style="margin-top: 10px"></base-demo>
       </n-layout-content>
     </n-layout>
   </hb-admin-page-layout>
 </template>
-
-<style scoped>
-.no-key-btn{
-
-}
-</style>
