@@ -53,6 +53,10 @@ function insertTable(r,c) {
                          :action="() => props.editor.chain().focus().toggleItalic().run()"
                          :is-active="() => props.editor.isActive('italic')"
     />
+    <hb-tiptap-menu-item icon="underline" title="下划线"
+                         :action="() => props.editor.chain().focus().toggleUnderline().run()"
+                         :is-active="() => props.editor.isActive('underline')"
+    />
     <hb-tiptap-menu-item icon="strikethrough" title="文本线"
                          :action="() => props.editor.chain().focus().toggleStrike().run()"
                          :is-active="() => props.editor.isActive('strike')"
@@ -65,6 +69,28 @@ function insertTable(r,c) {
                          :action="() => props.editor.chain().focus().toggleHighlight().run()"
                          :is-active="() => props.editor.isActive('highlight')"
     />
+    <hb-tiptap-menu-item icon="link" title="超链接"
+                         :action="() => props.editor.chain().focus().toggleLink({ href: 'https://example.com', target: '_blank' }).run()"
+                         :is-active="() => props.editor.isActive('link')"
+    />
+    <div class="divider"/>
+    <hb-tiptap-menu-item icon="align-left" title="左对齐"
+                         :action="() => props.editor.chain().focus().setTextAlign('left').run()"
+                         :is-active="() => props.editor.isActive('align-left')"
+    />
+    <hb-tiptap-menu-item icon="align-center" title="居中"
+                         :action="() => props.editor.chain().focus().setTextAlign('center').run()"
+                         :is-active="() => props.editor.isActive('align-center')"
+    />
+    <hb-tiptap-menu-item icon="align-right" title="右对齐"
+                         :action="() => props.editor.chain().focus().setTextAlign('right').run()"
+                         :is-active="() => props.editor.isActive('align-right')"
+    />
+    <hb-tiptap-menu-item icon="align-justify" title="两端对齐"
+                         :action="() => props.editor.chain().focus().setTextAlign('justify').run()"
+                         :is-active="() => props.editor.isActive('align-justify')"
+    />
+
     <div class="divider"/>
     <hb-tiptap-menu-item icon="h-1" title="标题1"
                          :action="() => props.editor.chain().focus().toggleHeading({level: 1}).run()"
@@ -97,6 +123,10 @@ function insertTable(r,c) {
     />
     <hb-tiptap-menu-item icon="list-ordered" title="有序列表"
                          :action="() => props.editor.chain().focus().toggleOrderedList().run()"
+                         :is-active="() => props.editor.isActive('orderedList')"
+    />
+    <hb-tiptap-menu-item icon="task-line" title="任务列表"
+                         :action="() => props.editor.chain().focus().toggleTaskList().run()"
                          :is-active="() => props.editor.isActive('orderedList')"
     />
     <hb-tiptap-menu-item icon="double-quotes-l" title="引用"

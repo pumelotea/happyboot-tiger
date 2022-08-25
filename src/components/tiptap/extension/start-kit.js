@@ -23,6 +23,12 @@ import TableRow from '@tiptap/extension-table-row'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
+import Underline from '@tiptap/extension-underline'
+import Placeholder from '@tiptap/extension-placeholder'
+import TaskItem from '@tiptap/extension-task-item'
+import TaskList from '@tiptap/extension-task-list'
+import Link from '@tiptap/extension-link'
+import TextAlign from '@tiptap/extension-text-align'
 
 // load all highlight.js languages
 import {lowlight} from 'lowlight'
@@ -37,6 +43,19 @@ const StarterKit = Extension.create({
     name: 'start-kit',
     addExtensions() {
         const extensions = []
+
+        extensions.push(Placeholder.configure({
+            // Use a placeholder:
+            placeholder: '写点有意思的内容...',
+            // Use different placeholders depending on the node type:
+            // placeholder: ({ node }) => {
+            //   if (node.type.name === 'heading') {
+            //     return 'What’s the title?'
+            //   }
+
+            //   return 'Can you add some further context?'
+            // },
+        }))
 
         if (this.options.blockquote !== false) {
             extensions.push(Blockquote.configure(this.options?.blockquote))
@@ -158,6 +177,33 @@ const StarterKit = Extension.create({
                 }
             }))
         }
+
+        if (this.options.underline !== false) {
+            extensions.push(Underline)
+        }
+
+        if (this.options.task !== false) {
+            extensions.push(TaskList)
+            extensions.push(TaskItem.configure({
+                nested: true,
+            }))
+        }
+
+        if (this.options.link !== false) {
+            extensions.push(Link.configure({
+                protocols: ['ftp', 'mailto','http','https'],
+                autolink: false,
+            }))
+        }
+
+        if (this.options.textAlign !== false) {
+            extensions.push(TextAlign.configure({
+                types: ['heading', 'paragraph'],
+            }))
+        }
+
+
+
         return extensions
     },
 })
