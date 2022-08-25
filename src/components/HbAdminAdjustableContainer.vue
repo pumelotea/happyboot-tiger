@@ -58,8 +58,6 @@ function handleWidthChange() {
 onMounted(() => {
   const offsetHeight = AdjustableContainer.value.offsetHeight
   const offsetWidth = AdjustableContainer.value.offsetWidth
-  console.log(offsetWidth)
-  console.log(offsetHeight)
   if (offsetHeight === 0 || offsetWidth === 0) {
     cHeight.value = props.height
     cWidth.value = props.width
@@ -103,34 +101,48 @@ onMounted(() => {
   ACWrap.value.addEventListener('mousedown', e => {
     if (canDrag) {
       mouseDownState = true
-      moveTemp = [e.offsetX, e.offsetY]
+      moveTemp = [e.pageX, e.pageY]
       ACWrap.value.style.userSelect = 'none'
     }
   })
 
-  document.body.addEventListener('mousemove', e => {
+  document.onkeydown = function (e) {
+    if (e.ctrlKey) {
+      equalRatio.value = true
+    }
+  }
+
+  document.onkeyup = function (e) {
+    if (!e.ctrlKey) {
+
+      equalRatio.value = false
+    }
+  }
+
+  document.addEventListener('mousemove', e => {
     if (canDrag && mouseDownState) {
-      const diffX = e.offsetX - moveTemp[0]
-      const diffY = e.offsetY - moveTemp[1]
-      moveTemp = [e.offsetX, e.offsetY]
+      let diffX = e.pageX - moveTemp[0]
+      let diffY = e.pageY - moveTemp[1]
+      moveTemp = [e.pageX, e.pageY]
+
       if (equalRatio.value) {
         const ratio = iWidth.value / iHeight.value
         cWidth.value = cWidth.value + diffX
         cHeight.value =  cWidth.value / ratio
       } else {
-        const dHeight = cHeight.value + diffY
-        cHeight.value = dHeight > 10 ? dHeight : 10
-        const dWidth = cWidth.value + diffX
-        cWidth.value = dWidth > 10 ? dWidth : 10
+        const calcH = cHeight.value + diffY
+        const calcW = cWidth.value + diffX
+        cHeight.value = calcH > 15 ? calcH : 15
+        cWidth.value = calcW > 15 ? calcW : 15
       }
+
       document.body.style.userSelect = 'none'
       AdjustableContainer.value.style.height = cHeight.value + 'px'
       AdjustableContainer.value.style.width = cWidth.value + 'px'
     }
   })
 
-  document.body.addEventListener('mouseup', e => {
-    console.log('mouseup')
+  document.addEventListener('mouseup', e => {
     canDrag = false
     mouseDownState = false
     ACWrap.value.style.cursor = 'default'
@@ -193,9 +205,10 @@ onMounted(() => {
   height: 6px;
   width: 6px;
   position: absolute;
-  right: -1px;
-  bottom: -1px;
+  right: -2px;
+  bottom: -2px;
   pointer-events: none;
-  border: 1px solid #aaaaaa;
+  background-color: #fff;
+  border: 2px solid #aaaaaa;
 }
 </style>
