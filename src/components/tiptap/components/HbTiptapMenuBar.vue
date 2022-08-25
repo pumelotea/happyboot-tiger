@@ -3,6 +3,7 @@ import HbTiptapMenuItem from './HbTiptapMenuItem.vue'
 import {NPopover} from 'naive-ui'
 import HbTiptapTableCreator from "@/components/tiptap/components/HbTiptapTableCreator";
 import HbTiptapColorPicker from "@/components/tiptap/components/HbTiptapColorPicker";
+import HbTiptapLink from '@/components/tiptap/components/HbTiptapLink'
 import {ref} from "vue";
 
 const props = defineProps({
@@ -38,6 +39,21 @@ function setColor(){
 function updateColor(e){
   color.value = e
   setColor()
+}
+
+const HTL = ref(null)
+
+function handleOpenLink() {
+  if (props.editor.isActive('link')) {
+    props.editor.chain().focus().unsetLink().run()
+  } else {
+    HTL.value.open()
+  }
+
+}
+
+function toggleLink(href, target) {
+  props.editor.chain().focus().toggleLink({ href: href, target: target }).run()
 }
 
 </script>
@@ -156,9 +172,10 @@ function updateColor(e){
     />
     <div class="divider"/>
     <hb-tiptap-menu-item icon="link" title="超链接"
-                         :action="() => props.editor.chain().focus().toggleLink({ href: 'https://example.com', target: '_blank' }).run()"
+                         :action="handleOpenLink"
                          :is-active="() => props.editor.isActive('link')"
     />
+    <hb-tiptap-link ref="HTL" @ok="toggleLink"/>
     <hb-tiptap-menu-item icon="image-line" title="插入图片"
                          :action="insertImage"
     />
