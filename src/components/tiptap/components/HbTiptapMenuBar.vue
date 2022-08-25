@@ -2,6 +2,8 @@
 import HbTiptapMenuItem from './HbTiptapMenuItem.vue'
 import {NPopover} from 'naive-ui'
 import HbTiptapTableCreator from "@/components/tiptap/components/HbTiptapTableCreator";
+import HbTiptapColorPicker from "@/components/tiptap/components/HbTiptapColorPicker";
+import {ref} from "vue";
 
 const props = defineProps({
   editor: {
@@ -26,6 +28,16 @@ function insertVideo() {
 
 function insertTable(r,c) {
   props.editor.chain().focus().insertTable({rows: r, cols: c, withHeaderRow: true}).run()
+}
+
+const color = ref("#000000")
+function setColor(){
+  props.editor.chain().focus().setColor(color.value).run()
+}
+
+function updateColor(e){
+  color.value = e
+  setColor()
 }
 
 </script>
@@ -65,10 +77,13 @@ function insertTable(r,c) {
                          :action="() => props.editor.chain().focus().toggleHighlight().run()"
                          :is-active="() => props.editor.isActive('highlight')"
     />
+    <div class="divider"/>
     <hb-tiptap-menu-item icon="font-color" title="字体颜色"
-                         :action="() => props.editor.chain().focus().setColor('#B9F18D').run()"
+                         :action="setColor"
                          :is-active="() => props.editor.isActive('font-color')"
     />
+    <hb-tiptap-color-picker @change="updateColor">
+    </hb-tiptap-color-picker>
     <div class="divider"/>
     <hb-tiptap-menu-item icon="align-left" title="左对齐"
                          :action="() => props.editor.chain().focus().setTextAlign('left').run()"
@@ -155,7 +170,7 @@ function insertTable(r,c) {
                          :is-active="() => props.editor.isActive('codeBlock')"
     />
     <div class="divider"/>
-    <n-popover trigger="hover" placement="bottom">
+    <n-popover trigger="hover" placement="bottom" :show-arrow="false">
       <template #trigger>
         <hb-tiptap-menu-item icon="table-2" title="插入表格" :action="()=>{}"/>
       </template>

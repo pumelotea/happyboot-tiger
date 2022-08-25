@@ -11,7 +11,7 @@ import {onBeforeUnmount, onMounted, watch} from "vue";
 
 let editor
 editor = useEditor({
-  content: `<p><video src="https://media.w3.org/2010/05/sintel/trailer.mp4"></video><img src="1"></p>`,
+  content: ``,
   extensions: [
     StarterKit
   ],
