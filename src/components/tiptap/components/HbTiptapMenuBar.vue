@@ -116,7 +116,7 @@ function insertTable(r,c) {
     <div class="divider"/>
     <n-popover trigger="hover" placement="bottom">
       <template #trigger>
-        <hb-tiptap-menu-item icon="table-2" title="插入表格"/>
+        <hb-tiptap-menu-item icon="table-2" title="插入表格" :action="()=>{}"/>
       </template>
       <hb-tiptap-table-creator @insert="insertTable"/>
     </n-popover>
@@ -144,9 +144,9 @@ function insertTable(r,c) {
     <hb-tiptap-menu-item icon="delete-column" title="删除行"
                          :action="() => props.editor.chain().focus().deleteColumn().run()"
     />
-    <hb-tiptap-menu-item icon="sip-line" title="单元格背景色"
-                         :action="() => props.editor.chain().focus().toggleHeaderCell().run()"
-    />
+<!--    <hb-tiptap-menu-item icon="sip-line" title="单元格背景色"-->
+<!--                         :action="() => props.editor.chain().focus().toggleHeaderCell().run()"-->
+<!--    />-->
   </div>
 </template>
 

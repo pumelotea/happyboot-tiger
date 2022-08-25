@@ -9,7 +9,7 @@ export const HbVideo = Node.create({
 
   addOptions() {
     return {
-      inline: false,
+      inline: true,
       HTMLAttributes: {},
     }
   },
@@ -35,6 +35,12 @@ export const HbVideo = Node.create({
       title: {
         default: null,
       },
+      width:{
+        default: 400,
+      },
+      height:{
+        default: 300,
+      }
     }
   },
 
@@ -47,7 +53,7 @@ export const HbVideo = Node.create({
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['div', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)]
+    return ['video', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)]
   },
 
   addCommands() {

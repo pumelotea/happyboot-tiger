@@ -34,6 +34,9 @@ function onmousedown(r, c) {
 }
 
 function onmouseup(r, c) {
+  if (!isMousedown){
+    return
+  }
   er.value = r
   ec.value = c
   calcRC()
@@ -119,6 +122,7 @@ function insertTable() {
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 10px;
+  user-select: none;
 }
 
 .grid-row {
@@ -129,7 +133,7 @@ function insertTable() {
   width: 15px;
   height: 15px;
   background: rgba(128, 128, 128, 0.2);
-  margin: 1px;
+  border: 1px solid white;
 }
 
 .grid-item-selected {

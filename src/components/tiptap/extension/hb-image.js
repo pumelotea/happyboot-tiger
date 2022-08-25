@@ -11,7 +11,7 @@ export const HbImage = Node.create({
 
   addOptions() {
     return {
-      inline: false,
+      inline: true,
       HTMLAttributes: {},
     }
   },
@@ -37,6 +37,12 @@ export const HbImage = Node.create({
       title: {
         default: null,
       },
+      width:{
+        default: 400,
+      },
+      height:{
+        default: 300,
+      }
     }
   },
 
