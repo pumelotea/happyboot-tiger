@@ -199,6 +199,14 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-bullet-list/-/extension-bullet-list-2.0.0-beta.29.tgz#640883e4fffc1a86c7cbd78792688e7edee5ee41"
   integrity sha512-R8VB2l1ZB6VeGWx/t/04nBS5Wg3qjIDEZCpPihj2fccJOw99Lu0Ub2UJg/SfdGmeNNpBh4ZYYFv1g/XjyzlXKg==
 
+"@tiptap/extension-character-count@^2.0.0-beta.31":
+  version "2.0.0-beta.31"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-character-count/-/extension-character-count-2.0.0-beta.31.tgz#fac9ba809ddc38cf67c8a05a42d94e062a1967d2"
+  integrity sha512-NNA9MN1IjZe+yYQLuYVAg9RNG/3RonYrHiM5mL6vsegd+PF4uMqyZLgsM0/9dMhxh9K/pDPaCRxhuDoZC8V1wA==
+  dependencies:
+    prosemirror-model "1.18.1"
+    prosemirror-state "1.4.1"
+
 "@tiptap/extension-code-block-lowlight@^2.0.0-beta.73":
   version "2.0.0-beta.73"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-code-block-lowlight/-/extension-code-block-lowlight-2.0.0-beta.73.tgz#3f4711fadb1a1f51efbf58389216e6c8bca83d84"
