@@ -61,17 +61,13 @@ function insertTable(r,c) {
                          :action="() => props.editor.chain().focus().toggleStrike().run()"
                          :is-active="() => props.editor.isActive('strike')"
     />
-    <hb-tiptap-menu-item icon="code-view" title="代码"
-                         :action="() => props.editor.chain().focus().toggleCodeBlock().run()"
-                         :is-active="() => props.editor.isActive('codeBlock')"
-    />
     <hb-tiptap-menu-item icon="mark-pen-line" title="高亮"
                          :action="() => props.editor.chain().focus().toggleHighlight().run()"
                          :is-active="() => props.editor.isActive('highlight')"
     />
-    <hb-tiptap-menu-item icon="link" title="超链接"
-                         :action="() => props.editor.chain().focus().toggleLink({ href: 'https://example.com', target: '_blank' }).run()"
-                         :is-active="() => props.editor.isActive('link')"
+    <hb-tiptap-menu-item icon="font-color" title="字体颜色"
+                         :action="() => props.editor.chain().focus().setColor('#B9F18D').run()"
+                         :is-active="() => props.editor.isActive('font-color')"
     />
     <div class="divider"/>
     <hb-tiptap-menu-item icon="align-left" title="左对齐"
@@ -90,7 +86,14 @@ function insertTable(r,c) {
                          :action="() => props.editor.chain().focus().setTextAlign('justify').run()"
                          :is-active="() => props.editor.isActive('align-justify')"
     />
-
+    <hb-tiptap-menu-item icon="subscript" title="上角标"
+                         :action="() => props.editor.chain().focus().toggleSubscript().run()"
+                         :is-active="() => props.editor.isActive('subscript')"
+    />
+    <hb-tiptap-menu-item icon="superscript" title="下角标"
+                         :action="() => props.editor.chain().focus().toggleSuperscript().run()"
+                         :is-active="() => props.editor.isActive('superscript')"
+    />
     <div class="divider"/>
     <hb-tiptap-menu-item icon="h-1" title="标题1"
                          :action="() => props.editor.chain().focus().toggleHeading({level: 1}).run()"
@@ -137,11 +140,19 @@ function insertTable(r,c) {
                          :action="() => props.editor.chain().focus().setHorizontalRule().run()"
     />
     <div class="divider"/>
+    <hb-tiptap-menu-item icon="link" title="超链接"
+                         :action="() => props.editor.chain().focus().toggleLink({ href: 'https://example.com', target: '_blank' }).run()"
+                         :is-active="() => props.editor.isActive('link')"
+    />
     <hb-tiptap-menu-item icon="image-line" title="插入图片"
                          :action="insertImage"
     />
     <hb-tiptap-menu-item icon="video-line" title="插入视频"
                          :action="insertVideo"
+    />
+    <hb-tiptap-menu-item icon="code-view" title="代码"
+                         :action="() => props.editor.chain().focus().toggleCodeBlock().run()"
+                         :is-active="() => props.editor.isActive('codeBlock')"
     />
     <div class="divider"/>
     <n-popover trigger="hover" placement="bottom">

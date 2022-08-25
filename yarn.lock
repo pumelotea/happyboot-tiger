@@ -222,6 +222,11 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-code/-/extension-code-2.0.0-beta.28.tgz#a22c0e873497ac0bbcd77e4a855322f8591f954e"
   integrity sha512-QPJ2Gwb1+3NgcC1ZIhvVcb+FsnWWDu5VZXTKXM4mz892i9V2x48uHg5anPiUV6pcolXsW1F5VNbXIHGTUUO6CQ==
 
+"@tiptap/extension-color@^2.0.0-beta.12":
+  version "2.0.0-beta.12"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-color/-/extension-color-2.0.0-beta.12.tgz#9f8dea84f75c1533383d87719218471e87c83c9c"
+  integrity sha512-ddFIUdb7e0gLlYlcQiyZ+zRC4nXtpX2bhOHZ7IdCasoHYEWs/8dsncngLtymAgsRBeruMZ5K6ZhAYtgQVUugqQ==
+
 "@tiptap/extension-document@^2.0.0-beta.17":
   version "2.0.0-beta.17"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-document/-/extension-document-2.0.0-beta.17.tgz#ded4182dd860762bcf41c588f712d83908c472a3"
@@ -327,6 +332,16 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-strike/-/extension-strike-2.0.0-beta.29.tgz#7004d0c5d126b0517fa78efc5a333a4b8e3334bf"
   integrity sha512-zqFuY7GfNmZ/KClt6kxQ+msGo3syqucP/Xnlihxi+/h/G+oTvEwyOIXCtDOltvxcsWH/TUsdr5vzLp0j+Mdc6Q==
 
+"@tiptap/extension-subscript@^2.0.0-beta.13":
+  version "2.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-subscript/-/extension-subscript-2.0.0-beta.13.tgz#5da9523b50240c4f4999b1941d5d66d6ca85189d"
+  integrity sha512-L9f2zKzNI5y4YvMdNxHDT4Y+8gS1UwtbTJ1vUJdCZGfF8DrMuTZIRp3LjOxYXydr7NGEXyYbucdm97Tzrsp8WA==
+
+"@tiptap/extension-superscript@^2.0.0-beta.13":
+  version "2.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-superscript/-/extension-superscript-2.0.0-beta.13.tgz#053b7df90ea26451c020075424b78053325672c1"
+  integrity sha512-Vr9KIG2c4jzymcMMQCjhx2gppmRvnbw6Xvrd8YCpK4szyYI1ClMQ5KQMYl2zV3Y4ZIsivRSy9cE0ipGsXGE3Gw==
+
 "@tiptap/extension-table-cell@^2.0.0-beta.23":
   version "2.0.0-beta.23"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-table-cell/-/extension-table-cell-2.0.0-beta.23.tgz#a460318be151434ac31daffe94c2c4e53f2ea229"
@@ -366,6 +381,11 @@
   version "2.0.0-beta.31"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-text-align/-/extension-text-align-2.0.0-beta.31.tgz#31229ef1a16555a9b3a1dc94bf7d3a8c64639f51"
   integrity sha512-gSJqi57piiMPc2r6WEkXv7ZgQIogigsRUhmlnZC/7s3zzOvjXrexWnV0Ctt/9A7BKcM7OHMykpZyoewvk6QRTw==
+
+"@tiptap/extension-text-style@^2.0.0-beta.26":
+  version "2.0.0-beta.26"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-text-style/-/extension-text-style-2.0.0-beta.26.tgz#f46105d687e817563e4acac5d67457e67e73d3ad"
+  integrity sha512-sHUlj5j86W53jvj9ijhXGyqxDdT2c9B7lVwdmDtksvSIrRYuCFqn7hFBzlypNBb56zePqBlIFymUmhK283L6fQ==
 
 "@tiptap/extension-text@^2.0.0-beta.17":
   version "2.0.0-beta.17"

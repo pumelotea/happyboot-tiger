@@ -29,6 +29,10 @@ import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
 import Link from '@tiptap/extension-link'
 import TextAlign from '@tiptap/extension-text-align'
+import Subscript from '@tiptap/extension-subscript'
+import Superscript from '@tiptap/extension-superscript'
+import Color from '@tiptap/extension-color'
+import TextStyle from '@tiptap/extension-text-style'
 
 // load all highlight.js languages
 import {lowlight} from 'lowlight'
@@ -191,7 +195,7 @@ const StarterKit = Extension.create({
 
         if (this.options.link !== false) {
             extensions.push(Link.configure({
-                protocols: ['ftp', 'mailto','http','https'],
+                protocols: ['ftp', 'mailto', 'http', 'https'],
                 autolink: false,
             }))
         }
@@ -202,7 +206,18 @@ const StarterKit = Extension.create({
             }))
         }
 
+        if (this.options.subscript !== false) {
+            extensions.push(Subscript)
+        }
 
+        if (this.options.superscript !== false) {
+            extensions.push(Superscript)
+        }
+
+        if (this.options.color !== false) {
+            extensions.push(TextStyle)
+            extensions.push(Color)
+        }
 
         return extensions
     },
