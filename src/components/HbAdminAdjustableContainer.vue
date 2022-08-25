@@ -184,7 +184,7 @@ onMounted(() => {
   max-width: 100%;
   width:auto;
   display:inline-block !important;
-  padding: 5px;
+  margin: 10px;
   border: 2px solid #fff;
   position: relative;
 }
@@ -202,13 +202,13 @@ onMounted(() => {
   width: 50px;
 }
 .hb-ac-drag-block{
-  height: 6px;
-  width: 6px;
+  height: 8px;
+  width: 8px;
   position: absolute;
-  right: -2px;
-  bottom: -2px;
+  right: -4px;
+  bottom: -4px;
   pointer-events: none;
-  background-color: #fff;
-  border: 2px solid #aaaaaa;
+  background-color: #2080F0;
+  border: 2px solid #fff;
 }
 </style>
