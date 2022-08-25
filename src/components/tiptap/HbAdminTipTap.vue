@@ -13,6 +13,7 @@ import {useDebounceFn} from "@vueuse/core";
 
 const words = ref(0)
 const characters = ref(0)
+const fullscreen = ref(false)
 
 const updateEditorWordCount = useDebounceFn(()=> {
   words.value = editor.value.storage.characterCount.words()
@@ -34,6 +35,10 @@ editor = useEditor({
 
     updateEditorWordCount()
   },
+})
+
+onMounted(()=>{
+  editor.value.storage.fullscreen = fullscreen
 })
 
 const props = defineProps({
@@ -71,7 +76,7 @@ onBeforeUnmount(()=>{
 </script>
 
 <template>
-  <div class="editor" v-if="editor">
+  <div class="editor" v-if="editor" :class="{'fullscreen':fullscreen}">
     <hb-tiptap-menu-bar class="editor-header" :editor="editor"></hb-tiptap-menu-bar>
     <editor-content class="editor-body markdown-body" :editor="editor"/>
     <div class="editor-footer">
@@ -89,6 +94,15 @@ onBeforeUnmount(()=>{
   flex-direction: column;
   box-sizing: border-box;
   height: 100%;
+}
+
+.editor.fullscreen{
+  position: fixed;
+  inset: 0;
+  background: white;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
 }
 
 .editor-header {

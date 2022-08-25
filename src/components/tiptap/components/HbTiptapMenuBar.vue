@@ -40,6 +40,10 @@ function updateColor(e){
   setColor()
 }
 
+function toggleFullscreen(){
+  props.editor.storage.fullscreen.value = !props.editor.storage.fullscreen.value
+}
+
 </script>
 <template>
   <div class="menu-bar">
@@ -199,6 +203,10 @@ function updateColor(e){
     />
     <hb-tiptap-menu-item icon="delete-column" title="删除行"
                          :action="() => props.editor.chain().focus().deleteColumn().run()"
+    />
+    <div class="divider"/>
+    <hb-tiptap-menu-item :icon="props.editor.storage.fullscreen.value? 'fullscreen-exit-line':'fullscreen-line'" title="全屏"
+                         :action="toggleFullscreen"
     />
 <!--    <hb-tiptap-menu-item icon="sip-line" title="单元格背景色"-->
 <!--                         :action="() => props.editor.chain().focus().toggleHeaderCell().run()"-->
