@@ -45,8 +45,10 @@ const iconUrl = ref(remixiconSvg)
   background-color: transparent;
   border-radius: 3px;
   padding: 5px;
-  margin-right: 5px;
   transition: all 0.2s;
+}
+.menu-item+.menu-item{
+  margin-left: 5px;
 }
 
 .menu-item:hover, .is-active {

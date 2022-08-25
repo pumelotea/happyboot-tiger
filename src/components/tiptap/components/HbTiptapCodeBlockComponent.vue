@@ -1,4 +1,5 @@
 <script setup>
+import 'highlight.js/styles/vs.css'
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
 import {NPopselect,NButton} from 'naive-ui'
 import {ref, watch} from "vue";
@@ -17,7 +18,7 @@ languages.unshift({
   value: 'auto'
 })
 
-const selectedLanguage = ref(null)
+const selectedLanguage = ref(props.node.attrs.language)
 
 watch(selectedLanguage,()=>{
   if (selectedLanguage.value === 'auto'){
