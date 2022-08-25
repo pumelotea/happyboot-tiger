@@ -1,8 +1,8 @@
 /**
  * 图片添加水印
  *  callback  //回调方法，返回base64的图片
- *  image: Image()  //底图对象
- *  sign: Image()  //水印对象
+ *  image: Video()  //底图对象
+ *  sign: Video()  //水印对象
  *  left: Number  //水印左侧位置
  *  top: Number  //水印顶部位置
  *  imageWidth: Number  //底图宽度
@@ -50,7 +50,7 @@ export function watermark (
 /**
  * 图片裁剪
  * callback  //回调方法，返回base64的图片
- * image: Image()  //底图对象
+ * image: Video()  //底图对象
  * left: Number  //裁剪左侧距离
  * right: Number  //裁剪右侧距离
  * top: Number  //裁剪顶部距离
@@ -119,7 +119,7 @@ export function cropper (
 /**
  * 调整图片宽高
  * callback  //回调方法，返回base64的图片
- * image: Image()  //底图对象
+ * image: Video()  //底图对象
  * width: Number  //调整的宽度
  * height: Number  //调整的高度
  * */
@@ -157,7 +157,7 @@ export function resize (
 /**
  * 调整图片质量
  * callback  //回调方法，返回base64的图片
- * image: Image()  //底图对象
+ * image: Video()  //底图对象
  * quality: Number  //图片质量 0 - 1
  * */
 export function quality (callback, image, quality = 1) {
