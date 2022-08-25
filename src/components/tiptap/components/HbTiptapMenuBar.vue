@@ -219,7 +219,7 @@ function updateColor(e){
   width: 2px;
   height: 20px;
   background-color: rgba(0, 0, 0, 0.1);
-  margin-left: .5rem;
-  margin-right: .75rem;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 </style>

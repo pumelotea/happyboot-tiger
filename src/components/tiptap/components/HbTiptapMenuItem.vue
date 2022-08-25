@@ -46,9 +46,8 @@ const iconUrl = ref(remixiconSvg)
   border-radius: 3px;
   padding: 5px;
   transition: all 0.2s;
-}
-.menu-item+.menu-item{
-  margin-left: 5px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .menu-item:hover, .is-active {
