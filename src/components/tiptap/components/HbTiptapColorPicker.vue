@@ -44,16 +44,17 @@ function change(e){
    justify-content: center;
  }
 
- /deep/ .n-color-picker{
+
+ ::v-deep(.n-color-picker) {
    width: 18px;
    height: 18px;
  }
 
- /deep/ .n-color-picker-trigger{
+ ::v-deep(.n-color-picker-trigger){
    border: none;
  }
 
- /deep/ .n-color-picker-trigger .n-color-picker-trigger__fill{
+ ::v-deep(.n-color-picker-trigger .n-color-picker-trigger__fill){
    inset: 0;
    border-radius: 2px;
    overflow: hidden;
