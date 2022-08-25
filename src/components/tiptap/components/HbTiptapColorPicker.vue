@@ -14,14 +14,7 @@ function change(e){
     <n-color-picker
         :render-label="()=>null"
         placement="bottom"
-        @complete="change"
-        :swatches="[
-          '#000000',
-          '#FFFFFF',
-          '#18A058',
-          '#2080F0',
-          '#F0A020',
-          'rgba(208, 48, 80, 1)']">
+        @complete="change">
     </n-color-picker>
   </button>
 </template>
@@ -51,16 +44,17 @@ function change(e){
    justify-content: center;
  }
 
- /deep/ .n-color-picker{
+
+ ::v-deep(.n-color-picker) {
    width: 18px;
    height: 18px;
  }
 
- /deep/ .n-color-picker-trigger{
+ ::v-deep(.n-color-picker-trigger){
    border: none;
  }
 
- /deep/ .n-color-picker-trigger .n-color-picker-trigger__fill{
+ ::v-deep(.n-color-picker-trigger .n-color-picker-trigger__fill){
    inset: 0;
    border-radius: 2px;
    overflow: hidden;
