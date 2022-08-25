@@ -14,14 +14,7 @@ function change(e){
     <n-color-picker
         :render-label="()=>null"
         placement="bottom"
-        @complete="change"
-        :swatches="[
-          '#000000',
-          '#FFFFFF',
-          '#18A058',
-          '#2080F0',
-          '#F0A020',
-          'rgba(208, 48, 80, 1)']">
+        @complete="change">
     </n-color-picker>
   </button>
 </template>
