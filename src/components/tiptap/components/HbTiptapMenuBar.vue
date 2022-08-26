@@ -67,6 +67,10 @@ function insertVideo(url) {
   }
 }
 
+function toggleFullscreen(){
+  props.editor.storage.fullscreen.value = !props.editor.storage.fullscreen.value
+}
+
 </script>
 <template>
   <div class="menu-bar">
@@ -230,6 +234,10 @@ function insertVideo(url) {
     <hb-tiptap-menu-item icon="delete-column" title="删除行"
                          :action="() => props.editor.chain().focus().deleteColumn().run()"
     />
+    <div class="divider"/>
+    <hb-tiptap-menu-item :icon="props.editor.storage.fullscreen.value? 'fullscreen-exit-line':'fullscreen-line'" title="全屏"
+                         :action="toggleFullscreen"
+    />
 <!--    <hb-tiptap-menu-item icon="sip-line" title="单元格背景色"-->
 <!--                         :action="() => props.editor.chain().focus().toggleHeaderCell().run()"-->
 <!--    />-->
@@ -249,7 +257,7 @@ function insertVideo(url) {
   width: 2px;
   height: 20px;
   background-color: rgba(0, 0, 0, 0.1);
-  margin-left: .5rem;
-  margin-right: .75rem;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 </style>

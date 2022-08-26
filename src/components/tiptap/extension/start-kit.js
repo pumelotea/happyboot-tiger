@@ -33,6 +33,7 @@ import Subscript from '@tiptap/extension-subscript'
 import Superscript from '@tiptap/extension-superscript'
 import Color from '@tiptap/extension-color'
 import TextStyle from '@tiptap/extension-text-style'
+import CharacterCount from '@tiptap/extension-character-count'
 
 // load all highlight.js languages
 import {lowlight} from 'lowlight'
@@ -60,6 +61,8 @@ const StarterKit = Extension.create({
             //   return 'Can you add some further context?'
             // },
         }))
+
+        extensions.push(CharacterCount)
 
         if (this.options.blockquote !== false) {
             extensions.push(Blockquote.configure(this.options?.blockquote))
