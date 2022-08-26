@@ -4,6 +4,7 @@ import {NPopover} from 'naive-ui'
 import HbTiptapTableCreator from "@/components/tiptap/components/HbTiptapTableCreator";
 import HbTiptapColorPicker from "@/components/tiptap/components/HbTiptapColorPicker";
 import HbTiptapLink from '@/components/tiptap/components/HbTiptapLink'
+import HbTiptapImage from '@/components/tiptap/components/HbTiptapImage'
 import {ref} from "vue";
 
 const props = defineProps({
@@ -12,20 +13,6 @@ const props = defineProps({
     required: true
   }
 })
-
-function insertImage() {
-  const url = window.prompt('URL')
-  if (url) {
-    props.editor.chain().focus().setHbImage({src: url}).run()
-  }
-}
-
-function insertVideo() {
-  const url = window.prompt('URL')
-  if (url) {
-    props.editor.chain().focus().setHbVideo({src: url}).run()
-  }
-}
 
 function insertTable(r,c) {
   props.editor.chain().focus().insertTable({rows: r, cols: c, withHeaderRow: true}).run()
@@ -49,11 +36,28 @@ function handleOpenLink() {
   } else {
     HTL.value.open()
   }
-
 }
 
 function toggleLink(href, target) {
   props.editor.chain().focus().toggleLink({ href: href, target: target }).run()
+}
+
+const HTI = ref(null)
+
+function handleOpenImage() {
+  HTI.value.open()
+}
+
+function insertImage(url) {
+  if (url) {
+    props.editor.chain().focus().setHbImage({src: url}).run()
+  }
+}
+
+function insertVideo(url) {
+  if (url) {
+    props.editor.chain().focus().setHbVideo({src: url}).run()
+  }
 }
 
 </script>
@@ -177,8 +181,9 @@ function toggleLink(href, target) {
     />
     <hb-tiptap-link ref="HTL" @ok="toggleLink"/>
     <hb-tiptap-menu-item icon="image-line" title="插入图片"
-                         :action="insertImage"
+                         :action="handleOpenImage"
     />
+    <hb-tiptap-image ref="HTI" @ok="insertImage"/>
     <hb-tiptap-menu-item icon="video-line" title="插入视频"
                          :action="insertVideo"
     />
