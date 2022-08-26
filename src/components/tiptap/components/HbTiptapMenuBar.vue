@@ -7,7 +7,8 @@ import HbTiptapLink from '@/components/tiptap/components/HbTiptapLink'
 import HbTiptapImage from '@/components/tiptap/components/HbTiptapImage'
 import HbTiptapVideo from '@/components/tiptap/components/HbTiptapVideo'
 import {ref} from "vue";
-
+import {useThemeVars} from 'naive-ui'
+const vars = useThemeVars()
 const props = defineProps({
   editor: {
     type: Object,
@@ -256,7 +257,7 @@ function toggleFullscreen(){
 .divider {
   width: 2px;
   height: 20px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: v-bind(vars.borderColor);
   margin-left: 2px;
   margin-right: 2px;
 }

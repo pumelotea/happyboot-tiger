@@ -3,12 +3,13 @@ import './editor.css'
 import {useEditor, EditorContent} from '@tiptap/vue-3'
 import HbTiptapMenuBar from "./components/HbTiptapMenuBar"
 import StarterKit from './extension/start-kit'
-
+import {useThemeVars} from 'naive-ui'
+const vars = useThemeVars()
 
 StarterKit.options.highlight = {multicolor: true}
 StarterKit.options.table = {resizable: true}
 
-import {onBeforeUnmount, onMounted, ref, watch} from "vue";
+import {computed, onBeforeUnmount, onMounted, ref, watch} from "vue";
 import {useDebounceFn} from "@vueuse/core";
 
 const words = ref(0)
@@ -19,6 +20,8 @@ const updateEditorWordCount = useDebounceFn(()=> {
   words.value = editor.value.storage.characterCount.words()
   characters.value = editor.value.storage.characterCount.characters()
 },300)
+
+const isFocused = ref(false)
 
 let editor
 editor = useEditor({
@@ -35,11 +38,19 @@ editor = useEditor({
 
     updateEditorWordCount()
   },
+  onFocus: () => {
+    isFocused.value = true
+  },
+  onBlur: () =>{
+    isFocused.value = false
+  }
 })
 
 onMounted(()=>{
   editor.value.storage.fullscreen = fullscreen
 })
+
+
 
 const props = defineProps({
   modelValue: {
@@ -76,7 +87,7 @@ onBeforeUnmount(()=>{
 </script>
 
 <template>
-  <div class="editor" v-if="editor" :class="{'fullscreen':fullscreen}">
+  <div class="editor" v-if="editor" :class="{'fullscreen':fullscreen,'focus':isFocused && !fullscreen}">
     <hb-tiptap-menu-bar class="editor-header" :editor="editor"></hb-tiptap-menu-bar>
     <editor-content class="editor-body markdown-body" :editor="editor"/>
     <div class="editor-footer">
@@ -88,21 +99,28 @@ onBeforeUnmount(()=>{
 
 <style scoped>
 .editor {
-  border: 1px solid #cccccc;
+  border: 1px solid v-bind(vars.borderColor);
   border-radius: 3px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   height: 100%;
+  transition: box-shadow 0.2s;
+  background: v-bind(vars.inputColor);
+}
+
+.editor.focus{
+  border-color: v-bind(vars.primaryColorHover);
+  box-shadow: 0 0 0 2px rgba(24, 160, 88, 0.2);
 }
 
 .editor.fullscreen{
   position: fixed;
   inset: 0;
-  background: white;
   z-index: 1;
   margin: 0;
   padding: 0;
+  background: v-bind(vars.bodyColor) !important;
 }
 
 .editor-header {
