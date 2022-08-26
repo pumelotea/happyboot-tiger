@@ -5,6 +5,7 @@ import HbTiptapTableCreator from "@/components/tiptap/components/HbTiptapTableCr
 import HbTiptapColorPicker from "@/components/tiptap/components/HbTiptapColorPicker";
 import HbTiptapLink from '@/components/tiptap/components/HbTiptapLink'
 import HbTiptapImage from '@/components/tiptap/components/HbTiptapImage'
+import HbTiptapVideo from '@/components/tiptap/components/HbTiptapVideo'
 import {ref} from "vue";
 
 const props = defineProps({
@@ -52,6 +53,12 @@ function insertImage(url) {
   if (url) {
     props.editor.chain().focus().setHbImage({src: url}).run()
   }
+}
+
+const HTV = ref(null)
+
+function handleOpenVideo() {
+  HTV.value.open()
 }
 
 function insertVideo(url) {
@@ -185,8 +192,9 @@ function insertVideo(url) {
     />
     <hb-tiptap-image ref="HTI" @ok="insertImage"/>
     <hb-tiptap-menu-item icon="video-line" title="插入视频"
-                         :action="insertVideo"
+                         :action="handleOpenVideo"
     />
+    <hb-tiptap-video ref="HTV" @ok="insertVideo"/>
     <hb-tiptap-menu-item icon="code-view" title="代码"
                          :action="() => props.editor.chain().focus().toggleCodeBlock().run()"
                          :is-active="() => props.editor.isActive('codeBlock')"

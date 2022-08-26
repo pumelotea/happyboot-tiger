@@ -1,7 +1,15 @@
 <script setup>
 import { NImage } from 'naive-ui'
-import {computed, ref} from "vue"
+import {computed, nextTick, onBeforeUnmount, ref} from "vue"
 import HbAdminImage from "./HbAdminImage"
+
+import Player from 'xgplayer/dist/core_player'
+import play from 'xgplayer/dist/controls/play'
+import fullscreen from 'xgplayer/dist/controls/fullscreen'
+import progress from 'xgplayer/dist/controls/progress'
+import volume from 'xgplayer/dist/controls/volume'
+import pip from 'xgplayer/dist/controls/pip'
+import flex from 'xgplayer/dist/controls/flex'
 
 const props = defineProps({
   type: {
@@ -33,11 +41,43 @@ const fileValue = ref(null)
 
 function handleSelect(event) {
   fileValue.value = URL.createObjectURL(event.target.files[0])
+  if (props.type === 'video') {
+    nextTick(() => {
+      initPlayer()
+    })
+  }
 }
 
 function handleDel() {
   fileValue.value = null
 }
+
+const playerBox = ref(null)
+let editor = null
+function initPlayer () {
+  console.log(playerBox.value)
+
+  editor = new Player({
+    el            : playerBox.value,
+    url           : fileValue.value,
+    fluid: true,
+    controlPlugins: [
+      play,
+      fullscreen,
+      progress,
+      volume,
+      pip,
+      flex
+    ],
+    playbackRate       : [ 0.5, 0.75, 1, 1.5, 2 ],
+    defaultPlaybackRate: 1.5,
+    videoInit          : true,
+    pip                : true // 打开画中画功能
+  })
+}
+onBeforeUnmount(()=>{
+  editor&&editor.destroy(true)
+})
 
 function getFile() {
   return fileValue.value
@@ -57,6 +97,7 @@ defineExpose({getFile})
         <i class="ri-close-line"></i>
       </div>
       <hb-admin-image v-if="props.type === 'image'" :src="fileValue" :width="370" :height="200" isPreview/>
+      <div ref="playerBox" v-if="props.type === 'video'" style="width: 370px;height: 200px;"></div>
     </div>
   </div>
 </template>
