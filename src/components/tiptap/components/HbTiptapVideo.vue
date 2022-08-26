@@ -55,7 +55,7 @@ defineExpose({open})
       style="width: 450px"
   >
     <template #header>
-      <div>插视频片</div>
+      <div>插入视频</div>
     </template>
     <div>
       <n-tabs type="line" animated :default-value="tabName" @update:value="changeTab">
