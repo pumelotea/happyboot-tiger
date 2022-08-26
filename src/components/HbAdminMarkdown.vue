@@ -74,10 +74,12 @@ function addAttrListener () {
     if (fullscreen) {
       document.getElementById('pop-body').append(editor.value.el)
     } else {
-      dom.value.append(editor.value.el)
+      if (editor.value){
+        dom.value.append(editor.value.el)
+      }
     }
   })
-  // 监听dom的属性，仅监听fill属性的改变。
+  // 监听dom的属性
   attrListener.observe(target, { attributes: true })
   return attrListener.disconnect
 }
