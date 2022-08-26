@@ -105,12 +105,17 @@ onBeforeUnmount(()=>{
   flex-direction: column;
   box-sizing: border-box;
   height: 100%;
-  transition: box-shadow 0.2s;
+  transition-property: border-color,box-shadow;
+  transition-duration:  0.2s;
   background: v-bind(vars.inputColor);
 }
 
+.editor:hover{
+  border-color: v-bind(vars. primaryColorHover);
+}
+
 .editor.focus{
-  border-color: v-bind(vars.primaryColorHover);
+  border-color: v-bind(vars.primaryColor);
   box-shadow: 0 0 0 2px rgba(24, 160, 88, 0.2);
 }
 
