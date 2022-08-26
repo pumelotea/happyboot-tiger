@@ -3,6 +3,9 @@ import HbTiptapMenuItem from './HbTiptapMenuItem.vue'
 import {NPopover} from 'naive-ui'
 import HbTiptapTableCreator from "@/components/tiptap/components/HbTiptapTableCreator";
 import HbTiptapColorPicker from "@/components/tiptap/components/HbTiptapColorPicker";
+import HbTiptapLink from '@/components/tiptap/components/HbTiptapLink'
+import HbTiptapImage from '@/components/tiptap/components/HbTiptapImage'
+import HbTiptapVideo from '@/components/tiptap/components/HbTiptapVideo'
 import {ref} from "vue";
 
 const props = defineProps({
@@ -11,20 +14,6 @@ const props = defineProps({
     required: true
   }
 })
-
-function insertImage() {
-  const url = window.prompt('URL')
-  if (url) {
-    props.editor.chain().focus().setHbImage({src: url}).run()
-  }
-}
-
-function insertVideo() {
-  const url = window.prompt('URL')
-  if (url) {
-    props.editor.chain().focus().setHbVideo({src: url}).run()
-  }
-}
 
 function insertTable(r,c) {
   props.editor.chain().focus().insertTable({rows: r, cols: c, withHeaderRow: true}).run()
@@ -38,6 +27,44 @@ function setColor(){
 function updateColor(e){
   color.value = e
   setColor()
+}
+
+const HTL = ref(null)
+
+function handleOpenLink() {
+  if (props.editor.isActive('link')) {
+    props.editor.chain().focus().unsetLink().run()
+  } else {
+    HTL.value.open()
+  }
+}
+
+function toggleLink(href, target) {
+  props.editor.chain().focus().toggleLink({ href: href, target: target }).run()
+}
+
+const HTI = ref(null)
+
+function handleOpenImage() {
+  HTI.value.open()
+}
+
+function insertImage(url) {
+  if (url) {
+    props.editor.chain().focus().setHbImage({src: url}).run()
+  }
+}
+
+const HTV = ref(null)
+
+function handleOpenVideo() {
+  HTV.value.open()
+}
+
+function insertVideo(url) {
+  if (url) {
+    props.editor.chain().focus().setHbVideo({src: url}).run()
+  }
 }
 
 function toggleFullscreen(){
@@ -160,15 +187,18 @@ function toggleFullscreen(){
     />
     <div class="divider"/>
     <hb-tiptap-menu-item icon="link" title="超链接"
-                         :action="() => props.editor.chain().focus().toggleLink({ href: 'https://example.com', target: '_blank' }).run()"
+                         :action="handleOpenLink"
                          :is-active="() => props.editor.isActive('link')"
     />
+    <hb-tiptap-link ref="HTL" @ok="toggleLink"/>
     <hb-tiptap-menu-item icon="image-line" title="插入图片"
-                         :action="insertImage"
+                         :action="handleOpenImage"
     />
+    <hb-tiptap-image ref="HTI" @ok="insertImage"/>
     <hb-tiptap-menu-item icon="video-line" title="插入视频"
-                         :action="insertVideo"
+                         :action="handleOpenVideo"
     />
+    <hb-tiptap-video ref="HTV" @ok="insertVideo"/>
     <hb-tiptap-menu-item icon="code-view" title="代码"
                          :action="() => props.editor.chain().focus().toggleCodeBlock().run()"
                          :is-active="() => props.editor.isActive('codeBlock')"
