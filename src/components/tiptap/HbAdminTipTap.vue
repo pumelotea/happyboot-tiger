@@ -128,6 +128,10 @@ onBeforeUnmount(()=>{
   background: v-bind(vars.bodyColor) !important;
 }
 
+.editor.fullscreen:hover{
+  border-color: rgba(0,0,0,0) !important;
+}
+
 .editor-header {
   border-bottom: 1px solid #cccccc;
   box-sizing: border-box;
