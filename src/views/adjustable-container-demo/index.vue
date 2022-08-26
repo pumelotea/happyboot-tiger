@@ -11,7 +11,7 @@ import Demo from "./base.demo.vue"
         <n-space vertical>
           <h2>可动态调整的容器</h2>
           <n-alert type="info">
-            可以鼠标拖拽调整也可以输入宽高调整容器大小
+            可以鼠标拖拽调整容器大小
           </n-alert>
           <demo/>
         </n-space>
