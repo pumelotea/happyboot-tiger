@@ -176,7 +176,7 @@ function toggleFullscreen(){
     />
     <hb-tiptap-menu-item icon="task-line" title="任务列表"
                          :action="() => props.editor.chain().focus().toggleTaskList().run()"
-                         :is-active="() => props.editor.isActive('orderedList')"
+                         :is-active="() => props.editor.isActive('taskList')"
     />
     <hb-tiptap-menu-item icon="double-quotes-l" title="引用"
                          :action="() => props.editor.chain().focus().toggleBlockquote().run()"
