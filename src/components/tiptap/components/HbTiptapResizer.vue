@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, ref, watch} from "vue"
+import {computed, onMounted, ref, watch} from "vue"
 
 const props = defineProps({
   w:{
@@ -9,6 +9,10 @@ const props = defineProps({
   h:{
     type:Number,
     default:300,
+  },
+  editor: {
+    type: Object,
+    required: true
   }
 })
 
@@ -90,12 +94,35 @@ function emitSize(){
   emit('on-change',width.value,height.value)
 }
 
+function uuid() {
+  const s = [];
+  const hexDigits = "0123456789abcdef";
+  for (let i = 0; i < 36; i++) {
+    s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+  }
+  s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
+  s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
+  s[8] = s[13] = s[18] = s[23] = "-";
+  return s.join("");
+}
+
+const id = uuid()
+
+const selectedResizer = props.editor.storage.selectedResizer
+
+const isShowResizer = computed(()=>{
+  return isHover.value || selectedResizer.value === id
+})
+
+function onclick(){
+  selectedResizer.value = id
+}
 
 </script>
 
 <template>
-<div class="box-resizer" draggable="false" @mouseenter="hover" @mouseleave="leave">
-  <template v-if="isHover">
+<div class="box-resizer" draggable="false" @click="onclick" @mouseenter="hover" @mouseleave="leave" :data-id="id">
+  <template v-if="isShowResizer">
     <div class="l-line resize-line-v"></div>
     <div class="r-line resize-line-v"></div>
     <div class="t-line resize-line-h"></div>

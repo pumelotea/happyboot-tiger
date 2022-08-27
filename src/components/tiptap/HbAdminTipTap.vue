@@ -15,6 +15,7 @@ import {useDebounceFn} from "@vueuse/core";
 const words = ref(0)
 const characters = ref(0)
 const fullscreen = ref(false)
+const selectedResizer = ref('')
 
 const updateEditorWordCount = useDebounceFn(()=> {
   words.value = editor.value.storage.characterCount.words()
@@ -25,13 +26,13 @@ const isFocused = ref(false)
 
 let editor
 editor = useEditor({
-  content: ``,
+  content: `<p><img src="https://" width="400" height="300"><img src="https://" width="400" height="300"></p>`,
   extensions: [
     StarterKit
   ],
-  onUpdate: () => {
+  onUpdate: ({editor}) => {
     // HTML
-    emit('update:modelValue', editor.value.getHTML())
+    emit('update:modelValue', editor.getHTML())
 
     // JSON
     // this.$emit('update:modelValue', this.editor.getJSON())
@@ -43,11 +44,21 @@ editor = useEditor({
   },
   onBlur: () =>{
     isFocused.value = false
+    selectedResizer.value = ''
+  },
+  onSelectionUpdate: ({editor})=>{
+    //取消当前选中的resizer
+    if (editor.storage.selectedResizer.value){
+      if (!editor.isActive('hb-image') && !editor.isActive('hb-video')){
+        editor.storage.selectedResizer.value = ''
+      }
+    }
   }
 })
 
 onMounted(()=>{
   editor.value.storage.fullscreen = fullscreen
+  editor.value.storage.selectedResizer = selectedResizer
 })
 
 
