@@ -101,9 +101,9 @@ onBeforeUnmount(()=>{
 
 <template>
   <div class="editor-background" :class="{'fullscreen':fullscreen}">
-    <div class="editor" v-if="editor" :class="{'fullscreen':fullscreen,'focus':isFocused && !fullscreen}">
+    <div class="editor" v-if="editor" :class="{'fullscreen':fullscreen,'focus':isFocused && !fullscreen}" spellcheck="false">
         <hb-tiptap-menu-bar class="editor-header" :editor="editor"></hb-tiptap-menu-bar>
-        <editor-content class="editor-body markdown-body" :editor="editor"/>
+        <editor-content class="editor-body" :editor="editor"/>
         <div class="editor-footer">
           <div class="footer-item">短语 {{words}}</div>
           <div class="footer-item">字符 {{characters}}</div>
