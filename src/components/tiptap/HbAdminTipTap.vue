@@ -3,14 +3,21 @@ import './editor.css'
 import {useEditor, EditorContent} from '@tiptap/vue-3'
 import HbTiptapMenuBar from "./components/HbTiptapMenuBar"
 import StarterKit from './extension/start-kit'
+import {onBeforeUnmount, onMounted, ref, watch} from "vue";
+import {useDebounceFn} from "@vueuse/core";
+
 import {useThemeVars} from 'naive-ui'
 const vars = useThemeVars()
 
 StarterKit.options.highlight = {multicolor: true}
 StarterKit.options.table = {resizable: true}
 
-import {computed, onBeforeUnmount, onMounted, ref, watch} from "vue";
-import {useDebounceFn} from "@vueuse/core";
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: '',
+  },
+})
 
 const words = ref(0)
 const characters = ref(0)
@@ -26,7 +33,7 @@ const isFocused = ref(false)
 
 let editor
 editor = useEditor({
-  content: `<p><img src="https://" width="400" height="300"><img src="https://" width="400" height="300"></p>`,
+  content: props.modelValue,
   extensions: [
     StarterKit
   ],
@@ -63,12 +70,7 @@ onMounted(()=>{
 
 
 
-const props = defineProps({
-  modelValue: {
-    type: String,
-    default: '',
-  },
-})
+
 
 const emit = defineEmits(['update:modelValue'])
 
