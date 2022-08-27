@@ -98,12 +98,14 @@ onBeforeUnmount(()=>{
 </script>
 
 <template>
-  <div class="editor" v-if="editor" :class="{'fullscreen':fullscreen,'focus':isFocused && !fullscreen}">
-    <hb-tiptap-menu-bar class="editor-header" :editor="editor"></hb-tiptap-menu-bar>
-    <editor-content class="editor-body markdown-body" :editor="editor"/>
-    <div class="editor-footer">
-      <div class="footer-item">短语 {{words}}</div>
-      <div class="footer-item">字符 {{characters}}</div>
+  <div class="editor-background" :class="{'fullscreen':fullscreen}">
+    <div class="editor" v-if="editor" :class="{'fullscreen':fullscreen,'focus':isFocused && !fullscreen}">
+        <hb-tiptap-menu-bar class="editor-header" :editor="editor"></hb-tiptap-menu-bar>
+        <editor-content class="editor-body markdown-body" :editor="editor"/>
+        <div class="editor-footer">
+          <div class="footer-item">短语 {{words}}</div>
+          <div class="footer-item">字符 {{characters}}</div>
+        </div>
     </div>
   </div>
 </template>
@@ -121,6 +123,20 @@ onBeforeUnmount(()=>{
   background: v-bind(vars.inputColor);
 }
 
+.editor-background {
+  width: 100%;
+  height: 100%;
+}
+
+.editor-background.fullscreen{
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  background: v-bind(vars.cardColor);
+}
+
 .editor:hover{
   border-color: v-bind(vars. primaryColorHover);
 }
@@ -136,7 +152,6 @@ onBeforeUnmount(()=>{
   z-index: 1;
   margin: 0;
   padding: 0;
-  background: v-bind(vars.bodyColor) !important;
 }
 
 .editor.fullscreen:hover{
