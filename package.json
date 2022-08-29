@@ -19,6 +19,7 @@
     "@bytemd/plugin-medium-zoom": "^1.17.2",
     "@bytemd/plugin-mermaid": "^1.17.2",
     "@bytemd/vue-next": "^1.17.2",
+    "@tiptap/extension-bubble-menu": "^2.0.0-beta.61",
     "@tiptap/extension-character-count": "^2.0.0-beta.31",
     "@tiptap/extension-code-block-lowlight": "^2.0.0-beta.73",
     "@tiptap/extension-color": "^2.0.0-beta.12",

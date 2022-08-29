@@ -1,12 +1,13 @@
 <script setup>
 import './editor.css'
-import {useEditor, EditorContent} from '@tiptap/vue-3'
+import {useEditor, EditorContent,BubbleMenu} from '@tiptap/vue-3'
 import HbTiptapMenuBar from "./components/HbTiptapMenuBar"
 import StarterKit from './extension/start-kit'
 import {onBeforeUnmount, onMounted, ref, watch} from "vue";
 import {useDebounceFn} from "@vueuse/core";
 
 import {useThemeVars} from 'naive-ui'
+import HbTiptapBubbleMenu from "@/components/tiptap/components/HbTiptapBubbleMenu";
 
 const vars = useThemeVars()
 
@@ -104,6 +105,9 @@ function tab(e) {
 </script>
 
 <template>
+  <bubble-menu :editor="editor" :tippy-options="{ duration: 100 }" v-if="editor">
+    <hb-tiptap-bubble-menu :editor="editor"></hb-tiptap-bubble-menu>
+  </bubble-menu>
   <div class="editor-background" :class="{'fullscreen':fullscreen}" @keydown="tab">
     <div class="editor" v-if="editor" :class="{'fullscreen':fullscreen,'focus':isFocused && !fullscreen}"
          spellcheck="false">
