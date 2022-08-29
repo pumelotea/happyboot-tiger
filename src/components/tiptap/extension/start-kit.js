@@ -156,7 +156,6 @@ const StarterKit = Extension.create({
         }
 
         if (this.options.codeBlock !== false) {
-            console.log(lowlight.listLanguages())
             const HbCodeBlock = CodeBlockLowlight
                 .extend({
                     addNodeView() {
