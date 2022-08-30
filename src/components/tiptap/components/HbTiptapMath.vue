@@ -1,8 +1,11 @@
 <script setup>
-import { NModal, NButton, NCard, NPopover, NGrid, NGridItem, NSpace } from 'naive-ui'
+import {NModal, NButton, NPopover, NGrid, NGridItem, NSpace} from 'naive-ui'
 import 'katex/dist/katex.css'
 import katex from 'katex'
 import {ref, watch} from "vue";
+import {useThemeVars} from 'naive-ui'
+
+const vars = useThemeVars()
 
 const showModal = ref(false)
 
@@ -13,7 +16,7 @@ const TEXAREA = ref(null)
 function addTex(val) {
   const indexStart = TEXAREA.value.selectionStart
   const indexEnd = TEXAREA.value.selectionEnd
-  tex.value = tex.value.substr(0, indexStart) + val  + tex.value.substr(indexEnd, tex.value.length)
+  tex.value = tex.value.substr(0, indexStart) + val + tex.value.substr(indexEnd, tex.value.length)
 }
 
 watch(tex, () => {
@@ -22,7 +25,7 @@ watch(tex, () => {
 
 const box = ref(null)
 
-function init(){
+function init() {
   if (tex.value) {
     katex.render(tex.value, box.value, {
       throwOnError: false
@@ -119,45 +122,39 @@ function onCancel() {
 defineExpose({open})
 
 </script>
-
 <template>
   <n-modal v-model:show="showModal" preset="card" style="width: 500px">
     <template #header>
       <div>插入公式</div>
     </template>
-    <div>
-      <div>
-        <n-popover>
-          <template #trigger>
-            <n-button>希腊字母</n-button>
-          </template>
-          <div style="width: 300px;height: 100px;">
-            <n-grid :y-gap="5" :cols="12">
-              <n-grid-item class="item-hover" v-for="(val, key, i) in letters" @click="addTex(val)">
-                {{ key }}
-              </n-grid-item>
-            </n-grid>
-          </div>
-        </n-popover>
-        <n-popover>
-          <template #trigger>
-            <n-button>逻辑符号</n-button>
-          </template>
-          <div style="width: 300px;height: 100px;">
-            <n-grid :y-gap="5" :cols="12">
-              <n-grid-item class="item-hover" v-for="(val, key, i) in logic" @click="addTex(val)">
-                {{ key }}
-              </n-grid-item>
-            </n-grid>
-          </div>
-        </n-popover>
-      </div>
-      <div class="texbox">
-        <textarea ref="TEXAREA" v-model="tex" class="texarea" placeholder="输入TeX公式" />
-      </div>
-      <div class="preview">
-        <p ref="box">预览</p>
-      </div>
+    <div style="margin-bottom: 10px">
+      <n-popover>
+        <template #trigger>
+          <n-button size="small" type="primary" secondary>希腊字母</n-button>
+        </template>
+        <n-grid :y-gap="5" :cols="12">
+          <n-grid-item class="item-hover" v-for="(val, key, i) in letters" @click="addTex(val)">
+            {{ key }}
+          </n-grid-item>
+        </n-grid>
+      </n-popover>
+      <n-popover>
+        <template #trigger>
+          <n-button size="small" type="primary"  secondary style="margin-left: 10px">逻辑符号</n-button>
+        </template>
+        <n-grid :y-gap="5" :cols="12">
+          <n-grid-item class="item-hover" v-for="(val, key, i) in logic" @click="addTex(val)">
+            {{ key }}
+          </n-grid-item>
+        </n-grid>
+      </n-popover>
+    </div>
+    <div class="texbox">
+      <textarea ref="TEXAREA" v-model="tex" class="texarea" placeholder="输入TeX公式"/>
+    </div>
+    <div class="preview-title">预览</div>
+    <div class="preview">
+      <p ref="box"></p>
     </div>
     <template #footer>
       <n-space justify="end">
@@ -167,36 +164,55 @@ defineExpose({open})
     </template>
   </n-modal>
 </template>
-
 <style scoped>
-.item-hover{
+.item-hover {
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 3px;
   cursor: pointer;
   font-size: 17px;
+  color: var(--n-text-color);
+  width: 30px;
+  height: 30px;
 }
-.item-hover:hover{
-  background-color: #F6F6F6;
+
+.item-hover:hover {
+  background: v-bind(vars.primaryColor);
 }
-.texbox{
-  padding: 10px;
+
+.texbox {
   box-sizing: border-box;
-  border: 1px solid #aaa;
+  border: 1px solid var(--n-border-color);
   border-radius: 3px;
+  height: 200px;
+  overflow: hidden;
 }
-.texarea{
+
+.texarea {
   width: 100%;
-  height: 100px;
+  height: 100%;
   border: none;
   outline: none;
   resize: none;
-}
-.preview{
+  background: var(--n-color);
   padding: 10px;
   box-sizing: border-box;
-  border: 2px dotted #aaa;
-  margin-top: 10px;
+  color: var(--n-text-color);
+}
+
+.preview-title{
+  font-size: 12px;
+  margin-top: 20px;
+  color: var(--n-text-color);
+}
+
+.preview {
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--n-border-color);
+  border-radius: 3px;
+  min-height: 80px;
 }
 </style>
+

@@ -1,6 +1,6 @@
 <script setup>
 import HbTiptapMenuItem from './HbTiptapMenuItem.vue'
-import {NPopover} from 'naive-ui'
+import {NPopover,} from 'naive-ui'
 import HbTiptapTableCreator from "@/components/tiptap/components/HbTiptapTableCreator";
 import HbTiptapColorPicker from "@/components/tiptap/components/HbTiptapColorPicker";
 import HbTiptapLink from '@/components/tiptap/components/HbTiptapLink'
