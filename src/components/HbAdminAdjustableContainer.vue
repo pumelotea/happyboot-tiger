@@ -1,6 +1,6 @@
 <script setup>
 import {NForm, NFormItem, NInputNumber} from 'naive-ui'
-import {onMounted, ref, watch} from "vue";
+import {onBeforeUnmount, onMounted, ref, watch} from "vue";
 
 const props = defineProps({
   height: {
@@ -55,6 +55,75 @@ function handleWidthChange() {
   cWidth.value = Number(iWidth.value)
 }
 
+function acMousemove(e) {
+  const diffX = ACWrap.value.offsetWidth - e.offsetX
+  const diffY = ACWrap.value.offsetHeight - e.offsetY
+  if (diffX <= 10 && diffX > 1 && diffY <= 10 && diffY > 1) {
+    ACWrap.value.style.cursor = 'nw-resize'
+    canDrag = true
+  } else {
+    if (!mouseDownState) {
+      ACWrap.value.style.cursor = 'default'
+      canDrag = false
+    }
+  }
+  showDrag.value = true
+  ACWrap.value.style.border = '2px solid #2080F0'
+}
+
+function acMouseenter(e) {
+  showDrag.value = true
+  ACWrap.value.style.border = '2px solid #2080F0'
+}
+
+function acMouseleave(e) {
+  if (!mouseDownState) {
+    showDrag.value = false
+    ACWrap.value.style.border = '2px solid #fff'
+  }
+}
+
+function acMousedown(e) {
+  if (canDrag) {
+    mouseDownState = true
+    moveTemp = [e.pageX, e.pageY]
+    ACWrap.value.style.userSelect = 'none'
+  }
+}
+
+function docMousemove(e) {
+  if (canDrag && mouseDownState) {
+    let diffX = e.pageX - moveTemp[0]
+    let diffY = e.pageY - moveTemp[1]
+    moveTemp = [e.pageX, e.pageY]
+
+    if (equalRatio.value) {
+      const ratio = iWidth.value / iHeight.value
+      cWidth.value = cWidth.value + diffX
+      cHeight.value =  cWidth.value / ratio
+    } else {
+      const calcH = cHeight.value + diffY
+      const calcW = cWidth.value + diffX
+      cHeight.value = calcH > 15 ? calcH : 15
+      cWidth.value = calcW > 15 ? calcW : 15
+    }
+
+    document.body.style.userSelect = 'none'
+    AdjustableContainer.value.style.height = cHeight.value + 'px'
+    AdjustableContainer.value.style.width = cWidth.value + 'px'
+  }
+}
+
+function docMouseup(e) {
+  canDrag = false
+  mouseDownState = false
+  ACWrap.value.style.cursor = 'default'
+  ACWrap.value.style.userSelect = 'default'
+  ACWrap.value.style.border = '2px solid #fff'
+  document.body.style.userSelect = 'default'
+  showDrag.value = false
+}
+
 onMounted(() => {
   const offsetHeight = AdjustableContainer.value.offsetHeight
   const offsetWidth = AdjustableContainer.value.offsetWidth
@@ -72,39 +141,10 @@ onMounted(() => {
   AdjustableContainer.value.style.height = cHeight.value + 'px'
   AdjustableContainer.value.style.width = cWidth.value + 'px'
 
-  ACWrap.value.addEventListener('mousemove', e => {
-    const diffX = ACWrap.value.offsetWidth - e.offsetX
-    const diffY = ACWrap.value.offsetHeight - e.offsetY
-    if (diffX <= 10 && diffX > 1 && diffY <= 10 && diffY > 1) {
-      ACWrap.value.style.cursor = 'nw-resize'
-      canDrag = true
-    } else {
-      if (!mouseDownState) {
-        ACWrap.value.style.cursor = 'default'
-        canDrag = false
-      }
-    }
-    showDrag.value = true
-    ACWrap.value.style.border = '2px solid #2080F0'
-  })
-  ACWrap.value.addEventListener('mouseenter', e => {
-    showDrag.value = true
-    ACWrap.value.style.border = '2px solid #2080F0'
-  })
-  ACWrap.value.addEventListener('mouseleave', e => {
-    if (!mouseDownState) {
-      showDrag.value = false
-      ACWrap.value.style.border = '2px solid #fff'
-    }
-  })
-
-  ACWrap.value.addEventListener('mousedown', e => {
-    if (canDrag) {
-      mouseDownState = true
-      moveTemp = [e.pageX, e.pageY]
-      ACWrap.value.style.userSelect = 'none'
-    }
-  })
+  ACWrap.value.addEventListener('mousemove', acMousemove)
+  ACWrap.value.addEventListener('mouseenter', acMouseenter)
+  ACWrap.value.addEventListener('mouseleave', acMouseleave)
+  ACWrap.value.addEventListener('mousedown', acMousedown)
 
   document.onkeydown = function (e) {
     if (e.ctrlKey) {
@@ -119,38 +159,20 @@ onMounted(() => {
     }
   }
 
-  document.addEventListener('mousemove', e => {
-    if (canDrag && mouseDownState) {
-      let diffX = e.pageX - moveTemp[0]
-      let diffY = e.pageY - moveTemp[1]
-      moveTemp = [e.pageX, e.pageY]
+  document.addEventListener('mousemove', docMousemove)
 
-      if (equalRatio.value) {
-        const ratio = iWidth.value / iHeight.value
-        cWidth.value = cWidth.value + diffX
-        cHeight.value =  cWidth.value / ratio
-      } else {
-        const calcH = cHeight.value + diffY
-        const calcW = cWidth.value + diffX
-        cHeight.value = calcH > 15 ? calcH : 15
-        cWidth.value = calcW > 15 ? calcW : 15
-      }
+  document.addEventListener('mouseup', docMouseup)
+})
 
-      document.body.style.userSelect = 'none'
-      AdjustableContainer.value.style.height = cHeight.value + 'px'
-      AdjustableContainer.value.style.width = cWidth.value + 'px'
-    }
-  })
-
-  document.addEventListener('mouseup', e => {
-    canDrag = false
-    mouseDownState = false
-    ACWrap.value.style.cursor = 'default'
-    ACWrap.value.style.userSelect = 'default'
-    ACWrap.value.style.border = '2px solid #fff'
-    document.body.style.userSelect = 'default'
-    showDrag.value = false
-  })
+onBeforeUnmount(() => {
+  ACWrap.value.removeEventListener('mousedown', acMousedown)
+  ACWrap.value.removeEventListener('mouseenter', acMouseenter)
+  ACWrap.value.removeEventListener('mousemove', acMousemove)
+  ACWrap.value.removeEventListener('mouseleave', acMouseleave)
+  document.removeEventListener('mouseup', docMouseup)
+  document.removeEventListener('mousemove', docMousemove)
+  document.onkeydown = null
+  document.onkeyup = null
 })
 
 </script>
