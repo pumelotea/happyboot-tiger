@@ -6,7 +6,7 @@ import HbTiptapColorPicker from "@/components/tiptap/components/HbTiptapColorPic
 import HbTiptapLink from '@/components/tiptap/components/HbTiptapLink'
 import HbTiptapImage from '@/components/tiptap/components/HbTiptapImage'
 import HbTiptapVideo from '@/components/tiptap/components/HbTiptapVideo'
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import {useThemeVars} from 'naive-ui'
 const vars = useThemeVars()
 const props = defineProps({
@@ -74,16 +74,12 @@ function toggleFullscreen(){
 
 </script>
 <template>
-  <div class="menu-bar">
+  <div class="bubble-menu-bar">
     <hb-tiptap-menu-item icon="arrow-go-back-line" title="撤销"
                          :action="() => props.editor.chain().focus().undo().run()"/>
     <hb-tiptap-menu-item icon="arrow-go-forward-line" title="取消撤销"
                          :action="() => props.editor.chain().focus().redo().run()"/>
     <div class="divider"/>
-    <hb-tiptap-menu-item icon="paragraph" title="段落"
-                         :action="() => props.editor.chain().focus().setParagraph().run()"
-                         :is-active="() => props.editor.isActive('paragraph')"
-    />
     <hb-tiptap-menu-item icon="format-clear" title="清除样式"
                          :action="() => props.editor.chain().focus().clearNodes().unsetAllMarks().run()"
     />
@@ -183,9 +179,6 @@ function toggleFullscreen(){
                          :action="() => props.editor.chain().focus().toggleBlockquote().run()"
                          :is-active="() => props.editor.isActive('blockquote')"
     />
-    <hb-tiptap-menu-item icon="separator" title="横线"
-                         :action="() => props.editor.chain().focus().setHorizontalRule().run()"
-    />
     <div class="divider"/>
     <hb-tiptap-menu-item icon="link" title="超链接"
                          :action="handleOpenLink"
@@ -204,54 +197,46 @@ function toggleFullscreen(){
                          :action="() => props.editor.chain().focus().toggleCodeBlock().run()"
                          :is-active="() => props.editor.isActive('codeBlock')"
     />
-    <div class="divider"/>
-    <n-popover trigger="hover" placement="bottom" :show-arrow="false">
-      <template #trigger>
-        <hb-tiptap-menu-item icon="table-2" title="插入表格" :action="()=>{}"/>
-      </template>
-      <hb-tiptap-table-creator @insert="insertTable"/>
-    </n-popover>
-    <hb-tiptap-menu-item icon="delete-bin-6-line" title="删除表格"
-                         :action="() => props.editor.chain().focus().deleteTable().run()"
-    />
-    <hb-tiptap-menu-item icon="merge-cells-horizontal" title="合并拆分单元格"
-                         :action="() => props.editor.chain().focus().mergeOrSplit().run()"
-    />
-    <hb-tiptap-menu-item icon="insert-row-top" title="上面添加一行"
-                         :action="() => props.editor.chain().focus().addRowBefore().run()"
-    />
-    <hb-tiptap-menu-item icon="insert-row-bottom" title="下面添加一行"
-                         :action="() => props.editor.chain().focus().addRowAfter().run()"
-    />
-    <hb-tiptap-menu-item icon="delete-row" title="删除行"
-                         :action="() => props.editor.chain().focus().deleteRow().run()"
-    />
-    <hb-tiptap-menu-item icon="insert-column-left" title="左边添加一列"
-                         :action="() => props.editor.chain().focus().addColumnBefore().run()"
-    />
-    <hb-tiptap-menu-item icon="insert-column-right" title="右边添加一列"
-                         :action="() => props.editor.chain().focus().addColumnAfter().run()"
-    />
-    <hb-tiptap-menu-item icon="delete-column" title="删除行"
-                         :action="() => props.editor.chain().focus().deleteColumn().run()"
-    />
-    <div class="divider"/>
-    <hb-tiptap-menu-item :icon="props.editor.storage.fullscreen.value? 'fullscreen-exit-line':'fullscreen-line'" title="全屏"
-                         :action="toggleFullscreen"
-    />
-<!--    <hb-tiptap-menu-item icon="sip-line" title="单元格背景色"-->
-<!--                         :action="() => props.editor.chain().focus().toggleHeaderCell().run()"-->
-<!--    />-->
+    <template v-if="props.editor.isActive('table')">
+      <div class="divider"/>
+      <hb-tiptap-menu-item icon="delete-bin-6-line" title="删除表格"
+                           :action="() => props.editor.chain().focus().deleteTable().run()"
+      />
+      <hb-tiptap-menu-item icon="merge-cells-horizontal" title="合并拆分单元格"
+                           :action="() => props.editor.chain().focus().mergeOrSplit().run()"
+      />
+      <hb-tiptap-menu-item icon="insert-row-top" title="上面添加一行"
+                           :action="() => props.editor.chain().focus().addRowBefore().run()"
+      />
+      <hb-tiptap-menu-item icon="insert-row-bottom" title="下面添加一行"
+                           :action="() => props.editor.chain().focus().addRowAfter().run()"
+      />
+      <hb-tiptap-menu-item icon="delete-row" title="删除行"
+                           :action="() => props.editor.chain().focus().deleteRow().run()"
+      />
+      <hb-tiptap-menu-item icon="insert-column-left" title="左边添加一列"
+                           :action="() => props.editor.chain().focus().addColumnBefore().run()"
+      />
+      <hb-tiptap-menu-item icon="insert-column-right" title="右边添加一列"
+                           :action="() => props.editor.chain().focus().addColumnAfter().run()"
+      />
+      <hb-tiptap-menu-item icon="delete-column" title="删除行"
+                           :action="() => props.editor.chain().focus().deleteColumn().run()"
+      />
+    </template>
   </div>
 </template>
 
 <style scoped>
-.menu-bar {
+.bubble-menu-bar {
   display: flex;
   align-items: center;
   width: 100%;
   flex-wrap: wrap;
   padding: 5px 5px;
+  background: v-bind(vars.popoverColor);
+  border-radius: 3px;
+  box-shadow: v-bind(vars.boxShadow2);
 }
 
 .divider {

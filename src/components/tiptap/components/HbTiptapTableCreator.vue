@@ -1,7 +1,8 @@
 <script setup>
 import {NInputNumber, NButton} from 'naive-ui'
 import {ref} from "vue"
-
+import {useThemeVars} from 'naive-ui'
+const vars = useThemeVars()
 const row = ref(3)
 const col = ref(3)
 
@@ -79,15 +80,17 @@ function insertTable() {
       <div class="label">行数</div>
       <n-input-number v-model:value="row" size="small"></n-input-number>
     </div>
-    <div class="grid" draggable="false">
-      <div draggable="false" class="grid-row" v-for="r in 10">
-        <div draggable="false" class="grid-item" v-for="c in 12"
-             :class="{'grid-item-selected': isSelected(r,c)}"
-             @dragstart="preventDefault"
-             @mousedown="()=>onmousedown(r,c)"
-             @mouseenter="()=>onmouseenter(r,c)"
-             @mouseup="()=>onmouseup(r,c)">
+    <div>
+      <div class="grid" draggable="false">
+        <div draggable="false" class="grid-row" v-for="r in 10">
+          <div draggable="false" class="grid-item" v-for="c in 12"
+               :class="{'grid-item-selected': isSelected(r,c)}"
+               @dragstart="preventDefault"
+               @mousedown="()=>onmousedown(r,c)"
+               @mouseenter="()=>onmouseenter(r,c)"
+               @mouseup="()=>onmouseup(r,c)">
 
+          </div>
         </div>
       </div>
     </div>
@@ -123,20 +126,24 @@ function insertTable() {
   flex-wrap: wrap;
   margin-bottom: 10px;
   user-select: none;
+  box-sizing: border-box;
 }
 
 .grid-row {
   display: flex;
+  box-sizing: border-box;
 }
 
 .grid-item {
-  width: 15px;
-  height: 15px;
-  background: rgba(128, 128, 128, 0.2);
-  border: 1px solid white;
+  width: 18px;
+  height: 18px;
+  background: v-bind(vars.borderColor);
+  border: 2px solid v-bind(vars.bodyColor);
+  box-sizing: border-box;
+  margin: -1px;
 }
 
 .grid-item-selected {
-  background: rgba(0, 178, 255, 0.5);
+  background: v-bind(vars.infoColor);
 }
 </style>

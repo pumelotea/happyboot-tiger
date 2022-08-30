@@ -1,8 +1,6 @@
 <script setup>
-import { NImage } from 'naive-ui'
 import {computed, nextTick, onBeforeUnmount, ref} from "vue"
 import HbAdminImage from "./HbAdminImage"
-
 import Player from 'xgplayer/dist/core_player'
 import play from 'xgplayer/dist/controls/play'
 import fullscreen from 'xgplayer/dist/controls/fullscreen'
@@ -10,7 +8,8 @@ import progress from 'xgplayer/dist/controls/progress'
 import volume from 'xgplayer/dist/controls/volume'
 import pip from 'xgplayer/dist/controls/pip'
 import flex from 'xgplayer/dist/controls/flex'
-
+import {useThemeVars} from 'naive-ui'
+const vars = useThemeVars()
 const props = defineProps({
   type: {
     type: String,
@@ -55,8 +54,6 @@ function handleDel() {
 const playerBox = ref(null)
 let editor = null
 function initPlayer () {
-  console.log(playerBox.value)
-
   editor = new Player({
     el            : playerBox.value,
     url           : fileValue.value,
@@ -113,16 +110,18 @@ defineExpose({getFile})
 .hb-su-upload{
   height: 200px;
   width: 370px;
-  box-shadow: 0 2px 6px 0 #eee;
+  box-shadow: v-bind(vars.boxShadow1);
+  border-radius: 3px;
   padding: 15px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: all 0.2s;
 }
 .hb-su-upload:hover{
-  box-shadow: 0 2px 6px 0 #E1E1E1;
+  transform: scale(1.01);
 }
 .add-icon{
   font-size: 28px;

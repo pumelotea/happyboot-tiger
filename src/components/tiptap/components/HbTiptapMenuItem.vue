@@ -1,7 +1,8 @@
 <script setup>
 import remixiconSvg from 'remixicon/fonts/remixicon.symbol.svg'
 import {ref} from "vue";
-
+import {useThemeVars} from 'naive-ui'
+const vars = useThemeVars()
 const props = defineProps({
   icon: {
     type: String,
@@ -40,7 +41,7 @@ const iconUrl = ref(remixiconSvg)
 .menu-item {
   width: 28px;
   height: 28px;
-  color: #0d0d0d;
+  color: v-bind(vars.textColorBase);
   border: none;
   background-color: transparent;
   border-radius: 3px;
@@ -55,8 +56,8 @@ const iconUrl = ref(remixiconSvg)
 }
 
 .menu-item:hover, .is-active {
-  color: #fff;
-  background-color: #0d0d0d;
+  color: v-bind(vars.baseColor);
+  background-color: v-bind(vars.textColorBase);
 }
 
 .menu-item svg {
