@@ -6,6 +6,7 @@ import HbTiptapColorPicker from "@/components/tiptap/components/HbTiptapColorPic
 import HbTiptapLink from '@/components/tiptap/components/HbTiptapLink'
 import HbTiptapImage from '@/components/tiptap/components/HbTiptapImage'
 import HbTiptapVideo from '@/components/tiptap/components/HbTiptapVideo'
+import HbTiptapMath from '@/components/tiptap/components/HbTiptapMath'
 import {ref} from "vue";
 import {useThemeVars} from 'naive-ui'
 const vars = useThemeVars()
@@ -66,6 +67,17 @@ function insertVideo(url) {
   if (url) {
     props.editor.chain().focus().setHbVideo({src: url}).run()
   }
+}
+
+const HTM = ref(null)
+
+function handleOpenMath() {
+  let val = ''
+  HTM.value.open(val)
+}
+
+function setMath(val) {
+  props.editor.chain().focus().setHbMath({tex: val}).run()
 }
 
 function toggleFullscreen(){
@@ -205,9 +217,10 @@ function toggleFullscreen(){
                          :is-active="() => props.editor.isActive('codeBlock')"
     />
     <hb-tiptap-menu-item icon="functions" title="数学公式"
-                         :action="() => props.editor.chain().focus().setHbMath({tex:`\\displaystyle \\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)`}).run()"
+                         :action="handleOpenMath"
                          :is-active="() => props.editor.isActive('hb-math')"
     />
+    <hb-tiptap-math ref="HTM" @ok="setMath"/>
     <div class="divider"/>
     <n-popover trigger="hover" placement="bottom" :show-arrow="false">
       <template #trigger>
