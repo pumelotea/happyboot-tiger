@@ -22,6 +22,11 @@
     box-sizing: border-box;
 }
 
+.editor-body  ::selection {
+    background: rgb(0 150 255 / 32%);
+    color:#000;
+}
+
 .editor-body p {
     margin-bottom: 0;
     margin-top: 0;

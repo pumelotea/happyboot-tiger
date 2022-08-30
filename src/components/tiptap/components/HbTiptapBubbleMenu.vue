@@ -75,11 +75,6 @@ function toggleFullscreen(){
 </script>
 <template>
   <div class="bubble-menu-bar">
-    <hb-tiptap-menu-item icon="arrow-go-back-line" title="撤销"
-                         :action="() => props.editor.chain().focus().undo().run()"/>
-    <hb-tiptap-menu-item icon="arrow-go-forward-line" title="取消撤销"
-                         :action="() => props.editor.chain().focus().redo().run()"/>
-    <div class="divider"/>
     <hb-tiptap-menu-item icon="format-clear" title="清除样式"
                          :action="() => props.editor.chain().focus().clearNodes().unsetAllMarks().run()"
     />
