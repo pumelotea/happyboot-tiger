@@ -48,7 +48,7 @@ function onchange(width,height){
 </script>
 <template>
   <node-view-wrapper class="video-block" as="span">
-    <hb-tiptap-resizer :editor="props.editor" @on-change="onchange" :w="props.node.attrs.width" :h="props.node.attrs.height">
+    <hb-tiptap-resizer :selected="props.selected" @on-change="onchange" :w="props.node.attrs.width" :h="props.node.attrs.height">
       <template #default="{width,height}">
         <div :style="`width: ${width}px;height: ${height}px`" class="video-resizer">
           <div ref="box" class="video-box"></div>

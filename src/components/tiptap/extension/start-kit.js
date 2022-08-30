@@ -115,8 +115,10 @@ lowlight.registerLanguage('yaml', yaml)
 import HbTiptapCodeBlockComponent from '../components/HbTiptapCodeBlockComponent.vue'
 import HbTiptapVideoComponent from '../components/HbTiptapVideoComponent.vue'
 import HbTiptapImageComponent from '../components/HbTiptapImageComponent.vue'
+import HbTiptapMathComponent from '../components/HbTiptapMathComponent.vue'
 import HbVideo from '../extension/hb-video'
 import HbImage from '../extension/hb-image'
+import HbMath from '../extension/hb-math'
 
 
 const StarterKit = Extension.create({
@@ -297,6 +299,13 @@ const StarterKit = Extension.create({
             extensions.push(Color)
         }
 
+        if (this.options.math !== false) {
+            extensions.push(HbMath.extend({
+                addNodeView() {
+                    return VueNodeViewRenderer(HbTiptapMathComponent)
+                }
+            }))
+        }
         return extensions
     },
 })

@@ -24,7 +24,6 @@ const props = defineProps({
 const words = ref(0)
 const characters = ref(0)
 const fullscreen = ref(false)
-const selectedResizer = ref('')
 
 const updateEditorWordCount = useDebounceFn(() => {
   words.value = editor.value.storage.characterCount.words()
@@ -53,21 +52,14 @@ editor = useEditor({
   },
   onBlur: () => {
     isFocused.value = false
-    selectedResizer.value = ''
   },
   onSelectionUpdate: ({editor}) => {
-    //取消当前选中的resizer
-    if (editor.storage.selectedResizer.value) {
-      if (!editor.isActive('hb-image') && !editor.isActive('hb-video')) {
-        editor.storage.selectedResizer.value = ''
-      }
-    }
   }
+
 })
 
 onMounted(() => {
   editor.value.storage.fullscreen = fullscreen
-  editor.value.storage.selectedResizer = selectedResizer
 })
 
 

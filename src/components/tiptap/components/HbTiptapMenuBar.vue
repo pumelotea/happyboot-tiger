@@ -204,6 +204,10 @@ function toggleFullscreen(){
                          :action="() => props.editor.chain().focus().toggleCodeBlock().run()"
                          :is-active="() => props.editor.isActive('codeBlock')"
     />
+    <hb-tiptap-menu-item icon="functions" title="数学公式"
+                         :action="() => props.editor.chain().focus().setHbMath({tex:`\\displaystyle \\left( \\sum_{k=1}^n a_k b_k \\right)^2 \\leq \\left( \\sum_{k=1}^n a_k^2 \\right) \\left( \\sum_{k=1}^n b_k^2 \\right)`}).run()"
+                         :is-active="() => props.editor.isActive('hb-math')"
+    />
     <div class="divider"/>
     <n-popover trigger="hover" placement="bottom" :show-arrow="false">
       <template #trigger>
