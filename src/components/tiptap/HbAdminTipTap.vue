@@ -97,10 +97,10 @@ function tab(e) {
 </script>
 
 <template>
-  <bubble-menu :editor="editor" :tippy-options="{ duration: 100 }" v-if="editor">
-    <hb-tiptap-bubble-menu :editor="editor"></hb-tiptap-bubble-menu>
-  </bubble-menu>
   <div class="editor-background" :class="{'fullscreen':fullscreen}" @keydown="tab">
+    <bubble-menu :editor="editor" :tippy-options="{ duration: 100, maxWidth:600,placement:'top-start' }" v-if="editor">
+      <hb-tiptap-bubble-menu :editor="editor"></hb-tiptap-bubble-menu>
+    </bubble-menu>
     <div class="editor" v-if="editor" :class="{'fullscreen':fullscreen,'focus':isFocused && !fullscreen}"
          spellcheck="false">
       <hb-tiptap-menu-bar class="editor-header" :editor="editor"></hb-tiptap-menu-bar>
@@ -188,5 +188,13 @@ function tab(e) {
 
 .footer-item + .footer-item {
   margin-left: 10px;
+}
+
+::v-deep(.tippy-box) {
+  background-color: transparent;
+}
+
+::v-deep(.tippy-arrow ) {
+  color: transparent;
 }
 </style>

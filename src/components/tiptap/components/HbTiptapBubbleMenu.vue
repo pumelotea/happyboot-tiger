@@ -226,7 +226,6 @@ function toggleFullscreen(){
 .bubble-menu-bar {
   display: flex;
   align-items: center;
-  width: 100%;
   flex-wrap: wrap;
   padding: 5px 5px;
   background: v-bind(vars.popoverColor);

@@ -405,31 +405,6 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-underline/-/extension-underline-2.0.0-beta.25.tgz#b1580b2337a6ba7add5737e886bd88c8655241f2"
   integrity sha512-kRDdb/mF6QWzFGV3cQuLh6xyXULXaKPL/TghefoOZhwkdIWV/M3zFar5tsZO54+tbIrzxoVP6t7mO2Y5G/SLDQ==
 
-"@tiptap/starter-kit@^2.0.0-beta.191":
-  version "2.0.0-beta.191"
-  resolved "https://registry.yarnpkg.com/@tiptap/starter-kit/-/starter-kit-2.0.0-beta.191.tgz#3f549367f6dbb8cf83f63aa0941722d91d0fd8e7"
-  integrity sha512-YRrBCi9W4jiH/xLTJJOCdD7pL4Wb98Ip8qCJ94RElShDj0O1i5tT9wWlgVWoGIU+CRAds5XENRwZ97sJ+YfYyg==
-  dependencies:
-    "@tiptap/core" "^2.0.0-beta.182"
-    "@tiptap/extension-blockquote" "^2.0.0-beta.29"
-    "@tiptap/extension-bold" "^2.0.0-beta.28"
-    "@tiptap/extension-bullet-list" "^2.0.0-beta.29"
-    "@tiptap/extension-code" "^2.0.0-beta.28"
-    "@tiptap/extension-code-block" "^2.0.0-beta.42"
-    "@tiptap/extension-document" "^2.0.0-beta.17"
-    "@tiptap/extension-dropcursor" "^2.0.0-beta.29"
-    "@tiptap/extension-gapcursor" "^2.0.0-beta.39"
-    "@tiptap/extension-hard-break" "^2.0.0-beta.33"
-    "@tiptap/extension-heading" "^2.0.0-beta.29"
-    "@tiptap/extension-history" "^2.0.0-beta.26"
-    "@tiptap/extension-horizontal-rule" "^2.0.0-beta.36"
-    "@tiptap/extension-italic" "^2.0.0-beta.28"
-    "@tiptap/extension-list-item" "^2.0.0-beta.23"
-    "@tiptap/extension-ordered-list" "^2.0.0-beta.30"
-    "@tiptap/extension-paragraph" "^2.0.0-beta.26"
-    "@tiptap/extension-strike" "^2.0.0-beta.29"
-    "@tiptap/extension-text" "^2.0.0-beta.17"
-
 "@tiptap/vue-3@^2.0.0-beta.96":
   version "2.0.0-beta.96"
   resolved "https://registry.yarnpkg.com/@tiptap/vue-3/-/vue-3-2.0.0-beta.96.tgz#c91d3015cbf42bbdf22c98903a1af3f2116421ce"
