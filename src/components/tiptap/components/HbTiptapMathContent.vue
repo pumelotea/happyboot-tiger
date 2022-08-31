@@ -118,8 +118,8 @@ defineExpose({setTex, getTex})
         <n-button size="small" type="primary" secondary>希腊字母</n-button>
       </template>
       <n-grid :y-gap="5" :cols="12">
-        <n-grid-item class="item-hover" v-for="(val, key, i) in letters" @click="addTex(val)">
-          {{ key }}
+        <n-grid-item v-for="(val, key, i) in letters" @click="addTex(val)">
+          <div class="item-hover">{{ key }}</div>
         </n-grid-item>
       </n-grid>
     </n-popover>
@@ -128,8 +128,8 @@ defineExpose({setTex, getTex})
         <n-button size="small" type="primary"  secondary style="margin-left: 10px">逻辑符号</n-button>
       </template>
       <n-grid :y-gap="5" :cols="12">
-        <n-grid-item class="item-hover" v-for="(val, key, i) in logic" @click="addTex(val)">
-          {{ key }}
+        <n-grid-item v-for="(val, key, i) in logic" @click="addTex(val)">
+          <div class="item-hover">{{ key }}</div>
         </n-grid-item>
       </n-grid>
     </n-popover>
@@ -151,20 +151,19 @@ defineExpose({setTex, getTex})
   border-radius: 3px;
   cursor: pointer;
   font-size: 17px;
-  color: v-bind(themeVars.textColor3);
   width: 30px;
   height: 30px;
 }
 
 .item-hover:hover {
-  background: #aaa;
+  color: #fff;
+  background-color: #aaaaaa;
 }
 
 .texbox {
   box-sizing: border-box;
   border-radius: 3px;
   height: 200px;
-  overflow: hidden;
 }
 
 .texarea {
@@ -178,6 +177,11 @@ defineExpose({setTex, getTex})
   color: v-bind(themeVars.textColor1);
   border-color: v-bind(themeVars.borderColor);
   border-radius: 3px;
+  transition-property: border-color, box-shadow;
+  transition-duration: 0.2s;
+}
+.texarea:hover{
+  border-color: v-bind(themeVars.primaryColorHover);
 }
 .texarea:focus{
   border-color: v-bind(themeVars.primaryColor) !important;
