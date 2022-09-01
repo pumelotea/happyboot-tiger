@@ -239,5 +239,6 @@ defineExpose({ setTex, getTex })
   border: 1px dashed v-bind(themeVars.borderColor);
   border-radius: 3px;
   min-height: 80px;
+  font-size: 20px;
 }
 </style>
