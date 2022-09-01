@@ -2,6 +2,9 @@
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
 import 'katex/dist/katex.css'
 import katex from 'katex'
+import { NPopover } from 'naive-ui'
+import HbTiptapMenuItem from "@/components/tiptap/components/HbTiptapMenuItem"
+
 import { onMounted, ref } from 'vue'
 const props = defineProps(nodeViewProps)
 
@@ -20,10 +23,32 @@ onMounted(() => {
 </script>
 <template>
   <node-view-wrapper class="math-block">
-    <p
-      ref="box"
-      :class="{'math-selected':props.selected}"
-    />
+    <n-popover placement="bottom-end" :showArrow="false" trigger="click" style="padding: 0">
+      <template #trigger>
+        <p
+          ref="box"
+          :class="{'math-selected':props.selected}"
+        />
+      </template>
+      <div class="image-actions">
+        <div class="action-item">
+          <hb-tiptap-menu-item
+              icon="settings-line"
+              title="修改图片"
+              :action="()=>{}"
+              :is-active="() => {}"
+          ></hb-tiptap-menu-item>
+        </div>
+        <div class="action-item">
+          <hb-tiptap-menu-item
+              icon="delete-bin-2-line"
+              title="删除"
+              :action="()=>{}"
+              :is-active="() => {}"
+          ></hb-tiptap-menu-item>
+        </div>
+      </div>
+    </n-popover>
   </node-view-wrapper>
 </template>
 
@@ -41,5 +66,20 @@ onMounted(() => {
 
 .math-selected{
   background:rgb(0 150 255 / 32%);
+}
+
+.image-actions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+}
+.action-item{
+  display: flex;
+  align-items: center;
+}
+
+.action-item + .action-item{
+  margin-top: 2px;
 }
 </style>

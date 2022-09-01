@@ -1,6 +1,8 @@
 <script setup>
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
 import HbTiptapResizer from '@/components/tiptap/components/HbTiptapResizer'
+import HbTiptapMenuItem from "@/components/tiptap/components/HbTiptapMenuItem";
+import { NPopover } from 'naive-ui'
 
 import Player from 'xgplayer/dist/core_player'
 import play from 'xgplayer/dist/controls/play'
@@ -51,24 +53,46 @@ function onchange (width, height) {
     class="video-block"
     as="span"
   >
-    <hb-tiptap-resizer
-      :selected="props.selected"
-      :w="props.node.attrs.width"
-      :h="props.node.attrs.height"
-      @on-change="onchange"
-    >
-      <template #default="{width,height}">
-        <div
-          :style="`width: ${width}px;height: ${height}px`"
-          class="video-resizer"
+    <n-popover placement="right-start" :showArrow="false" trigger="click" style="padding: 0">
+      <template #trigger>
+        <hb-tiptap-resizer
+            :selected="props.selected"
+            :w="props.node.attrs.width"
+            :h="props.node.attrs.height"
+            @on-change="onchange"
         >
-          <div
-            ref="box"
-            class="video-box"
-          />
-        </div>
+          <template #default="{width,height}">
+            <div
+                :style="`width: ${width}px;height: ${height}px`"
+                class="video-resizer"
+            >
+              <div
+                  ref="box"
+                  class="video-box"
+              />
+            </div>
+          </template>
+        </hb-tiptap-resizer>
       </template>
-    </hb-tiptap-resizer>
+      <div class="video-actions">
+        <div class="action-item">
+          <hb-tiptap-menu-item
+              icon="settings-line"
+              title="修改视频"
+              :action="()=>{}"
+              :is-active="() => {}"
+          ></hb-tiptap-menu-item>
+        </div>
+        <div class="action-item">
+          <hb-tiptap-menu-item
+              icon="delete-bin-2-line"
+              title="删除"
+              :action="()=>{}"
+              :is-active="() => {}"
+          ></hb-tiptap-menu-item>
+        </div>
+      </div>
+    </n-popover>
   </node-view-wrapper>
 </template>
 
@@ -91,5 +115,22 @@ function onchange (width, height) {
 
 .video-resizer{
   max-width: 100%;
+}
+
+.video-actions{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.action-item{
+  display: flex;
+  align-items: center;
+}
+
+.action-item + .action-item{
+  margin-top: 2px;
 }
 </style>
