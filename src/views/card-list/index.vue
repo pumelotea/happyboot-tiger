@@ -4,33 +4,42 @@ import {
   NLayout, NLayoutHeader, NLayoutContent, NLayoutFooter, NCard,
   NGrid, NGridItem, NDatePicker, NInput, NButton, NSpace, NIcon, useMessage,
   NPopconfirm, NAlert, NCarousel, NEllipsis, NPagination, NSpin
-} from "naive-ui";
-import {h, onMounted, reactive, ref} from "vue";
+} from 'naive-ui'
+import { h, onMounted, reactive, ref } from 'vue'
 import {
   AddSharp, TrashSharp, RefreshSharp, SearchSharp, DocumentOutline, CreateOutline
-} from "@vicons/ionicons5"
-
+} from '@vicons/ionicons5'
 
 const page = ref(2)
 const pageSize = ref(20)
 const loading = ref(false)
 const data = ref([])
 
-onMounted(()=>{
+onMounted(() => {
   loading.value = true
-  setTimeout(()=>{
-    data.value = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+  setTimeout(() => {
+    data.value = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
     loading.value = false
-  },1000)
+  }, 1000)
 })
 </script>
 
 <template>
   <hb-admin-page-layout class="base-list">
-    <n-spin style="height: 100%;" :show="loading">
-      <n-layout style="height: 100%;" content-style="display:flex;flex-direction: column;">
+    <n-spin
+      style="height: 100%;"
+      :show="loading"
+    >
+      <n-layout
+        style="height: 100%;"
+        content-style="display:flex;flex-direction: column;"
+      >
         <n-layout-header>
-          <n-grid x-gap="12" :cols="4" style="padding: 5px;box-sizing: border-box">
+          <n-grid
+            x-gap="12"
+            :cols="4"
+            style="padding: 5px;box-sizing: border-box"
+          >
             <n-grid-item>
               <n-input>
                 <template #prefix>
@@ -46,21 +55,28 @@ onMounted(()=>{
               </n-input>
             </n-grid-item>
             <n-grid-item>
-              <n-date-picker clearable placeholder="创建日期"></n-date-picker>
+              <n-date-picker
+                clearable
+                placeholder="创建日期"
+              />
             </n-grid-item>
           </n-grid>
-          <n-grid x-gap="12" :cols="2" style="padding: 5px;box-sizing: border-box">
+          <n-grid
+            x-gap="12"
+            :cols="2"
+            style="padding: 5px;box-sizing: border-box"
+          >
             <n-grid-item>
               <n-space>
                 <n-button type="info">
                   <template #icon>
-                    <n-icon :component="AddSharp"></n-icon>
+                    <n-icon :component="AddSharp" />
                   </template>
                   新增
                 </n-button>
                 <n-button type="error">
                   <template #icon>
-                    <n-icon :component="TrashSharp"></n-icon>
+                    <n-icon :component="TrashSharp" />
                   </template>
                   删除
                 </n-button>
@@ -70,13 +86,13 @@ onMounted(()=>{
               <n-space justify="end">
                 <n-button type="info">
                   <template #icon>
-                    <n-icon :component="RefreshSharp"></n-icon>
+                    <n-icon :component="RefreshSharp" />
                   </template>
                   刷新数据
                 </n-button>
                 <n-button type="info">
                   <template #icon>
-                    <n-icon :component="SearchSharp"></n-icon>
+                    <n-icon :component="SearchSharp" />
                   </template>
                   查询
                 </n-button>
@@ -86,25 +102,35 @@ onMounted(()=>{
           </n-grid>
         </n-layout-header>
         <n-layout-content style="padding: 5px;box-sizing: border-box">
-          <n-grid cols="5 s:2 m:4 l:5 xl:5 2xl:6" responsive="screen" x-gap="20" y-gap="20">
+          <n-grid
+            cols="5 s:2 m:4 l:5 xl:5 2xl:6"
+            responsive="screen"
+            x-gap="20"
+            y-gap="20"
+          >
             <n-grid-item v-for="i in data">
-              <n-card size="small" hoverable content-style="padding: 0;overflow:hidden" style="overflow:hidden;">
+              <n-card
+                size="small"
+                hoverable
+                content-style="padding: 0;overflow:hidden"
+                style="overflow:hidden;"
+              >
                 <n-carousel show-arrow>
                   <img
-                      class="carousel-img"
-                      src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
+                    class="carousel-img"
+                    src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
                   >
                   <img
-                      class="carousel-img"
-                      src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
+                    class="carousel-img"
+                    src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
                   >
                   <img
-                      class="carousel-img"
-                      src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
+                    class="carousel-img"
+                    src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
                   >
                   <img
-                      class="carousel-img"
-                      src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
+                    class="carousel-img"
+                    src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
                   >
                 </n-carousel>
                 <template #footer>
@@ -116,19 +142,29 @@ onMounted(()=>{
                 </template>
                 <template #action>
                   <n-space justify="end">
-                    <n-button circle tertiary>
+                    <n-button
+                      circle
+                      tertiary
+                    >
                       <template #icon>
-                        <n-icon :component="DocumentOutline"></n-icon>
+                        <n-icon :component="DocumentOutline" />
                       </template>
                     </n-button>
-                    <n-button circle tertiary>
+                    <n-button
+                      circle
+                      tertiary
+                    >
                       <template #icon>
-                        <n-icon :component="CreateOutline"></n-icon>
+                        <n-icon :component="CreateOutline" />
                       </template>
                     </n-button>
-                    <n-button circle tertiary type="error">
+                    <n-button
+                      circle
+                      tertiary
+                      type="error"
+                    >
                       <template #icon>
-                        <n-icon :component="TrashSharp"></n-icon>
+                        <n-icon :component="TrashSharp" />
                       </template>
                     </n-button>
                   </n-space>
@@ -137,18 +173,21 @@ onMounted(()=>{
             </n-grid-item>
           </n-grid>
         </n-layout-content>
-        <n-space justify="end" align="center" style="box-sizing: border-box;padding: 5px;margin: 0">
+        <n-space
+          justify="end"
+          align="center"
+          style="box-sizing: border-box;padding: 5px;margin: 0"
+        >
           <n-pagination
-              v-model:page="page"
-              v-model:page-size="pageSize"
-              :page-count="100"
-              show-size-picker
-              :page-sizes="[10, 20, 30, 40]"
+            v-model:page="page"
+            v-model:page-size="pageSize"
+            :page-count="100"
+            show-size-picker
+            :page-sizes="[10, 20, 30, 40]"
           />
         </n-space>
       </n-layout>
     </n-spin>
-
   </hb-admin-page-layout>
 </template>
 
@@ -164,4 +203,3 @@ onMounted(()=>{
   height: 100% !important;
 }
 </style>
-

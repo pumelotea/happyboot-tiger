@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import routes from './config'
-import { beforeEachHandler, afterEachHandler } from './config'
+import routes, { beforeEachHandler, afterEachHandler } from './config'
 import happyFramework from '../framework'
 import { upgradeRouter } from 'happykit'
 
@@ -11,7 +10,7 @@ const router = createRouter({
 })
 
 // 升级路
-const happyKitRouter = upgradeRouter(happyFramework,router)
+const happyKitRouter = upgradeRouter(happyFramework, router)
 
 router.beforeEach(beforeEachHandler)
 router.afterEach(afterEachHandler)

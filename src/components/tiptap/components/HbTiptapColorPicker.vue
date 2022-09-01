@@ -1,10 +1,10 @@
 <script setup>
-import {NColorPicker} from 'naive-ui'
+import { NColorPicker } from 'naive-ui'
 
-const emit = defineEmits(['change'])
+const emit = defineEmits([ 'change' ])
 
-function change(e){
-  emit('change',e)
+function change (e) {
+  emit('change', e)
 }
 
 </script>
@@ -12,10 +12,10 @@ function change(e){
 <template>
   <button class="hb-tiptap-color-picker">
     <n-color-picker
-        :render-label="()=>null"
-        placement="bottom"
-        @complete="change">
-    </n-color-picker>
+      :render-label="()=>null"
+      placement="bottom"
+      @complete="change"
+    />
   </button>
 </template>
 
@@ -43,7 +43,6 @@ function change(e){
    align-items: center;
    justify-content: center;
  }
-
 
  ::v-deep(.n-color-picker) {
    width: 18px;

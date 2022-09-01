@@ -1,8 +1,8 @@
 <script setup>
-import {NLayout,NLayoutContent,NAlert,NSpace} from 'naive-ui'
-import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
-import DemoBase from "./base.demo"
-import DemoModal from "./modal.demo"
+import { NLayout, NLayoutContent, NAlert, NSpace } from 'naive-ui'
+import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
+import DemoBase from './base.demo'
+import DemoModal from './modal.demo'
 
 </script>
 <template>
@@ -14,8 +14,8 @@ import DemoModal from "./modal.demo"
           <n-alert type="info">
             基于RemixIcon图标库
           </n-alert>
-          <demo-modal/>
-          <demo-base/>
+          <demo-modal />
+          <demo-base />
         </n-space>
       </n-layout-content>
     </n-layout>

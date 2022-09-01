@@ -1,14 +1,13 @@
 <script setup>
-import {NForm, NFormItem, NInputNumber} from 'naive-ui'
-import {onBeforeUnmount, onMounted, ref, watch} from "vue";
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 const props = defineProps({
   height: {
-    type: Number,
+    type   : Number,
     default: 200
   },
   width: {
-    type: Number,
+    type   : Number,
     default: 200
   }
 })
@@ -18,10 +17,10 @@ const cWidth = ref(0)
 const iHeight = ref(250)
 const iWidth = ref(500)
 const equalRatio = ref(false)
-let canDrag = false    //是否允许拖拽
-const showDrag = ref(false)    //是否显示拖动框
-let mouseDownState = false    //鼠标是否按下
-let moveTemp = [0, 0]    //上一次拖拽位置的缓存
+let canDrag = false // 是否允许拖拽
+const showDrag = ref(false) // 是否显示拖动框
+let mouseDownState = false // 鼠标是否按下
+let moveTemp = [ 0, 0 ] // 上一次拖拽位置的缓存
 const ACWrap = ref()
 const AdjustableContainer = ref()
 
@@ -33,7 +32,7 @@ watch(cWidth, () => {
   iWidth.value = cWidth.value
 })
 
-function handleHeightChange() {
+function handleHeightChange () {
   AdjustableContainer.value.style.height = iHeight.value + 'px'
   if (equalRatio.value) {
     const ratio = iWidth.value / cHeight.value
@@ -44,7 +43,7 @@ function handleHeightChange() {
   cWidth.value = Number(iWidth.value)
 }
 
-function handleWidthChange() {
+function handleWidthChange () {
   AdjustableContainer.value.style.width = iWidth.value + 'px'
   if (equalRatio.value) {
     const ratio = cWidth.value / iHeight.value
@@ -55,7 +54,7 @@ function handleWidthChange() {
   cWidth.value = Number(iWidth.value)
 }
 
-function acMousemove(e) {
+function acMousemove (e) {
   const diffX = ACWrap.value.offsetWidth - e.offsetX
   const diffY = ACWrap.value.offsetHeight - e.offsetY
   if (diffX <= 10 && diffX > 1 && diffY <= 10 && diffY > 1) {
@@ -71,36 +70,36 @@ function acMousemove(e) {
   ACWrap.value.style.border = '2px solid #2080F0'
 }
 
-function acMouseenter(e) {
+function acMouseenter (e) {
   showDrag.value = true
   ACWrap.value.style.border = '2px solid #2080F0'
 }
 
-function acMouseleave(e) {
+function acMouseleave (e) {
   if (!mouseDownState) {
     showDrag.value = false
     ACWrap.value.style.border = '2px solid #fff'
   }
 }
 
-function acMousedown(e) {
+function acMousedown (e) {
   if (canDrag) {
     mouseDownState = true
-    moveTemp = [e.pageX, e.pageY]
+    moveTemp = [ e.pageX, e.pageY ]
     ACWrap.value.style.userSelect = 'none'
   }
 }
 
-function docMousemove(e) {
+function docMousemove (e) {
   if (canDrag && mouseDownState) {
-    let diffX = e.pageX - moveTemp[0]
-    let diffY = e.pageY - moveTemp[1]
-    moveTemp = [e.pageX, e.pageY]
+    const diffX = e.pageX - moveTemp[0]
+    const diffY = e.pageY - moveTemp[1]
+    moveTemp = [ e.pageX, e.pageY ]
 
     if (equalRatio.value) {
       const ratio = iWidth.value / iHeight.value
       cWidth.value = cWidth.value + diffX
-      cHeight.value =  cWidth.value / ratio
+      cHeight.value = cWidth.value / ratio
     } else {
       const calcH = cHeight.value + diffY
       const calcW = cWidth.value + diffX
@@ -114,7 +113,7 @@ function docMousemove(e) {
   }
 }
 
-function docMouseup(e) {
+function docMouseup (e) {
   canDrag = false
   mouseDownState = false
   ACWrap.value.style.cursor = 'default'
@@ -154,7 +153,6 @@ onMounted(() => {
 
   document.onkeyup = function (e) {
     if (!e.ctrlKey) {
-
       equalRatio.value = false
     }
   }
@@ -178,23 +176,48 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="hb-ac-wrap" ref="ACWrap">
-    <div ref="AdjustableContainer" class="hb-ac-content">
-      <slot/>
+  <div
+    ref="ACWrap"
+    class="hb-ac-wrap"
+  >
+    <div
+      ref="AdjustableContainer"
+      class="hb-ac-content"
+    >
+      <slot />
     </div>
-    <div class="hb-ac-drag-block" v-show="showDrag"></div>
-    <div class="hb-ac-bar" v-show="false">
+    <div
+      v-show="showDrag"
+      class="hb-ac-drag-block"
+    />
+    <div
+      v-show="false"
+      class="hb-ac-bar"
+    >
       <div>
         <div>高度(px)</div>
         <div>
-          <input v-model="iHeight" type="number" class="hb-ac-input" @change="handleHeightChange">
+          <input
+            v-model="iHeight"
+            type="number"
+            class="hb-ac-input"
+            @change="handleHeightChange"
+          >
         </div>
         <div>宽度(px)</div>
         <div>
-          <input v-model="iWidth" type="number" class="hb-ac-input" @change="handleWidthChange">
+          <input
+            v-model="iWidth"
+            type="number"
+            class="hb-ac-input"
+            @change="handleWidthChange"
+          >
         </div>
         <div>
-          等比<input type="checkbox" v-model="equalRatio"/>
+          等比<input
+            v-model="equalRatio"
+            type="checkbox"
+          >
         </div>
       </div>
     </div>

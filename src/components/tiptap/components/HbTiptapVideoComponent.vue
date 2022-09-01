@@ -1,6 +1,6 @@
 <script setup>
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
-import HbTiptapResizer from "@/components/tiptap/components/HbTiptapResizer";
+import HbTiptapResizer from '@/components/tiptap/components/HbTiptapResizer'
 
 import Player from 'xgplayer/dist/core_player'
 import play from 'xgplayer/dist/controls/play'
@@ -9,7 +9,7 @@ import progress from 'xgplayer/dist/controls/progress'
 import volume from 'xgplayer/dist/controls/volume'
 import pip from 'xgplayer/dist/controls/pip'
 import flex from 'xgplayer/dist/controls/flex'
-import {onBeforeUnmount, onMounted,ref} from "vue";
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 const box = ref(null)
 const props = defineProps(nodeViewProps)
@@ -37,21 +37,35 @@ function init () {
 
 onMounted(init)
 
-onBeforeUnmount(()=>{
-  editor&&editor.destroy(true)
+onBeforeUnmount(() => {
+  editor && editor.destroy(true)
 })
 
-function onchange(width,height){
-  props.updateAttributes({width,height})
+function onchange (width, height) {
+  props.updateAttributes({ width, height })
 }
 
 </script>
 <template>
-  <node-view-wrapper class="video-block" as="span">
-    <hb-tiptap-resizer :selected="props.selected" @on-change="onchange" :w="props.node.attrs.width" :h="props.node.attrs.height">
+  <node-view-wrapper
+    class="video-block"
+    as="span"
+  >
+    <hb-tiptap-resizer
+      :selected="props.selected"
+      :w="props.node.attrs.width"
+      :h="props.node.attrs.height"
+      @on-change="onchange"
+    >
       <template #default="{width,height}">
-        <div :style="`width: ${width}px;height: ${height}px`" class="video-resizer">
-          <div ref="box" class="video-box"></div>
+        <div
+          :style="`width: ${width}px;height: ${height}px`"
+          class="video-resizer"
+        >
+          <div
+            ref="box"
+            class="video-box"
+          />
         </div>
       </template>
     </hb-tiptap-resizer>

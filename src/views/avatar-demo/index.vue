@@ -1,6 +1,6 @@
 <script setup>
-import {NLayout,NLayoutContent,NAlert,NSpace} from 'naive-ui'
-import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
+import { NLayout, NLayoutContent, NAlert, NSpace } from 'naive-ui'
+import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
 import DemoCard from './card.demo'
 import DemoModal from './modal.demo'
 </script>
@@ -13,11 +13,11 @@ import DemoModal from './modal.demo'
           <n-alert type="info">
             在卡片组件中使用，支持拖拽图片到灰色区域内
           </n-alert>
-          <demo-card/>
+          <demo-card />
           <n-alert type="info">
             在弹出框组件中使用，点击灰色头像组件体验裁剪
           </n-alert>
-          <demo-modal/>
+          <demo-modal />
         </n-space>
       </n-layout-content>
     </n-layout>

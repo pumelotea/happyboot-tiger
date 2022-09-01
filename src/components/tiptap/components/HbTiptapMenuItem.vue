@@ -1,23 +1,23 @@
 <script setup>
 import remixiconSvg from 'remixicon/fonts/remixicon.symbol.svg'
-import {ref} from "vue";
-import {useThemeVars} from 'naive-ui'
+import { ref } from 'vue'
+import { useThemeVars } from 'naive-ui'
 const vars = useThemeVars()
 const props = defineProps({
   icon: {
-    type: String,
+    type    : String,
     required: true
   },
   title: {
-    type: String,
+    type    : String,
     required: true
   },
   action: {
-    type: Function,
+    type    : Function,
     required: true
   },
   isActive: {
-    type: Function,
+    type   : Function,
     default: null
   }
 })
@@ -26,13 +26,13 @@ const iconUrl = ref(remixiconSvg)
 </script>
 <template>
   <button
-      class="menu-item"
-      :class="{ 'is-active': isActive ? isActive(): null }"
-      @click="action"
-      :title="title"
+    class="menu-item"
+    :class="{ 'is-active': isActive ? isActive(): null }"
+    :title="title"
+    @click="action"
   >
     <svg class="remix">
-      <use :xlink:href="`${iconUrl}#ri-${icon}`"/>
+      <use :xlink:href="`${iconUrl}#ri-${icon}`" />
     </svg>
   </button>
 </template>

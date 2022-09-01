@@ -1,15 +1,15 @@
 <script setup>
 import 'highlight.js/styles/vs.css'
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
-import {NPopselect,NButton} from 'naive-ui'
-import {ref, watch} from "vue";
+import { NPopselect, NButton } from 'naive-ui'
+import { ref, watch } from 'vue'
 
 const props = defineProps(nodeViewProps)
 
-const languages = props.extension.options.lowlight.listLanguages().map(e=>{
+const languages = props.extension.options.lowlight.listLanguages().map(e => {
   return {
     label: e,
-    value: e,
+    value: e
   }
 })
 
@@ -20,23 +20,40 @@ languages.unshift({
 
 const selectedLanguage = ref(props.node.attrs.language)
 
-watch(selectedLanguage,()=>{
-  if (selectedLanguage.value === 'auto'){
-    props.updateAttributes({ language:null })
-  }else{
-    props.updateAttributes({ language:selectedLanguage.value })
+watch(selectedLanguage, () => {
+  if (selectedLanguage.value === 'auto') {
+    props.updateAttributes({ language: null })
+  } else {
+    props.updateAttributes({ language: selectedLanguage.value })
   }
 })
 
 </script>
 <template>
-  <node-view-wrapper class="code-block" as="p">
-    <div class="lang-select" contenteditable="false">
-      <n-popselect v-model:value="selectedLanguage" :options="languages" trigger="click" style="max-height: 300px;overflow: auto">
-        <n-button text type="info" size="small">{{ selectedLanguage || 'auto' }}</n-button>
+  <node-view-wrapper
+    class="code-block"
+    as="p"
+  >
+    <div
+      class="lang-select"
+      contenteditable="false"
+    >
+      <n-popselect
+        v-model:value="selectedLanguage"
+        :options="languages"
+        trigger="click"
+        style="max-height: 300px;overflow: auto"
+      >
+        <n-button
+          text
+          type="info"
+          size="small"
+        >
+          {{ selectedLanguage || 'auto' }}
+        </n-button>
       </n-popselect>
     </div>
-    <pre><node-view-content/></pre>
+    <pre><node-view-content /></pre>
   </node-view-wrapper>
 </template>
 

@@ -1,8 +1,8 @@
 <script setup>
 import {
   NLayout, NLayoutContent, NAlert, NSpace
-} from 'naive-ui';
-import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
+} from 'naive-ui'
+import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
 import Demo from './base.demo'
 
 </script>
@@ -15,10 +15,9 @@ import Demo from './base.demo'
           <n-alert type="info">
             基于qrcode库实现
           </n-alert>
-          <demo/>
+          <demo />
         </n-space>
       </n-layout-content>
     </n-layout>
   </hb-admin-page-layout>
 </template>
-

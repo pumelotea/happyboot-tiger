@@ -74,7 +74,7 @@ function addAttrListener () {
     if (fullscreen) {
       document.getElementById('pop-body').append(editor.value.el)
     } else {
-      if (editor.value){
+      if (editor.value) {
         dom.value.append(editor.value.el)
       }
     }

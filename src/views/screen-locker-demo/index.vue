@@ -1,6 +1,6 @@
 <script setup>
-import {NLayout, NLayoutContent, NAlert, NSpace} from 'naive-ui';
-import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
+import { NLayout, NLayoutContent, NAlert, NSpace } from 'naive-ui'
+import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
 import Demo from './base.demo'
 </script>
 <template>
@@ -12,7 +12,7 @@ import Demo from './base.demo'
           <n-alert type="info">
             用户在操作时，如果token失效情况下，可以弹出锁屏，让用户重新登录后完成token刷新
           </n-alert>
-          <demo/>
+          <demo />
         </n-space>
       </n-layout-content>
     </n-layout>

@@ -1,19 +1,32 @@
 <script setup>
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
-import HbTiptapResizer from "@/components/tiptap/components/HbTiptapResizer";
+import HbTiptapResizer from '@/components/tiptap/components/HbTiptapResizer'
 const props = defineProps(nodeViewProps)
 
-function onchange(width,height){
-  props.updateAttributes({width,height})
+function onchange (width, height) {
+  props.updateAttributes({ width, height })
 }
-
 
 </script>
 <template>
-  <node-view-wrapper class="image-block" as="span">
-    <hb-tiptap-resizer :selected="props.selected" @on-change="onchange" :w="props.node.attrs.width" :h="props.node.attrs.height">
+  <node-view-wrapper
+    class="image-block"
+    as="span"
+  >
+    <hb-tiptap-resizer
+      :selected="props.selected"
+      :w="props.node.attrs.width"
+      :h="props.node.attrs.height"
+      @on-change="onchange"
+    >
       <template #default="{width,height}">
-        <img :width="width" :height="height" class="main-image" :src="props.node.attrs.src" draggable="false" />
+        <img
+          :width="width"
+          :height="height"
+          class="main-image"
+          :src="props.node.attrs.src"
+          draggable="false"
+        >
       </template>
     </hb-tiptap-resizer>
   </node-view-wrapper>
@@ -30,7 +43,6 @@ function onchange(width,height){
   vertical-align: baseline;
   padding: 0 5px;
 }
-
 
 .main-image{
   display: block !important;

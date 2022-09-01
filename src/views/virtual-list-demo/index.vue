@@ -1,8 +1,8 @@
 <script setup>
-import {NLayout, NLayoutContent, NAlert, NSpace,} from 'naive-ui'
-import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
-import Demo from "./base.demo";
-import DemoAuto from "./auto.demo";
+import { NLayout, NLayoutContent, NAlert, NSpace } from 'naive-ui'
+import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
+import Demo from './base.demo'
+import DemoAuto from './auto.demo'
 
 </script>
 <template>
@@ -14,12 +14,10 @@ import DemoAuto from "./auto.demo";
           <n-alert type="info">
             高性能虚拟列表
           </n-alert>
-          <demo/>
-          <demo-auto/>
+          <demo />
+          <demo-auto />
         </n-space>
       </n-layout-content>
     </n-layout>
   </hb-admin-page-layout>
 </template>
-
-

@@ -1,31 +1,31 @@
 <script setup>
-import {computed, onMounted, ref, watch} from "vue"
+import { computed, onMounted, ref, watch } from 'vue'
 
 const props = defineProps({
-  w:{
-    type:Number,
-    default:400,
+  w: {
+    type   : Number,
+    default: 400
   },
-  h:{
-    type:Number,
-    default:300,
+  h: {
+    type   : Number,
+    default: 300
   },
   selected: {
-    type: Boolean,
+    type    : Boolean,
     required: false,
-    default:()=>false
+    default : () => false
   }
 })
 
 const width = ref(props.w)
 const height = ref(props.h)
 
-watch(()=>[props.w,props.h],()=>{
+watch(() => [ props.w, props.h ], () => {
   width.value = props.w
   height.value = props.h
 })
 
-onMounted(()=>{
+onMounted(() => {
   width.value = props.w
   height.value = props.h
 })
@@ -38,83 +38,103 @@ let deltaX = 0
 let deltaY = 0
 let startPos = ''
 let isMousedown = false
-function onmousedown(e,pos){
+function onmousedown (e, pos) {
   startWidth = width.value
   startHeight = height.value
   startX = e.screenX
   startY = e.screenY
   startPos = pos
   isMousedown = true
-  document.addEventListener('mousemove',onmousemove)
-  document.addEventListener('mouseup',onmouseup)
+  document.addEventListener('mousemove', onmousemove)
+  document.addEventListener('mouseup', onmouseup)
 }
 
-function onmousemove(e){
+function onmousemove (e) {
   deltaX = e.screenX - startX
   deltaY = e.screenY - startY
   switch (startPos) {
-    case 'lt':
-      deltaX = -deltaX
-      deltaY = -deltaY
-      break
-    case 'lb':
-      deltaX = -deltaX
-      break
-    case 'rt':
-      deltaY = -deltaY
-      break
-    case 'rb':
-      break
+  case 'lt':
+    deltaX = -deltaX
+    deltaY = -deltaY
+    break
+  case 'lb':
+    deltaX = -deltaX
+    break
+  case 'rt':
+    deltaY = -deltaY
+    break
+  case 'rb':
+    break
   }
   width.value = startWidth + deltaX
   height.value = startHeight + deltaY
 }
 
-function onmouseup(e){
+function onmouseup (e) {
   isMousedown = false
-  document.removeEventListener('mousemove',onmousemove)
-  document.removeEventListener('mouseup',onmouseup)
+  document.removeEventListener('mousemove', onmousemove)
+  document.removeEventListener('mouseup', onmouseup)
   emitSize()
 }
 
 const isHover = ref(false)
-function hover(){
+function hover () {
   isHover.value = true
 }
 
-function leave(){
-  if (isMousedown){
+function leave () {
+  if (isMousedown) {
     return
   }
   isHover.value = false
 }
 
-const emit = defineEmits(['on-change'])
+const emit = defineEmits([ 'on-change' ])
 
-function emitSize(){
-  emit('on-change',width.value,height.value)
+function emitSize () {
+  emit('on-change', width.value, height.value)
 }
 
-const isShowResizer = computed(()=>{
+const isShowResizer = computed(() => {
   return isHover.value || props.selected
 })
 
 </script>
 
 <template>
-<div class="box-resizer" draggable="false" @mouseenter="hover" @mouseleave="leave">
-  <template v-if="isShowResizer">
-    <div class="l-line resize-line-v"></div>
-    <div class="r-line resize-line-v"></div>
-    <div class="t-line resize-line-h"></div>
-    <div class="b-line resize-line-h"></div>
-    <div class="lt-resizer resize-cube" @mousedown="e=>onmousedown(e,'lt')"></div>
-    <div class="lb-resizer resize-cube" @mousedown="e=>onmousedown(e,'lb')"></div>
-    <div class="rt-resizer resize-cube" @mousedown="e=>onmousedown(e,'rt')"></div>
-    <div class="rb-resizer resize-cube" @mousedown="e=>onmousedown(e,'rb')"></div>
-  </template>
-  <slot :width="width" :height="height"/>
-</div>
+  <div
+    class="box-resizer"
+    draggable="false"
+    @mouseenter="hover"
+    @mouseleave="leave"
+  >
+    <template v-if="isShowResizer">
+      <div class="l-line resize-line-v" />
+      <div class="r-line resize-line-v" />
+      <div class="t-line resize-line-h" />
+      <div class="b-line resize-line-h" />
+      <div
+        class="lt-resizer resize-cube"
+        @mousedown="e=>onmousedown(e,'lt')"
+      />
+      <div
+        class="lb-resizer resize-cube"
+        @mousedown="e=>onmousedown(e,'lb')"
+      />
+      <div
+        class="rt-resizer resize-cube"
+        @mousedown="e=>onmousedown(e,'rt')"
+      />
+      <div
+        class="rb-resizer resize-cube"
+        @mousedown="e=>onmousedown(e,'rb')"
+      />
+    </template>
+    <slot
+      :width="width"
+      :height="height"
+    />
+  </div>
 </template>
 
 <style scoped>
@@ -213,7 +233,5 @@ const isShowResizer = computed(()=>{
   bottom: 0;
   transform: translateY(50%);
 }
-
-
 
 </style>

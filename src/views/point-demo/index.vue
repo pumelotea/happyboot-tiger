@@ -1,6 +1,6 @@
 <script setup>
-import {NLayout,NLayoutContent,NAlert,NCode,NButton,NSpace,NCard} from 'naive-ui';
-import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue";
+import { NLayout, NLayoutContent, NAlert, NCode, NButton, NSpace, NCard } from 'naive-ui'
+import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import xml from 'highlight.js/lib/languages/xml'
@@ -52,25 +52,50 @@ const htmlCode = `
         <n-space vertical>
           <h2>权限点的演示</h2>
           <n-space align="center">
-            <n-button type="info" v-point="'add'">被控制的按钮1</n-button>
-            <n-button type="warning" v-point="'cancel'">被控制的按钮2</n-button>
+            <n-button
+              v-point="'add'"
+              type="info"
+            >
+              被控制的按钮1
+            </n-button>
+            <n-button
+              v-point="'cancel'"
+              type="warning"
+            >
+              被控制的按钮2
+            </n-button>
             <div>
-              <div class="no-key-btn">控制点未被对应的按钮</div>
-              <n-button type="warning" v-point="'no-key'">这里的按钮被隐藏了</n-button>
+              <div class="no-key-btn">
+                控制点未被对应的按钮
+              </div>
+              <n-button
+                v-point="'no-key'"
+                type="warning"
+              >
+                这里的按钮被隐藏了
+              </n-button>
             </div>
           </n-space>
           <n-alert type="info">
-            Vue模板中使用`v-point`，路由节点中的`permissionKey`属性和指令中配置的值相同，则显示，否则不显示<br/>如以下代码
+            Vue模板中使用`v-point`，路由节点中的`permissionKey`属性和指令中配置的值相同，则显示，否则不显示<br>如以下代码
           </n-alert>
           <n-card>
-            <n-code :code="htmlCode" language="xml" :hljs="hljs"></n-code>
+            <n-code
+              :code="htmlCode"
+              language="xml"
+              :hljs="hljs"
+            />
           </n-card>
           <n-alert type="info">
-            权限点配置在路由节点的子节点中，<br/>如以下代码
+            权限点配置在路由节点的子节点中，<br>如以下代码
           </n-alert>
-         <n-card>
-           <n-code :code="data" language="JavaScript" :hljs="hljs"></n-code>
-         </n-card>
+          <n-card>
+            <n-code
+              :code="data"
+              language="JavaScript"
+              :hljs="hljs"
+            />
+          </n-card>
         </n-space>
       </n-layout-content>
     </n-layout>

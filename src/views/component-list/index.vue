@@ -1,14 +1,14 @@
 <script setup>
 import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
-import {NGrid,NGridItem,NLayout,NLayoutContent,NIcon,NSpace,NCard,NBadge,NGradientText} from 'naive-ui'
-import framework from "@/global/framework";
-import {useRouter} from "vue-router";
+import { NGrid, NGridItem, NLayout, NLayoutContent, NIcon, NSpace, NCard, NBadge, NGradientText } from 'naive-ui'
+import framework from '@/global/framework'
+import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const list = framework.getMenuTree()
-const data = list.value.filter(e=>{return e.path === '/demo'})[0].children
+const data = list.value.filter(e => { return e.path === '/demo' })[0].children
 
-function goto(path){
+function goto (path) {
   router.push(path)
 }
 
@@ -20,8 +20,8 @@ function goto(path){
         <div class="com-head-box">
           <div class="logo-box">
             <img
-                class="logo-image"
-                src="/src/assets/logo.png"
+              class="logo-image"
+              src="/src/assets/logo.png"
             >
             <div class="logo-text">
               <n-gradient-text type="success">
@@ -30,20 +30,39 @@ function goto(path){
             </div>
           </div>
           <div>
-            <img style="height: 120px" src="https://github-readme-stats.vercel.app/api/pin/?username=pumelotea&locale=cn&repo=happyboot-tiger&show_icons=true"/>
+            <img
+              style="height: 120px"
+              src="https://github-readme-stats.vercel.app/api/pin/?username=pumelotea&locale=cn&repo=happyboot-tiger&show_icons=true"
+            >
           </div>
         </div>
-        <n-grid cols="2 400:4 600:6" x-gap="10" y-gap="10">
-          <n-grid-item v-for="e in data" style="padding: 10px">
-            <n-card hoverable @click="goto(e.routerPath)">
+        <n-grid
+          cols="2 400:4 600:6"
+          x-gap="10"
+          y-gap="10"
+        >
+          <n-grid-item
+            v-for="e in data"
+            style="padding: 10px"
+          >
+            <n-card
+              hoverable
+              @click="goto(e.routerPath)"
+            >
               <div class="com-card">
                 <div class="com-tag">
-                  <n-badge v-if="e.budge" :value="e.budge?.value" :type="e.budge?.type"></n-badge>
+                  <n-badge
+                    v-if="e.budge"
+                    :value="e.budge?.value"
+                    :type="e.budge?.type"
+                  />
                 </div>
-                <n-icon :size="36" >
-                  <i :class="e.icon"></i>
+                <n-icon :size="36">
+                  <i :class="e.icon" />
                 </n-icon>
-                <div class="com-title">{{e.name}}</div>
+                <div class="com-title">
+                  {{ e.name }}
+                </div>
               </div>
             </n-card>
           </n-grid-item>

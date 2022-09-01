@@ -1,8 +1,8 @@
 <script setup>
-import {NLayout,NLayoutContent,NAlert,NSpace,NCard, NCode, NCollapse, NCollapseItem} from 'naive-ui';
-import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
-import DemoCropper from "./cropper.demo.vue"
-import DemoWatermark from "./watermark.demo.vue"
+import { NLayout, NLayoutContent, NAlert, NSpace, NCard, NCode, NCollapse, NCollapseItem } from 'naive-ui'
+import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
+import DemoCropper from './cropper.demo.vue'
+import DemoWatermark from './watermark.demo.vue'
 import hljs from 'highlight.js/lib/core'
 import xml from 'highlight.js/lib/languages/xml'
 import javascript from 'highlight.js/lib/languages/javascript'
@@ -68,33 +68,49 @@ const code4 = '1.首先引入 \nimport { quality } from \'@/utils/imageFactory\'
           <n-card>
             <n-collapse>
               <n-collapse-item title="水印添加">
-                <n-code :code="code1" language="javascript" :hljs="hljs"></n-code>
+                <n-code
+                  :code="code1"
+                  language="javascript"
+                  :hljs="hljs"
+                />
               </n-collapse-item>
             </n-collapse>
           </n-card>
           <n-card>
             <n-collapse>
               <n-collapse-item title="图片裁剪">
-                <n-code :code="code2" language="javascript" :hljs="hljs"></n-code>
+                <n-code
+                  :code="code2"
+                  language="javascript"
+                  :hljs="hljs"
+                />
               </n-collapse-item>
             </n-collapse>
           </n-card>
           <n-card>
             <n-collapse>
               <n-collapse-item title="调整图片尺寸">
-                <n-code :code="code3" language="javascript" :hljs="hljs"></n-code>
+                <n-code
+                  :code="code3"
+                  language="javascript"
+                  :hljs="hljs"
+                />
               </n-collapse-item>
             </n-collapse>
           </n-card>
           <n-card>
             <n-collapse>
               <n-collapse-item title="调整图片质量">
-                <n-code :code="code4" language="javascript" :hljs="hljs"></n-code>
+                <n-code
+                  :code="code4"
+                  language="javascript"
+                  :hljs="hljs"
+                />
               </n-collapse-item>
             </n-collapse>
           </n-card>
-          <demo-cropper/>
-          <demo-watermark/>
+          <demo-cropper />
+          <demo-watermark />
         </n-space>
       </n-layout-content>
     </n-layout>

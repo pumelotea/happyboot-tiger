@@ -1,26 +1,29 @@
 <script setup>
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
-const props = defineProps(nodeViewProps)
 import 'katex/dist/katex.css'
 import katex from 'katex'
-import {onMounted, ref} from "vue";
+import { onMounted, ref } from 'vue'
+const props = defineProps(nodeViewProps)
 
 const box = ref(null)
 
-function init(){
+function init () {
   katex.render(props.node.attrs.tex, box.value, {
     throwOnError: false
-  });
+  })
 }
 
-onMounted(()=>{
+onMounted(() => {
   init()
 })
 
 </script>
 <template>
   <node-view-wrapper class="math-block">
-    <p ref="box" :class="{'math-selected':props.selected}"></p>
+    <p
+      ref="box"
+      :class="{'math-selected':props.selected}"
+    />
   </node-view-wrapper>
 </template>
 
