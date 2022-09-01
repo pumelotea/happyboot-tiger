@@ -266,6 +266,7 @@ function toggleFullscreen () {
       icon="image-line"
       title="插入图片"
       :action="handleOpenImage"
+      :is-active="() => props.editor.isActive('hb-image')"
     />
     <hb-tiptap-image
       ref="HTI"
@@ -275,6 +276,7 @@ function toggleFullscreen () {
       icon="video-line"
       title="插入视频"
       :action="handleOpenVideo"
+      :is-active="() => props.editor.isActive('hb-video')"
     />
     <hb-tiptap-video
       ref="HTV"
@@ -284,7 +286,7 @@ function toggleFullscreen () {
       icon="code-view"
       title="代码"
       :action="() => props.editor.chain().focus().toggleCodeBlock().run()"
-      :is-active="() => props.editor.isActive('codeBlock')"
+      :is-active="() => props.editor.isActive('hb-code')"
     />
     <hb-tiptap-menu-item
       icon="functions"
