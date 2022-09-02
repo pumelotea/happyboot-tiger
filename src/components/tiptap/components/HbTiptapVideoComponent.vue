@@ -1,7 +1,8 @@
 <script setup>
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
 import HbTiptapResizer from '@/components/tiptap/components/HbTiptapResizer'
-import HbTiptapMenuItem from "@/components/tiptap/components/HbTiptapMenuItem";
+import HbTiptapMenuItem from "@/components/tiptap/components/HbTiptapMenuItem"
+import HbTiptapVideo from "@/components/tiptap/components/HbTiptapVideo"
 import { NPopover } from 'naive-ui'
 
 import Player from 'xgplayer/dist/core_player'
@@ -16,9 +17,9 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 const box = ref(null)
 const props = defineProps(nodeViewProps)
 
-let editor = null
+let player = null
 function init () {
-  editor = new Player({
+  player = new Player({
     el            : box.value,
     // url           : 'https://media.w3.org/2010/05/sintel/trailer.mp4',
     url           : props.node.attrs.src,
@@ -40,11 +41,23 @@ function init () {
 onMounted(init)
 
 onBeforeUnmount(() => {
-  editor && editor.destroy(true)
+  player && player.destroy(true)
 })
 
 function onchange (width, height) {
   props.updateAttributes({ width, height })
+}
+
+const HTV = ref(null)
+function handleOpenVideo () {
+  HTV.value.open(props.node.attrs)
+}
+
+function insertVideo (url) {
+  if (url) {
+    player.src = url
+    props.updateAttributes({ src: url })
+  }
 }
 
 </script>
@@ -79,7 +92,7 @@ function onchange (width, height) {
           <hb-tiptap-menu-item
               icon="settings-line"
               title="修改视频"
-              :action="()=>{}"
+              :action="handleOpenVideo"
               :is-active="() => {}"
           ></hb-tiptap-menu-item>
         </div>
@@ -87,13 +100,17 @@ function onchange (width, height) {
           <hb-tiptap-menu-item
               icon="delete-bin-2-line"
               title="删除"
-              :action="()=>{}"
+              :action="props.deleteNode"
               :is-active="() => {}"
           ></hb-tiptap-menu-item>
         </div>
       </div>
     </n-popover>
   </node-view-wrapper>
+  <hb-tiptap-video
+      ref="HTV"
+      @ok="insertVideo"
+  />
 </template>
 
 <style scoped>

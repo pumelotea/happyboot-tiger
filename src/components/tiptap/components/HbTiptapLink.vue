@@ -3,8 +3,6 @@ import { NModal, NInputGroup, NSelect, NInput, NRadioGroup, NRadio, NForm, NForm
 import { ref } from 'vue'
 
 const showModal = ref(false)
-const prefix = ref('https://')
-const prefixOptions = ref([{ label: 'https://', value: 'https://' }, { label: 'http://', value: 'http://' }])
 
 const href = ref('')
 const target = ref('_blank')
@@ -13,14 +11,13 @@ const emit = defineEmits([ 'ok' ])
 
 function open () {
   showModal.value = true
-  prefix.value = 'https://'
   target.value = '_blank'
   href.value = ''
 }
 
 function onOk () {
   showModal.value = false
-  emit('ok', prefix.value + href.value, target.value)
+  emit('ok', href.value, target.value)
 }
 
 function onCancel () {
@@ -47,11 +44,6 @@ defineExpose({ open })
       >
         <n-form-item label="链接地址">
           <n-input-group>
-            <n-select
-              v-model:value="prefix"
-              :options="prefixOptions"
-              style="width: 150px;"
-            />
             <n-input v-model:value="href" />
           </n-input-group>
         </n-form-item>

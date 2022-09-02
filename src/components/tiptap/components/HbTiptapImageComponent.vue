@@ -3,10 +3,24 @@ import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
 import HbTiptapResizer from '@/components/tiptap/components/HbTiptapResizer'
 import { NPopover } from 'naive-ui'
 import HbTiptapMenuItem from "@/components/tiptap/components/HbTiptapMenuItem"
+import HbTiptapImage from "@/components/tiptap/components/HbTiptapImage"
+import {ref} from "vue";
 const props = defineProps(nodeViewProps)
 
 function onchange (width, height) {
   props.updateAttributes({ width, height })
+}
+
+const HTI = ref(null)
+
+function handleOpenImage () {
+  HTI.value.open(props.node.attrs)
+}
+
+function insertImage (url) {
+  if (url) {
+    props.updateAttributes({ src: url })
+  }
 }
 
 </script>
@@ -39,7 +53,7 @@ function onchange (width, height) {
           <hb-tiptap-menu-item
               icon="settings-line"
               title="修改图片"
-              :action="()=>{}"
+              :action="handleOpenImage"
               :is-active="() => {}"
           ></hb-tiptap-menu-item>
         </div>
@@ -47,13 +61,17 @@ function onchange (width, height) {
           <hb-tiptap-menu-item
               icon="delete-bin-2-line"
               title="删除"
-              :action="()=>{}"
+              :action="props.deleteNode"
               :is-active="() => {}"
           ></hb-tiptap-menu-item>
         </div>
       </div>
     </n-popover>
   </node-view-wrapper>
+  <hb-tiptap-image
+      ref="HTI"
+      @ok="insertImage"
+  />
 </template>
 
 <style scoped>

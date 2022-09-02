@@ -63,7 +63,7 @@ function onok(val) {
           <hb-tiptap-menu-item
               icon="delete-bin-2-line"
               title="删除"
-              :action="()=>props.editor.commands.deleteSelection()"
+              :action="props.deleteNode"
               :is-active="() => {}"
           ></hb-tiptap-menu-item>
         </div>

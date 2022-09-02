@@ -10,10 +10,6 @@ const tabName = ref('网络视频')
 function changeTab (name) {
   tabName.value = name
 }
-
-const prefix = ref('https://')
-const prefixOptions = ref([{ label: 'https://', value: 'https://' }, { label: 'http://', value: 'http://' }])
-
 const href = ref('')
 const target = ref('_blank')
 
@@ -21,18 +17,17 @@ const simpleUpload = ref(null)
 
 const emit = defineEmits([ 'ok' ])
 
-function open () {
+function open (attrs) {
   showModal.value = true
   tabName.value = '网络视频'
-  prefix.value = 'https://'
-  href.value = ''
+  href.value = attrs?.src || ''
 }
 
 function onOk () {
   showModal.value = false
   let url = ''
   if (tabName.value === '网络视频') {
-    url = prefix.value + href.value
+    url = href.value
   }
   if (tabName.value === '本地视频') {
     url = simpleUpload.value.getFile()
@@ -71,11 +66,6 @@ defineExpose({ open })
           >
             <n-form-item label="地址">
               <n-input-group>
-                <n-select
-                  v-model:value="prefix"
-                  :options="prefixOptions"
-                  style="width: 150px;"
-                />
                 <n-input v-model:value="href" />
               </n-input-group>
             </n-form-item>
