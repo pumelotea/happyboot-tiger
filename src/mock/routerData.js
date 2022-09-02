@@ -255,8 +255,8 @@ const routerData = [
         type       : 'menu',
         children   : [],
         budge      : {
-          value: '开发中',
-          type : 'info'
+          value: 'alpha',
+          type : 'error'
         }
       },
       {
