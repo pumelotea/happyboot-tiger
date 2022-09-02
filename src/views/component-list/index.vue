@@ -29,11 +29,12 @@ function goto (path) {
               </n-gradient-text>
             </div>
           </div>
-          <div>
-            <img
-              style="height: 120px"
-              src="https://github-readme-stats.vercel.app/api/pin/?username=pumelotea&locale=cn&repo=happyboot-tiger&show_icons=true"
-            >
+          <div style="font-size: 20px" class="animate__animated animate__bounce animate__repeat-3">
+            <a href="https://github.com/pumelotea/happyboot-tiger">
+              <n-gradient-text type="info">
+                前往Github获取源码
+              </n-gradient-text>
+            </a>
           </div>
         </div>
         <n-grid
@@ -42,7 +43,8 @@ function goto (path) {
           y-gap="10"
         >
           <n-grid-item
-            v-for="e in data"
+            v-for="(e,i) in data"
+            :key="i"
             style="padding: 10px"
           >
             <n-card
