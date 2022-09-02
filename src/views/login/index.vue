@@ -100,7 +100,7 @@ async function createQrCode () {
     <img
       v-if="!loadedVideoBg"
       class="image-bg"
-      src="/src/assets/bg-2.jpg"
+      src="/src/assets/bg.png"
     >
     <!--    <video @loadeddata="onVideoBgLoad" @error="onVideoBgError" class="bg-video" loop muted autoplay-->
     <!--           src="https://raw.githubusercontent.com/pumelotea/happyboot-tiger/aa1ea8ab3f30017ca97fe899d48861af8f5a680a/public/9c67d262-f53e-4358-9f99-beef9538e579.mp4"></video>-->
