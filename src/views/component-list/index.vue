@@ -19,13 +19,9 @@ function goto (path) {
       <n-layout-content>
         <div class="com-head-box">
           <div class="logo-box">
-            <img
-              class="logo-image"
-              src="/src/assets/logo.png"
-            >
             <div class="logo-text">
               <n-gradient-text type="success">
-                HappyBoot Tiger
+                HappyBoot Library
               </n-gradient-text>
             </div>
           </div>
@@ -112,6 +108,5 @@ function goto (path) {
 
 .logo-text{
   font-size: 40px;
-  margin-left: 10px;
 }
 </style>
