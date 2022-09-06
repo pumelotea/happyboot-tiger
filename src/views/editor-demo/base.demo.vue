@@ -34,7 +34,7 @@ const content = ref('<h1>⌨️富文本编辑器<span style="color: rgb(247, 6,
 </script>
 <template>
   <div style="height: 500px;margin-bottom: 10px">
-    <hb-admin-tip-tap v-model="content" />
+    <hb-admin-tip-tap v-model="content" to="pop-body"/>
   </div>
   <n-card title="输出HTML">
     <n-input

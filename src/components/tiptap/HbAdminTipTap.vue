@@ -18,12 +18,31 @@ const props = defineProps({
   modelValue: {
     type   : String,
     default: ''
+  },
+  to:{
+    type: String,
+    required: false,
+    default : false
   }
 })
 
 const words = ref(0)
 const characters = ref(0)
 const fullscreen = ref(false)
+const editorBox = ref(null)
+const editorBoxParent = ref(null)
+watch(fullscreen,()=>{
+  if (fullscreen.value === true){
+    if (props.to){
+      editorBoxParent.value = editorBox.value.parentNode
+      document.getElementById(props.to).append(editorBox.value)
+    }
+  }else{
+    if (props.to){
+      editorBoxParent.value.append(editorBox.value)
+    }
+  }
+})
 
 const updateEditorWordCount = useDebounceFn(() => {
   words.value = editor.value.storage.characterCount.words()
@@ -97,6 +116,7 @@ function tab (e) {
 
 <template>
   <div
+    ref="editorBox"
     class="editor-background"
     :class="{'fullscreen':fullscreen}"
     @keydown="tab"
