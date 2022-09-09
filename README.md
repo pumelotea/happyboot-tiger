@@ -1,8 +1,8 @@
 <p align="center">
 <img style="margin-top: 30px" src="https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/logo.png" width="300"/>
 </p>
-<p align="center" style="font-size: 30px">
-happyboot-tiger
+<p align="center">
+<h1>happyboot-tiger</h1>
 </p>
 
 <p align="center">
