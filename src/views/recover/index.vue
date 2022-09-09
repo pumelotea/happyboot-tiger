@@ -11,7 +11,7 @@ import {
   <div>
     <n-layout
       class="hb-admin-recover"
-      content-style="width:100%;backdrop-filter: blur(5px);opacity:0.8;"
+      content-style="width:100%;backdrop-filter: blur(5px);-webkit-backdrop-filter: blur(10px);opacity:0.8;"
     >
       <n-space
         vertical

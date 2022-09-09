@@ -153,6 +153,7 @@ const user = security.getUser()
   bottom: 0;
   z-index: 9999;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 0 20px 5px #0000000f;
   display: flex;
   align-items: center;
@@ -257,6 +258,7 @@ const user = security.getUser()
   align-items: center;
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .hb-screen-locker-placeholder{

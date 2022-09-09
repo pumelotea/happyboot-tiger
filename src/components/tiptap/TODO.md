@@ -30,6 +30,6 @@
 ## 待优化
 - [ ] tab缩进
 - [x] 图片视频选中问题，弄个全局变量估计就可以，类似fullscreent，resize要监听这个变量
-- [x] todo样式优化
+- [x] todo样式优化,居中状态
 - [x] markdown编辑器和富文本编辑器中气泡菜单冲突
 - [ ] highlight和lowlight冲突
