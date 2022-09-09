@@ -1,5 +1,5 @@
 <p align="center">
-<img style="margin-top: 30px" src="https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/logo.png" width="300"/>
+<img style="margin-top: 30px" src="https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/logo.png" width="120"/>
 </p>
 <p align="center">
 <h1>happyboot-tiger</h1>
