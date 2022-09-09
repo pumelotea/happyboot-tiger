@@ -1,7 +1,9 @@
 <p align="center">
 <img style="margin-top: 30px" src="https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/logo.png" width="120"/>
 </p>
-
+<h1 align="center">
+HappyBoot Tiger
+</h1>
 <p align="center">
 <img src="https://img.shields.io/github/last-commit/pumelotea/happyboot-tiger?style=flat-square"/>
 <img src="https://img.shields.io/github/stars/pumelotea/happyboot-tiger?style=flat-square"/>
@@ -9,9 +11,7 @@
 <img src="https://img.shields.io/github/issues/pumelotea/happyboot-tiger?style=flat-square"/>
 <img src="https://img.shields.io/github/license/pumelotea/happyboot-tiger?style=flat-square"/>
 </p>
-<h1 align="center">
-HappyBoot Tiger
-</h1>
+
 
 ## 效果图
 
