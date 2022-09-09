@@ -2,7 +2,7 @@
 <img style="margin-top: 30px" src="https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/logo.png" width="120"/>
 </p>
 <p align="center">
-<h1>happyboot-tiger</h1>
+<svg width="400" height="100" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="50%" font-size="50" fill="grey" font-family="system-ui, sans-serif" text-anchor="middle" dominant-baseline="middle">HappyBoot Tiger</text></svg>
 </p>
 
 <p align="center">
@@ -12,6 +12,7 @@
 <img src="https://img.shields.io/github/issues/pumelotea/happyboot-tiger?style=flat-square"/>
 <img src="https://img.shields.io/github/license/pumelotea/happyboot-tiger?style=flat-square"/>
 </p>
+
 
 ## 效果图
 
