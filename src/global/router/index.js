@@ -4,7 +4,7 @@ import happyFramework from '../framework'
 import { upgradeRouter } from 'happykit'
 import framework from "@/global/framework";
 import {defineComponent, h, markRaw, reactive, ref, watch} from "vue"
-
+import LoadPlaceholder from '@/views/home/load-placeholder'
 const router = createRouter({
   // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
   history: createWebHashHistory(),
@@ -92,7 +92,7 @@ export function reDefineComponent(Component,route){
 
   // FIX:切换路由缓存容器中组件可能不存在
   if (!cached[pageId]){
-    return null
+    return h(LoadPlaceholder)
   }
 
   cached[pageId].component = newComponent
