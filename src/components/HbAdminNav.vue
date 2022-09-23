@@ -13,6 +13,7 @@ import {
 import framework from '@/global/framework'
 import { h, nextTick, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import {removeComponentCache} from "@/global/router"
 
 const navList = framework.getNavList()
 const currentRouteMenu = framework.getCurrentMenuRoute()
@@ -51,6 +52,11 @@ const options = [
 
 function onDropdownSelect (key) {
   framework.closeNav(key, currentRouteMenu.value?.pageId, (removedNavs, needNavs) => {
+    if (removedNavs.length > 0){
+      removedNavs.forEach(e=>{
+        removeComponentCache(e.pageId)
+      })
+    }
     if (needNavs.length > 0) {
       router.push(needNavs[0].to)
     }
@@ -62,6 +68,7 @@ function onDropdownSelect (key) {
 
 function onNavClose (e) {
   framework.closeNav('self', e.pageId, (removedNavs, needNavs) => {
+    removeComponentCache(e.pageId)
     if (needNavs.length > 0) {
       router.push(needNavs[0].to)
     }

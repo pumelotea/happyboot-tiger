@@ -10,7 +10,7 @@ hljs.registerLanguage('javascript', javascript)
 
 const data = `const router = useRouter()
 function goto(){
-  router.push('/hide?id=123','标题字符串')
+  router.push('/hide?id='+title.value,'标题字符串')
 }`
 
 const title = ref('')
@@ -19,7 +19,7 @@ const router = useRouter()
 
 function goto () {
   // 重载后的push方法，可以支持传递标题
-  router.push('/hide?id=123', title.value)
+  router.push('/hide?id='+title.value, title.value)
 }
 
 </script>

@@ -6,6 +6,7 @@ import HbAdminLogo from '@/components/HbAdminLogo.vue'
 import HbAdminCopyright from '@/components/HbAdminCopyright.vue'
 import HbAdminUserCard from '@/components/HbAdminUserCard.vue'
 import HbAdminOnlineUserList from '@/components/HbAdminOnlineUserList.vue'
+import CacheAlive from "@/views/home/cache-alive.vue"
 
 import {
   NMessageProvider,
@@ -21,9 +22,10 @@ import {
 } from 'naive-ui'
 
 import { theme, isMenuCollapsed } from '@/global/config'
-import { h, ref } from 'vue'
+import { defineComponent, h, markRaw, reactive, ref} from 'vue'
 import { CubeOutline, AlbumsOutline } from '@vicons/ionicons5'
 import framework from '@/global/framework'
+
 
 function onLayoutCollapsed (collapsed) {
   isMenuCollapsed.value = collapsed
@@ -96,11 +98,14 @@ function openUserList () {
             class="main-content"
             embedded
           >
-            <router-view v-slot="{ Component }">
-              <component
-                :is="Component"
-                class="animate__animated animate__fadeIn"
-              />
+            <router-view v-slot="{ Component,route }">
+              <cache-alive class="animate__animated animate__fadeIn" :is="Component" :route="route"></cache-alive>
+<!--              <keep-alive>-->
+<!--                <component-->
+<!--                    :is="reDefineComponent(Component,route)"-->
+<!--                    class="animate__animated animate__fadeIn"-->
+<!--                />-->
+<!--              </keep-alive>-->
             </router-view>
             <div
               v-if="!currentMenuRoute"
