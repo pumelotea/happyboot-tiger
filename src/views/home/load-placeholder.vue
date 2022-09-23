@@ -1,5 +1,17 @@
 <script setup>
 import { NButton } from 'naive-ui'
+import framework from "@/global/framework"
+import {useRouter} from "vue-router"
+
+const router = useRouter()
+const currentRouteMenu = framework.getCurrentMenuRoute()
+function refreshPage(){
+  framework.clickNavItem(currentRouteMenu.value?.pageId, (a, needNavs) => {
+    if (needNavs.length > 0) {
+      router.push(needNavs[0].to)
+    }
+  })
+}
 </script>
 
 <template>
@@ -9,7 +21,7 @@ import { NButton } from 'naive-ui'
   </div>
   <div class="load-tip-text">长时间未响应点击刷新</div>
   <div style="width: 200px">
-    <n-button secondary block type="primary">
+    <n-button @click="refreshPage" secondary block type="primary">
       刷新页面
     </n-button>
   </div>
