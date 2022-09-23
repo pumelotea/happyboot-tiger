@@ -8,12 +8,13 @@ import {
   ArrowForwardSharp,
   CloseSharp,
   CloseCircleSharp,
-  CubeOutline
+  CubeOutline,
+  RefreshSharp
 } from '@vicons/ionicons5'
 import framework from '@/global/framework'
 import { h, nextTick, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import {removeComponentCache} from "@/global/router"
+import { removeComponentCache } from "@/global/router"
 
 const navList = framework.getNavList()
 const currentRouteMenu = framework.getCurrentMenuRoute()
@@ -28,6 +29,16 @@ const renderIcon = (icon, color) => {
 }
 
 const options = [
+  {
+    label: '刷新当前',
+    key  : 'refreshCurrent',
+    icon : renderIcon(RefreshSharp)
+  },
+  {
+    label: '刷新全部',
+    key  : 'refreshAll',
+    icon : renderIcon(RefreshSharp)
+  },
   {
     label: '关闭左侧',
     key  : 'left',
@@ -50,7 +61,39 @@ const options = [
   }
 ]
 
+function refreshPage(key){
+  switch (key){
+    case 'refreshCurrent':{
+      const pageId = currentRouteMenu.value?.pageId
+      if (pageId){
+        removeComponentCache(pageId)
+        setTimeout(()=>{
+          onNavClick(pageId)
+        },100)
+      }
+      break
+    }
+    case 'refreshAll':{
+      const pageId = currentRouteMenu.value?.pageId
+      framework.getNavList().value.forEach(e=>{
+        removeComponentCache(e.pageId)
+      })
+      if (pageId){
+        setTimeout(()=>{
+          onNavClick(pageId)
+        },100)
+      }
+      break
+    }
+  }
+
+}
+
 function onDropdownSelect (key) {
+  if (key === 'refreshCurrent' || key === 'refreshAll'){
+    refreshPage(key)
+    return
+  }
   framework.closeNav(key, currentRouteMenu.value?.pageId, (removedNavs, needNavs) => {
     if (removedNavs.length > 0){
       removedNavs.forEach(e=>{
