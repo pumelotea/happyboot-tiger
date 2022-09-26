@@ -1,18 +1,18 @@
 <script setup>
-import {NodeViewContent, nodeViewProps, NodeViewWrapper} from '@tiptap/vue-3'
+import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
 import 'katex/dist/katex.css'
 import katex from 'katex'
-import {NPopover} from 'naive-ui'
-import HbTiptapMenuItem from "@/components/tiptap/components/HbTiptapMenuItem"
+import { NPopover } from 'naive-ui'
+import HbTiptapMenuItem from '@/components/tiptap/components/HbTiptapMenuItem'
 
-import {onMounted, ref, watch} from 'vue'
-import HbTiptapMath from "@/components/tiptap/components/HbTiptapMath";
+import { onMounted, ref, watch } from 'vue'
+import HbTiptapMath from '@/components/tiptap/components/HbTiptapMath'
 
 const props = defineProps(nodeViewProps)
 
 const box = ref(null)
 
-function init() {
+function init () {
   katex.render(props.node.attrs.tex, box.value, {
     throwOnError: false
   })
@@ -28,52 +28,57 @@ onMounted(() => {
 
 const HTM = ref(null)
 
-function handleOpenMath() {
+function handleOpenMath () {
   HTM.value.open(props.node.attrs.tex)
 }
 
-function onok(val) {
+function onok (val) {
   if (!val) {
     props.editor.commands.deleteSelection()
     return
   }
-  props.updateAttributes({tex: val})
+  props.updateAttributes({ tex: val })
 }
 
 </script>
 <template>
   <node-view-wrapper class="math-block">
-    <n-popover placement="bottom-end" :showArrow="false" trigger="click" style="padding: 0">
+    <n-popover
+      placement="bottom-end"
+      :show-arrow="false"
+      trigger="click"
+      style="padding: 0"
+    >
       <template #trigger>
         <p
-            ref="box"
-            :class="{'math-selected':props.selected}"
+          ref="box"
+          :class="{'math-selected':props.selected}"
         />
       </template>
       <div class="image-actions">
         <div class="action-item">
           <hb-tiptap-menu-item
-              icon="settings-line"
-              title="修改公式"
-              :action="handleOpenMath"
-              :is-active="() => {}"
-          ></hb-tiptap-menu-item>
+            icon="settings-line"
+            title="修改公式"
+            :action="handleOpenMath"
+            :is-active="() => {}"
+          />
         </div>
         <div class="action-item">
           <hb-tiptap-menu-item
-              icon="delete-bin-2-line"
-              title="删除"
-              :action="props.deleteNode"
-              :is-active="() => {}"
-          ></hb-tiptap-menu-item>
+            icon="delete-bin-2-line"
+            title="删除"
+            :action="props.deleteNode"
+            :is-active="() => {}"
+          />
         </div>
       </div>
     </n-popover>
   </node-view-wrapper>
   <hb-tiptap-math
-      ref="HTM"
-      @ok="onok"
-  ></hb-tiptap-math>
+    ref="HTM"
+    @ok="onok"
+  />
 </template>
 
 <style scoped>

@@ -19,7 +19,7 @@ const router = useRouter()
 
 function goto () {
   // 重载后的push方法，可以支持传递标题
-  router.push('/hide?id='+title.value, title.value)
+  router.push('/hide?id=' + title.value, title.value)
 }
 
 </script>

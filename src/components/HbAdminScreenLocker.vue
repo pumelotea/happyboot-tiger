@@ -1,7 +1,7 @@
 <script setup>
 import { NIcon, NAvatar } from 'naive-ui'
 import { ArrowForward, LockOpen } from '@vicons/ionicons5'
-import {computed, onMounted, ref, watch} from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import security from '@/global/security'
 
 const props = defineProps({
@@ -10,8 +10,8 @@ const props = defineProps({
     required: false,
     default : false
   },
-  to:{
-    type: String,
+  to: {
+    type    : String,
     required: false,
     default : false
   }
@@ -27,9 +27,8 @@ let minDistance = 0
 const isTrigger = ref(false)
 const box = ref(null)
 
-
-if (props.to){
-  onMounted(()=>{
+if (props.to) {
+  onMounted(() => {
     document.getElementById(props.to).append(box.value)
   })
 }
@@ -103,14 +102,13 @@ const user = security.getUser()
 </script>
 <template>
   <transition
+    ref="box"
     enter-active-class="hb-screen-locker-lock"
     leave-active-class="hb-screen-locker-unlock"
-    ref="box"
   >
     <div
       v-if="props.open"
       class="hb-screen-locker"
-
     >
       <div class="hb-screen-avatar">
         <n-avatar

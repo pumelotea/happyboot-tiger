@@ -1,8 +1,8 @@
 <script setup>
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
 import HbTiptapResizer from '@/components/tiptap/components/HbTiptapResizer'
-import HbTiptapMenuItem from "@/components/tiptap/components/HbTiptapMenuItem"
-import HbTiptapVideo from "@/components/tiptap/components/HbTiptapVideo"
+import HbTiptapMenuItem from '@/components/tiptap/components/HbTiptapMenuItem'
+import HbTiptapVideo from '@/components/tiptap/components/HbTiptapVideo'
 import { NPopover } from 'naive-ui'
 
 import Player from 'xgplayer/dist/core_player'
@@ -66,22 +66,27 @@ function insertVideo (url) {
     class="video-block"
     as="span"
   >
-    <n-popover placement="right-start" :showArrow="false" trigger="click" style="padding: 0">
+    <n-popover
+      placement="right-start"
+      :show-arrow="false"
+      trigger="click"
+      style="padding: 0"
+    >
       <template #trigger>
         <hb-tiptap-resizer
-            :selected="props.selected"
-            :w="props.node.attrs.width"
-            :h="props.node.attrs.height"
-            @on-change="onchange"
+          :selected="props.selected"
+          :w="props.node.attrs.width"
+          :h="props.node.attrs.height"
+          @on-change="onchange"
         >
           <template #default="{width,height}">
             <div
-                :style="`width: ${width}px;height: ${height}px`"
-                class="video-resizer"
+              :style="`width: ${width}px;height: ${height}px`"
+              class="video-resizer"
             >
               <div
-                  ref="box"
-                  class="video-box"
+                ref="box"
+                class="video-box"
               />
             </div>
           </template>
@@ -90,26 +95,26 @@ function insertVideo (url) {
       <div class="video-actions">
         <div class="action-item">
           <hb-tiptap-menu-item
-              icon="settings-line"
-              title="修改视频"
-              :action="handleOpenVideo"
-              :is-active="() => {}"
-          ></hb-tiptap-menu-item>
+            icon="settings-line"
+            title="修改视频"
+            :action="handleOpenVideo"
+            :is-active="() => {}"
+          />
         </div>
         <div class="action-item">
           <hb-tiptap-menu-item
-              icon="delete-bin-2-line"
-              title="删除"
-              :action="props.deleteNode"
-              :is-active="() => {}"
-          ></hb-tiptap-menu-item>
+            icon="delete-bin-2-line"
+            title="删除"
+            :action="props.deleteNode"
+            :is-active="() => {}"
+          />
         </div>
       </div>
     </n-popover>
   </node-view-wrapper>
   <hb-tiptap-video
-      ref="HTV"
-      @ok="insertVideo"
+    ref="HTV"
+    @ok="insertVideo"
   />
 </template>
 

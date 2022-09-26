@@ -25,7 +25,10 @@ function goto (path) {
               </n-gradient-text>
             </div>
           </div>
-          <div style="font-size: 20px" class="animate__animated animate__bounce animate__repeat-3">
+          <div
+            style="font-size: 20px"
+            class="animate__animated animate__bounce animate__repeat-3"
+          >
             <a href="https://github.com/pumelotea/happyboot-tiger">
               <n-gradient-text type="info">
                 前往Github获取源码

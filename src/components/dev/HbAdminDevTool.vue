@@ -5,8 +5,9 @@ import security from '@/global/security'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import { onMounted, ref, watch } from 'vue'
-import {cached,removeComponentCache} from "@/global/router"
+import { removeComponentCache, getCached } from '@/global/router'
 
+const cached = getCached()
 hljs.registerLanguage('javascript', javascript)
 const clientId = ref(framework.getTracker().clientId)
 const message = useMessage()
@@ -158,41 +159,43 @@ watch(showPanel, () => {
             keepalive路由缓存
           </n-alert>
           <n-table
-              :bordered="false"
-              :single-line="false"
+            :bordered="false"
+            :single-line="false"
           >
             <thead>
-            <tr>
-              <th>页面ID</th>
-              <th>标题</th>
-              <th>路径</th>
-              <th>是否开启缓存</th>
-              <th>操作</th>
-            </tr>
+              <tr>
+                <th>页面ID</th>
+                <th>标题</th>
+                <th>路径</th>
+                <th>是否开启缓存</th>
+                <th>操作</th>
+              </tr>
             </thead>
             <tbody>
-            <tr v-for="e in cached">
-              <td>{{ e.pageId }}</td>
-              <td>{{ framework.getNav(e.pageId).title }}</td>
-              <td>{{ framework.getNav(e.pageId).menuItem.routerPath }}</td>
-              <td>
-                <n-tag
+              <tr v-for="e in cached">
+                <td>{{ e.pageId }}</td>
+                <td>{{ framework.getNav(e.pageId).title }}</td>
+                <td>{{ framework.getNav(e.pageId).menuItem.routerPath }}</td>
+                <td>
+                  <n-tag
                     v-if="e.isKeepalive"
                     type="success"
-                >
-                  {{ !e.isKeepalive ? '否' : '是' }}
-                </n-tag>
-                <n-tag
+                  >
+                    {{ !e.isKeepalive ? '否' : '是' }}
+                  </n-tag>
+                  <n-tag
                     v-else
                     type="warning"
-                >
-                  {{ !e.isKeepalive ? '否' : '是' }}
-                </n-tag>
-              </td>
-              <td>
-                <n-button @click="removeComponentCache(e.pageId)">删除缓存</n-button>
-              </td>
-            </tr>
+                  >
+                    {{ !e.isKeepalive ? '否' : '是' }}
+                  </n-tag>
+                </td>
+                <td>
+                  <n-button @click="removeComponentCache(e.pageId)">
+                    删除缓存
+                  </n-button>
+                </td>
+              </tr>
             </tbody>
           </n-table>
           <n-alert type="info">

@@ -2270,10 +2270,10 @@ graphlib@^2.1.8:
   dependencies:
     lodash "^4.17.15"
 
-happykit@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/happykit/-/happykit-2.0.1.tgz#b54854a06897598c34c324572d11fda649ec426e"
-  integrity sha512-CFHqsHw8jLahUEO4FC3BoqTi2WkHKuxJVlmNnGbQd6aRzxqf1tuZhqTSe+OE9mLu/uv7x5jDaaYN3XtW619TVA==
+happykit@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/happykit/-/happykit-2.2.0.tgz#4e744359e90e81134b00b3b6d4dfb6bca9d8c0b5"
+  integrity sha512-XULJ6h+GRSx91MI1/AKxPsQkPDa+WE5jkD83gchWliYqFbqzApVbhoXCrBVlS/B3Aj53Evu7vBfwRKU2m8A1ag==
 
 has-bigints@^1.0.1, has-bigints@^1.0.2:
   version "1.0.2"

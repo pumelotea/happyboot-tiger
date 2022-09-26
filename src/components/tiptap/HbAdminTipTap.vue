@@ -19,8 +19,8 @@ const props = defineProps({
     type   : String,
     default: ''
   },
-  to:{
-    type: String,
+  to: {
+    type    : String,
     required: false,
     default : false
   }
@@ -31,14 +31,14 @@ const characters = ref(0)
 const fullscreen = ref(false)
 const editorBox = ref(null)
 const editorBoxParent = ref(null)
-watch(fullscreen,()=>{
-  if (fullscreen.value === true){
-    if (props.to){
+watch(fullscreen, () => {
+  if (fullscreen.value === true) {
+    if (props.to) {
       editorBoxParent.value = editorBox.value.parentNode
       document.getElementById(props.to).append(editorBox.value)
     }
-  }else{
-    if (props.to){
+  } else {
+    if (props.to) {
       editorBoxParent.value.append(editorBox.value)
     }
   }
