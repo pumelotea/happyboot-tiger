@@ -13,7 +13,7 @@ import {
   NBreadcrumb,
   NBreadcrumbItem
 } from 'naive-ui'
-import { Moon, SunnyOutline, Notifications, CubeOutline, LogoGithub } from '@vicons/ionicons5'
+import { Moon, SunnyOutline, Notifications, CubeOutline, LogoGithub,Book } from '@vicons/ionicons5'
 import { h, computed, ref } from 'vue'
 import { isDarkTheme, isMenuCollapsed } from '@/global/config'
 import framework from '@/global/framework'
@@ -100,6 +100,10 @@ const breadcrumb = computed(() => {
 
 function gotoGithub () {
   window.open('https://github.com/pumelotea/happyboot-tiger')
+}
+
+function gotoBook() {
+  window.open('https://doc.happykit.org/')
 }
 
 const info = ref({
@@ -192,16 +196,23 @@ const info = ref({
       </n-switch>
       <n-divider vertical />
       <n-icon
-        size="25"
+        size="22"
         color="#CFCFCF"
         :component="LogoGithub"
         @click="gotoGithub"
       />
       <n-divider vertical />
+      <n-icon
+          size="22"
+          color="#CFCFCF"
+          :component="Book"
+          @click="gotoBook"
+      />
+      <n-divider vertical />
       <hb-admin-message>
         <div class="head-notify">
           <n-icon
-            size="25"
+            size="22"
             color="#CFCFCF"
             :component="Notifications"
           />

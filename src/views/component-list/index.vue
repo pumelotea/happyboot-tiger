@@ -25,9 +25,20 @@ function goto (path) {
               </n-gradient-text>
             </div>
           </div>
+          <div style="flex: 1"></div>
           <div
-            style="font-size: 20px"
+            style="font-size: 20px;margin-right: 10px"
             class="animate__animated animate__bounce animate__repeat-3"
+          >
+            <a href="https://doc.happykit.org/">
+              <n-gradient-text type="info">
+                查看文档
+              </n-gradient-text>
+            </a>
+          </div>
+          <div
+              style="font-size: 20px"
+              class="animate__animated animate__bounce animate__repeat-3"
           >
             <a href="https://github.com/pumelotea/happyboot-tiger">
               <n-gradient-text type="info">
