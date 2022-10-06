@@ -1,5 +1,5 @@
 <script setup>
-import { NIcon, NButton, NEmpty, NTag, NDropdown, useThemeVars } from 'naive-ui'
+import { NIcon, NButton, NEmpty, NTag, NDropdown, NTooltip ,useThemeVars } from 'naive-ui'
 import {
   ArrowBack,
   ArrowForward,
@@ -220,7 +220,14 @@ watch(currentRouteMenu, value => {
       >
         {{ e.title }}
         <template #avatar>
-          <div class="nav-cached-tag" v-if="e.menuItem.isKeepalive"></div>
+          <n-tooltip placement="bottom" trigger="hover" v-if="e.menuItem.isKeepalive">
+            <template #trigger>
+              <div class="nav-cached-tag"></div>
+            </template>
+            <span>
+              「{{e.menuItem.name}}」已开启页面缓存
+            </span>
+          </n-tooltip>
           <div class="nav-item-icon">
             <i
               v-if="e.menuItem.icon"
