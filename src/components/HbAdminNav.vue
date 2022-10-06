@@ -1,5 +1,5 @@
 <script setup>
-import { NIcon, NButton, NEmpty, NTag, NDropdown, NTooltip ,useThemeVars } from 'naive-ui'
+import { NIcon, NButton, NEmpty, NTag, NDropdown, NTooltip, useThemeVars } from 'naive-ui'
 import {
   ArrowBack,
   ArrowForward,
@@ -9,7 +9,7 @@ import {
   CloseSharp,
   CloseCircleSharp,
   CubeOutline,
-  RefreshSharp
+  RefreshSharp,
 } from '@vicons/ionicons5'
 import framework from '@/global/framework'
 import { h, nextTick, ref, watch } from 'vue'

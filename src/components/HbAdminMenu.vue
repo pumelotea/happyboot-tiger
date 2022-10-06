@@ -85,9 +85,17 @@ function menuChoose (key, item) {
   })
 }
 
+const props = defineProps({
+  mode: {
+    type: String,
+    default : null
+  }
+})
+
 </script>
 <template>
   <n-menu
+    :mode="props.mode"
     class="hb-admin-menu-com"
     :options="naviMenuData"
     :collapsed-width="64"

@@ -11,9 +11,10 @@ import {
   useMessage,
   NText,
   NBreadcrumb,
-  NBreadcrumbItem
+  NBreadcrumbItem,
+  NPopover
 } from 'naive-ui'
-import { Moon, SunnyOutline, Notifications, CubeOutline, LogoGithub,Book } from '@vicons/ionicons5'
+import { Moon, SunnyOutline, Notifications, CubeOutline, LogoGithub,Book,MenuOutline } from '@vicons/ionicons5'
 import { h, computed, ref } from 'vue'
 import { isDarkTheme, isMenuCollapsed } from '@/global/config'
 import framework from '@/global/framework'
@@ -21,6 +22,8 @@ import { useRouter } from 'vue-router'
 import security from '@/global/security'
 import HbAdminMessage from '@/components/HbAdminMessage'
 import HbAdminWeather from './HbAdminWeather'
+import HbAdminMenu from "@/components/HbAdminMenu";
+
 
 const router = useRouter()
 
@@ -137,6 +140,22 @@ const info = ref({
           />
         </n-icon>
       </n-button>
+      <n-popover trigger="hover" :arrow="false" placement="bottom-start">
+        <template #trigger>
+          <n-button
+              strong
+              text
+              class="menu-pop-button"
+          >
+            <template #icon>
+              <n-icon size="20">
+                <i class="ri-menu-5-line"></i>
+              </n-icon>
+            </template>
+          </n-button>
+        </template>
+        <hb-admin-menu mode="horizontal"/>
+      </n-popover>
       <n-breadcrumb>
         <n-breadcrumb-item
           v-for="e in breadcrumb"
@@ -253,11 +272,15 @@ const info = ref({
 
 .menu-toggle-button{
   margin-left: -10px;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .menu-toggle-button:hover{
 
+}
+
+.menu-pop-button{
+  margin-right: 10px;
 }
 
 .head-center-area {
