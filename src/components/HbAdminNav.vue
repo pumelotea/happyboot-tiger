@@ -1,5 +1,5 @@
 <script setup>
-import { NIcon, NButton, NEmpty, NTag, NDropdown } from 'naive-ui'
+import { NIcon, NButton, NEmpty, NTag, NDropdown, useThemeVars } from 'naive-ui'
 import {
   ArrowBack,
   ArrowForward,
@@ -15,6 +15,8 @@ import framework from '@/global/framework'
 import { h, nextTick, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { removeComponentCache } from '@/global/router'
+
+const vars = useThemeVars()
 
 const navList = framework.getNavList()
 const currentRouteMenu = framework.getCurrentMenuRoute()
@@ -218,6 +220,7 @@ watch(currentRouteMenu, value => {
       >
         {{ e.title }}
         <template #avatar>
+          <div class="nav-cached-tag" v-if="e.menuItem.isKeepalive"></div>
           <div class="nav-item-icon">
             <i
               v-if="e.menuItem.icon"
@@ -274,6 +277,16 @@ watch(currentRouteMenu, value => {
   width: 80px;
 }
 
+.nav-cached-tag{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 10px solid v-bind(vars.primaryColor);
+  border-right: 10px solid transparent;
+}
+
 .inline-box {
   flex: 1;
   overflow: auto;
@@ -293,6 +306,7 @@ watch(currentRouteMenu, value => {
 }
 
 .nav-tag{
+  overflow: hidden;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
