@@ -174,23 +174,19 @@ const info = ref({
     </div>
     <div class="head-center-area head-item-center">
       <div class="carousel-box">
-        <n-carousel show-arrow>
-          <img
-            class="carousel-img"
-            src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
-          >
-          <img
-            class="carousel-img"
-            src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
-          >
-          <img
-            class="carousel-img"
-            src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
-          >
-          <img
-            class="carousel-img"
-            src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
-          >
+        <n-carousel show-arrow :show-dots="false">
+          <a href="https://tiger.happykit.org/" target="_blank">
+            <img
+                class="carousel-img"
+                src="/images/1.png"
+            >
+          </a>
+          <a href="https://doc.happykit.org/" target="_blank">
+            <img
+                class="carousel-img"
+                src="/images/2.png"
+            >
+          </a>
         </n-carousel>
       </div>
     </div>
