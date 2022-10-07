@@ -10,11 +10,13 @@ import {
   CloseCircleSharp,
   CubeOutline,
   RefreshSharp,
+  AppsSharp
 } from '@vicons/ionicons5'
 import framework from '@/global/framework'
 import { h, nextTick, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { removeComponentCache } from '@/global/router'
+import HbAdminNavManager from "@/components/HbAdminNavManager"
 
 const vars = useThemeVars()
 
@@ -185,6 +187,9 @@ watch(currentRouteMenu, value => {
   })
 })
 
+
+const showPageManager = ref(false)
+
 </script>
 
 <template>
@@ -254,7 +259,14 @@ watch(currentRouteMenu, value => {
           <n-icon :component="ArrowForward" />
         </template>
       </n-button>
-
+      <n-button
+          text
+          @click="showPageManager = true"
+      >
+        <template #icon>
+          <n-icon :component="AppsSharp" />
+        </template>
+      </n-button>
       <n-dropdown
         :options="options"
         @select="onDropdownSelect"
@@ -266,6 +278,7 @@ watch(currentRouteMenu, value => {
         </n-button>
       </n-dropdown>
     </div>
+    <hb-admin-nav-manager :open="showPageManager" @scroll="scroll" @close="showPageManager = false"/>
   </div>
 </template>
 
@@ -281,7 +294,7 @@ watch(currentRouteMenu, value => {
   display: flex;
   justify-items: center;
   justify-content: space-around;
-  width: 80px;
+  width: 120px;
 }
 
 .nav-cached-tag{
