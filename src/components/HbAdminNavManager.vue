@@ -72,7 +72,7 @@ function openPage(e){
       enter-active-class="hb-admin-nav-manager-in"
       leave-active-class="hb-admin-nav-manager-out"
   >
-    <div class="hb-admin-nav-manager" v-if="open">
+    <div class="hb-admin-nav-manager" v-if="open" @click="handleClose">
       <div class="hb-admin-nav--mgt-title">页面管理器</div>
       <div class="hb-admin-nav--mgt-close">
         <n-button
