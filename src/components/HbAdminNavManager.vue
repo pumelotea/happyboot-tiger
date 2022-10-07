@@ -126,9 +126,9 @@ function openPage(e){
             <div class="nav-link">
               {{e.menuItem.routerPath}}
             </div>
-<!--            <div class="nav-poster">-->
-<!--              poster-->
-<!--            </div>-->
+            <div class="nav-poster">
+              <img class="poster-image" :src="`/images/page-poster/${e.menuItem.poster}`">
+            </div>
             <n-button
                 type="error"
                 class="nav-close"
@@ -271,7 +271,12 @@ function openPage(e){
   width: 100%;
   box-sizing: border-box;
   height: 200px;
-  background: #0a3069;
+}
+
+.poster-image{
+  width: 100%;
+  border: 1px solid rgba(187, 182, 182, 0.4);
+  border-radius: 5px;
 }
 
 .nav-close{
