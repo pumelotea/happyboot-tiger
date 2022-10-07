@@ -161,7 +161,6 @@ function openPage(e){
   height: 100%;
   padding: 5%;
   box-sizing: border-box;
-  background: v-bind(vars.baseColor);
 }
 
 .hb-admin-nav--mgt-title {
