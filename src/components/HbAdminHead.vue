@@ -140,7 +140,7 @@ const info = ref({
           />
         </n-icon>
       </n-button>
-      <n-popover trigger="hover" :arrow="false" placement="bottom-start">
+      <n-popover trigger="hover" :show-arrow="false" placement="bottom-start">
         <template #trigger>
           <n-button
               strong
