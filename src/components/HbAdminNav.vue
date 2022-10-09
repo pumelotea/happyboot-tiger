@@ -1,5 +1,5 @@
 <script setup>
-import { NIcon, NButton, NEmpty, NTag, NDropdown } from 'naive-ui'
+import { NIcon, NButton, NEmpty, NTag, NDropdown, NTooltip, useThemeVars } from 'naive-ui'
 import {
   ArrowBack,
   ArrowForward,
@@ -8,11 +8,17 @@ import {
   ArrowForwardSharp,
   CloseSharp,
   CloseCircleSharp,
-  CubeOutline
+  CubeOutline,
+  RefreshSharp,
+  AppsSharp
 } from '@vicons/ionicons5'
 import framework from '@/global/framework'
 import { h, nextTick, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { removeComponentCache } from '@/global/router'
+import HbAdminNavManager from "@/components/HbAdminNavManager"
+
+const vars = useThemeVars()
 
 const navList = framework.getNavList()
 const currentRouteMenu = framework.getCurrentMenuRoute()
@@ -27,6 +33,16 @@ const renderIcon = (icon, color) => {
 }
 
 const options = [
+  {
+    label: '刷新当前',
+    key  : 'refreshCurrent',
+    icon : renderIcon(RefreshSharp)
+  },
+  {
+    label: '刷新全部',
+    key  : 'refreshAll',
+    icon : renderIcon(RefreshSharp)
+  },
   {
     label: '关闭左侧',
     key  : 'left',
@@ -49,8 +65,44 @@ const options = [
   }
 ]
 
+function refreshPage (key) {
+  switch (key) {
+  case 'refreshCurrent':{
+    const pageId = currentRouteMenu.value?.pageId
+    if (pageId) {
+      removeComponentCache(pageId)
+      setTimeout(() => {
+        onNavClick(pageId)
+      }, 100)
+    }
+    break
+  }
+  case 'refreshAll':{
+    const pageId = currentRouteMenu.value?.pageId
+    framework.getNavList().value.forEach(e => {
+      removeComponentCache(e.pageId)
+    })
+    if (pageId) {
+      setTimeout(() => {
+        onNavClick(pageId)
+      }, 100)
+    }
+    break
+  }
+  }
+}
+
 function onDropdownSelect (key) {
+  if (key === 'refreshCurrent' || key === 'refreshAll') {
+    refreshPage(key)
+    return
+  }
   framework.closeNav(key, currentRouteMenu.value?.pageId, (removedNavs, needNavs) => {
+    if (removedNavs.length > 0) {
+      removedNavs.forEach(e => {
+        removeComponentCache(e.pageId)
+      })
+    }
     if (needNavs.length > 0) {
       router.push(needNavs[0].to)
     }
@@ -62,6 +114,7 @@ function onDropdownSelect (key) {
 
 function onNavClose (e) {
   framework.closeNav('self', e.pageId, (removedNavs, needNavs) => {
+    removeComponentCache(e.pageId)
     if (needNavs.length > 0) {
       router.push(needNavs[0].to)
     }
@@ -134,6 +187,9 @@ watch(currentRouteMenu, value => {
   })
 })
 
+
+const showPageManager = ref(false)
+
 </script>
 
 <template>
@@ -169,6 +225,14 @@ watch(currentRouteMenu, value => {
       >
         {{ e.title }}
         <template #avatar>
+          <n-tooltip placement="bottom" trigger="hover" v-if="e.menuItem.isKeepalive">
+            <template #trigger>
+              <div class="nav-cached-tag"></div>
+            </template>
+            <span>
+              「{{e.menuItem.name}}」已开启页面缓存
+            </span>
+          </n-tooltip>
           <div class="nav-item-icon">
             <i
               v-if="e.menuItem.icon"
@@ -195,7 +259,14 @@ watch(currentRouteMenu, value => {
           <n-icon :component="ArrowForward" />
         </template>
       </n-button>
-
+      <n-button
+          text
+          @click="showPageManager = true"
+      >
+        <template #icon>
+          <n-icon :component="AppsSharp" />
+        </template>
+      </n-button>
       <n-dropdown
         :options="options"
         @select="onDropdownSelect"
@@ -207,6 +278,7 @@ watch(currentRouteMenu, value => {
         </n-button>
       </n-dropdown>
     </div>
+    <hb-admin-nav-manager :open="showPageManager" @scroll="scroll" @close="showPageManager = false"/>
   </div>
 </template>
 
@@ -222,7 +294,17 @@ watch(currentRouteMenu, value => {
   display: flex;
   justify-items: center;
   justify-content: space-around;
-  width: 80px;
+  width: 120px;
+}
+
+.nav-cached-tag{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 10px solid v-bind(vars.primaryColor);
+  border-right: 10px solid transparent;
 }
 
 .inline-box {
@@ -244,6 +326,7 @@ watch(currentRouteMenu, value => {
 }
 
 .nav-tag{
+  overflow: hidden;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 

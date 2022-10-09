@@ -1,71 +1,70 @@
 import {
   mergeAttributes,
-  Node,
+  Node
 } from '@tiptap/core'
-
 
 export const HbVideo = Node.create({
   name: 'hb-video',
 
-  addOptions() {
+  addOptions () {
     return {
-      inline: true,
-      HTMLAttributes: {},
+      inline        : true,
+      HTMLAttributes: {}
     }
   },
 
-  inline() {
+  inline () {
     return this.options.inline
   },
 
-  group() {
+  group () {
     return this.options.inline ? 'inline' : 'block'
   },
 
   draggable: false,
 
-  addAttributes() {
+  addAttributes () {
     return {
       src: {
-        default: null,
+        default: null
       },
       alt: {
-        default: null,
+        default: null
       },
       title: {
-        default: null,
+        default: null
       },
-      width:{
-        default: 400,
+      width: {
+        default: 400
       },
-      height:{
-        default: 300,
+      height: {
+        default: 300
       }
     }
   },
 
-  parseHTML() {
+  parseHTML () {
     return [
       {
         tag: 'video[src]'
-      },
+      }
     ]
   },
 
-  renderHTML({ HTMLAttributes }) {
-    return ['video', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)]
+  renderHTML ({ HTMLAttributes }) {
+    return [ 'video', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes) ]
   },
 
-  addCommands() {
+  addCommands () {
     return {
       setHbVideo: options => ({ commands }) => {
         return commands.insertContent({
-          type: this.name,
-          attrs: options,
+          type : this.name,
+          attrs: options
         })
-      },
+      }
     }
-  },
+  }
 })
 
 export default HbVideo

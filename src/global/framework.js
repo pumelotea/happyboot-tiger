@@ -71,6 +71,7 @@ function createMenuAdapter () {
           treeNode.name = tree[i].name || ''
           treeNode.path = tree[i].path || ''
           treeNode.icon = tree[i].icon || ''
+          treeNode.poster = tree[i].poster || ''
           treeNode.view = tree[i].view || ''
           treeNode.isRouter = tree[i].isRouter || false
           treeNode.isKeepalive = tree[i].isKeepalive || false

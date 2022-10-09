@@ -1,6 +1,6 @@
 <script setup>
-import {NLayout,NLayoutContent,NAlert,NSpace} from 'naive-ui';
-import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue";
+import { NLayout, NLayoutContent, NAlert, NSpace } from 'naive-ui'
+import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
 
 </script>
 <template>

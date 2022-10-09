@@ -3,7 +3,7 @@ import HbWaterMark from './components/HbWaterMark.vue'
 import HbCropper from './components/HbCropper.vue'
 const props = defineProps({
   type: {
-    type: String,
+    type   : String,
     default: 'watermark'
   }
 })

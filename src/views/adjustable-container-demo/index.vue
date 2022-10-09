@@ -1,7 +1,7 @@
 <script setup>
-import {NLayout, NLayoutContent, NAlert, NSpace} from 'naive-ui'
-import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
-import Demo from "./base.demo.vue"
+import { NLayout, NLayoutContent, NAlert, NSpace } from 'naive-ui'
+import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
+import Demo from './base.demo.vue'
 
 </script>
 <template>
@@ -13,10 +13,9 @@ import Demo from "./base.demo.vue"
           <n-alert type="info">
             可以鼠标拖拽调整容器大小
           </n-alert>
-          <demo/>
+          <demo />
         </n-space>
       </n-layout-content>
     </n-layout>
   </hb-admin-page-layout>
 </template>
-

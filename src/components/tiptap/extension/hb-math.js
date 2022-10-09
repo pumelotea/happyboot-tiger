@@ -1,57 +1,56 @@
 import {
   mergeAttributes,
-  Node,
+  Node
 } from '@tiptap/core'
-
 
 export const HbVideo = Node.create({
   name: 'hb-math',
 
-  addOptions() {
+  addOptions () {
     return {
-      inline: true,
-      HTMLAttributes: {},
+      inline        : true,
+      HTMLAttributes: {}
     }
   },
 
-  inline() {
+  inline () {
     return this.options.inline
   },
 
-  group() {
+  group () {
     return this.options.inline ? 'inline' : 'block'
   },
 
   draggable: false,
 
-  addAttributes() {
+  addAttributes () {
     return {
-      tex:""
+      tex: ''
     }
   },
 
-  parseHTML() {
+  parseHTML () {
     return [
       {
         tag: 'span[tex]'
-      },
+      }
     ]
   },
 
-  renderHTML({ HTMLAttributes }) {
-    return ['span', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)]
+  renderHTML ({ HTMLAttributes }) {
+    return [ 'span', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes) ]
   },
 
-  addCommands() {
+  addCommands () {
     return {
       setHbMath: options => ({ commands }) => {
         return commands.insertContent({
-          type: this.name,
-          attrs: options,
+          type : this.name,
+          attrs: options
         })
-      },
+      }
     }
-  },
+  }
 })
 
 export default HbVideo

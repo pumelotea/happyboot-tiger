@@ -11,9 +11,10 @@ import {
   useMessage,
   NText,
   NBreadcrumb,
-  NBreadcrumbItem
+  NBreadcrumbItem,
+  NPopover
 } from 'naive-ui'
-import { Moon, SunnyOutline, Notifications, CubeOutline, LogoGithub } from '@vicons/ionicons5'
+import { Moon, SunnyOutline, Notifications, CubeOutline, LogoGithub,Book,MenuOutline } from '@vicons/ionicons5'
 import { h, computed, ref } from 'vue'
 import { isDarkTheme, isMenuCollapsed } from '@/global/config'
 import framework from '@/global/framework'
@@ -21,6 +22,8 @@ import { useRouter } from 'vue-router'
 import security from '@/global/security'
 import HbAdminMessage from '@/components/HbAdminMessage'
 import HbAdminWeather from './HbAdminWeather'
+import HbAdminMenu from "@/components/HbAdminMenu";
+
 
 const router = useRouter()
 
@@ -102,6 +105,10 @@ function gotoGithub () {
   window.open('https://github.com/pumelotea/happyboot-tiger')
 }
 
+function gotoBook() {
+  window.open('https://doc.happykit.org/')
+}
+
 const info = ref({
   date         : '今日',
   now          : 28,
@@ -133,6 +140,22 @@ const info = ref({
           />
         </n-icon>
       </n-button>
+      <n-popover trigger="hover" :show-arrow="false" placement="bottom-start">
+        <template #trigger>
+          <n-button
+              strong
+              text
+              class="menu-pop-button"
+          >
+            <template #icon>
+              <n-icon size="20">
+                <i class="ri-menu-5-line"></i>
+              </n-icon>
+            </template>
+          </n-button>
+        </template>
+        <hb-admin-menu mode="horizontal"/>
+      </n-popover>
       <n-breadcrumb>
         <n-breadcrumb-item
           v-for="e in breadcrumb"
@@ -151,23 +174,19 @@ const info = ref({
     </div>
     <div class="head-center-area head-item-center">
       <div class="carousel-box">
-        <n-carousel show-arrow>
-          <img
-            class="carousel-img"
-            src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
-          >
-          <img
-            class="carousel-img"
-            src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
-          >
-          <img
-            class="carousel-img"
-            src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
-          >
-          <img
-            class="carousel-img"
-            src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
-          >
+        <n-carousel show-arrow :show-dots="false">
+          <a href="https://tiger.happykit.org/" target="_blank">
+            <img
+                class="carousel-img"
+                src="/images/1.png"
+            >
+          </a>
+          <a href="https://doc.happykit.org/" target="_blank">
+            <img
+                class="carousel-img"
+                src="/images/2.png"
+            >
+          </a>
         </n-carousel>
       </div>
     </div>
@@ -192,16 +211,23 @@ const info = ref({
       </n-switch>
       <n-divider vertical />
       <n-icon
-        size="25"
+        size="22"
         color="#CFCFCF"
         :component="LogoGithub"
         @click="gotoGithub"
       />
       <n-divider vertical />
+      <n-icon
+          size="22"
+          color="#CFCFCF"
+          :component="Book"
+          @click="gotoBook"
+      />
+      <n-divider vertical />
       <hb-admin-message>
         <div class="head-notify">
           <n-icon
-            size="25"
+            size="22"
             color="#CFCFCF"
             :component="Notifications"
           />
@@ -242,11 +268,15 @@ const info = ref({
 
 .menu-toggle-button{
   margin-left: -10px;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .menu-toggle-button:hover{
 
+}
+
+.menu-pop-button{
+  margin-right: 10px;
 }
 
 .head-center-area {

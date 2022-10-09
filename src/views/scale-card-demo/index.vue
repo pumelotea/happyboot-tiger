@@ -1,9 +1,9 @@
 <script setup>
-import {NLayout, NLayoutContent, NAlert, NSpace} from 'naive-ui';
-import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
-import DemoContain from "./contain.demo"
-import DemoCover from "./cover.demo"
-import DemoFill from "./fill.demo"
+import { NLayout, NLayoutContent, NAlert, NSpace } from 'naive-ui'
+import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
+import DemoContain from './contain.demo'
+import DemoCover from './cover.demo'
+import DemoFill from './fill.demo'
 </script>
 <template>
   <hb-admin-page-layout>
@@ -14,9 +14,9 @@ import DemoFill from "./fill.demo"
           <n-alert type="info">
             该卡片可以方便的缩放一些数据可视化组件
           </n-alert>
-          <demo-contain/>
-          <demo-cover/>
-          <demo-fill/>
+          <demo-contain />
+          <demo-cover />
+          <demo-fill />
         </n-space>
       </n-layout-content>
     </n-layout>

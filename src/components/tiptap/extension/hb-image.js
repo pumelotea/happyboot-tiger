@@ -1,7 +1,7 @@
 import {
   mergeAttributes,
   Node,
-  nodeInputRule,
+  nodeInputRule
 } from '@tiptap/core'
 
 export const inputRegex = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/
@@ -9,78 +9,78 @@ export const inputRegex = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\
 export const HbImage = Node.create({
   name: 'hb-image',
 
-  addOptions() {
+  addOptions () {
     return {
-      inline: true,
-      HTMLAttributes: {},
+      inline        : true,
+      HTMLAttributes: {}
     }
   },
 
-  inline() {
+  inline () {
     return this.options.inline
   },
 
-  group() {
+  group () {
     return this.options.inline ? 'inline' : 'block'
   },
 
   draggable: false,
 
-  addAttributes() {
+  addAttributes () {
     return {
       src: {
-        default: null,
+        default: null
       },
       alt: {
-        default: null,
+        default: null
       },
       title: {
-        default: null,
+        default: null
       },
-      width:{
-        default: 400,
+      width: {
+        default: 400
       },
-      height:{
-        default: 300,
+      height: {
+        default: 300
       }
     }
   },
 
-  parseHTML() {
+  parseHTML () {
     return [
       {
         tag: 'img[src]'
-      },
+      }
     ]
   },
 
-  renderHTML({ HTMLAttributes }) {
-    return ['img', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)]
+  renderHTML ({ HTMLAttributes }) {
+    return [ 'img', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes) ]
   },
 
-  addCommands() {
+  addCommands () {
     return {
       setHbImage: options => ({ commands }) => {
         return commands.insertContent({
-          type: this.name,
-          attrs: options,
+          type : this.name,
+          attrs: options
         })
-      },
+      }
     }
   },
 
-  addInputRules() {
+  addInputRules () {
     return [
       nodeInputRule({
-        find: inputRegex,
-        type: this.type,
+        find         : inputRegex,
+        type         : this.type,
         getAttributes: match => {
-          const [,, alt, src, title] = match
+          const [ ,, alt, src, title ] = match
           return { src, alt, title }
-        },
-      }),
+        }
+      })
     ]
-  },
+  }
 })
 
 export default HbImage

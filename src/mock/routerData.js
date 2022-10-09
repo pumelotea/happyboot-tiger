@@ -6,6 +6,7 @@ const routerData = [
     isRouter   : true,
     isKeepalive: true,
     icon       : 'ri-apps-line',
+    poster     : 'components.png',
     type       : 'menu',
     children   : []
   },
@@ -16,6 +17,7 @@ const routerData = [
     isRouter   : true,
     isKeepalive: true,
     icon       : 'ri-dashboard-line',
+    poster     : 'dashboard.png',
     type       : 'menu',
     children   : []
   },
@@ -26,6 +28,7 @@ const routerData = [
     isRouter   : true,
     isKeepalive: true,
     icon       : 'ri-shape-line',
+    poster     : 'work-desk.png',
     type       : 'menu',
     children   : []
   },
@@ -46,6 +49,7 @@ const routerData = [
         isKeepalive: true,
         type       : 'menu',
         icon       : 'ri-window-line',
+        poster     : '404.png',
         children   : []
       },
       {
@@ -56,6 +60,7 @@ const routerData = [
         isKeepalive: true,
         type       : 'menu',
         icon       : 'ri-window-line',
+        poster     : '500.png',
         children   : []
       },
       {
@@ -66,6 +71,7 @@ const routerData = [
         isKeepalive: true,
         type       : 'menu',
         icon       : 'ri-window-line',
+        poster     : '403.png',
         children   : []
       }
     ]
@@ -78,6 +84,7 @@ const routerData = [
     isKeepalive: true,
     type       : 'menu',
     icon       : 'ri-bank-card-2-line',
+    poster     : 'base-list.png',
     children   : []
   },
   {
@@ -88,6 +95,7 @@ const routerData = [
     isKeepalive: true,
     type       : 'menu',
     icon       : 'ri-table-line',
+    poster     : 'card-list.png',
     children   : []
   },
   {
@@ -106,6 +114,7 @@ const routerData = [
         isRouter           : true,
         isKeepalive        : false,
         icon               : 'ri-links-line',
+        poster     : 'iframe-link.png',
         type               : 'menu',
         externalLink       : true, // 外链
         linkTarget         : '_tab', // 刷新自己
@@ -156,6 +165,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-menu-line',
+        poster     : 'menu.png',
         type       : 'menu',
         children   : []
       },
@@ -166,6 +176,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-user-line',
+        poster     : 'user.png',
         type       : 'menu',
         children   : []
       },
@@ -176,6 +187,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-file-user-line',
+        poster     : 'role.png',
         type       : 'menu',
         children   : []
       },
@@ -186,6 +198,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-map-line',
+        poster     : 'baidu-map.png',
         type       : 'menu',
         children   : []
       }
@@ -211,6 +224,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-command-line',
+        poster     : 'point.png',
         type       : 'menu',
         children   : [
           {
@@ -240,8 +254,9 @@ const routerData = [
         path       : '/custom-tab-title',
         view       : '/custom-tab-title-demo/index.vue',
         isRouter   : true,
-        isKeepalive: false,
+        isKeepalive: true,
         icon       : 'ri-compass-discover-line',
+        poster     : 'custom-tab-title.png',
         type       : 'menu',
         children   : []
       },
@@ -250,13 +265,14 @@ const routerData = [
         path       : '/editor',
         view       : '/editor-demo/index.vue',
         isRouter   : true,
-        isKeepalive: false,
+        isKeepalive: true,
         icon       : 'ri-file-text-line',
+        poster     : 'editor.png',
         type       : 'menu',
         children   : [],
         budge      : {
-          value: '开发中',
-          type : 'info'
+          value: 'alpha',
+          type : 'error'
         }
       },
       {
@@ -266,6 +282,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-image-line',
+        poster     : 'image.png',
         type       : 'menu',
         children   : []
       },
@@ -276,6 +293,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-gallery-line',
+        poster     : 'image-preview.png',
         type       : 'menu',
         children   : []
       },
@@ -286,6 +304,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-file-list-line',
+        poster     : 'scroll-list.png',
         type       : 'menu',
         children   : []
       },
@@ -296,6 +315,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-upload-line',
+        poster     : 'uploader.png',
         type       : 'menu',
         children   : [],
         budge      : {
@@ -310,6 +330,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-crop-line',
+        poster     : 'avatar.png',
         type       : 'menu',
         children   : []
       },
@@ -320,6 +341,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-mac-line',
+        poster     : 'screen-locker.png',
         type       : 'menu',
         children   : []
       },
@@ -330,6 +352,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-remixicon-line',
+        poster     : 'icon-select.png',
         type       : 'menu',
         children   : []
       },
@@ -340,6 +363,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-building-3-line',
+        poster     : 'image-factory.png',
         type       : 'menu',
         children   : []
       },
@@ -350,6 +374,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-printer-line',
+        poster     : 'print.png',
         type       : 'menu',
         children   : []
       },
@@ -360,6 +385,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-clipboard-line',
+        poster     : 'copy.png',
         type       : 'menu',
         children   : []
       },
@@ -370,6 +396,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-qr-code-line',
+        poster     : 'qrcode.png',
         type       : 'menu',
         children   : []
       },
@@ -380,6 +407,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-file-zip-line',
+        poster     : 'zip.png',
         type       : 'menu',
         children   : []
       },
@@ -390,6 +418,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-aspect-ratio-line',
+        poster     : 'scale-card.png',
         type       : 'menu',
         children   : []
       },
@@ -400,6 +429,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-pie-chart-line',
+        poster     : 'charts.png',
         type       : 'menu',
         children   : []
       },
@@ -410,6 +440,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-video-line',
+        poster     : 'video.png',
         type       : 'menu',
         children   : []
       },
@@ -420,6 +451,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-music-2-line',
+        poster     : 'audio.png',
         type       : 'menu',
         children   : []
       },
@@ -430,6 +462,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-layout-masonry-line',
+        poster     : 'roll-area.png',
         type       : 'menu',
         children   : []
       },
@@ -440,6 +473,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-list-check',
+        poster     : 'virtual-list.png',
         type       : 'menu',
         children   : []
       },
@@ -450,6 +484,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-cloud-line',
+        poster     : 'weather.png',
         type       : 'menu',
         children   : []
       },
@@ -460,6 +495,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-markdown-line',
+        poster     : 'markdown.png',
         type       : 'menu',
         children   : [],
         budge      : {
@@ -474,6 +510,7 @@ const routerData = [
         isRouter   : true,
         isKeepalive: false,
         icon       : 'ri-shape-line',
+        poster     : 'adjustable-container.png',
         type       : 'menu',
         children   : [],
         budge      : {
@@ -488,9 +525,10 @@ const routerData = [
     path       : '/hide',
     view       : '/hide/index.vue',
     isRouter   : true,
-    isKeepalive: false,
+    isKeepalive: true,
     hide       : true,
     icon       : 'ri-send-plane-2-line',
+    poster     : 'hide.png',
     type       : 'menu',
     children   : []
   }

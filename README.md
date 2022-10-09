@@ -1,12 +1,24 @@
-# happyboot-tiger
+<p align="center">
+<img style="margin-top: 30px" src="https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/logo.png" width="120"/>
+</p>
+<h1 align="center">
+HappyBoot Tiger
+</h1>
+<p align="center">
+<img src="https://img.shields.io/github/last-commit/pumelotea/happyboot-tiger?style=flat-square"/>
+<img src="https://img.shields.io/github/stars/pumelotea/happyboot-tiger?style=flat-square"/>
+<img src="https://img.shields.io/github/forks/pumelotea/happyboot-tiger?style=flat-square"/>
+<img src="https://img.shields.io/github/issues/pumelotea/happyboot-tiger?style=flat-square"/>
+<img src="https://img.shields.io/github/license/pumelotea/happyboot-tiger?style=flat-square"/>
+</p>
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=pumelotea&locale=cn&repo=happyboot-tiger&show_icons=true)](https://github.com/pumelotea/happyboot-tiger)
-
-[![OSCS Status](https://www.oscs1024.com/platform/badge/pumelotea/happyboot-tiger.svg?size=small)](https://www.oscs1024.com/project/pumelotea/happyboot-tiger?ref=badge_small)
 
 ## 效果图
+
+![lib](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/lib.png)
 ![light](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/light.png)
-![dark](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/d78c4e4e19ed886a55a577ceb64d5bba83b170cc/assets/dark.png)
+![dark](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/dark.png)
+![editor](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/editor.png)
 
 ## 简介
 `happyboot-tiger`是happyboot系列中最新的中后端框架，采用时下最流行的`Vue3`和`NaiveUI`。
@@ -18,16 +30,19 @@
 - https://tiger.happykit.org
 - https://happyboot-tiger-pumelotea.vercel.app
 ## 特性 
+> 基本特性
 - 菜单权限、按钮权限控制
 - 用户状态统一管理
 - 黑白夜间主题切换
 - axios集成封装
 - vueuse的集成
 - 多环境的预设
+- 页面支持可控的keepalive缓存
 
 ## 组件&方法
-不满足普通组件，我们封装了一些实用组件，以及预先集成了一些可能会用到的类库
-
+> 不满足普通组件，我们封装了一些实用组件，以及预先集成了一些可能会用到的类库
+- 富文本编辑器
+- markdown编辑器
 - 头像裁剪组件
 - 图片组件
 - 多图预览组件
@@ -49,7 +64,7 @@
 
 
 ## 下载&运行
-
+> 快速启动
 ```shell
 git clone -b master https://github.com/pumelotea/happyboot-tiger.git
 # 进入项目目录

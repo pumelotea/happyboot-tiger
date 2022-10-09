@@ -1,6 +1,6 @@
 <script setup>
-import {computed, nextTick, onBeforeUnmount, ref} from "vue"
-import HbAdminImage from "./HbAdminImage"
+import { computed, nextTick, onBeforeUnmount, ref } from 'vue'
+import HbAdminImage from './HbAdminImage'
 import Player from 'xgplayer/dist/core_player'
 import play from 'xgplayer/dist/controls/play'
 import fullscreen from 'xgplayer/dist/controls/fullscreen'
@@ -8,18 +8,18 @@ import progress from 'xgplayer/dist/controls/progress'
 import volume from 'xgplayer/dist/controls/volume'
 import pip from 'xgplayer/dist/controls/pip'
 import flex from 'xgplayer/dist/controls/flex'
-import {useThemeVars} from 'naive-ui'
+import { useThemeVars } from 'naive-ui'
 const vars = useThemeVars()
 const props = defineProps({
   type: {
-    type: String,
-    default: 'image'  //image 或  video  或  audio
+    type   : String,
+    default: 'image' // image 或  video  或  audio
   }
 })
 
 const fileRef = ref(null)
 
-function selectFile() {
+function selectFile () {
   setTimeout(() => {
     fileRef.value.dispatchEvent(new MouseEvent('click'))
   }, 400)
@@ -27,18 +27,18 @@ function selectFile() {
 
 const accept = computed(() => {
   switch (props.type) {
-    case 'image':
-      return 'image/*'
-    case 'video':
-      return 'video/*'
-    case 'audio':
-      return 'audio/*'
+  case 'image':
+    return 'image/*'
+  case 'video':
+    return 'video/*'
+  case 'audio':
+    return 'audio/*'
   }
 })
 
 const fileValue = ref(null)
 
-function handleSelect(event) {
+function handleSelect (event) {
   fileValue.value = URL.createObjectURL(event.target.files[0])
   if (props.type === 'video') {
     nextTick(() => {
@@ -47,7 +47,7 @@ function handleSelect(event) {
   }
 }
 
-function handleDel() {
+function handleDel () {
   fileValue.value = null
 }
 
@@ -57,7 +57,7 @@ function initPlayer () {
   editor = new Player({
     el            : playerBox.value,
     url           : fileValue.value,
-    fluid: true,
+    fluid         : true,
     controlPlugins: [
       play,
       fullscreen,
@@ -72,29 +72,55 @@ function initPlayer () {
     pip                : true // 打开画中画功能
   })
 }
-onBeforeUnmount(()=>{
-  editor&&editor.destroy(true)
+onBeforeUnmount(() => {
+  editor && editor.destroy(true)
 })
 
-function getFile() {
+function getFile () {
   return fileValue.value
 }
-defineExpose({getFile})
+defineExpose({ getFile })
 
 </script>
 
 <template>
   <div class="hb-su-wrap">
-    <div class="hb-su-upload" @click="selectFile" v-if="fileValue === null">
-      <i class="ri-add-line add-icon"></i>
-      <input type="file" ref="fileRef" hidden :accept="accept" @change="handleSelect"/>
+    <div
+      v-if="fileValue === null"
+      class="hb-su-upload"
+      @click="selectFile"
+    >
+      <i class="ri-add-line add-icon" />
+      <input
+        ref="fileRef"
+        type="file"
+        hidden
+        :accept="accept"
+        @change="handleSelect"
+      >
     </div>
-    <div class="hb-su-preview" v-if="fileValue">
-      <div class="hb-su-close" @click="handleDel">
-        <i class="ri-close-line"></i>
+    <div
+      v-if="fileValue"
+      class="hb-su-preview"
+    >
+      <div
+        class="hb-su-close"
+        @click="handleDel"
+      >
+        <i class="ri-close-line" />
       </div>
-      <hb-admin-image v-if="props.type === 'image'" :src="fileValue" :width="370" :height="200" isPreview/>
-      <div ref="playerBox" v-if="props.type === 'video'" style="width: 370px;height: 200px;"></div>
+      <hb-admin-image
+        v-if="props.type === 'image'"
+        :src="fileValue"
+        :width="370"
+        :height="200"
+        is-preview
+      />
+      <div
+        v-if="props.type === 'video'"
+        ref="playerBox"
+        style="width: 370px;height: 200px;"
+      />
     </div>
   </div>
 </template>

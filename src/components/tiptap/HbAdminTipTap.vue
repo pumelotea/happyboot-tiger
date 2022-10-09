@@ -1,29 +1,48 @@
 <script setup>
 import './editor.css'
-import {useEditor, EditorContent,BubbleMenu} from '@tiptap/vue-3'
-import HbTiptapMenuBar from "./components/HbTiptapMenuBar"
+import { useEditor, EditorContent, BubbleMenu } from '@tiptap/vue-3'
+import HbTiptapMenuBar from './components/HbTiptapMenuBar'
 import StarterKit from './extension/start-kit'
-import {onBeforeUnmount, onMounted, ref, watch} from "vue";
-import {useDebounceFn} from "@vueuse/core";
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { useDebounceFn } from '@vueuse/core'
 
-import {useThemeVars} from 'naive-ui'
-import HbTiptapBubbleMenu from "@/components/tiptap/components/HbTiptapBubbleMenu";
+import { useThemeVars } from 'naive-ui'
+import HbTiptapBubbleMenu from '@/components/tiptap/components/HbTiptapBubbleMenu'
 
 const vars = useThemeVars()
 
-StarterKit.options.highlight = {multicolor: true}
-StarterKit.options.table = {resizable: true}
+StarterKit.options.highlight = { multicolor: true }
+StarterKit.options.table = { resizable: true }
 
 const props = defineProps({
   modelValue: {
-    type: String,
-    default: '',
+    type   : String,
+    default: ''
   },
+  to: {
+    type    : String,
+    required: false,
+    default : false
+  }
 })
 
 const words = ref(0)
 const characters = ref(0)
 const fullscreen = ref(false)
+const editorBox = ref(null)
+const editorBoxParent = ref(null)
+watch(fullscreen, () => {
+  if (fullscreen.value === true) {
+    if (props.to) {
+      editorBoxParent.value = editorBox.value.parentNode
+      document.getElementById(props.to).append(editorBox.value)
+    }
+  } else {
+    if (props.to) {
+      editorBoxParent.value.append(editorBox.value)
+    }
+  }
+})
 
 const updateEditorWordCount = useDebounceFn(() => {
   words.value = editor.value.storage.characterCount.words()
@@ -34,11 +53,11 @@ const isFocused = ref(false)
 
 let editor
 editor = useEditor({
-  content: props.modelValue,
+  content   : props.modelValue,
   extensions: [
     StarterKit
   ],
-  onUpdate: ({editor}) => {
+  onUpdate: ({ editor }) => {
     // HTML
     emit('update:modelValue', editor.getHTML())
 
@@ -53,7 +72,7 @@ editor = useEditor({
   onBlur: () => {
     isFocused.value = false
   },
-  onSelectionUpdate: ({editor}) => {
+  onSelectionUpdate: ({ editor }) => {
   }
 
 })
@@ -62,8 +81,7 @@ onMounted(() => {
   editor.value.storage.fullscreen = fullscreen
 })
 
-
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits([ 'update:modelValue' ])
 
 watch(() => props.modelValue, (value) => {
   // HTML
@@ -88,7 +106,7 @@ onBeforeUnmount(() => {
   editor.value.destroy()
 })
 
-function tab(e) {
+function tab (e) {
   if (e.keyCode === 9) {
     e.preventDefault()
   }
@@ -97,17 +115,40 @@ function tab(e) {
 </script>
 
 <template>
-  <div class="editor-background" :class="{'fullscreen':fullscreen}" @keydown="tab">
-    <bubble-menu :editor="editor" :tippy-options="{ duration: 100, maxWidth:600,placement:'top-start' }" v-if="editor">
-      <hb-tiptap-bubble-menu :editor="editor"></hb-tiptap-bubble-menu>
+  <div
+    ref="editorBox"
+    class="editor-background"
+    :class="{'fullscreen':fullscreen}"
+    @keydown="tab"
+  >
+    <bubble-menu
+      v-if="editor"
+      :editor="editor"
+      :tippy-options="{ duration: 100, maxWidth:600,placement:'top-start' }"
+    >
+      <hb-tiptap-bubble-menu :editor="editor" />
     </bubble-menu>
-    <div class="editor" v-if="editor" :class="{'fullscreen':fullscreen,'focus':isFocused && !fullscreen}"
-         spellcheck="false">
-      <hb-tiptap-menu-bar class="editor-header" :editor="editor"></hb-tiptap-menu-bar>
-      <editor-content class="editor-body" :editor="editor"/>
+    <div
+      v-if="editor"
+      class="editor"
+      :class="{'fullscreen':fullscreen,'focus':isFocused && !fullscreen}"
+      spellcheck="false"
+    >
+      <hb-tiptap-menu-bar
+        class="editor-header"
+        :editor="editor"
+      />
+      <editor-content
+        class="editor-body"
+        :editor="editor"
+      />
       <div class="editor-footer">
-        <div class="footer-item">短语 {{ words }}</div>
-        <div class="footer-item">字符 {{ characters }}</div>
+        <div class="footer-item">
+          短语 {{ words }}
+        </div>
+        <div class="footer-item">
+          字符 {{ characters }}
+        </div>
       </div>
     </div>
   </div>

@@ -15,6 +15,7 @@ function unlock () {
 <template>
   <hb-admin-screen-locker
     v-model:open="show"
+    to="pop-body"
     @unlock="unlock"
   />
   <n-space style="margin-top: 10px">

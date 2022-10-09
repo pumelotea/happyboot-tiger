@@ -1,6 +1,6 @@
 <script setup>
-import {NLayout,NLayoutContent,NAlert,NButton,NSpace,NCard} from 'naive-ui';
-import HbAdminPageLayout from "@/components/HbAdminPageLayout.vue"
+import { NLayout, NLayoutContent, NAlert, NButton, NSpace, NCard } from 'naive-ui'
+import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
 import Demo from './base.demo'
 </script>
 <template>
@@ -12,10 +12,9 @@ import Demo from './base.demo'
           <n-alert type="info">
             传入一个图片数组即可，支持预览图列表，点击图片预览
           </n-alert>
-          <demo/>
+          <demo />
         </n-space>
       </n-layout-content>
     </n-layout>
   </hb-admin-page-layout>
 </template>
-
