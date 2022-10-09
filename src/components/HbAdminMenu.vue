@@ -104,6 +104,7 @@ const props = defineProps({
     label-field="label"
     :value="currentMenuRoute?.menuItem.menuId || null"
     @update:value="menuChoose"
+    :dropdown-props="{ scrollable: true, menuProps: () => ({style: 'max-height: 300px;'}) }"
   />
 </template>
 
