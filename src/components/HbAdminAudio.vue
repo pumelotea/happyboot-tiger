@@ -1,6 +1,6 @@
 <script setup>
 import { useMessage, NSlider, useThemeVars } from 'naive-ui'
-import { onMounted, ref } from 'vue'
+import {nextTick, onBeforeUnmount, onMounted, ref} from 'vue'
 const themeVars = useThemeVars()
 const message = useMessage()
 
@@ -25,8 +25,11 @@ const nowDuration = ref(0)
 const progress = ref(0)
 
 function handleSlider (val) {
+  handlePause()
   progress.value = val
-  hbAudio.value.currentTime = duration.value * val / 100
+  nextTick(() => {
+    hbAudio.value.currentTime = duration.value * val / 100
+  })
 }
 
 function formatTooltip (val) {
@@ -39,12 +42,7 @@ function initialAudio () {
     nowDuration.value = 0
     hbAudio.value.oncanplay = () => {
       duration.value = Math.ceil(hbAudio.value.duration)
-      hbAudio.value.addEventListener('timeupdate', () => {
-        nowDuration.value = Math.ceil(hbAudio.value.currentTime)
-        if (duration.value > 0) {
-          progress.value = Math.floor(nowDuration.value / duration.value * 100)
-        }
-      })
+      hbAudio.value.addEventListener('timeupdate', timeupdateListener)
       hbAudio.value.addEventListener('ended', () => {
         if (!loop.value) {
           state.value = false
@@ -53,6 +51,13 @@ function initialAudio () {
     }
   } else {
     message.error('音频地址不能为空！')
+  }
+}
+
+function timeupdateListener () {
+  nowDuration.value = Math.ceil(hbAudio.value.currentTime)
+  if (duration.value > 0) {
+    progress.value = Math.floor(nowDuration.value / duration.value * 100)
   }
 }
 
@@ -90,6 +95,10 @@ function getFormat (time = 0) {
 
 onMounted(() => {
   initialAudio()
+})
+
+onBeforeUnmount(() => {
+  hbAudio.value.removeEventListener('timeupdate', timeupdateListener)
 })
 
 function handlePlay () {
