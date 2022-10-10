@@ -3,13 +3,14 @@ import HbAdminDevTool from '@/components/dev/HbAdminDevTool.vue'
 import { useMessage, useThemeVars,useNotification,NButton ,NModal,NCard,NTimeline,NTimelineItem,NTag} from 'naive-ui'
 import HbAdminLoading from '@/components/HbAdminLoading.vue'
 import 'github-markdown-css'
+import {isDark} from "./global/config";
 window.$message = useMessage()
 const vars = useThemeVars()
 
 // 生产环境可以删除以下JS代码
 import moment from 'moment'
 import MarkdownIt from 'markdown-it'
-import {onMounted,h,ref} from "vue"
+import {onMounted, h, ref, computed, watch, nextTick} from "vue"
 import API from '@/global/api'
 const notification = useNotification()
 const showModal = ref(false)
@@ -32,6 +33,41 @@ onMounted(()=>{
       versions.value = data
     })
   })
+})
+
+function themeVars () {
+  if (isDark.value) {
+    return {
+      textColor: '#c9d1d9',
+      accentColor: '#58a6ff'
+    }
+  } else {
+    return {
+      textColor: '#24292f',
+      accentColor: '#0969da'
+    }
+  }
+}
+
+function changeTheme() {
+  if (showModal.value) {
+    nextTick(() => {
+      const versionDom = document.getElementById('versions-body')
+      versionDom.style.color = themeVars().textColor
+      const aDoms = versionDom.querySelectorAll('a')
+      aDoms.forEach(e => {
+        e.style.color = themeVars().accentColor
+      })
+    })
+  }
+}
+
+watch(showModal, () => {
+  changeTheme()
+})
+
+watch(isDark, () => {
+  changeTheme()
 })
 
 function dateFormat(date){
@@ -73,7 +109,7 @@ function dateFormat(date){
               <n-tag v-else type="info">{{e.name}}</n-tag>
             </div>
           </template>
-          <div class="markdown-body" style="background-color: transparent" v-html="md.render(e.body)"></div>
+          <div id="versions-body" class="markdown-body" style="background-color: transparent" v-html="md.render(e.body)"></div>
         </n-timeline-item>
       </n-timeline>
     </n-card>
