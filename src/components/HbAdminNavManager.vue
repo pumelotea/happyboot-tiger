@@ -157,6 +157,7 @@ function openPage(e){
   transform: translate3d(-50%, -50%, 0);
   z-index: 99999;
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   width: 100%;
   height: 100%;
   padding: 5%;
