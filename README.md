@@ -75,6 +75,11 @@ yarn
 yarn dev 
 ```
 
+## 交流群
+
+### 钉钉
+
+![lib](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/dingding.jpg)
 
 
 
