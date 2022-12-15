@@ -2671,10 +2671,10 @@ handlebars@^4.7.7:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-happykit@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/happykit/-/happykit-2.2.3.tgz#8ea74fd88d3f2202ffe2aac5283ce136943552fd"
-  integrity sha512-GI3ibmawivOitg0MyQqjmp/WFBUCQVb5AcYvh0SKJ6e6A3dsBXfBGQvXDq8vssbI2q1ZwgHD4Z1xKgQklJGVhA==
+happykit@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/happykit/-/happykit-2.2.4.tgz#620c1bff1effbc72200e3bf37a81bcee5ae0c626"
+  integrity sha512-3qBtwawwMSBXmmsOr+VXjZhAnVgb3+o3dBVqENXp0W6JTl1TuxWC47nweJMoO9v3QE2+Igno3bchCHK68dwAiQ==
 
 hard-rejection@^2.1.0:
   version "2.1.0"
