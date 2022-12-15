@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/pumelotea/happyboot-tiger/compare/v1.1.0...v1.1.1) (2022-12-15)
+
+
+### Bug Fixes
+
+* backdrop-filter on safari ([e35d713](https://github.com/pumelotea/happyboot-tiger/commit/e35d713eab77e076cce6594b6ccc9deb0ecbc7a1))
+* keepalive缓存关闭后，路由切换后获取的依旧是上一个页面的数据 https://github.com/pumelotea/happyboot-tiger/issues/30 ([4f7d8ad](https://github.com/pumelotea/happyboot-tiger/commit/4f7d8ad37a6af4aca6a6049edeafaccee15e0060))
+* 二级下拉菜单限制最大高度进行滚动显示 ([#28](https://github.com/pumelotea/happyboot-tiger/issues/28)) ([a642318](https://github.com/pumelotea/happyboot-tiger/commit/a642318add0315cd18001e638d2534031d208346))
+* 版本更新弹框日夜间样式问题 ([#29](https://github.com/pumelotea/happyboot-tiger/issues/29)) ([d725822](https://github.com/pumelotea/happyboot-tiger/commit/d725822ccad7c8f92cee9de76c328c9f2062b0f9))
+
 ## 1.1.0 (2022-10-09)
 
 
