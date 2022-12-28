@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/pumelotea/happyboot-tiger/compare/v1.1.1...v1.1.2) (2022-12-28)
+
+
+### Bug Fixes
+
+* lowlight和highlight会冲突的问题 ([2004990](https://github.com/pumelotea/happyboot-tiger/commit/2004990059358ded5aa278bc4b78f68abfe13436))
+* 替换NCode组件为自定义HbAdminCode组件 ([fe7066f](https://github.com/pumelotea/happyboot-tiger/commit/fe7066f5edf90b8b551fbc4fee52aeffff6ea992))
+
 ### [1.1.1](https://github.com/pumelotea/happyboot-tiger/compare/v1.1.0...v1.1.1) (2022-12-15)
 
 
