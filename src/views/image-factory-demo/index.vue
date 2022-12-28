@@ -1,13 +1,9 @@
 <script setup>
-import { NLayout, NLayoutContent, NAlert, NSpace, NCard, NCode, NCollapse, NCollapseItem } from 'naive-ui'
+import { NLayout, NLayoutContent, NAlert, NSpace, NCard, NCollapse, NCollapseItem } from 'naive-ui'
 import HbAdminPageLayout from '@/components/HbAdminPageLayout.vue'
+import HbAdminCode from '@/components/HbAdminCode.vue'
 import DemoCropper from './cropper.demo.vue'
 import DemoWatermark from './watermark.demo.vue'
-import hljs from 'highlight.js/lib/core'
-import xml from 'highlight.js/lib/languages/xml'
-import javascript from 'highlight.js/lib/languages/javascript'
-hljs.registerLanguage('javascript', javascript)
-hljs.registerLanguage('xml', xml)
 const code1 = '1.首先引入 \nimport { watermark } from \'@/utils/imageFactory\' \n2.然后调用 \n/**\n' +
     ' * 图片添加水印\n' +
     ' *  callback  //回调方法，返回base64的图片【{success: true, data: "base64数据"}】\n' +
@@ -68,44 +64,28 @@ const code4 = '1.首先引入 \nimport { quality } from \'@/utils/imageFactory\'
           <n-card>
             <n-collapse>
               <n-collapse-item title="水印添加">
-                <n-code
-                  :code="code1"
-                  language="javascript"
-                  :hljs="hljs"
-                />
+                <hb-admin-code :code="code1"/>
               </n-collapse-item>
             </n-collapse>
           </n-card>
           <n-card>
             <n-collapse>
               <n-collapse-item title="图片裁剪">
-                <n-code
-                  :code="code2"
-                  language="javascript"
-                  :hljs="hljs"
-                />
+                <hb-admin-code :code="code2"/>
               </n-collapse-item>
             </n-collapse>
           </n-card>
           <n-card>
             <n-collapse>
               <n-collapse-item title="调整图片尺寸">
-                <n-code
-                  :code="code3"
-                  language="javascript"
-                  :hljs="hljs"
-                />
+                <hb-admin-code :code="code3"/>
               </n-collapse-item>
             </n-collapse>
           </n-card>
           <n-card>
             <n-collapse>
               <n-collapse-item title="调整图片质量">
-                <n-code
-                  :code="code4"
-                  language="javascript"
-                  :hljs="hljs"
-                />
+                <hb-admin-code :code="code4"/>
               </n-collapse-item>
             </n-collapse>
           </n-card>

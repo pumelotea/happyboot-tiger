@@ -1,14 +1,12 @@
 <script setup>
-import { NCard, NSpace, NButton, NTag, NCode, NTable, useMessage, NAlert } from 'naive-ui'
+import { NCard, NSpace, NButton, NTag, NTable, useMessage, NAlert } from 'naive-ui'
+import HbAdminCode from '@/components/HbAdminCode.vue'
 import framework from '@/global/framework'
 import security from '@/global/security'
-import hljs from 'highlight.js/lib/core'
-import javascript from 'highlight.js/lib/languages/javascript'
 import { onMounted, ref, watch } from 'vue'
 import { removeComponentCache, getCached } from '@/global/router'
 
 const cached = getCached()
-hljs.registerLanguage('javascript', javascript)
 const clientId = ref(framework.getTracker().clientId)
 const message = useMessage()
 
@@ -133,26 +131,16 @@ watch(showPanel, () => {
             <n-alert type="info">
               ClientId
             </n-alert>
-            <n-code
-              :code="clientId"
-              :hljs="hljs"
-            />
+            <hb-admin-code  :code="clientId"/>
             <n-alert type="info">
               Token
             </n-alert>
-            <n-code
-              :code="token"
-              :hljs="hljs"
-            />
+            <hb-admin-code  :code="token"/>
             <n-alert type="info">
               User Data
             </n-alert>
             <div style="width: 100%;overflow: auto">
-              <n-code
-                :code="user"
-                :hljs="hljs"
-                language="JavaScript"
-              />
+              <hb-admin-code  :code="user"/>
             </div>
           </n-space>
           <n-alert type="info">
