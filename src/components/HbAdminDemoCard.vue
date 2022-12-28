@@ -1,5 +1,6 @@
 <script setup>
 import { NCard, NIcon, NCode, NButton, NTabs, NTabPane, NSpace, useMessage } from 'naive-ui'
+import HbAdminCode from '@/components/HbAdminCode.vue'
 import { CodeOutline, CopyOutline } from '@vicons/ionicons5'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
@@ -53,11 +54,7 @@ function copy () {
           name="demo-code"
           tab="演示代码"
         >
-          <n-code
-            :code="props.code"
-            language="xml"
-            :hljs="hljs"
-          />
+          <hb-admin-code :code="props.code"></hb-admin-code>
         </n-tab-pane>
       </n-tabs>
     </template>

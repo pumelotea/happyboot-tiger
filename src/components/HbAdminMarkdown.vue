@@ -1,6 +1,6 @@
 <script setup>
 import 'bytemd/dist/index.css'
-import 'highlight.js/styles/vs.css'
+import 'highlight.js/styles/atom-one-light.css'
 import 'github-markdown-css' // placed after highlight styles to override `code` padding
 import 'katex/dist/katex.css'
 import { Editor, Viewer } from '@bytemd/vue-next'
