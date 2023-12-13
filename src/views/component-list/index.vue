@@ -17,12 +17,12 @@ function goto (path) {
   <hb-admin-page-layout>
     <n-layout style="padding:20px">
       <n-layout-content>
-        <div class="mini-ad">
-          <img class="ad-image" src="/public/gh_735272938124_258.jpg">
-          <n-gradient-text type="error">
-            AI画图板，AI图片生成，stable diffusion图像创作工具。
-          </n-gradient-text>
-        </div>
+<!--        <div class="mini-ad">-->
+<!--          <img class="ad-image" src="/public/gh_735272938124_258.jpg">-->
+<!--          <n-gradient-text type="error">-->
+<!--            AI画图板，AI图片生成，stable diffusion图像创作工具。-->
+<!--          </n-gradient-text>-->
+<!--        </div>-->
         <div class="com-head-box">
           <div class="logo-box">
             <div class="logo-text">
