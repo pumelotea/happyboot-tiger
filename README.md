@@ -23,7 +23,7 @@ HappyBoot Tiger
 ## 简介
 `happyboot-tiger`是happyboot系列中最新的中后端框架，采用时下最流行的`Vue3`和`NaiveUI`。
 
-技术框架： `Vue3 + Vite2 + JavaScript + Navie UI`
+技术框架： `Vue3 + Vite5 + JavaScript + Navie UI`
 
 ## 演示地址
 > 废话不多说，具体效果请直接看演示地址！   
