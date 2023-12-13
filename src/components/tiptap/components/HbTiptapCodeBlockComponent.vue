@@ -2,7 +2,7 @@
 import 'highlight.js/styles/atom-one-light.css'
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
 import { NPopselect, NButton } from 'naive-ui'
-import { ref, watch } from 'vue'
+import {onMounted, ref, watch} from 'vue'
 
 const props = defineProps(nodeViewProps)
 
@@ -26,6 +26,14 @@ watch(selectedLanguage, () => {
   } else {
     props.updateAttributes({ language: selectedLanguage.value })
   }
+})
+
+watch(() => props.node.attrs.language, () => {
+  selectedLanguage.value = props.node.attrs.language
+})
+
+onMounted(() => {
+  selectedLanguage.value = props.node.attrs.language
 })
 
 </script>
