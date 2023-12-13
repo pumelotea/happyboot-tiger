@@ -70,16 +70,10 @@ git clone -b master https://github.com/pumelotea/happyboot-tiger.git
 # 进入项目目录
 cd happyboot-tiger
 # 安装依赖
-yarn
+pnpm i
 # 运行
-yarn dev 
+pnpm dev 
 ```
-
-## 交流群
-<p align="center">
-<img width="300px" src="https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/dingding.jpg">
-<img width="300px" src="https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/wx.jpg">
-</p>
 
 
 
