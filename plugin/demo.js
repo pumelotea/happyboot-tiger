@@ -1,4 +1,4 @@
-import * as defaultCompiler from '@vue/compiler-sfc'
+import * as defaultCompiler from 'vue/compiler-sfc'
 
 export default function DemoPlugin() {
   const fileRegex = /\.(demo.vue)$/
