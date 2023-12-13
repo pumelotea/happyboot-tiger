@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/pumelotea/happyboot-tiger/compare/v1.1.2...v1.2.0) (2023-12-13)
+
+
+### Features
+
+* 优化路由匹配方式 ([03d1a40](https://github.com/pumelotea/happyboot-tiger/commit/03d1a40bc52e88da219e08d7f7a56cb65c753888))
+
+
+### Bug Fixes
+
+* bugs ([e61f375](https://github.com/pumelotea/happyboot-tiger/commit/e61f375c009bcc8106f8b601708bcdb092b2ce23))
+
 ### [1.1.2](https://github.com/pumelotea/happyboot-tiger/compare/v1.1.1...v1.1.2) (2022-12-28)
 
 
