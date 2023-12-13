@@ -89,11 +89,20 @@ const whiteList = [
   '/error'
 ]
 
+function includes (matched) {
+  for (const matchedElement of matched) {
+    if (whiteList.includes(matchedElement.path)) {
+      return true
+    }
+  }
+  return false
+}
+
 export const needRouterLoading = ref(false)
 
 export const beforeEachHandler = (to, from, next) => {
   if (!security.getToken()) {
-    if (!whiteList.includes(to.path)) {
+    if (!includes(to.matched)) {
       needRouterLoading.value = false
       next('/login')
       return
@@ -103,7 +112,7 @@ export const beforeEachHandler = (to, from, next) => {
     return
   }
 
-  if (!whiteList.includes(to.path)) {
+  if (!includes(to.matched)) {
     needRouterLoading.value = !happyFramework.routerInitiated
     beforeInterceptor.filter(to, from, next)
   } else {
