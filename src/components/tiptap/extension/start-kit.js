@@ -1,4 +1,4 @@
-import { Extension } from '@tiptap/core'
+import {Extension, mergeAttributes} from '@tiptap/core'
 import { VueNodeViewRenderer } from '@tiptap/vue-3'
 import Blockquote from '@tiptap/extension-blockquote'
 import Bold from '@tiptap/extension-bold'
@@ -227,6 +227,13 @@ const StarterKit = Extension.create({
       extensions.push(TableRow)
       extensions.push(TableHeader)
       const HbTableCell = TableCell.extend({
+        renderHTML({ HTMLAttributes }) {
+          const attrs = mergeAttributes(this.options.HTMLAttributes, HTMLAttributes);
+          if (attrs.colwidth) {
+            attrs.style = `width: ${attrs.colwidth}px`;
+          }
+          return ['td', attrs, 0];
+        },
         addAttributes () {
           return {
             ...this.parent?.(),
