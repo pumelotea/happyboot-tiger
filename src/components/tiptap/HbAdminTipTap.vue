@@ -215,6 +215,15 @@ function tab (e) {
   padding: 10px;
 }
 
+.editor-body::v-deep(.is-editor-empty){
+  //background: #00bd63 !important;
+  height: 100%;
+}
+
+.editor-body::v-deep(.tiptap){
+  height: 100%;
+}
+
 .editor-footer {
   height: 20px;
   border-top: 1px solid rgba(204, 204, 204, 0.3);
