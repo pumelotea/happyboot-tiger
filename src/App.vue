@@ -1,6 +1,6 @@
 <script setup>
 import {
-  NMessageProvider, NConfigProvider, zhCN, dateZhCN,NNotificationProvider
+  NMessageProvider, NConfigProvider, zhCN, dateZhCN, NNotificationProvider
 } from 'naive-ui'
 import { theme } from '@/global/config'
 import HappyBoot from '@/HappyBoot.vue'

@@ -64,28 +64,28 @@ const code4 = '1.首先引入 \nimport { quality } from \'@/utils/imageFactory\'
           <n-card>
             <n-collapse>
               <n-collapse-item title="水印添加">
-                <hb-admin-code :code="code1"/>
+                <hb-admin-code :code="code1" />
               </n-collapse-item>
             </n-collapse>
           </n-card>
           <n-card>
             <n-collapse>
               <n-collapse-item title="图片裁剪">
-                <hb-admin-code :code="code2"/>
+                <hb-admin-code :code="code2" />
               </n-collapse-item>
             </n-collapse>
           </n-card>
           <n-card>
             <n-collapse>
               <n-collapse-item title="调整图片尺寸">
-                <hb-admin-code :code="code3"/>
+                <hb-admin-code :code="code3" />
               </n-collapse-item>
             </n-collapse>
           </n-card>
           <n-card>
             <n-collapse>
               <n-collapse-item title="调整图片质量">
-                <hb-admin-code :code="code4"/>
+                <hb-admin-code :code="code4" />
               </n-collapse-item>
             </n-collapse>
           </n-card>

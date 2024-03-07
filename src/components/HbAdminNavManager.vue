@@ -1,17 +1,17 @@
 <script setup>
-import {NButton, NIcon, NSwitch, useThemeVars, NEmpty, useMessage} from 'naive-ui'
-import framework from "@/global/framework";
-import HbAdminScaleCard from "@/components/HbAdminScaleCard";
-import {CloseSharp,AlbumsOutline} from '@vicons/ionicons5'
-import {removeComponentCache} from "@/global/router";
-import {useRouter} from "vue-router";
+import { NButton, NIcon, NSwitch, useThemeVars, NEmpty, useMessage } from 'naive-ui'
+import framework from '@/global/framework'
+import HbAdminScaleCard from '@/components/HbAdminScaleCard'
+import { CloseSharp, AlbumsOutline } from '@vicons/ionicons5'
+import { removeComponentCache } from '@/global/router'
+import { useRouter } from 'vue-router'
 
 const navList = framework.getNavList()
 const currentMenuRoute = framework.getCurrentMenuRoute()
 const router = useRouter()
-const emit = defineEmits(['close','scroll'])
+const emit = defineEmits([ 'close', 'scroll' ])
 
-function handleClose() {
+function handleClose () {
   emit('close')
 }
 
@@ -25,24 +25,24 @@ const props = defineProps({
 
 const vars = useThemeVars()
 const message = useMessage()
-function refreshPage(e,evt){
+function refreshPage (e, evt) {
   evt.stopPropagation()
   removeComponentCache(e.pageId)
   const pageId = currentMenuRoute.value?.pageId
-  if (pageId === e.pageId){
+  if (pageId === e.pageId) {
     setTimeout(() => {
       framework.clickNavItem(e.pageId, (a, needNavs) => {
         if (needNavs.length > 0) {
           router.push(needNavs[0].to)
-          emit('scroll',e.pageId)
+          emit('scroll', e.pageId)
         }
       })
     }, 300)
   }
-  message.info("页面刷新完成")
+  message.info('页面刷新完成')
 }
 
-function removePage(e,evt){
+function removePage (e, evt) {
   evt.stopPropagation()
   framework.closeNav('self', e.pageId, (removedNavs, needNavs) => {
     removeComponentCache(e.pageId)
@@ -55,11 +55,11 @@ function removePage(e,evt){
   })
 }
 
-function openPage(e){
+function openPage (e) {
   framework.clickNavItem(e.pageId, (a, needNavs) => {
     if (needNavs.length > 0) {
       router.push(needNavs[0].to)
-      emit('scroll',e.pageId)
+      emit('scroll', e.pageId)
     }
   })
   emit('close')
@@ -69,47 +69,69 @@ function openPage(e){
 
 <template>
   <transition
-      enter-active-class="hb-admin-nav-manager-in"
-      leave-active-class="hb-admin-nav-manager-out"
+    enter-active-class="hb-admin-nav-manager-in"
+    leave-active-class="hb-admin-nav-manager-out"
   >
-    <div class="hb-admin-nav-manager" v-if="open" @click="handleClose">
-      <div class="hb-admin-nav--mgt-title">页面管理器</div>
+    <div
+      v-if="open"
+      class="hb-admin-nav-manager"
+      @click="handleClose"
+    >
+      <div class="hb-admin-nav--mgt-title">
+        页面管理器
+      </div>
       <div class="hb-admin-nav--mgt-close">
         <n-button
-            strong
-            secondary
-            circle
-            @click="handleClose"
+          strong
+          secondary
+          circle
+          @click="handleClose"
         >
           <template #icon>
-            <n-icon :component="CloseSharp"/>
+            <n-icon :component="CloseSharp" />
           </template>
         </n-button>
       </div>
-      <hb-admin-scale-card :width="1920" :height="1080">
+      <hb-admin-scale-card
+        :width="1920"
+        :height="1080"
+      >
         <div
-            v-if="!currentMenuRoute"
-            class="empty-route-body"
+          v-if="!currentMenuRoute"
+          class="empty-route-body"
         >
           <n-empty
-              size="huge"
-              description="还没打开页面呐 ~"
+            size="huge"
+            description="还没打开页面呐 ~"
           >
             <template #icon>
               <n-icon :component="AlbumsOutline" />
             </template>
           </n-empty>
         </div>
-        <div v-else class="page-list">
-          <div class="page-item" v-for="e in navList" @click="openPage(e)">
-            <div class="nav-title">{{e.title}}</div>
+        <div
+          v-else
+          class="page-list"
+        >
+          <div
+            v-for="e in navList"
+            class="page-item"
+            @click="openPage(e)"
+          >
+            <div class="nav-title">
+              {{ e.title }}
+            </div>
             <div class="nav-icon">
               <n-icon :size="100">
-                <i :class="e.menuItem.icon"></i>
+                <i :class="e.menuItem.icon" />
               </n-icon>
             </div>
             <div class="nav-cache">
-              <n-switch size="large" :round="false" :value="e.menuItem.isKeepalive">
+              <n-switch
+                size="large"
+                :round="false"
+                :value="e.menuItem.isKeepalive"
+              >
                 <template #checked>
                   已开启缓存
                 </template>
@@ -119,29 +141,39 @@ function openPage(e){
               </n-switch>
             </div>
             <div class="nav-action">
-              <n-button type="info" ghost @click.stop="evt=>{refreshPage(e,evt)}">
+              <n-button
+                type="info"
+                ghost
+                @click.stop="evt=>{refreshPage(e,evt)}"
+              >
                 刷新页面
               </n-button>
             </div>
             <div class="nav-link">
-              {{e.menuItem.routerPath}}
+              {{ e.menuItem.routerPath }}
             </div>
             <div class="nav-poster">
-              <img class="poster-image" :src="`/images/page-poster/${e.menuItem.poster}`">
+              <img
+                class="poster-image"
+                :src="`/images/page-poster/${e.menuItem.poster}`"
+              >
             </div>
             <n-button
-                type="error"
-                class="nav-close"
-                strong
-                circle
-                size="small"
-                @click.stop="evt=>{removePage(e,evt)}"
+              type="error"
+              class="nav-close"
+              strong
+              circle
+              size="small"
+              @click.stop="evt=>{removePage(e,evt)}"
             >
               <template #icon>
-                <n-icon :component="CloseSharp"/>
+                <n-icon :component="CloseSharp" />
               </template>
             </n-button>
-            <div class="nav-current" v-if="currentMenuRoute?.pageId === e.pageId"></div>
+            <div
+              v-if="currentMenuRoute?.pageId === e.pageId"
+              class="nav-current"
+            />
           </div>
         </div>
       </hb-admin-scale-card>

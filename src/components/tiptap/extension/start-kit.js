@@ -1,4 +1,4 @@
-import {Extension, mergeAttributes} from '@tiptap/core'
+import { Extension, mergeAttributes } from '@tiptap/core'
 import { VueNodeViewRenderer } from '@tiptap/vue-3'
 import Blockquote from '@tiptap/extension-blockquote'
 import Bold from '@tiptap/extension-bold'
@@ -82,6 +82,8 @@ import HbTiptapMathComponent from '../components/HbTiptapMathComponent.vue'
 import HbVideo from '../extension/hb-video'
 import HbImage from '../extension/hb-image'
 import HbMath from '../extension/hb-math'
+import Indent from '@/components/tiptap/extension/indent.js'
+import HbTaskItem from '@/components/tiptap/extension/hb-task-item.js'
 lowlight.registerLanguage('arduino', arduino)
 lowlight.registerLanguage('bash', bash)
 lowlight.registerLanguage('c', c)
@@ -139,6 +141,8 @@ const StarterKit = Extension.create({
     }))
 
     extensions.push(CharacterCount)
+
+    extensions.push(Indent)
 
     if (this.options.blockquote !== false) {
       extensions.push(Blockquote.configure(this.options?.blockquote))
@@ -227,12 +231,12 @@ const StarterKit = Extension.create({
       extensions.push(TableRow)
       extensions.push(TableHeader)
       const HbTableCell = TableCell.extend({
-        renderHTML({ HTMLAttributes }) {
-          const attrs = mergeAttributes(this.options.HTMLAttributes, HTMLAttributes);
+        renderHTML ({ HTMLAttributes }) {
+          const attrs = mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)
           if (attrs.colwidth) {
-            attrs.style = `width: ${attrs.colwidth}px`;
+            attrs.style = `width: ${attrs.colwidth}px`
           }
-          return ['td', attrs, 0];
+          return [ 'td', attrs, 0 ]
         },
         addAttributes () {
           return {
@@ -273,8 +277,12 @@ const StarterKit = Extension.create({
     }
 
     if (this.options.task !== false) {
-      extensions.push(TaskList)
-      extensions.push(TaskItem.configure({
+      extensions.push(TaskList.configure({
+        HTMLAttributes: {
+          class: 'contains-task-list'
+        }
+      }))
+      extensions.push(HbTaskItem.configure({
         nested: true
       }))
     }

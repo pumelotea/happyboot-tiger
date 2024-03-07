@@ -5,7 +5,6 @@ import HbAdminCode from '@/components/HbAdminCode.vue'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 
-
 const data = `const router = useRouter()
 function goto(){
   router.push('/hide?id='+title.value,'标题字符串')
@@ -43,7 +42,7 @@ function goto () {
             标题自定义非常简单，happykit框架对push方法进行了重载，根据URL地址的Hash来映射对应的标题<br>如以下代码
           </n-alert>
           <n-card>
-            <hb-admin-code :code="data"/>
+            <hb-admin-code :code="data" />
           </n-card>
         </n-space>
       </n-layout-content>

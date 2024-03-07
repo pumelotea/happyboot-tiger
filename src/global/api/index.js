@@ -10,7 +10,7 @@ import request from '../http'
 // };
 
 export default {
-  getCaptcha: () => request.get('/captcha'),
-  getVersion :() => fetch('https://api.github.com/repos/pumelotea/happyboot-tiger/releases/latest'),
-  getVersions :() => fetch('https://api.github.com/repos/pumelotea/happyboot-tiger/releases')
+  getCaptcha : () => request.get('/captcha'),
+  getVersion : () => fetch('https://api.github.com/repos/pumelotea/happyboot-tiger/releases/latest'),
+  getVersions: () => fetch('https://api.github.com/repos/pumelotea/happyboot-tiger/releases')
 }

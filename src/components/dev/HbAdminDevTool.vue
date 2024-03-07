@@ -131,16 +131,16 @@ watch(showPanel, () => {
             <n-alert type="info">
               ClientId
             </n-alert>
-            <hb-admin-code  :code="clientId"/>
+            <hb-admin-code :code="clientId" />
             <n-alert type="info">
               Token
             </n-alert>
-            <hb-admin-code  :code="token"/>
+            <hb-admin-code :code="token" />
             <n-alert type="info">
               User Data
             </n-alert>
             <div style="width: 100%;overflow: auto">
-              <hb-admin-code  :code="user"/>
+              <hb-admin-code :code="user" />
             </div>
           </n-space>
           <n-alert type="info">

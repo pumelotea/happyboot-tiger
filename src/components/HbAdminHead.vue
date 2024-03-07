@@ -14,7 +14,7 @@ import {
   NBreadcrumbItem,
   NPopover
 } from 'naive-ui'
-import { Moon, SunnyOutline, Notifications, CubeOutline, LogoGithub,Book,MenuOutline } from '@vicons/ionicons5'
+import { Moon, SunnyOutline, Notifications, CubeOutline, LogoGithub, Book, MenuOutline } from '@vicons/ionicons5'
 import { h, computed, ref } from 'vue'
 import { isDarkTheme, isMenuCollapsed } from '@/global/config'
 import framework from '@/global/framework'
@@ -22,8 +22,7 @@ import { useRouter } from 'vue-router'
 import security from '@/global/security'
 import HbAdminMessage from '@/components/HbAdminMessage'
 import HbAdminWeather from './HbAdminWeather'
-import HbAdminMenu from "@/components/HbAdminMenu";
-
+import HbAdminMenu from '@/components/HbAdminMenu'
 
 const router = useRouter()
 
@@ -105,7 +104,7 @@ function gotoGithub () {
   window.open('https://github.com/pumelotea/happyboot-tiger')
 }
 
-function gotoBook() {
+function gotoBook () {
   window.open('https://doc.happykit.org/')
 }
 
@@ -140,21 +139,25 @@ const info = ref({
           />
         </n-icon>
       </n-button>
-      <n-popover trigger="hover" :show-arrow="false" placement="bottom-start">
+      <n-popover
+        trigger="hover"
+        :show-arrow="false"
+        placement="bottom-start"
+      >
         <template #trigger>
           <n-button
-              strong
-              text
-              class="menu-pop-button"
+            strong
+            text
+            class="menu-pop-button"
           >
             <template #icon>
               <n-icon size="20">
-                <i class="ri-menu-5-line"></i>
+                <i class="ri-menu-5-line" />
               </n-icon>
             </template>
           </n-button>
         </template>
-        <hb-admin-menu mode="horizontal"/>
+        <hb-admin-menu mode="horizontal" />
       </n-popover>
       <n-breadcrumb>
         <n-breadcrumb-item
@@ -174,17 +177,26 @@ const info = ref({
     </div>
     <div class="head-center-area head-item-center">
       <div class="carousel-box">
-        <n-carousel show-arrow :show-dots="false">
-          <a href="https://tiger.happykit.org/" target="_blank">
+        <n-carousel
+          show-arrow
+          :show-dots="false"
+        >
+          <a
+            href="https://tiger.happykit.org/"
+            target="_blank"
+          >
             <img
-                class="carousel-img"
-                src="/images/1.png"
+              class="carousel-img"
+              src="/images/1.png"
             >
           </a>
-          <a href="https://doc.happykit.org/" target="_blank">
+          <a
+            href="https://doc.happykit.org/"
+            target="_blank"
+          >
             <img
-                class="carousel-img"
-                src="/images/2.png"
+              class="carousel-img"
+              src="/images/2.png"
             >
           </a>
         </n-carousel>
@@ -218,10 +230,10 @@ const info = ref({
       />
       <n-divider vertical />
       <n-icon
-          size="22"
-          color="#CFCFCF"
-          :component="Book"
-          @click="gotoBook"
+        size="22"
+        color="#CFCFCF"
+        :component="Book"
+        @click="gotoBook"
       />
       <n-divider vertical />
       <hb-admin-message>

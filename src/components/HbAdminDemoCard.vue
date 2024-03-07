@@ -54,7 +54,7 @@ function copy () {
           name="demo-code"
           tab="演示代码"
         >
-          <hb-admin-code :code="props.code"></hb-admin-code>
+          <hb-admin-code :code="props.code" />
         </n-tab-pane>
       </n-tabs>
     </template>

@@ -16,7 +16,7 @@ import framework from '@/global/framework'
 import { h, nextTick, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { removeComponentCache } from '@/global/router'
-import HbAdminNavManager from "@/components/HbAdminNavManager"
+import HbAdminNavManager from '@/components/HbAdminNavManager'
 
 const vars = useThemeVars()
 
@@ -187,7 +187,6 @@ watch(currentRouteMenu, value => {
   })
 })
 
-
 const showPageManager = ref(false)
 
 </script>
@@ -225,12 +224,16 @@ const showPageManager = ref(false)
       >
         {{ e.title }}
         <template #avatar>
-          <n-tooltip placement="bottom" trigger="hover" v-if="e.menuItem.isKeepalive">
+          <n-tooltip
+            v-if="e.menuItem.isKeepalive"
+            placement="bottom"
+            trigger="hover"
+          >
             <template #trigger>
-              <div class="nav-cached-tag"></div>
+              <div class="nav-cached-tag" />
             </template>
             <span>
-              「{{e.menuItem.name}}」已开启页面缓存
+              「{{ e.menuItem.name }}」已开启页面缓存
             </span>
           </n-tooltip>
           <div class="nav-item-icon">
@@ -260,8 +263,8 @@ const showPageManager = ref(false)
         </template>
       </n-button>
       <n-button
-          text
-          @click="showPageManager = true"
+        text
+        @click="showPageManager = true"
       >
         <template #icon>
           <n-icon :component="AppsSharp" />
@@ -278,7 +281,11 @@ const showPageManager = ref(false)
         </n-button>
       </n-dropdown>
     </div>
-    <hb-admin-nav-manager :open="showPageManager" @scroll="scroll" @close="showPageManager = false"/>
+    <hb-admin-nav-manager
+      :open="showPageManager"
+      @scroll="scroll"
+      @close="showPageManager = false"
+    />
   </div>
 </template>
 

@@ -39,8 +39,6 @@ const htmlCode = `<n-button type="info" v-point="'add'">被控制的按钮1</n-b
 <n-button type="warning" v-point="'cancel'">被控制的按钮2</n-button>
 <n-button type="warning" v-point="'no-key'">控制点未被对应的按钮</n-button>`
 
-
-
 </script>
 <template>
   <hb-admin-page-layout>
@@ -77,13 +75,13 @@ const htmlCode = `<n-button type="info" v-point="'add'">被控制的按钮1</n-b
             Vue模板中使用`v-point`，路由节点中的`permissionKey`属性和指令中配置的值相同，则显示，否则不显示<br>如以下代码
           </n-alert>
           <n-card>
-            <hb-admin-code :code="htmlCode" ></hb-admin-code>
+            <hb-admin-code :code="htmlCode" />
           </n-card>
           <n-alert type="info">
             权限点配置在路由节点的子节点中，<br>如以下代码
           </n-alert>
           <n-card>
-            <hb-admin-code :code="data" ></hb-admin-code>
+            <hb-admin-code :code="data" />
           </n-card>
         </n-space>
       </n-layout-content>

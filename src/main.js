@@ -12,5 +12,4 @@ const app = createApp(App)
   .use(happyFramework)
   .use(happySecurity)
 
-
 app.mount('#app')

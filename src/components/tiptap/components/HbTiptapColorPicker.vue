@@ -1,6 +1,13 @@
 <script setup>
 import { NColorPicker } from 'naive-ui'
 
+defineProps({
+  defaultColor: {
+    type   : String,
+    default: '#000'
+  }
+})
+
 const emit = defineEmits([ 'change' ])
 
 function change (e) {
@@ -13,8 +20,21 @@ function change (e) {
   <button class="hb-tiptap-color-picker">
     <n-color-picker
       :render-label="()=>null"
+      :default-value="defaultColor"
       placement="bottom"
-      @complete="change"
+      to="#pop-body"
+      show-preview
+      :swatches="[
+        '#3366FF',
+        '#8ACE14',
+        '#33C4F4',
+        '#FFB949',
+        '#FF4235',
+        '#FC33FF',
+        '#FF6D83',
+        '#FFE605',
+      ]"
+      @update:value="change"
     />
   </button>
 </template>
@@ -32,7 +52,6 @@ function change (e) {
    align-items: center;
    justify-content: center;
    overflow: hidden;
-
  }
 
  .icon-box{

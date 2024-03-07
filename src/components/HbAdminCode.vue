@@ -1,18 +1,18 @@
 <script setup>
-import {NSpin} from 'naive-ui'
+import { NSpin } from 'naive-ui'
 import 'highlight.js/styles/atom-one-light.css'
-import {ref} from "vue"
+import { ref } from 'vue'
 
 const props = defineProps({
-  code:{
-    type:String,
-    required:true
+  code: {
+    type    : String,
+    required: true
   }
 })
 
 const codeHtml = ref('')
 
-const worker = new Worker('/worker/highlight.js',{name: 'highlight'})
+const worker = new Worker('/worker/highlight.js', { name: 'highlight' })
 // 主线程中，监听子线程 worker 回发的数据
 worker.onmessage = (msg) => {
   const result = JSON.parse(msg.data)
@@ -27,10 +27,13 @@ worker.onerror = (err) => {
 // 主线程中，向子线程 worker 发送数据
 worker.postMessage(props.code)
 
-
 </script>
 <template>
-  <code><pre class="hb-admin-code" v-if="codeHtml" v-html="codeHtml"></pre></code>
+  <code><pre
+    v-if="codeHtml"
+    class="hb-admin-code"
+    v-html="codeHtml"
+  /></code>
 </template>
 
 <style scoped>

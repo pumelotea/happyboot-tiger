@@ -17,12 +17,12 @@ function goto (path) {
   <hb-admin-page-layout>
     <n-layout style="padding:20px">
       <n-layout-content>
-<!--        <div class="mini-ad">-->
-<!--          <img class="ad-image" src="/public/gh_735272938124_258.jpg">-->
-<!--          <n-gradient-text type="error">-->
-<!--            AI画图板，AI图片生成，stable diffusion图像创作工具。-->
-<!--          </n-gradient-text>-->
-<!--        </div>-->
+        <!--        <div class="mini-ad">-->
+        <!--          <img class="ad-image" src="/public/gh_735272938124_258.jpg">-->
+        <!--          <n-gradient-text type="error">-->
+        <!--            AI画图板，AI图片生成，stable diffusion图像创作工具。-->
+        <!--          </n-gradient-text>-->
+        <!--        </div>-->
         <div class="com-head-box">
           <div class="logo-box">
             <div class="logo-text">
@@ -31,7 +31,7 @@ function goto (path) {
               </n-gradient-text>
             </div>
           </div>
-          <div style="flex: 1"></div>
+          <div style="flex: 1" />
           <div
             style="font-size: 20px;margin-right: 10px"
             class="animate__animated animate__bounce animate__repeat-3"
@@ -43,8 +43,8 @@ function goto (path) {
             </a>
           </div>
           <div
-              style="font-size: 20px"
-              class="animate__animated animate__bounce animate__repeat-3"
+            style="font-size: 20px"
+            class="animate__animated animate__bounce animate__repeat-3"
           >
             <a href="https://github.com/pumelotea/happyboot-tiger">
               <n-gradient-text type="info">

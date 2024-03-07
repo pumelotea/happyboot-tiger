@@ -1,6 +1,6 @@
 <script setup>
 import { useMessage, NSlider, useThemeVars } from 'naive-ui'
-import {nextTick, onBeforeUnmount, onMounted, ref} from 'vue'
+import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 const themeVars = useThemeVars()
 const message = useMessage()
 

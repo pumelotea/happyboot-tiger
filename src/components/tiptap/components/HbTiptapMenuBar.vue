@@ -30,6 +30,16 @@ function updateColor (e) {
   setColor()
 }
 
+const colorHighlight = ref('#fec300')
+
+function setHighlightColor () {
+  props.editor.chain().focus().toggleHighlight({ color: colorHighlight.value }).run()
+}
+function updateHeightColor (e) {
+  colorHighlight.value = e
+  props.editor.chain().focus().setHighlight({ color: colorHighlight.value }).run()
+}
+
 const HTL = ref(null)
 
 function handleOpenLink () {
@@ -133,11 +143,16 @@ function toggleFullscreen () {
       :action="() => props.editor.chain().focus().toggleStrike().run()"
       :is-active="() => props.editor.isActive('strike')"
     />
+    <div class="divider" />
     <hb-tiptap-menu-item
       icon="mark-pen-line"
       title="高亮"
-      :action="() => props.editor.chain().focus().toggleHighlight().run()"
+      :action="setHighlightColor"
       :is-active="() => props.editor.isActive('highlight')"
+    />
+    <hb-tiptap-color-picker
+      :default-color="colorHighlight"
+      @change="updateHeightColor"
     />
     <div class="divider" />
     <hb-tiptap-menu-item
@@ -283,6 +298,12 @@ function toggleFullscreen () {
       @ok="insertVideo"
     />
     <hb-tiptap-menu-item
+      icon="brackets-line"
+      title="代码"
+      :action="() => props.editor.chain().focus().toggleCode().run()"
+      :is-active="() => props.editor.isActive('code')"
+    />
+    <hb-tiptap-menu-item
       icon="code-view"
       title="代码"
       :action="() => props.editor.chain().focus().toggleCodeBlock().run()"
@@ -372,6 +393,7 @@ function toggleFullscreen () {
   width: 100%;
   flex-wrap: wrap;
   padding: 5px 5px;
+  background-color: v-bind(vars.baseColor);
 }
 
 .divider {

@@ -87,8 +87,8 @@ function menuChoose (key, item) {
 
 const props = defineProps({
   mode: {
-    type: String,
-    default : null
+    type   : String,
+    default: null
   }
 })
 
@@ -103,8 +103,8 @@ const props = defineProps({
     key-field="menuId"
     label-field="label"
     :value="currentMenuRoute?.menuItem.menuId || null"
-    @update:value="menuChoose"
     :dropdown-props="{ scrollable: true, menuProps: () => ({style: 'max-height: 300px;'}) }"
+    @update:value="menuChoose"
   />
 </template>
 

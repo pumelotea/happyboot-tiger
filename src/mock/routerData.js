@@ -114,7 +114,7 @@ const routerData = [
         isRouter           : true,
         isKeepalive        : false,
         icon               : 'ri-links-line',
-        poster     : 'iframe-link.png',
+        poster             : 'iframe-link.png',
         type               : 'menu',
         externalLink       : true, // 外链
         linkTarget         : '_tab', // 刷新自己

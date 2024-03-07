@@ -2,7 +2,6 @@
   "name": "happyboot-tiger",
   "private": true,
   "version": "1.2.0",
-  "type": "module",
   "scripts": {
     "dev": "vite --mode dev",
     "build-test": "vite build --mode test",
