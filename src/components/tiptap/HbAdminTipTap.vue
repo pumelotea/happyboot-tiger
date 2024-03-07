@@ -1,5 +1,6 @@
 <script setup>
 import './editor.css'
+import 'github-markdown-css'
 import { useEditor, EditorContent, BubbleMenu } from '@tiptap/vue-3'
 import HbTiptapMenuBar from './components/HbTiptapMenuBar'
 import StarterKit from './extension/start-kit'
@@ -139,7 +140,7 @@ function tab (e) {
         :editor="editor"
       />
       <editor-content
-        class="editor-body"
+        class="editor-body markdown-body"
         :editor="editor"
       />
       <div class="editor-footer">
