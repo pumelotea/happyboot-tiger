@@ -89,7 +89,7 @@ const Indent = Extension.create({
   name: 'indent',
   addOptions () {
     return {
-      types    : [ 'paragraph', 'heading', 'blockquote' ],
+      types    : [ 'paragraph', 'heading' ],
       minIndent: 0,
       maxIndent: 7
     }
