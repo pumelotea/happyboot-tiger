@@ -223,7 +223,31 @@ const StarterKit = Extension.create({
     }
 
     if (this.options.highlight !== false) {
-      extensions.push(Highlight.configure(this.options?.highlight))
+      extensions.push(Highlight.configure(this.options?.highlight).extend({
+        renderHTML ({ HTMLAttributes }) {
+          const attrs = mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)
+          if (attrs.color) {
+            attrs.style = `background-color: ${attrs.color}`
+          }
+          return [ 'mark', attrs, 0 ]
+        },
+        addAttributes () {
+          return {
+            ...this.parent?.(),
+            // 添加新的属性
+            color: {
+              default  : null,
+              parseHTML: (element) => {
+                return element.getAttribute('color')
+              },
+              renderHTML: (attributes) => ({
+                'data-color': attributes.color,
+                style       : `background-color: ${attributes.color}`
+              })
+            }
+          }
+        }
+      }))
     }
 
     if (this.options.table !== false) {
