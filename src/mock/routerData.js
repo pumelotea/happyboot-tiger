@@ -271,7 +271,7 @@ const routerData = [
         type       : 'menu',
         children   : [],
         budge      : {
-          value: 'alpha',
+          value: 'beta',
           type : 'error'
         }
       },
