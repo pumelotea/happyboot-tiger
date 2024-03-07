@@ -1,6 +1,5 @@
 <script setup>
 import './editor.css'
-import 'github-markdown-css'
 import { useEditor, EditorContent, BubbleMenu } from '@tiptap/vue-3'
 import HbTiptapMenuBar from './components/HbTiptapMenuBar'
 import StarterKit from './extension/start-kit'
@@ -9,8 +8,11 @@ import { useDebounceFn } from '@vueuse/core'
 
 import { useThemeVars } from 'naive-ui'
 import HbTiptapBubbleMenu from '@/components/tiptap/components/HbTiptapBubbleMenu'
+import {isDark} from "@/global/config";
 
 const vars = useThemeVars()
+
+
 
 StarterKit.options.highlight = { multicolor: true }
 StarterKit.options.table = { resizable: true }
@@ -141,6 +143,7 @@ function tab (e) {
       />
       <editor-content
         class="editor-body markdown-body"
+        :class="{'dark': isDark, 'light': !isDark}"
         :editor="editor"
       />
       <div class="editor-footer">
@@ -248,4 +251,7 @@ function tab (e) {
 ::v-deep(.tippy-arrow ) {
   color: transparent;
 }
+</style>
+<style>
+@import url('github-markdown.css');
 </style>
