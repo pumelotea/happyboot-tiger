@@ -8,6 +8,7 @@ import HbTiptapImage from '@/components/tiptap/components/HbTiptapImage'
 import HbTiptapVideo from '@/components/tiptap/components/HbTiptapVideo'
 import HbTiptapMath from '@/components/tiptap/components/HbTiptapMath'
 import { ref } from 'vue'
+import HbTiptapWordConvertor from "@/components/tiptap/components/HbTiptapWordConvertor.vue";
 const vars = useThemeVars()
 const props = defineProps({
   editor: {
@@ -52,6 +53,15 @@ function handleOpenLink () {
 
 function toggleLink (href, target) {
   props.editor.chain().focus().toggleLink({ href, target }).run()
+}
+
+const HTWC = ref(null)
+function handleOpenWordConvertor () {
+  HTWC.value.open()
+}
+function handleWordConvertorSuccess(data){
+  props.editor.commands.setContent(data, true)
+
 }
 
 const HTI = ref(null)
@@ -375,6 +385,12 @@ function toggleFullscreen () {
       :action="() => props.editor.chain().focus().deleteColumn().run()"
     />
     <div class="divider" />
+    <hb-tiptap-menu-item
+        icon="file-word-line"
+        title="word导入"
+        :action="handleOpenWordConvertor"
+    />
+    <hb-tiptap-word-convertor ref="HTWC" @ok="handleWordConvertorSuccess"/>
     <hb-tiptap-menu-item
       :icon="props.editor.storage.fullscreen.value? 'fullscreen-exit-line':'fullscreen-line'"
       title="全屏"
