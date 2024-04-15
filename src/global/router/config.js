@@ -4,6 +4,7 @@ import happyFramework from '../framework'
 import routerData from '@/mock/routerData'
 import security from '../security'
 import { ref } from 'vue'
+import LoadPlaceholder from '@/views/home/load-placeholder.vue'
 
 const modules = import.meta.glob('/src/views/**/**.vue')
 
@@ -48,7 +49,15 @@ const beforeInterceptor = createDefaultRouterInterceptor({
     },
     routes: [],
     viewLoader (view) {
-      return modules[`/src/views${view}`]
+      const com = modules[`/src/views${view}`]
+      if (!com) {
+        return () => import('/src/views/error404/index.vue')
+      }
+      // 会出现警告
+      return defineAsyncComponent({
+        loadingComponent: LoadPlaceholder,
+        loader          : com
+      })
     }
   }
 })
