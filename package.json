@@ -10,6 +10,9 @@
     "lint": "eslint src/**/*.{js,vue,demo.vue} --fix",
     "doc": "standard-version"
   },
+  "engines": {
+    "node": "20"
+  },
   "dependencies": {
     "@bytemd/plugin-breaks": "^1.21.0",
     "@bytemd/plugin-frontmatter": "^1.21.0",
