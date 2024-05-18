@@ -62,7 +62,7 @@
     "unplugin-auto-import": "^0.17.2",
     "unplugin-vue-components": "^0.26.0",
     "vfonts": "^0.0.3",
-    "vite": "^5.0.8",
+    "vite": "^5.1.0",
     "vite-plugin-eslint2": "^4.3.1"
   }
 }
