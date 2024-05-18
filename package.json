@@ -27,7 +27,7 @@
     "@vicons/ionicons5": "^0.12.0",
     "@vueuse/core": "^8.0.1",
     "animate.css": "^4.1.1",
-    "axios": "^1.5.0",
+    "axios": "^1.6.8",
     "bytemd": "^1.21.0",
     "cropperjs": "^1.6.0",
     "echarts": "^5.4.3",
@@ -62,7 +62,7 @@
     "unplugin-auto-import": "^0.17.2",
     "unplugin-vue-components": "^0.26.0",
     "vfonts": "^0.0.3",
-    "vite": "^5.0.8",
+    "vite": "^5.1.0",
     "vite-plugin-eslint2": "^4.3.1"
   }
 }

@@ -11,7 +11,10 @@ import BaseDemo from './base.demo'
         <n-space vertical>
           <h2>富文本编辑器</h2>
           <n-alert type="info">
-            在开发中 源码托管在github：github.com/pumelotea/vivid
+            源码：https://github.com/pumelotea/vivid/
+            <template #header>
+              文档： https://vivid-ten.vercel.app/
+            </template>
           </n-alert>
         </n-space>
         <base-demo style="margin-top: 10px" />
