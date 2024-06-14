@@ -23,7 +23,7 @@
     "@bytemd/plugin-medium-zoom": "^1.21.0",
     "@bytemd/plugin-mermaid": "^1.21.0",
     "@bytemd/vue-next": "^1.21.0",
-    "@codecoderun/vivid": "^0.0.7",
+    "@codecoderun/vivid": "^0.0.20",
     "@vicons/ionicons5": "^0.12.0",
     "@vueuse/core": "^8.0.1",
     "animate.css": "^4.1.1",
