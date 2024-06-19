@@ -139,39 +139,21 @@ const info = ref({
           />
         </n-icon>
       </n-button>
-      <n-popover
-        trigger="hover"
-        :show-arrow="false"
-        placement="bottom-start"
-      >
-        <template #trigger>
-          <n-button
-            strong
-            text
-            class="menu-pop-button"
-          >
-            <template #icon>
-              <n-icon size="20">
-                <i class="ri-menu-5-line" />
-              </n-icon>
-            </template>
-          </n-button>
-        </template>
-        <hb-admin-menu mode="horizontal" />
-      </n-popover>
       <n-breadcrumb>
         <n-breadcrumb-item
           v-for="e in breadcrumb"
           :key="e.menuId"
         >
-          <n-icon>
-            <i
-              v-if="e.icon"
-              :class="e.icon"
-            />
-            <cube-outline v-else />
-          </n-icon>
-          {{ e.name }}
+          <div class="hb-admin-breadcrumb-name">
+            <n-icon>
+              <i
+                v-if="e.icon"
+                :class="e.icon"
+              />
+              <cube-outline v-else />
+            </n-icon>
+            <div>{{ e.name }}</div>
+          </div>
         </n-breadcrumb-item>
       </n-breadcrumb>
     </div>
@@ -315,5 +297,11 @@ const info = ref({
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.hb-admin-breadcrumb-name{
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 </style>
