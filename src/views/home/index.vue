@@ -4,8 +4,6 @@ import HbAdminHead from '@/components/HbAdminHead.vue'
 import HbAdminNav from '@/components/HbAdminNav.vue'
 import HbAdminLogo from '@/components/HbAdminLogo.vue'
 import HbAdminCopyright from '@/components/HbAdminCopyright.vue'
-import HbAdminUserCard from '@/components/HbAdminUserCard.vue'
-import HbAdminOnlineUserList from '@/components/HbAdminOnlineUserList.vue'
 import { RouteAlive } from '@/global/router'
 
 import {
@@ -36,12 +34,6 @@ function renderIcon () {
   return () => h(NIcon, null, { default: () => h(CubeOutline) })
 }
 
-const showOnlineUserList = ref(false)
-
-function openUserList () {
-  showOnlineUserList.value = !showOnlineUserList.value
-}
-
 </script>
 
 <template>
@@ -56,28 +48,16 @@ function openUserList () {
         class="main-layout"
       >
         <n-layout-sider
+          style="width: fit-content"
           bordered
           collapse-mode="width"
           :collapsed-width="64"
-          :width="240"
           :collapsed="isMenuCollapsed"
           content-style="display: flex;flex-direction: column;"
           @update:collapsed="onLayoutCollapsed"
         >
-          <div>
-            <hb-admin-logo />
-          </div>
           <div style="flex: 1;overflow: auto">
             <hb-admin-menu />
-          </div>
-          <div>
-            <hb-admin-user-card @click="openUserList" />
-            <transition
-              enter-active-class="animate__animated animate__slideInLeft animate__faster"
-              leave-active-class="animate__animated animate__slideOutLeft animate__faster"
-            >
-              <hb-admin-online-user-list v-if="showOnlineUserList" />
-            </transition>
           </div>
         </n-layout-sider>
         <n-layout content-style="display: flex;flex-direction: column;">
@@ -103,12 +83,6 @@ function openUserList () {
                 class="animate__animated animate__fadeIn"
                 :route="route"
               />
-              <!--              <keep-alive>-->
-              <!--                <component-->
-              <!--                    :is="reDefineComponent(Component,route)"-->
-              <!--                    class="animate__animated animate__fadeIn"-->
-              <!--                />-->
-              <!--              </keep-alive>-->
             </router-view>
             <div
               v-if="!currentMenuRoute"
