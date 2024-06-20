@@ -114,7 +114,7 @@ const props = defineProps({
   <div class="hb-admin-menu-com">
     <div class="hb-admin-menu-top-level" v-if="!isMenuCollapsed">
       <hb-admin-logo-2 v-if="!isMenuCollapsed"/>
-      <div class="hb-admin-menu-top-level-item" v-for="e in naviMenuData" :key="e.menuId" @click="topLevelMenuChoose(e.menuId, e)">
+      <div class="hb-admin-menu-top-level-item" v-for="e in naviMenuData" :key="e.menuId" @click="topLevelMenuChoose(e.menuId, e)" :class="{'active': e.menuId === chooseTopLevel?.menuId}">
         <i :class="`${e.original.icon}`" style="font-size: 24px"></i>
         <div class="hb-admin-menu-top-level-item-name">{{e.name}}</div>
       </div>
@@ -165,6 +165,13 @@ const props = defineProps({
   flex-direction: column;
 }
 
+.hb-admin-menu-top-level-item.active{
+  color: v-bind(vars.primaryColor) !important;
+}
+
+
+
+
 .hb-admin-menu-top-level-item-name{
   font-size: 10px;
   margin-top: -5px;
@@ -184,22 +191,5 @@ const props = defineProps({
   max-width: 240px;
   width: 240px;
   z-index: 0;
-}
-
-.hb-admin-menu-item{
-  display: flex;
-  align-items: center;
-  width: 100%;
-  overflow: hidden;
-  justify-content: space-between;
-  padding: 5px 5px;
-  box-sizing: border-box;
-  height: 100%;
-}
-
-.hb-admin-menu-item-label{
-  text-overflow: ellipsis;
-  overflow: hidden;
-  margin-right: 5px;
 }
 </style>
