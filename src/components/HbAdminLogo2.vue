@@ -1,10 +1,4 @@
 <script setup>
-import {
-  NLayout,
-  NLayoutHeader,
-  NGradientText
-} from 'naive-ui'
-
 
 </script>
 
@@ -21,8 +15,8 @@ import {
 
 <style scoped>
 .logo-box{
-  height: 60px;
-  overflow: hidden;
+  height: 64px;
+  min-height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;

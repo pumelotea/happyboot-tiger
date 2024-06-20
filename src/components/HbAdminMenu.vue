@@ -112,11 +112,13 @@ const props = defineProps({
 </script>
 <template>
   <div class="hb-admin-menu-com">
-    <div class="hb-admin-menu-top-level" v-if="!isMenuCollapsed">
+    <div class="hb-admin-menu-top-level-box" v-if="!isMenuCollapsed">
       <hb-admin-logo-2 v-if="!isMenuCollapsed"/>
-      <div class="hb-admin-menu-top-level-item" v-for="e in naviMenuData" :key="e.menuId" @click="topLevelMenuChoose(e.menuId, e)" :class="{'active': e.menuId === chooseTopLevel?.menuId}">
-        <i :class="`${e.original.icon}`" style="font-size: 24px"></i>
-        <div class="hb-admin-menu-top-level-item-name">{{e.name}}</div>
+      <div class="hb-admin-menu-top-level">
+        <div class="hb-admin-menu-top-level-item" v-for="e in naviMenuData" :key="e.menuId" @click="topLevelMenuChoose(e.menuId, e)" :class="{'active': e.menuId === chooseTopLevel?.menuId}">
+          <i :class="`${e.original.icon}`" style="font-size: 24px"></i>
+          <div class="hb-admin-menu-top-level-item-name">{{e.name}}</div>
+        </div>
       </div>
     </div>
     <div class="hb-admin-menu-sub-level animate__animated animate__faster animate__slideInRight" v-if="naviMenuDataFiltered.length">
@@ -143,11 +145,16 @@ const props = defineProps({
   overflow: hidden;
 }
 
+.hb-admin-menu-top-level-box{
+  display: flex;
+  flex-direction: column;
+  box-shadow: v-bind(vars.boxShadow2);
+}
+
 .hb-admin-menu-top-level{
   display: flex;
   flex-direction: column;
   gap: 5px;
-  box-shadow: v-bind(vars.boxShadow2);
   overflow: auto;
   z-index: 1;
 }
