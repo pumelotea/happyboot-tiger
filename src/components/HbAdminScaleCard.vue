@@ -8,13 +8,14 @@
  * @return {*} canvas drawImage的所有入参
  */
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { useResizeObserver } from '@vueuse/core'
 
 function getObjectFitSize (
-  type = 'cover',
-  containerWidth,
-  containerHeight,
-  imgWidth,
-  imgHeight
+    type = 'cover',
+    containerWidth,
+    containerHeight,
+    imgWidth,
+    imgHeight
 ) {
   let radio = 1 // 容器与图片的比例
   let sx = 0 // 开始剪切的 x 坐标位置。
@@ -101,7 +102,7 @@ function resize (type) {
   const clientWidth = box.value.clientWidth
   const clientHeight = box.value.clientHeight
   const fit = getObjectFitSize(
-    type, clientWidth, clientHeight, contentWidth.value, contentHeight.value
+      type, clientWidth, clientHeight, contentWidth.value, contentHeight.value
   )
   const scaleX = fit.width / fit.swidth
   const scaleY = fit.height / fit.sheight
@@ -118,28 +119,29 @@ function handle () {
   resize(props.mode)
 }
 
+const ob = useResizeObserver(box, handle)
+
 onMounted(() => {
   const { width, height } = content.value.getBoundingClientRect()
   contentWidth.value = width
   contentHeight.value = height
   handle()
-  window.addEventListener('resize', handle)
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', handle)
+  ob.stop()
 })
 
 </script>
 <template>
   <div
-    ref="box"
-    class="hb-admin-scale-card"
+      ref="box"
+      class="hb-admin-scale-card"
   >
     <div
-      ref="content"
-      class="hb-admin-scale-content"
-      :style="defaultSize"
+        ref="content"
+        class="hb-admin-scale-content"
+        :style="defaultSize"
     >
       <slot />
     </div>
