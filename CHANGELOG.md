@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/pumelotea/happyboot-tiger/compare/v1.2.0...v1.3.0) (2024-12-26)
+
+
+### Features
+
+* 升级编辑器 ([1feceb9](https://github.com/pumelotea/happyboot-tiger/commit/1feceb938b946a349d792ab11f80537fb2f58bed))
+* 富文本demo更新 ([7a12677](https://github.com/pumelotea/happyboot-tiger/commit/7a12677e3ebf4059427d69d5ee747700321be81d))
+* 富文本编辑器优化 ([d08c7cd](https://github.com/pumelotea/happyboot-tiger/commit/d08c7cd47dd6b7e40f573d74e9c1e023169069b2))
+* 富文本编辑器优化 ([8b79b9b](https://github.com/pumelotea/happyboot-tiger/commit/8b79b9b3610a55b70689a044c51e6f9e4d6ca396))
+* 富文本编辑器优化 ([7ce09c3](https://github.com/pumelotea/happyboot-tiger/commit/7ce09c30e33c40496198d22d93136f287f2a0a13))
+* 富文本编辑器优化 ([45ebaa4](https://github.com/pumelotea/happyboot-tiger/commit/45ebaa4a1c6f235ea2d44dce2c72c473e937e0e9))
+* 富文本编辑器优化 ([14ae632](https://github.com/pumelotea/happyboot-tiger/commit/14ae63202e1d198e7f7ebeefce2f213832ae725c))
+* 富文本编辑器优化 ([a6b5fa1](https://github.com/pumelotea/happyboot-tiger/commit/a6b5fa11b0393f3355db18885c756b70d90e3ad5))
+* 富文本编辑器优化 ([13783f7](https://github.com/pumelotea/happyboot-tiger/commit/13783f7fffc60b1d17032816d2ad3c1395b925f3))
+* 富文本编辑器优化 ([2dd262d](https://github.com/pumelotea/happyboot-tiger/commit/2dd262de100d69817492edbe4565b55975cbaed9))
+* 富文本编辑器支持word导入 ([7f4cfc6](https://github.com/pumelotea/happyboot-tiger/commit/7f4cfc64e0285d31b871ba686c0492b962ac56c2))
+* 富文本编辑器焦点区域优化 ([2b69ea6](https://github.com/pumelotea/happyboot-tiger/commit/2b69ea653a2c75d76d020286e27057b9b3c3eb9b))
+* 富文本编辑器独立维护 ([b5a73ab](https://github.com/pumelotea/happyboot-tiger/commit/b5a73abc453ac856bd5177cbe8803c5203174948))
+* 富文本编辑器独立维护 ([5a6d7e6](https://github.com/pumelotea/happyboot-tiger/commit/5a6d7e614a035f5a50fa7c21ea4903c1999f4fb8))
+* 富文本编辑器独立维护 ([a162d5a](https://github.com/pumelotea/happyboot-tiger/commit/a162d5a69fd02af8f207195d9f7b627a2d649218))
+* 富文本编辑器独立维护 ([b23650a](https://github.com/pumelotea/happyboot-tiger/commit/b23650a308206c7f267c45ba894e22575dcb5a3f))
+* 富文本编辑器独立维护 ([c230fd7](https://github.com/pumelotea/happyboot-tiger/commit/c230fd71ca03010034e2cd72aee749b1b8302e1f))
+* 富文本编辑器独立维护 ([8878a0c](https://github.com/pumelotea/happyboot-tiger/commit/8878a0c6c07751e07c8563d607b6aae09cd6f99e))
+* 富文本编辑器独立维护 ([0fd6191](https://github.com/pumelotea/happyboot-tiger/commit/0fd6191785047165b31c6a4d8c833d045211a876))
+* 导航支持拖拽排序 ([bbf4e1a](https://github.com/pumelotea/happyboot-tiger/commit/bbf4e1a874bb8d5031a3153dd428566a2f29d888))
+* 菜单优化和bug修复，体验更加友好 ([4a46681](https://github.com/pumelotea/happyboot-tiger/commit/4a466819896edf25701d26f763a0919127a2bde7))
+* 菜单模块优化 ([2584036](https://github.com/pumelotea/happyboot-tiger/commit/2584036c4a75a9839aeffd8a8107b8b2fff6969b))
+* 菜单模块优化 ([061affa](https://github.com/pumelotea/happyboot-tiger/commit/061affad70c5375473220dd6467094513edd4efa))
+* 菜单模块优化 ([c0fd427](https://github.com/pumelotea/happyboot-tiger/commit/c0fd427daf185e87b50089cb5573faa9674f766f))
+
+
+### Bug Fixes
+
+* 修复缩放卡片的bug ([a14643e](https://github.com/pumelotea/happyboot-tiger/commit/a14643e49faec8a50cd56128597e67538db00e55))
+* 路由切换加载等待与资源加载时间不一致 ([178d3ff](https://github.com/pumelotea/happyboot-tiger/commit/178d3ff1ef181da833999dece6b96438d14b9f8d))
+
 ## [1.2.0](https://github.com/pumelotea/happyboot-tiger/compare/v1.1.2...v1.2.0) (2023-12-13)
 
 
