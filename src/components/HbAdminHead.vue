@@ -23,6 +23,7 @@ import security from '@/global/security'
 import HbAdminMessage from '@/components/HbAdminMessage'
 import HbAdminWeather from './HbAdminWeather'
 import HbAdminMenu from '@/components/HbAdminMenu'
+import { showMenuCollapsedBtn } from '@/global/menu'
 
 const router = useRouter()
 
@@ -124,6 +125,7 @@ const info = ref({
   <div class="hb-admin-head-com">
     <div class="head-left-area head-item-center">
       <n-button
+        v-if="showMenuCollapsedBtn"
         class="menu-toggle-button"
         text
         @click="isMenuCollapsed = !isMenuCollapsed"
