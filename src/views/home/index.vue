@@ -20,8 +20,7 @@ import {
 } from 'naive-ui'
 
 import { theme, isMenuCollapsed } from '@/global/config'
-import { h, ref } from 'vue'
-import { CubeOutline, AlbumsOutline } from '@vicons/ionicons5'
+import { AlbumsOutline } from '@vicons/ionicons5'
 import framework from '@/global/framework'
 
 function onLayoutCollapsed (collapsed) {
@@ -29,10 +28,6 @@ function onLayoutCollapsed (collapsed) {
 }
 
 const currentMenuRoute = framework.getCurrentMenuRoute()
-
-function renderIcon () {
-  return () => h(NIcon, null, { default: () => h(CubeOutline) })
-}
 
 </script>
 
