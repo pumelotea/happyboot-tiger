@@ -8,6 +8,7 @@
  * @return {*} canvas drawImage的所有入参
  */
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { useResizeObserver } from '@vueuse/core'
 
 function getObjectFitSize (
   type = 'cover',
@@ -118,16 +119,17 @@ function handle () {
   resize(props.mode)
 }
 
+const ob = useResizeObserver(box, handle)
+
 onMounted(() => {
   const { width, height } = content.value.getBoundingClientRect()
   contentWidth.value = width
   contentHeight.value = height
   handle()
-  window.addEventListener('resize', handle)
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', handle)
+  ob.stop()
 })
 
 </script>

@@ -1,7 +1,7 @@
 {
   "name": "happyboot-tiger",
   "private": true,
-  "version": "1.2.0",
+  "version": "1.3.0",
   "scripts": {
     "dev": "vite --mode dev",
     "build-test": "vite build --mode test",
@@ -27,6 +27,7 @@
     "@vicons/ionicons5": "^0.12.0",
     "@vueuse/core": "^8.0.1",
     "animate.css": "^4.1.1",
+    "array-move": "^4.0.0",
     "axios": "^1.6.8",
     "bytemd": "^1.21.0",
     "cropperjs": "^1.6.0",
@@ -41,13 +42,14 @@
     "mammoth": "^1.7.1",
     "markdown-it": "^13.0.1",
     "moment": "^2.29.4",
-    "naive-ui": "^2.35.0",
+    "naive-ui": "^2.40.0",
     "print-js": "^1.6.0",
     "qrcode": "^1.5.3",
     "qs": "^6.11.2",
     "remixicon": "^3.7.0",
-    "vue": "^3.3.11",
-    "vue-router": "^4.2.4",
+    "sortablejs": "^1.15.6",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0",
     "xgplayer": "^2.32.2"
   },
   "devDependencies": {
@@ -62,7 +64,7 @@
     "unplugin-auto-import": "^0.17.2",
     "unplugin-vue-components": "^0.26.0",
     "vfonts": "^0.0.3",
-    "vite": "^5.1.0",
+    "vite": "^6.0.6",
     "vite-plugin-eslint2": "^4.3.1"
   }
 }

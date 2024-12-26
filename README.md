@@ -12,18 +12,16 @@ HappyBoot Tiger
 <img src="https://img.shields.io/github/license/pumelotea/happyboot-tiger?style=flat-square"/>
 </p>
 
-
 ## 效果图
-
-![lib](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/lib.png)
-![light](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/light.png)
-![dark](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/dark.png)
-![editor](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/editor.png)
+![p1](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/iShot_2024-12-26_15.40.11.png)
+![p2](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/iShot_2024-12-26_15.40.35.png)
+![p3](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/iShot_2024-12-26_15.41.14.png)
+![p4](https://raw.githubusercontent.com/pumelotea/happyboot-tiger/master/assets/iShot_2024-12-26_15.41.23.png)
 
 ## 简介
-`happyboot-tiger`是happyboot系列中最新的中后端框架，采用时下最流行的`Vue3`和`NaiveUI`。
+`happyboot-tiger`是happyboot系列中最新的中后端框架，采用时下最流行的`Vue3.5`和`NaiveUI`。
 
-技术框架： `Vue3 + Vite5 + JavaScript + Navie UI`
+技术框架： `Vue3.5 + Vite6 + JavaScript + Navie UI`
 
 ## 演示地址
 > 废话不多说，具体效果请直接看演示地址！   

@@ -16,7 +16,9 @@ import framework from '@/global/framework'
 import { h, nextTick, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { removeComponentCache } from '@/global/router'
+import Sortable from 'sortablejs'
 import HbAdminNavManager from '@/components/HbAdminNavManager'
+import { arrayMoveImmutable } from 'array-move'
 
 const vars = useThemeVars()
 
@@ -67,7 +69,7 @@ const options = [
 
 function refreshPage (key) {
   switch (key) {
-  case 'refreshCurrent':{
+  case 'refreshCurrent': {
     const pageId = currentRouteMenu.value?.pageId
     if (pageId) {
       removeComponentCache(pageId)
@@ -77,7 +79,7 @@ function refreshPage (key) {
     }
     break
   }
-  case 'refreshAll':{
+  case 'refreshAll': {
     const pageId = currentRouteMenu.value?.pageId
     framework.getNavList().value.forEach(e => {
       removeComponentCache(e.pageId)
@@ -93,6 +95,7 @@ function refreshPage (key) {
 }
 
 function onDropdownSelect (key) {
+  clickoutside()
   if (key === 'refreshCurrent' || key === 'refreshAll') {
     refreshPage(key)
     return
@@ -142,7 +145,6 @@ function scroll (pageId) {
 
   const rightOffset = target.offsetLeft + target.clientWidth - scrollLeft - navDom.value.clientWidth
   const leftOffset = target.offsetLeft - scrollLeft
-  // console.log(rightOffset,leftOffset)
   if (rightOffset > 0) {
     navDom.value.scrollTo({
       top     : 0,
@@ -187,6 +189,42 @@ watch(currentRouteMenu, value => {
   })
 })
 
+const showDropdownRef = ref(false)
+const xRef = ref(0)
+const yRef = ref(0)
+
+function handleContextMenu (e) {
+  e.preventDefault()
+  nextTick().then(() => {
+    showDropdownRef.value = true
+    xRef.value = e.clientX
+    yRef.value = e.clientY
+  })
+}
+
+function clickoutside () {
+  showDropdownRef.value = false
+}
+
+function initSortable () {
+  Sortable.create(navDom.value, {
+    animation  : 150,
+    ghostClass : 'drop-background',
+    dragClass  : 'drop-background',
+    chosenClass: 'drop-background',
+    onEnd ({ oldIndex, newIndex }) {
+      if (oldIndex === newIndex) {
+        return
+      }
+      navList.value = arrayMoveImmutable(navList.value, oldIndex, newIndex)
+    }
+  })
+}
+
+watch(navDom, () => {
+  initSortable()
+})
+
 const showPageManager = ref(false)
 
 </script>
@@ -210,6 +248,7 @@ const showPageManager = ref(false)
       <n-empty
         v-if="navList.length <= 0"
         :show-icon="false"
+        style="pointer-events: none"
         description="从左侧菜单打开页面"
       />
       <n-tag
@@ -217,10 +256,11 @@ const showPageManager = ref(false)
         :id="e.pageId"
         :key="e.pageId"
         closable
-        :type="e.pageId === currentRouteMenu.pageId?'success':''"
+        :type="e.pageId === currentRouteMenu.pageId?'primary':''"
         class="nav-tag"
         @close="()=>{onNavClose(e)}"
         @click="(event)=>{onNavClick(e.pageId,event)}"
+        @contextmenu="handleContextMenu"
       >
         {{ e.title }}
         <template #avatar>
@@ -271,6 +311,22 @@ const showPageManager = ref(false)
         </template>
       </n-button>
       <n-dropdown
+        trigger="manual"
+        :x="xRef"
+        :y="yRef"
+        :show="showDropdownRef"
+        :options="options"
+        @clickoutside="clickoutside"
+        @select="onDropdownSelect"
+      >
+        <n-button text>
+          <template #icon>
+            <n-icon :component="EllipsisVertical" />
+          </template>
+        </n-button>
+      </n-dropdown>
+
+      <n-dropdown
         :options="options"
         @select="onDropdownSelect"
       >
@@ -304,7 +360,7 @@ const showPageManager = ref(false)
   width: 120px;
 }
 
-.nav-cached-tag{
+.nav-cached-tag {
   position: absolute;
   top: 0;
   left: 0;
@@ -320,7 +376,7 @@ const showPageManager = ref(false)
   position: relative;
   margin: 0 10px;
   white-space: nowrap;
-  padding:  10px 5px;
+  padding: 10px 5px;
   box-sizing: border-box;
 }
 
@@ -332,17 +388,23 @@ const showPageManager = ref(false)
   margin-left: 5px;
 }
 
-.nav-tag{
+.nav-tag {
   overflow: hidden;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
-.nav-tag:hover{
+.nav-tag:hover {
 }
 
-.nav-item-icon{
+.nav-item-icon {
   display: flex;
   align-items: center;
   padding-left: 5px;
+}
+</style>
+<style>
+.drop-background {
+  background-color: v-bind(vars.primaryColor);
+  color: white;
 }
 </style>
