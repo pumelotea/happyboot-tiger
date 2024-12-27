@@ -6,7 +6,8 @@ module.exports = {
   "extends": [
     "plugin:vue/essential",
     "standard",
-    "plugin:vue/vue3-recommended"
+    "plugin:vue/vue3-recommended",
+    "./.eslintrc-auto-import.json"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
