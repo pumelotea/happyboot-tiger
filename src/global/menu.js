@@ -127,6 +127,13 @@ watch(currentMenuRoute, () => {
   immediate: true
 })
 
+watch(isMenuCollapsed, () => {
+  if (isMenuCollapsed.value) {
+    return
+  }
+  scrollIntoView(currentMenuRoute.value.menuItem.menuId)
+})
+
 export {
   naviMenuDataFiltered,
   naviMenuData,
